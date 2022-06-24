@@ -1,0 +1,207 @@
+/* =========================================================== 
+    Our_Team
+=============================================================*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Sofia Pro", sans-serif;
+}
+
+.team-bg {
+  background-image: url("../../public/img/index-page/mining-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: auto;
+}
+
+.common-heading {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+}
+
+.team-waperd {
+  margin: 0 -58px;
+}
+
+.team-padding {
+  padding: 0 58px;
+}
+
+.team-box {
+  background: #d9edfd;
+  border-radius: 30px;
+  padding: 30px 40px 40px 40px;
+  box-shadow: 4px 4px 6px rgba(0, 16, 57, 0.2),
+    -4px -4px 7px rgba(255, 255, 255, 0.5);
+}
+
+.team-title {
+  font-weight: 500;
+  color: #001039;
+  font-size: 35px !important;
+  line-height: 35px !important;
+  margin: 30px 0 15px 0;
+}
+
+.currentuser-profile .team-title {
+  margin: 0 0 35px;
+}
+
+.team-subtitle {
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 300;
+}
+
+.team-description {
+  color: #272d3d;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 300;
+  margin: 31px 0 58px;
+}
+
+.team-management {
+  padding: 100px 0 170px;
+}
+
+.team {
+  padding: 0px;
+}
+
+.team-management .common-heading {
+  padding-bottom: 100px;
+}
+
+.team-box ul li a img {
+  margin-right: 30px;
+}
+
+.teamlist-padding {
+  padding: 0 34px;
+  margin-bottom: 75px;
+}
+
+.team-overview {
+  margin: 0 -34px;
+}
+
+.teamlist-padding .team-title {
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.teamlist-padding .team-subtitle {
+  font-size: 20px;
+  line-height: 20px;
+  margin-bottom: 56px;
+}
+
+.teamlist-padding .team-box {
+  padding: 35px 15px 35px;
+}
+
+.team-management .team-waperd {
+  padding-bottom: 0px;
+}
+
+.team-management .team-box ul li a img {
+  margin-right: 20px;
+}
+
+@media screen and (max-width: 1536px) {
+
+  .team-waperd,
+  .team-overview {
+    margin: 0;
+  }
+
+  .team-management {
+    padding: 70px 0 0 0;
+  }
+
+  .team-management .team-waperd {
+    padding-bottom: 75px;
+  }
+
+  .team-box {
+    padding: 30px 10px;
+    margin-top: 35px;
+  }
+
+  .team-padding {
+    padding: 0 30px;
+  }
+
+  .teamlist-padding .team-subtitle {
+    margin-bottom: 36px;
+  }
+
+  .teamlist-padding {
+    padding: 0px 25px;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .team-management {
+    padding: 100px 0;
+  }
+
+  .team-management .common-heading {
+    padding-bottom: 100px;
+  }
+
+  .teamlist-padding {
+    padding: 0px 15px;
+  }
+
+  .team-title {
+    font-size: 30px;
+    line-height: 35px;
+  }
+
+  .teamlist-padding .team-title {
+    font-size: 25px;
+    line-height: 30px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+
+  .team-padding,
+  .teamlist-padding {
+    padding: 0 15px;
+  }
+
+  .team-waperd,
+  .team-overview {
+    margin: 0 -15px;
+  }
+
+  .team-padding,
+  .teamlist-padding {
+    margin-bottom: 30px;
+  }
+
+  .common-heading {
+    padding-bottom: 30px;
+  }
+}
+
+.teamMamberImg{
+  width: 124px;
+  height: 124px;
+  left: 302px;
+  top: 1276px;
+  border-radius: 50%;
+}
+
+.teamImg{
+  width: 154px;
+  height: 154px;
+  left: 1429px;
+  top: 608px;
+  border-radius: 50%;
+}

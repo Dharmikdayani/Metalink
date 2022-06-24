@@ -1,0 +1,212 @@
+import React, { useEffect, useRef, useState } from "react";
+
+import Carousel from "react-elastic-carousel";
+import Swal from "sweetalert2";
+import instance from "../../baseUrl/baseUrl";
+
+const Invited = () => {
+  // const [card] = useState(FilterDetails);
+  const [selectedOption, setSelectedOption] = useState("all");
+  const [Layer, setLayer] = useState("all");
+  const [member, setMemeber] = useState([]);
+  const effectCalled = useRef(false);
+  const [invite, setInvite] = useState([]);
+  /*============= Toast Fire Notifaction==========*/
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
+  useEffect(() => {
+    if (!effectCalled.current) {
+      filterData();
+      effectCalled.current = true;
+    }
+  }, [selectedOption, Layer]);
+
+  const filterData = async () => {
+    setMemeber([]);
+    try {
+      const result = await instance.get(
+        `/earningTeam?status=${selectedOption}&level=${Layer}`
+      );
+      console.log(result);
+      if (result.data.status) {
+        while (result.data.data.earningTeam.length != 0) {
+          const data = result.data.data.earningTeam.splice(0, 6);
+          setMemeber((old) => [...old, data]);
+        }
+        setInvite([result.data.data]);
+      } else {
+        Toast.fire({
+          icon: "error",
+          title: result.data.message,
+        });
+      }
+    } catch (error) {
+      console.log("err" + error);
+    }
+  };
+
+  return (
+    <>
+      <section className="earning-time">
+        <div className="container">
+          <h3 className="common-heading text-center">Earning Team</h3>
+          <h4 className="sub-title mb-0">
+            Total Earning Team : {invite[0]?.memberCount}
+          </h4>
+          <div className="row justify-content-center">
+            <div className="col-lg-6">
+              <div className="inviter-details d-flex justify-content-between align-items-center">
+                <div>
+                  <h3 className="inviter-name ">
+                    {invite[0]?.parent?.parentName}
+                  </h3>
+                  <h4 className="mb-0 invited-you">Invited you</h4>
+                </div>
+                <div className="d-flex  align-items-center">
+                  <p className="mb-0 active-inactive-title">
+                    {invite[0]?.parent?.status ? "active" : "inactive"}
+                  </p>
+                  <img
+                    src={
+                      invite[0]?.parent?.status
+                        ? "../../img/icon/active.png"
+                        : "../../img/icon/inactive.png"
+                    }
+                    alt="inactive"
+                    className="img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <h5 className="invited-title">Invited By You</h5>
+          <div className="d-flex justify-content-center">
+            <div className="text-center">
+              <h1 className="Status">Status:</h1>
+              <select
+                value={selectedOption}
+                onChange={(e) => {
+                  setSelectedOption(e.target.value);
+                  effectCalled.current = false;
+                }}
+              >
+                <option value="all">All</option>
+                <option value="active">Active</option>
+                <option value="inactive">In-Active</option>
+              </select>
+            </div>
+            <div>
+              <h1 className="Status">Layers:</h1>
+              <select
+                value={Layer}
+                onChange={(e) => {
+                  setLayer(e.target.value);
+                  effectCalled.current = false;
+                }}
+              >
+                <option value="all">All</option>
+                <option value="1">Layer 1</option>
+                <option value="2">Layer 2</option>
+                <option value="3">Layer 3</option>
+                <option value="4">Layer 4</option>
+                <option value="5">Layer 5</option>
+              </select>
+            </div>
+          </div>
+          {member.length > 0 ? (
+            <Carousel>
+              {member.map((data, index) => {
+                return (
+                  <div
+                    className="row justify-content-between grid-container"
+                    key={index}
+                  >
+                    {data.map((data, index) => {
+                      return (
+                        <div
+                          className="col-md-5 filter-results"
+                          data-cat={data.datacat}
+                          key={index}
+                        >
+                          <div className="filter-tab-bg d-flex justify-content-between my-40">
+                            <div>
+                              <h3 className="invited-name mb-0">
+                                {data.username}
+                              </h3>
+                            </div>
+                            <div className="d-flex align-items-center justify-content-between">
+                              <p className="mb-0 active-inactive-title">
+                                {data.active ? "active" : "inactive"}
+                              </p>
+                              <img
+                                src={
+                                  data.active
+                                    ? "../../img/icon/active.png"
+                                    : "../../img/icon/inactive.png"
+                                }
+                                alt={data.active ? "active" : "inactive"}
+                                className="img-fluid"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </Carousel>
+          ) : (
+            <h2 className="selectedOption text-center">
+              <div className="box">
+             
+                <img
+                  src="https://cdn.iconscout.com/icon/free/png-512/dizzy-face-cross-error-emoji-37675.png"
+                  width="70"
+                  className="center"
+                />
+                {/* <h2>Oh No Something Went Wrong</h2> */}
+              </div>
+              <br />
+                <br />
+              {selectedOption === "all" && Layer === "all"
+                ? `No  Member Found `
+                : selectedOption === "all" &&
+                  (Layer === "1" ||
+                    Layer === "2" ||
+                    Layer === "3" ||
+                    Layer === "4" ||
+                    Layer === "5")
+                ? `No  Member Found on Layer ${Layer}`
+                : (selectedOption === "active" ||
+                    selectedOption === "inactive") &&
+                  Layer === "all"
+                ? `No ${selectedOption} Member Found`
+                : (selectedOption === "active" ||
+                    selectedOption === "inactive") &&
+                  (Layer === "1" ||
+                    Layer === "2" ||
+                    Layer === "3" ||
+                    Layer === "4" ||
+                    Layer === "5")
+                ? `No ${selectedOption} Member Found on Layer ${Layer}`
+                : null}
+            </h2>
+          )}
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Invited;

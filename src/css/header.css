@@ -1,0 +1,230 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Sofia Pro', sans-serif;
+}
+.login-form .header-logo {
+  padding-top: 24px;
+}
+.container {
+  max-width: 1490px;
+  padding: 0 20px;
+  display: table;
+  width: 100%;
+}
+.header {
+  padding-top: 24px;
+}
+
+.header ul {
+  list-style-type: none;
+  display: flex;
+  margin-bottom: 0px;
+  padding-left: 0px;
+}
+
+.header ul .nav-link {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  margin: -5px 10px 0 0;
+  padding: 10px 21px;
+  color: #001039;
+}
+
+.header ul .nav-item img {
+  margin-top: -5px;
+  padding-left: 8px;
+}
+.header .sign-in:hover {
+  border: none;
+  padding: 13px 24px;
+}
+.header .sign-in {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 16px !important;
+  border-radius: 7px;
+  border: 3px solid transparent;
+  border-radius: 7px;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0)
+  ),
+  linear-gradient(101deg, rgba(0, 66, 129, 1), rgba(0, 16, 57, 1))
+  ;
+  box-shadow: 2px 1000px 1px #ecf4f9 inset;
+
+  padding: 10px 21px;
+  margin-right: 20px !important;
+  text-decoration: none;
+  color: #001039;
+  display: inline-block;
+  margin: -5px auto auto;
+}
+
+.header .sign-in:hover {
+  box-shadow: none;
+  color: white;
+  
+}
+.header .sign-up-bg {
+  background: linear-gradient(180deg, #004585 0%, #000d35 100%);
+  border-radius: 7px;
+  margin: -5px auto auto;
+
+}
+
+.header .sign-up {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 16px !important;
+
+  padding: 10px 21px !important;
+
+  color: white !important;
+  text-decoration: none;
+  display: inline-block;
+  border: 3px solid transparent !important;
+  
+}
+.header .sign-up:hover {
+  border: 3px solid transparent !important;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0)
+    ),
+    linear-gradient(101deg, rgba(0, 66, 129, 1), rgba(0, 16, 57, 1)) !important;
+  box-shadow: 2px 1000px 1px #ecf4f9 inset !important;
+  color: black !important;
+  border-radius: 7px;
+
+}
+
+.connect-wallet,
+.connect-wallet:hover {
+  background: linear-gradient(180deg, #004585 0%, #000d35 100%) !important;
+  border-radius: 7px;
+  font-size: 16px;
+  line-height: 16px;
+  padding: 13px 14px 13px 13px;
+  color: white;
+
+  text-decoration: none;
+}
+
+.wallet-icon {
+  padding-left: 8px;
+}
+
+.header .nav-link.active {
+  background: #e2f1fc;
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.7),
+    inset 2px 2px 3px rgba(0, 16, 57, 0.2);
+  border-radius: 23.5px;
+}
+
+.user-stage .heading {
+  font-size: 55px;
+  font-weight: 600;
+
+  background: #004a8c;
+  background: -webkit-linear-gradient(to right, #004a8c, #00082d);
+  background: linear-gradient(to right, #004a8c, #00082d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-top: 72px;
+}
+.user-stage .sub-heading {
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 400;
+
+  margin-top: 10px;
+  color: #465375;
+}
+
+@media screen and (max-width: 1536px) {
+  .header .sign-in {
+    box-shadow: 2px 1000px 1px #e2f0fb inset;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .header-logo {
+    width: 150px;
+  }
+  .header ul .nav-link {
+    padding: 10px 22px;
+  }
+  .connect-wallet {
+    font-size: 13px;
+    line-height: 12px;
+    padding: 15px 18px 16px 19px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .connect-wallet {
+    padding: 11px 10px 11px 10px;
+  }
+  .header ul .nav-link {
+    line-height: 20px;
+
+    padding: 10px 12px;
+  }
+  .header .sign-in {
+    margin-right: 15px !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .header-md {
+    justify-content: center !important;
+  }
+  .header-page-name {
+    display: none !important;
+  }
+}
+
+
+
+.pulse {
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  }
+  @-webkit-keyframes pulse {
+  0% {
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+  }
+  50% {
+  -webkit-transform: scale3d(1.05, 1.05, 1.05);
+  transform: scale3d(1.05, 1.05, 1.05);
+  }
+  100% {
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+  }
+  }
+  @keyframes pulse {
+  0% {
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+  }
+  50% {
+  -webkit-transform: scale3d(1.05, 1.05, 1.05);
+  transform: scale3d(1.05, 1.05, 1.05);
+  }
+  100% {
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+  }
+  } 
+
+
+

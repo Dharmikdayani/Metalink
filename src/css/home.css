@@ -1,0 +1,562 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Sofia Pro', sans-serif;
+}
+
+.container {
+  max-width: 1490px;
+  padding: 0 20px;
+  display: table;
+  width: 100%;
+}
+
+.index-bg {
+  background-image: url("../../public/img/index-page/index-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* <!--============ Hero Start ===========--> */
+
+.hero {
+  background-image: url("../../public/img/index-page/hero-bg.png");
+
+  background-repeat: no-repeat;
+  margin-top: -10px;
+}
+
+.hero .heading {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  padding: 270px 0 43px 0;
+}
+
+.hero .content {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px;
+}
+
+.app-store {
+  padding: 43px 0 396px 0;
+}
+
+.play-store {
+  padding-right: 18px;
+}
+
+@media screen and (max-width: 1440px) {
+  .hero .heading {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 48px;
+    padding: 190px 0 43px 0;
+  }
+
+  .hero .content {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .hero .heading {
+    font-size: 35px;
+    padding: 190px 0 43px 0;
+  }
+
+  .hero .content {
+    font-size: 22px;
+  }
+
+  .app-store {
+    padding: 43px 0 300px 0;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .hero .heading {
+    font-size: 35px;
+    line-height: 40px;
+  }
+
+  .app-store {
+    padding: 43px 0 200px 0;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .hero .heading {
+    font-size: 35px;
+    padding: 130px 0 43px 0;
+    text-align: center;
+  }
+
+  .hero .content {
+    text-align: center;
+  }
+
+  .app-store {
+    padding: 43px 0 70px 0;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .hero .heading {
+    font-size: 31px;
+  }
+
+  .hero .content {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .hero .heading {
+    font-size: 27px;
+  }
+
+  .hero .content {
+    font-size: 17px;
+  }
+
+  .app-store {
+    flex-direction: column;
+  }
+
+  .play-store {
+    padding-right: 0px;
+    padding-bottom: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero .heading {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .hero .content {
+    font-size: 17px;
+  }
+}
+
+/* <!--============Hero End ===========--> */
+
+/* <!--------------- Metalink Network Start --------------> */
+
+.metalink-network {
+  margin-bottom: 138px;
+}
+
+.metalink-network .main-heading {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  text-align: center;
+  margin: 242px 0 0px 0;
+  padding-bottom: 138px;
+}
+
+.network-box {
+  background: #deeffd;
+  box-shadow: -3px -3px 10px #ffffff, 3px 3px 8px rgba(0, 16, 57, 0.2);
+  border-radius: 5px;
+  text-align: center;
+  padding-top: 47px;
+  height: 93%;
+
+  /* cursor: pointer; */
+}
+
+.network-box .network-bg {
+  width: 119px;
+  height: 119px;
+  background: #cde7fd;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+  
+}
+
+.network-box .network-details {
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.network-box .sub-head {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 24px;
+
+  color: #001039;
+  padding-top: 40px;
+}
+
+.network-box .content {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 17px;
+  padding-top: 20px;
+  padding-bottom: 43px;
+  color: #232840;
+}
+
+/* <!--============ Get Started Start  ===========--> */
+
+.get-started .main-heading {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  text-align: center;
+  padding-bottom: 138px;
+  /* height: 93px; */
+}
+
+.track-box {
+  background: #deeffd;
+  box-shadow: -3px -3px 5px rgba(255, 255, 255, 0.7),
+    3px 3px 4px rgba(0, 16, 57, 0.2);
+  border-radius: 16px;
+  padding: 0px;
+  height: 93px;
+}
+
+.track-box img {
+  padding-right: 15px;
+  padding-left: 35px;
+}
+
+.track-box .track-content,
+.track-box .track-content:hover {
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 30px;
+  color: #00092e;
+  text-decoration: none;
+  padding: 36px 35px 27px 0px;
+  white-space: nowrap;
+}
+
+.get-started-bg {
+  width: 57%;
+  margin: auto;
+  display: inherit;
+}
+
+.vector-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 300px;
+  opacity: 0;
+  -webkit-animation: fading ease-in 2.5s;
+  animation: fading ease-in 2.5s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-duration: 2s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 2s;
+}
+
+.get-started .join {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  -webkit-animation: fading ease-in 2.5s;
+  animation: fading ease-in 2.5s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-duration: 2s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 2s;
+}
+
+@keyframes fading {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.get-started .join h3 {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 40px;
+  color: white;
+}
+
+.started-tree {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+
+.first-layer{
+  margin-top: -29px;
+}
+.secound-layer{
+  padding: 25px 0px
+}
+.thierd-layer{
+  margin-top: 29px;
+}
+.mining-higher-rate {
+  margin: 73px 0 87px 0;
+  margin: 104px  0 97px 0;
+}
+
+@media screen and (max-width: 1440px) {
+  .track-box .track-content {
+    padding: 31px 35px 27px 0px;
+    white-space: initial;
+  }
+
+  .vector-inner {
+    max-width: 270px;
+  }
+}
+
+@media screen and (max-width: 1336px) {
+  .get-started-bg {
+    width: 55%;
+  }
+
+  .track-box .track-content {
+    font-size: 24px;
+  }
+
+  .track-box .track-content {
+    padding: 25px 35px 27px 0px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .get-started-bg {
+    width: 73%;
+  }
+
+  .track-box {
+    flex-direction: column;
+  }
+
+  .track-box .track-content {
+    font-size: 20px;
+    padding: 3px;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    margin-top: -14px;
+    line-height: 20px;
+  }
+
+  .track-box img {
+    display: inline-block;
+    text-align: center;
+    width: auto;
+    margin: auto;
+    padding: 10px 0px;
+  }
+
+  .mining-higher-rate {
+    margin: 96px 0 103px 0;
+  }
+
+  .vector-inner {
+    max-width: 250px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .mining-higher-rate {
+    margin: 72px 0 80px 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .track-box .track-content {
+    font-size: 17px;
+    line-height: 20px;
+  }
+  .first-layer{
+    margin-top: -34px;
+  }
+  .secound-layer{
+    padding: 0px
+  }
+  .thierd-layer{
+    margin-top: -15px;
+  }
+  .mining-higher-rate {
+    margin: 85px 0 80px 0;
+  }
+
+  .get-started .main-heading {
+    padding-bottom: 88px;
+    padding-top: 50px;
+    font-size: 41px;
+    line-height: 48px;
+  }
+
+  .metalink-network .main-heading {
+    margin: 132px 0 0px 0;
+  }
+}
+
+@media screen and (max-width: 882px) {
+  .track-box .track-content {
+    font-size: 16px;
+    line-height: 15px;
+  }
+
+  .mining-higher-rate {
+    margin: 68px 0 103px 0;
+  }
+
+  .get-started-bg {
+    width: 79%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .mining-higher-rate {
+    margin: 68px 0 88px 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .get-started {
+    display: none;
+  }
+}
+
+/* <!--------------- Metalink Network End --------------> */
+/* ---------- Hover Effect Start ------------ */
+
+.network-main-box:hover .network-box {
+  background-color: #001039;
+}
+
+.network-main-box a {
+  text-decoration: none;
+}
+
+.network-main-box:hover .network-box .content,
+.network-main-box:hover .network-box .sub-head {
+  color: white;
+}
+
+.network-main-box:hover .network-bg {
+  background: #0f2354;
+}
+
+.white-image {
+  display: none;
+}
+
+.network-main-box:hover .white-image {
+  display: block;
+}
+
+.network-main-box:hover .blue-image {
+  display: none;
+}
+
+.network-one-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- Hover Effect End ------------ */
+
+/* <!--------------- Download Section Start  --------------> */
+
+.download-app {
+  background: url("../../public/img/index-page/download-app-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.download-app .sub-heading {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  padding-top: 303px;
+  color: #ffffff;
+}
+
+.download-app .content {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 24px;
+  color: #ffffff;
+  padding-top: 40px;
+}
+
+.light-play-store {
+  padding-top: 40px;
+}
+
+.light-google-play {
+  padding-right: 25px;
+}
+
+@media screen and (max-width: 1536px) {
+  .download-app .sub-heading {
+    font-size: 42px;
+    line-height: 45px;
+    padding-top: 200px;
+  }
+
+  .download-app .content {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .download-app .sub-heading {
+    font-size: 36px;
+    line-height: 41px;
+  }
+
+  .download-app .content {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .download-app .sub-heading {
+    font-size: 33px;
+    line-height: 39px;
+    padding-top: 100px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .light-play-store {
+    padding-bottom: 70px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .download-app {
+    display: none;
+  }
+}
+
+
+
+/* <!--------------- Download Section End  --------------> */

@@ -1,0 +1,65 @@
+/* =========================================================== 
+    Contact_Us
+=============================================================*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Sofia Pro', sans-serif;
+  }
+.profile-add .form-group input,
+.profile-add .form-group textarea{
+    width: 100%;
+    border: 0;
+    outline: none;
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 400;
+    padding: 21px 35px;
+    background: #D9EDFD;
+    margin-bottom: 40px;
+    border-radius: 35px;
+    display: inline-block;
+    
+    box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.5), inset 3px 3px 5px rgba(0, 16, 57, 0.2);
+}
+.profile-add .form-group textarea{
+    height: 227px;
+    resize: none;
+    margin-bottom: 90px;
+}
+.profile-add .form-group input::-webkit-input-placeholder,
+.profile-add .form-group textarea::-webkit-input-placeholder { /* Edge */
+    color: #465375;
+}
+
+.profile-add .form-group input:-ms-input-placeholder,
+.profile-add .form-group textarea:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #465375;
+}
+
+.profile-add .form-group input::placeholder, 
+.profile-add .form-group textarea::placeholder {
+    color: #465375;
+}
+.contact-us .common-heading{
+    padding-bottom: 23px;
+}
+.btn-send{
+    border: 0;
+    color: #FFF;
+    margin: 0 auto;
+    display: table;
+    font-size: 24px;
+    line-height: 1;
+    padding: 14px 38px;
+    border-radius: 10px;
+    
+    background: linear-gradient(180deg, #004585 0%, #000D35 100%);
+}
+.contact-us{
+    padding: 160px 0 200px;
+}
+.contact-us .platform-subtitle{
+    margin-bottom: 115px;
+}

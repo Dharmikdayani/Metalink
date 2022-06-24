@@ -1,0 +1,1769 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Sofia Pro", sans-serif;
+}
+
+.user-stage .heading {
+  font-size: 55px;
+  font-weight: 600;
+
+  background: #004a8c;
+  background: -webkit-linear-gradient(to right, #004a8c, #00082d);
+  background: linear-gradient(to right, #004a8c, #00082d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-top: 72px;
+}
+
+.user-stage .sub-heading {
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 400;
+
+  margin-top: 10px;
+  color: #465375;
+}
+
+.mining-bg {
+  background-image: url("../../public/img/index-page/mining-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: auto;
+}
+
+.mining-box {
+  padding: 50px 0px 0px 0px;
+}
+
+.layer-one {
+  width: 504px;
+  height: 504px;
+  border-radius: 100%;
+  margin: auto;
+  box-shadow: inset -3px -3px 8px rgba(255, 255, 255, 0.8),
+    inset 2px 3px 5px rgba(0, 10, 48, 0.3);
+  position: relative;
+}
+
+.layer-two {
+  transform: rotate(-315deg);
+  border: 16px solid #daedfc;
+  border-top: 16px solid transparent;
+  outline: none;
+  /* background: linear-gradient( -90deg, #daedfc 50%, #00488a 77%) border-box; */
+  background: linear-gradient(to left, #daedfc 50.83%, #00488A 74.93%) border-box;
+  /* background: linear-gradient(to right, #ddeefc 47%, #00488aa8 100%) border-box; */
+  border-radius: 100%;
+  margin: auto;
+  box-shadow: inset -3px -3px 8px rgb(255 255 255 / 80%),
+    inset 2px 3px 5px rgb(0 10 48 / 30%);
+  position: relative;
+}
+
+.layer-two-active {
+  animation-name: spin;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(-360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.layer-three {
+  width: 472px;
+  height: 472px;
+  background-color: #daedfc;
+  border-radius: 100%;
+  box-shadow: -3px -3px 8px rgba(255, 255, 255, 0.5),
+    2px 3px 5px rgba(0, 10, 48, 0.2);
+}
+
+.loader-inner {
+  width: 472px;
+  height: 472px;
+  background-color: #daedfc;
+  border-radius: 100%;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loader-ball {
+  content: "";
+  position: absolute;
+  top: 57px;
+  left: 54px;
+  background-image: url(../../public/img/index-page/spin.svg);
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+}
+
+.mining-calculation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  text-align: center;
+}
+
+.mining-calculation .mining-amount {
+  font-size: 66px;
+  font-weight: 600;
+  line-height: 66px;
+  margin-bottom: 7px;
+  margin-top: -3px;
+}
+
+.mining-calculation .mining-per-hour {
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 36px;
+  /* padding: 17px 7px 0 0; */
+  margin-bottom: 0px;
+  background: linear-gradient(91.65deg, #004788 -2.07%, #001540 97.08%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  margin-top: 85px;
+}
+
+@media screen and (max-width: 1024px) {
+  .mining-calculation .mining-per-hour {
+    margin-top: 40px;
+    font-size: 29px;
+  }
+}
+
+.join {
+  text-decoration: none;
+}
+
+.mining-calculation .mining-per-hour .hours {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+}
+
+.mining-start-btn {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 18px;
+  margin-top: 15px;
+  padding: 12px 45px;
+  background: #daedfc;
+  box-shadow: 3px 3px 4px rgba(0, 16, 57, 0.2),
+    -3px -3px 5px rgba(255, 255, 255, 0.7);
+  border-radius: 23.5px;
+  display: inline-block;
+  text-align: center;
+  color: #001039;
+}
+
+.mining-start-btn-active {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 18px;
+  margin-top: 10px;
+  padding: 12px 33px;
+  background: #e2f1fc;
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.7),
+    inset 2px 2px 3px rgba(0, 16, 57, 0.2);
+  border-radius: 23.5px;
+  display: inline-block;
+  text-align: center;
+  color: #001039;
+  cursor: pointer;
+}
+
+.mining-bg .Withdraw,
+.mining-bg .deposit {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 22px;
+  padding: 22px 48px;
+  background: #daedfc;
+  box-shadow: 3px 3px 4px rgba(0, 16, 57, 0.2),
+    -3px -3px 5px rgba(255, 255, 255, 0.7);
+  border-radius: 32.5px;
+  display: inline-block;
+  text-align: center;
+  color: #001039;
+}
+
+.mining-bg .deposit {
+  margin-left: 70px;
+}
+
+.mining-bg .deposit img,
+.mining-bg .Withdraw img {
+  margin-left: 20px;
+}
+
+.mining-with-depo-btn {
+  padding: 70px 0;
+}
+
+.Earnings {
+  font-family: 'Sofia Pro';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 28px;
+  background: linear-gradient(91.79deg, #00498A 0.91%, #001540 99.39%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.captcha .input-groups .form-control {
+  background: transparent;
+  box-shadow: none;
+  border-radius: none;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-family: Sofia Pro;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.captcha-bg {
+  background: #d0eaff;
+  box-shadow: inset -3px -3px 3px rgba(255, 255, 255, 0.5),
+    inset 2px 3px 3px rgba(0, 16, 57, 0.2);
+  border-radius: 16px;
+  padding: 42px 100px 42px 56px;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.refresh-bg,
+.help-bg {
+  background: #d0eaff;
+  box-shadow: -2px -2px 2px rgba(255, 255, 255, 0.5),
+    2px 2px 2px rgba(0, 16, 57, 0.2);
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.captcha-refresh,
+.captcha-help {
+  padding: 12px;
+}
+
+.help-bg {
+  margin-top: 9px;
+}
+
+.input-groups {
+  background: #d0eaff;
+  box-shadow: inset -2px -2px 2px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 2px rgba(0, 16, 57, 0.2);
+  border-radius: 35px;
+  padding: 15px 6px 14px 22px;
+  margin-bottom: 15px;
+}
+
+.captcha-modal {
+  background: #d0eaff;
+  box-shadow: -3px -3px 16px #ffffff, 3px 3px 16px rgba(0, 16, 57, 0.3);
+  border-radius: 30px;
+  padding: 26px 55px 46px 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.captcha-content {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+  margin-bottom: 22px;
+}
+
+.captcha::placeholder {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.captcha button {
+  border: 0;
+  outline: 0;
+  background: #d0eaff;
+  box-shadow: -1px -1px 1px rgba(255, 255, 255, 0.5),
+    1px 1px 1px rgba(0, 16, 57, 0.2);
+  border-radius: 15.5px;
+  padding: 8px 18px 7px 18px;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 500;
+}
+
+#captcha-modals {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99999;
+
+  /* Add the blur effect */
+  /* filter: blur(8px); */
+  /* -webkit-filter: blur(8px); */
+
+}
+
+.invite-bg {
+  background: #ddeefd;
+  box-shadow: inset 5px 6px 15px rgba(2, 65, 120, 0.1);
+  border-radius: 45px;
+  padding: 56px 122px 56px 65px;
+}
+
+.invite-title {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(0, 16, 57, 1);
+}
+
+.invite-information {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 20px;
+
+  color: #272d3d;
+  padding-top: 25px;
+}
+
+.mining-bg .invite {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 22px;
+  padding: 19px 58px 17px 58px;
+  background: #daedfc;
+  box-shadow: 3px 3px 4px rgba(0, 16, 57, 0.2),
+    -3px -3px 5px rgba(255, 255, 255, 0.7);
+  border-radius: 32.5px;
+  display: inline-block;
+  text-align: center;
+  color: #001039;
+}
+
+.invite-code {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #4e6a84;
+  padding-top: 15px;
+
+  margin-right: 10px;
+
+}
+
+.copy-invite-code {
+  cursor: pointer;
+  /* padding-left: 20px; */
+}
+
+.invite-code input {
+  max-width: 40%;
+  border: none;
+  background-color: transparent;
+  color: #4e6a84;
+}
+
+.invite-code input:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 1536px) {
+  .user-stage .heading {
+    margin-top: 30px;
+  }
+
+  .mining-box {
+    padding-top: 40px;
+  }
+
+  .mining-with-depo-btn {
+    padding: 30px 0;
+  }
+
+  .invite-title {
+    font-size: 19px;
+  }
+
+  .invite-bg {
+    padding: 30px 71px 30px 56px;
+  }
+
+  .mining-bg .invite {
+    padding: 13px 50px 13px 50px;
+  }
+}
+
+@media screen and (max-width: 1336px) {
+  .invite-title {
+    font-size: 21px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .mining-box {
+    padding-top: 80px;
+  }
+
+  .layer-one,
+  .layer-two {
+    width: 400px;
+    height: 400px;
+  }
+
+  .layer-three,
+  .loader-inner {
+    width: 368px;
+    height: 368px;
+  }
+
+  .loader-ball {
+    /* top: px; */
+    left: 179px;
+  }
+
+  .mining-calculation .mining-amount {
+    font-size: 46px;
+    line-height: 45px;
+
+  }
+
+  .mining-with-depo-btn {
+    padding: 60px 0;
+  }
+
+  .invite-title {
+    font-size: 18px;
+  }
+
+  .invite-bg {
+    padding: 30px 105px 30px 35px;
+  }
+
+  .mining-bg .invite {
+    padding: 10px 40px 10px 40px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+
+  .layer-one,
+  .layer-two {
+    width: 300px;
+    height: 300px;
+  }
+
+  .layer-three,
+  .loader-inner {
+    width: 268px;
+    height: 268px;
+  }
+
+  .loader-ball {
+    /* top: 24px; */
+    left: 128px;
+  }
+
+  .mining-calculation .mining-amount {
+    font-size: 26px;
+    line-height: 30px;
+  }
+
+  .mining-calculation .metalink-lg {
+    width: 6px;
+  }
+
+  .mining-calculation .mining-per-hour {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .mining-start-btn {
+    margin-top: 35px;
+  }
+
+  .mining-bg .Withdraw,
+  .mining-bg .deposit {
+    font-size: 19px;
+    padding: 16px 28px;
+  }
+
+  .invite-title {
+    font-size: 16px;
+  }
+
+  .mining-bg .invite {
+    font-size: 18px;
+    padding: 7px 40px 7px 40px;
+  }
+
+  .invite-bg {
+    padding: 30px 100px 30px 35px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .mining-with-depo-btn {
+    padding: 40px 0;
+  }
+
+  .mining-bg .deposit {
+    margin-left: 35px;
+  }
+
+  .mining-bg .Withdraw,
+  .mining-bg .deposit {
+    font-size: 15px;
+    padding: 16px 28px;
+  }
+
+  .mining-bg {
+    padding: 50px 0;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .mining-box {
+    padding: 50px 0px;
+  }
+
+  .layer-one,
+  .layer-two {
+    width: 250px;
+    height: 250px;
+  }
+
+  .layer-three,
+  .loader-inner {
+    width: 218px;
+    height: 218px;
+  }
+
+  .loader-ball {
+    /* top: 18px; */
+    left: 100px;
+  }
+
+  .mining-calculation .mining-per-hour {
+    padding-top: 0px;
+  }
+
+  .mining-start-btn {
+    font-size: 14px;
+    line-height: 11px;
+    padding: 12px 22px;
+    margin-top: 22px;
+  }
+
+  .mining-with-depo-btn {
+    padding: 0px 0;
+  }
+
+  .mining-bg .Withdraw,
+  .mining-bg .deposit {
+    font-size: 15px;
+    padding: 10px 22px;
+  }
+
+  .mining-bg {
+    padding: 200px 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+
+  .layer-one,
+  .layer-two {
+    width: 180px;
+    height: 180px;
+  }
+
+  .layer-three,
+  .loader-inner {
+    width: 148px;
+    height: 148px;
+  }
+
+  .loader-ball {
+    /* top: 6px; */
+    left: 66px;
+  }
+
+  .mining-calculation .mining-amount {
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+  .mining-calculation .metalink-lg,
+  .mining-calculation .metalink-sm {
+    width: 4px;
+
+  }
+
+  .metaRate {
+    padding: 5px 3px 0px 7px;
+
+  }
+
+  .mining-calculation .mining-per-hour {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .mining-start-btn {
+    font-size: 12px;
+    line-height: 6px;
+    padding: 9px 14px;
+    margin-top: 11px;
+  }
+
+  .mining-bg .deposit {
+    margin-left: 20px;
+  }
+
+  .mining-bg {
+    padding: 239px 0;
+  }
+}
+
+/* <!-- ------------------- MINING END ----------------- --> */
+
+/* <!-- --------- CURRENT MINING RATE START ----------- --> */
+
+.current-mining-rate {
+  padding: 170px 0;
+}
+
+.current-mining-rate .common-heading {
+  margin-bottom: 100px;
+}
+
+.current-mining-rate th {
+  font-size: 35px;
+  font-weight: 500;
+  line-height: 35px;
+  text-align: center;
+  color: #001039;
+  padding: 26px 0 23px 0px;
+}
+
+.current-mining-rate table {
+  width: 65%;
+  border-radius: 35px;
+  background: linear-gradient(180deg, #d9edfd 0%, #eff5f8 100%);
+  box-shadow: 4px 4px 10px 1px rgba(0, 16, 57, 0.2),
+    -4px -4px 13px rgba(255, 255, 255, 0.8);
+  margin-left: 192px;
+}
+
+.current-mining-rate table thead tr {
+  padding: 25px 90px;
+  text-align: left;
+  background: transparent;
+  border-radius: 35px 35px 0px 0px;
+  box-shadow: 3px 3px 4px rgb(0 16 57 / 20%),
+    -3px -3px 5px rgb(255 255 255 / 50%);
+}
+
+.current-mining-rate table thead tr th {
+  padding: 25px 0;
+  line-height: 1;
+  font-size: 30px;
+  color: #001039;
+  font-weight: 500;
+  text-align: center;
+}
+
+.current-mining-rate table tbody tr td {
+  color: #001039;
+  text-align: center;
+  padding: 17px 0;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.borderradius-left {
+  border-radius: 35px;
+  padding-left: 90px !important;
+}
+
+.team-members {
+  padding-left: 90px !important;
+}
+
+.current-mining-rate tbody tr {
+  border-bottom: 0.5px solid #9098ae;
+}
+
+.current-mining-rate select {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  outline: 0;
+  border: 0;
+  background: #d9edfd;
+  color: #465275;
+  box-shadow: 2px 2px 3px rgba(0, 16, 57, 0.2),
+    -2px -2px 4px rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
+
+.total-mining-image {
+  padding: 0 25px 0 15px;
+}
+
+@media screen and (max-width: 1199px) {
+  .current-mining-rate {
+    padding: 100px 0;
+  }
+
+  .current-mining-rate table thead tr th {
+    font-size: 25px;
+  }
+
+  .current-mining-rate table tbody tr td {
+    font-size: 18px;
+  }
+
+  .current-mining-rate {
+    padding: 100px 0;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+
+  .team-members,
+  .borderradius-left {
+    padding-left: 40px !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .current-mining-rate table thead tr th {
+    font-size: 18px;
+  }
+
+  .current-mining-rate {
+    padding: 70px 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .current-mining-rate {
+    display: none;
+  }
+}
+
+/* <!-- ------------------- EARNING TIME START ----------------- --> */
+
+.earning-time .common-heading {
+  margin-bottom: 15px;
+}
+
+.sub-title {
+  font-size: 20px;
+  line-height: 20px;
+
+  font-weight: 300;
+  text-align: center;
+  color: #232840;
+}
+
+.inviter-details {
+  background: #deeffd;
+  box-shadow: 3px 3px 4px rgba(0, 16, 57, 0.2),
+    -3px -3px 5px rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  padding: 22px 50px;
+  margin-top: 100px;
+  margin-bottom: 72px;
+}
+
+.inviter-name {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 28px;
+
+  margin-bottom: 12px;
+}
+
+.invited-you {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 20px;
+}
+
+.active-inactive-title {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 20px;
+  color: #232840;
+  margin-left: 160px;
+  margin-right: 10px
+}
+
+.invited-title {
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 30px;
+
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.earning-time select {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 22px;
+  border-radius: 12px;
+  border: 0;
+  outline: 0;
+  padding: 14px 40px;
+  background: #d9edfd;
+  box-shadow: 2px 2px 3px rgba(0, 16, 57, 0.2),
+    -2px -2px 4px rgba(255, 255, 255, 0.5);
+  appearance: none;
+  background-image: url("../../public/img/icon/select.png");
+  background-repeat: no-repeat;
+  background-position: right 19px bottom 20px;
+  margin: -1px 1px 100px 118px;
+}
+
+.filter-tab-bg {
+  background: #deeffd;
+  box-shadow: 3px 3px 4px rgba(0, 16, 57, 0.2),
+    -3px -3px 5px rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  padding: 20px 300px;
+}
+
+.invited-name {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28px;
+  color: #001039;
+  margin-left: -267px;
+}
+
+.earning-time .my-40 {
+  margin-top: 19px;
+  margin-bottom: 20px;
+  margin-left: 15px;
+  /* height: 67px; */
+  width: 68px;
+}
+
+.current-mining-rate tbody:last-child tr {
+  border-bottom: 0 !important;
+}
+
+.roles table tbody tr:last-child {
+  border-bottom: 0 !important;
+}
+
+/* ====== Filter Tab Start  ===== */
+
+.filter-results {
+  -webkit-animation: fadeIn 0.65s ease forwards;
+  animation: fadeIn 0.65s ease forwards;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ====== Filter Tab End  ===== */
+
+/* <!-- ------------------- EARNING TIME END ----------------- --> */
+
+.roles {
+  margin: 170px 0 170px 0;
+}
+
+.roles .common-heading {
+  margin-bottom: 100px;
+}
+
+.roles table {
+  max-width: 817px;
+  margin: auto;
+  width: 100%;
+  border-radius: 35px;
+  background: linear-gradient(180deg, #d9edfd 0%, #eff5f8 100%);
+  background: linear-gradient(180deg, #d9edfd 0%, #f4f5f3 100%);
+}
+
+.roles th {
+  font-size: 35px;
+  font-weight: 500;
+  line-height: 30px;
+
+  padding: 30px 0 19px 100px;
+}
+
+.roles table thead tr {
+  padding: 25px 90px;
+  text-align: left;
+  background: transparent;
+  border-radius: 35px 35px 0px 0px;
+  box-shadow: 3px 3px 4px rgb(0 16 57 / 20%),
+    -3px -3px 5px rgb(255 255 255 / 50%);
+}
+
+.roles table tbody tr td {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+
+  padding: 17px 0 17px 100px;
+}
+
+.roles table tbody tr td:nth-child(2) {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.borderradius-left {
+  border-radius: 35px;
+  padding-left: 90px !important;
+}
+
+.team-members {
+  padding-left: 90px !important;
+}
+
+.roles tbody tr {
+  border-bottom: 0.5px solid #9098ae;
+}
+
+.roles select {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  outline: 0;
+  border: 0;
+  background: #d9edfd;
+  color: #465275;
+  box-shadow: 2px 2px 3px rgba(0, 16, 57, 0.2),
+    -2px -2px 4px rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
+
+/* <!-- ------------------- LAYERS START ----------------- --> */
+
+.layers {
+  margin: 170px 0;
+}
+
+.layers .common-heading {
+  margin-bottom: 100px;
+}
+
+.layer-box {
+  background: #deeffd;
+  box-shadow: 3px 3px 4px rgba(0, 16, 57, 0.2),
+    -3px -3px 5px rgba(255, 255, 255, 0.5);
+  border-radius: 25px;
+  padding: 42px 29px 42px 35px;
+}
+
+.layers .sub-heading {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+
+  margin-bottom: 100px;
+}
+
+.layers .content {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 24px;
+
+  padding-top: 25px;
+}
+
+.next-layers {
+  margin-top: 70px;
+}
+
+/* <!-- ------------------- LAYERS END ----------------- --> */
+
+/* <!-- ---------- TRANSECTION HISTORY START ---------- --> */
+
+.transection {
+  margin-bottom: 200px;
+}
+
+.transection .common-heading {
+  margin-bottom: 100px;
+}
+
+.credit-detail-bg {
+  background: #deeffd;
+  box-shadow: 3px 3px 6px rgba(0, 16, 57, 0.2),
+    -3px -3px 6px rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  padding: 16px 50px;
+  margin-bottom: 30px;
+}
+
+.transection-details {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 500;
+}
+
+.transection-amount {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 22px;
+  padding-right: 6px;
+}
+
+.transection-date {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #9098ae;
+  padding-top: 8px;
+}
+
+.debit-detail-bg {
+  background: #deeffd;
+  box-shadow: inset 3px 3px 6px rgba(0, 16, 57, 0.2),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  padding: 16px 50px;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 1199px) {
+  .roles table thead tr th {
+    font-size: 25px;
+  }
+
+  .roles table tbody tr td {
+    font-size: 18px;
+  }
+
+  .roles th {
+    padding: 22px 0 22px 100px;
+  }
+
+  .roles {
+    margin: 100px 0;
+  }
+
+  .layer-box {
+    padding: 42px 22px 42px 22px;
+  }
+
+  .layers {
+    margin: 100px 0;
+  }
+
+  .layers .sub-heading {
+    font-size: 25px;
+    line-height: 28px;
+  }
+
+  .layers .content {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .credit-detail-bg,
+  .debit-detail-bg {
+    padding: 18px 30px 18px 30px;
+  }
+
+  .transection-details {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  .transection-amount {
+    font-size: 20px;
+  }
+
+  .transection-date {
+    font-size: 15px;
+  }
+
+  .inviter-details {
+    margin-bottom: 100px;
+  }
+
+  .transection {
+    margin-bottom: 100px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .earning-time .my-40 {
+    margin-left: 0px;
+    height: 67px;
+    width: 0px;
+  }
+
+  .filter-tab-bg {
+    padding: 21px 210px 26px 202px
+  }
+
+  .active-inactive-title {
+    margin-left: 95px;
+  }
+
+  .invited-name {
+    margin-left: -182px;
+  }
+
+
+}
+
+@media screen and (max-width: 991px) {
+  .roles table thead tr th {
+    font-size: 25px;
+  }
+
+  .layer-box {
+    padding: 42px 12px 42px 12px;
+  }
+
+  .layers .sub-heading {
+    font-size: 23px;
+    line-height: 23px;
+  }
+
+  .layers .content {
+    font-size: 18px;
+    line-height: 23px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .filter-tab-bg {
+    padding: 18px 30px;
+  }
+
+  .invited-name {
+    font-size: 16px;
+  }
+
+  .active-inactive-title {
+    font-size: 15px;
+  }
+
+  .earning-time,
+  .roles,
+  .layers,
+  .transection {
+    display: none;
+  }
+}
+
+.withdraw-popup,
+.deposit-popup {
+  background: #d0eaff;
+  box-shadow: -3px -3px 16px #ffffff, 3px 3px 16px rgba(0, 16, 57, 0.3);
+  border-radius: 40px;
+  padding: 60px 50px 74px 50px;
+}
+
+.withdraw-popup .heading {
+  font-size: 40px;
+  line-height: 40px;
+  font-weight: 700;
+  font-style: normal;
+  color: #001039;
+  padding-bottom: 70px;
+}
+
+.balance-heading {
+  font-size: 25px;
+  line-height: 25px;
+  font-weight: 300;
+  color: #001039;
+}
+
+.wallet-amount {
+  font-size: 36px;
+  line-height: 36px;
+  font-weight: 500;
+  color: #001039;
+  margin-right: 9px;
+}
+
+.withdraw-popup label {
+  font-size: 25px;
+  line-height: 25px;
+  font-weight: 300;
+  color: #001039;
+}
+
+.withdraw-popup label:first-child {
+  margin-top: 76px;
+  margin-bottom: 15px;
+}
+
+.withdraw-popup label:nth-child(3) {
+  margin-top: 45px;
+  margin-bottom: 15px;
+}
+
+.withdraw-popup input.form-control {
+  outline: 0;
+  background: #d0eaff;
+  box-shadow: inset -2px -2px 2px rgb(255 255 255 / 50%),
+    inset 2px 2px 2px rgb(0 16 57 / 20%);
+  border-radius: 35px;
+  padding: 16px 0 16px 30px;
+  font-family: Sofia Pro;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.withdraw-popup .withdraw-btn {
+  border: 0;
+  outline: 0;
+  color: white;
+  padding: 14px 30px;
+  margin-top: 80px;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 400;
+  background: linear-gradient(180deg, #00498b 0%, #001039 100%);
+  border-radius: 23.5px;
+}
+
+#withdraw-modals {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99999;
+}
+
+.deposit-popup .heading {
+  font-size: 40px;
+  line-height: 40px;
+  font-weight: 700;
+  font-style: normal;
+  color: #001039;
+  padding-bottom: 50px;
+}
+
+.deposit-alert {
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 300;
+  color: rgba(78, 106, 132, 1);
+  padding-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+.deposit-alert img {
+  padding: 0 4px;
+}
+
+.smart-chain-bg {
+  background: #d0eaff;
+  box-shadow: -2px -2px 4px rgba(255, 255, 255, 0.8),
+    2px 2px 3px rgba(0, 16, 57, 0.16);
+  border-radius: 10px;
+  padding: 16px 21px 15px 25px;
+}
+
+.smart-chain-bg .sub-heading {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 18px;
+  color: #4e6a84;
+}
+
+.smart-chain-bg .content {
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 25px;
+  color: #001039;
+  padding-top: 8px;
+}
+
+.deposit-statement {
+  background: #d0eaff;
+  box-shadow: -2px -2px 4px rgba(255, 255, 255, 0.8),
+    2px 2px 3px rgba(0, 16, 57, 0.16);
+  border-radius: 10px;
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.deposit-statement .content {
+  font-size: 10px;
+  line-height: 10px;
+  font-weight: 300;
+  color: #272d3d;
+}
+
+.deposit-statement .d-amount {
+  font-size: 10px;
+  line-height: 10px;
+  font-weight: 500;
+  color: #001039;
+  display: flex;
+  align-items: center;
+}
+
+.deposit-statement .d-amount span {
+  margin-left: 3px;
+}
+
+.deposit-statement div:nth-child(2) {
+  margin: 20px 0;
+}
+
+.deposit-popup .deposit-btn {
+  border: 0;
+  outline: 0;
+  padding: 14px 39px;
+  background: linear-gradient(180deg, #00498b 0%, #001039 100%);
+  border-radius: 23.5px;
+  color: white;
+  margin-top: 80px;
+}
+
+#deposit-modals {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99999;
+}
+
+@media screen and (max-width: 1536px) {
+  .withdraw-popup {
+    padding: 30px 50px 44px 50px;
+  }
+
+  #withdraw-modals {
+    padding: 50px 0;
+  }
+
+  .withdraw-popup,
+  .deposit-popup {
+    padding: 40px 50px 40px 50px;
+  }
+
+  #deposit-modals {
+    padding-top: 20px;
+  }
+
+  .deposit-popup .deposit-btn {
+    margin-top: 60px;
+  }
+
+  .deposit-popup .heading {
+    padding-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .withdraw-popup {
+    padding: 30px 30px 44px 30px;
+  }
+
+  .balance-heading,
+  .withdraw-popup label {
+    font-size: 22px;
+    line-height: 25px;
+  }
+
+  .wallet-amount {
+    font-size: 31px;
+    line-height: 36px;
+  }
+}
+
+.loader {
+  width: 48px;
+  animation: spin 5s linear infinite;
+  content: "";
+  position: absolute;
+  left: 54px;
+  height: -54px;
+  background-repeat: no-repeat;
+  right: 147px !important;
+  padding: 28px 322px 334px 41px;
+}
+
+.img {
+  width: 20px;
+  height: 32px;
+}
+
+/* .close-button {
+  margin-left: 169px;
+  position: fixed;
+} */
+
+mine .block {
+  display: block !important;
+}
+
+.none {
+  display: none !important;
+}
+
+
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* size: inherit !important; */
+  width: 217px;
+}
+
+
+.metaimg {
+  margin-left: 10px
+}
+
+
+.odometer.odometer-auto-theme,
+.odometer.odometer-theme-default {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  position: relative;
+
+}
+
+.odometer.odometer-auto-theme .odometer-digit,
+.odometer.odometer-theme-default .odometer-digit {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  position: relative;
+}
+
+.odometer.odometer-auto-theme .odometer-digit .odometer-digit-spacer,
+.odometer.odometer-theme-default .odometer-digit .odometer-digit-spacer {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  visibility: hidden;
+}
+
+.odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner,
+.odometer.odometer-theme-default .odometer-digit .odometer-digit-inner {
+  text-align: left;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.odometer.odometer-auto-theme .odometer-digit .odometer-ribbon,
+.odometer.odometer-theme-default .odometer-digit .odometer-ribbon {
+  display: block;
+}
+
+.odometer.odometer-auto-theme .odometer-digit .odometer-ribbon-inner,
+.odometer.odometer-theme-default .odometer-digit .odometer-ribbon-inner {
+  display: block;
+  -webkit-backface-visibility: hidden;
+}
+
+.odometer.odometer-auto-theme .odometer-digit .odometer-value,
+.odometer.odometer-theme-default .odometer-digit .odometer-value {
+  display: block;
+  -webkit-transform: translateZ(0);
+  background: linear-gradient(91.65deg, #004788 -2.07%, #001540 97.08%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+
+}
+
+.odometer-formatting-mark {
+  background: linear-gradient(91.65deg, #004788 -2.07%, #001540 97.08%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.odometer.odometer-auto-theme .odometer-digit .odometer-value.odometer-last-value,
+.odometer.odometer-theme-default .odometer-digit .odometer-value.odometer-last-value {
+  position: absolute;
+}
+
+.odometer.odometer-auto-theme.odometer-animating-up .odometer-ribbon-inner,
+.odometer.odometer-theme-default.odometer-animating-up .odometer-ribbon-inner {
+  -webkit-transition: -webkit-transform 2s;
+  -moz-transition: -moz-transform 2s;
+  -ms-transition: -ms-transform 2s;
+  -o-transition: -o-transform 2s;
+  transition: transform 2s;
+}
+
+.odometer.odometer-auto-theme.odometer-animating-up.odometer-animating .odometer-ribbon-inner,
+.odometer.odometer-theme-default.odometer-animating-up.odometer-animating .odometer-ribbon-inner {
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
+.odometer.odometer-auto-theme.odometer-animating-down .odometer-ribbon-inner,
+.odometer.odometer-theme-default.odometer-animating-down .odometer-ribbon-inner {
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
+.odometer.odometer-auto-theme.odometer-animating-down.odometer-animating .odometer-ribbon-inner,
+.odometer.odometer-theme-default.odometer-animating-down.odometer-animating .odometer-ribbon-inner {
+  -webkit-transition: -webkit-transform 2s;
+  -moz-transition: -moz-transform 2s;
+  -ms-transition: -ms-transform 2s;
+  -o-transition: -o-transform 2s;
+  transition: transform 2s;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+
+
+.playbtn {
+
+  width: 50px;
+  height: 50px;
+  left: 200px;
+  top: 2929px;
+  border-radius: 50%;
+  background: #DEEFFD;
+  box-shadow: 2px 2px 3px rgba(0, 16, 57, 0.2), -2px -2px 3px rgba(255, 255, 255, 0.8);
+}
+
+
+.right-arrow {
+  margin-top: 197px;
+  position: absolute;
+  right: 42%;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.left-arrow {
+  margin-left: 97%;
+  margin-top: -5px;
+  position: relative;
+  top: 192px;
+  right: 44%;
+  bottom: 37px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+
+
+
+
+
+
+
+.eAyARa {
+  color: #999;
+  transition: all 0s ease !important;
+  /* box-sizing:  content-box !important; */
+  transition: none !important;
+  font-size: 0 !important;
+  background: #DEEFFD !important;
+  box-shadow: 2px 2px 3px rgba(0, 16, 57, 0.2), -2px -2px 3px rgba(255, 255, 255, 0.8) !important;
+  border-radius: 50%;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  line-height: 50px;
+  align-self: center;
+  outline: none;
+  background-image: url(../../public/img/icon/play.png) !important;
+  background-repeat: no-repeat !important;
+  background-position: calc(-4% - -16px) calc(3em + 14px), calc(100% - -5px) calc(5em + 7px), 100% 0 !important;
+}
+
+
+
+
+.eWjCzc {
+  color: #999;
+  transition: none !important;
+  /* box-sizing: border-box;  */
+  font-size: 0 !important;
+  background: #DEEFFD !important;
+  box-shadow: 2px 2px 3px rgba(0, 16, 57, 0.2), -2px -2px 3px rgba(255, 255, 255, 0.8) !important;
+  border-radius: 50%;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  line-height: 50px;
+  align-self: center;
+  outline: none;
+  background-image: url(../../public/img/icon/play.png) !important;
+  background-repeat: no-repeat !important;
+  background-position: calc(-4% - -20px) calc(3em + 15px), calc(100% - -5px) calc(5em + 7px), 100% 0 !important;
+}
+
+
+.eWjCzc:hover:enabled {
+  background-color: rgba(103, 58, 183, 1);
+  box-shadow: 0 0 2px 0 #333 !important;
+  box-shadow: inset 2px 2px 3px rgb(0 16 57 / 20%), inset -2px -2px 3px rgb(255 255 255 / 80%) !important;
+}
+
+.krmNah {
+  box-sizing: border-box;
+  background: #DEEFFD !important;
+  background-color: #DEEFFD !important;
+  font-size: 0 !important;
+  border: #00082d 0px solid !important;
+  box-shadow: inset -3px 7px 12px 10px #00103e !important;
+}
+
+.selectedOption {
+  font-family: 'Sofia Pro';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 28px;
+}
+
+.Status {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 20px;
+  color: #232840;
+  margin: 56px 186px -36px 39px;
+}
+.box{
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 20px;
+  color: #232840;
+}
+
+
+

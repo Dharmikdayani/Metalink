@@ -1,0 +1,163 @@
+/* <!-- ---------- OTP VERIFICATION START---------- --> */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Sofia Pro", sans-serif;
+}
+.otp1-bg {
+  background-image: url("../../public/img/index-page/mining-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 970px;
+}
+.otp-bg {
+  background: linear-gradient(51.07deg, #d9edfd 4.88%, #eff5f8 108.15%);
+  box-shadow: 4px 4px 10px 1px rgba(0, 16, 57, 0.2),
+    -4px -4px 13px rgba(255, 255, 255, 0.8);
+  border-radius: 35px;
+  margin: 100px 0px 100px 0px;
+  padding: 60px 119px 134px 119px;
+}
+.otp-bg .heading {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 48px;
+
+  margin-bottom: 15px;
+}
+.otp-bg .sub-heading {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 20px;
+
+  color: #232840;
+}
+.otp-no {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.otp-group {
+  margin: 80px 0 98px 0;
+  /* display: block !important; */
+}
+/* .otp-box{
+    width:  4em;
+    height: 72px;
+    background: #DDEFFF;
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.5), inset 2px 2px 3px rgba(0, 16, 57, 0.2);
+    border-radius: 14px;
+    border: 0;
+    outline: 0;
+    text-align: center;
+    
+    } */
+
+.otp-group input {
+  margin: 0 35px 0 0;
+}
+.otp-group input {
+  margin: auto;
+  width: 60px !important;
+  height: 72px !important;
+  background: #ddefff;
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 3px rgba(0, 16, 57, 0.2);
+  border-radius: 14px;
+  border: 0;
+  outline: 0;
+  text-align: center !important;
+  font-size: 20px;
+  font-style: normal;
+}
+.otp-verify-btn {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 18px;
+  background: linear-gradient(180deg, #00498b 0%, #001039 100%);
+  border-radius: 23.5px;
+  color: white;
+  padding: 14px 47px 14px 46px;
+  border: 0;
+  outline: 0;
+}
+.resend-otp,
+.resend-otp:hover {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+
+  color: rgba(0, 128, 243, 1);
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  margin-top: 15px;
+}
+
+@media screen and (max-width: 15336px) {
+  .otp-bg {
+    padding: 60px 119px 60px 119px;
+    margin: 50px 0px 50px 0px;
+  }
+  .forgot-password .login-form-bg {
+    margin: 50px 0 50px 0;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .otp-bg .heading {
+    font-size: 39px;
+    line-height: 45px;
+  }
+  .otp-group input {
+    margin: 0 20px 0 0;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .otp-bg {
+    padding: 60px 40px 60px 40px;
+  }
+  .otp-box {
+    width: 50px;
+    height: 62px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .otp-group input {
+    margin: auto;
+    width: 60px !important;
+    height: 72px !important;
+    background: #ddefff;
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.5),
+      inset 2px 2px 3px rgba(0, 16, 57, 0.2);
+    border-radius: 14px;
+    border: 0;
+    outline: 0;
+    text-align: center !important;
+    font-size: 20px;
+    font-style: normal;
+  }
+}
+
+@media screen and (max-width: 1024px){
+  .otp-group input {
+    margin: auto;
+    width: 60px !important;
+    height: 72px !important;
+    background: #ddefff;
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.5),
+      inset 2px 2px 3px rgba(0, 16, 57, 0.2);
+    border-radius: 14px;
+    border: 0;
+    outline: 0;
+    text-align: center !important;
+    font-size: 20px;
+    font-style: normal;
+  }
+}
+

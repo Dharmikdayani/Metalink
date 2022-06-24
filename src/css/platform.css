@@ -1,0 +1,241 @@
+/* =========================================================== 
+    Platform_About
+=============================================================*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Sofia Pro', sans-serif;
+}
+.platfrom-bg {
+  background-image: url(../../public/img/index-page/mining-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.common-heading {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+}
+
+img {
+  max-width: 100%;
+}
+.platform-title {
+  color: #001039;
+  margin-bottom: 48px;
+}
+.platform-subtitle {
+  color: #272d3d;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 300;
+  margin-bottom: 35px;
+}
+.platform-aboutinfo {
+  padding: 219px 0 170px;
+}
+.platform-box img {
+  width: 70%;
+  margin: auto;
+  display: table;
+}
+
+/* =========================================================== 
+Mainnet_Table
+=============================================================*/
+
+.mainnet-table th {
+  text-align: center;
+  color: rgba(0, 16, 57, 1);
+  padding: 26px 0 23px 0px;
+}
+.mainnet-table table {
+  width: 100%;
+  border-radius: 35px;
+  background: linear-gradient(180deg, #d9edfd 0%, #eff5f8 100%);
+  box-shadow: 4px 4px 10px 1px rgba(0, 16, 57, 0.2),
+    -4px -4px 13px rgba(255, 255, 255, 0.8);
+    margin-left: auto;
+}
+.mainnet-table table thead tr {
+  padding: 25px 90px;
+  text-align: left;
+  background: #d9edfd;
+  border-radius: 35px 35px 0px 0px;
+  box-shadow: 3px 3px 4px rgb(0 16 57 / 20%),
+    -3px -3px 5px rgb(255 255 255 / 50%);
+}
+.mainnet-table table thead tr th {
+  text-align: left;
+  padding: 25px 0;
+  line-height: 1;
+  font-size: 30px;
+  color: #001039;
+  font-weight: 500;
+}
+.mainnet-table table tbody tr td {
+  color: #001039;
+  text-align: left;
+  padding: 15px 0;
+  font-size: 24px;
+  font-weight: 400;
+}
+.borderradius-left {
+  border-radius: 35px;
+  padding-left: 90px !important;
+}
+.mainnet-table .borderradius-right {
+  border-radius: 35px;
+}
+.team-members {
+  padding-left: 90px !important;
+}
+.mainnet-table tbody tr {
+  border-bottom: 0.5px solid #9098ae;
+}
+/* =========================================================== 
+    Accordion
+=============================================================*/
+.acc__card {
+  margin-bottom: 40px;
+  position: relative;
+  background: #deeffd;
+  padding: 34px 50px;
+  border-radius: 28px;
+  box-shadow: 4px 4px 8px rgba(0, 16, 57, 0.2),
+    -4px -4px 8px rgba(255, 255, 255, 0.8);
+}
+.acc__card::after {
+  /* background: #DEEFFD; */
+  box-shadow: inset 4px 4px 8px rgba(0, 16, 57, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+  /* border-radius: 28px; */
+}
+
+.acc__title {
+  color: #212121;
+  cursor: pointer;
+  display: block;
+  text-align: left;
+  font-size: 24px;
+  font-weight: 500;
+  position: relative;
+  line-height: 1;
+}
+.acc__title::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  width: 10px;
+  height: 10px;
+  right: 2px;
+  color: #001039;
+  transform: rotate(45deg);
+  transition: all 0.2s ease-in-out;
+  border-right: 1px solid #001039;
+  border-bottom: 1px solid #001039;
+}
+.acc__panel {
+  margin: 0;
+  display: none;
+  color: #272d3d;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 22px;
+  padding-top: 30px;
+  padding-right: 120px;
+}
+.acc_ans {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 20px;
+
+  color: #272d3d;
+}
+.asked-question {
+  padding: 170px 0 200px;
+}
+.asked-question .common-heading {
+  padding-bottom: 100px;
+}
+
+/* .acc__card.acc__title.acc__panel.acc_ans::after  {
+  background: #DEEFFD;
+  box-shadow: inset 4px 4px 8px rgba(0, 16, 57, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+  border-radius: 28px;
+} */
+
+.rotateIn {
+  -webkit-animation-name: rotateIn;
+  animation-name: rotateIn;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  }
+  @-webkit-keyframes rotateIn {
+  0% {
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  -webkit-transform: rotate3d(0, 0, 1, -200deg);
+  transform: rotate3d(0, 0, 1, -200deg);
+  opacity: 0;
+  }
+  100% {
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  -webkit-transform: none;
+  transform: none;
+  opacity: 1;
+  }
+  }
+  @keyframes rotateIn {
+  0% {
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  -webkit-transform: rotate3d(0, 0, 1, -200deg);
+  transform: rotate3d(0, 0, 1, -200deg);
+  opacity: 0;
+  }
+  100% {
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  -webkit-transform: none;
+  transform: none;
+  opacity: 1;
+  }
+  } 
+
+  .zoomIn {
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    }
+    @-webkit-keyframes zoomIn {
+    0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+    }
+    50% {
+    opacity: 1;
+    }
+    }
+    @keyframes zoomIn {
+    0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+    }
+    50% {
+    opacity: 1;
+    }
+    } 
+  
+
+    
