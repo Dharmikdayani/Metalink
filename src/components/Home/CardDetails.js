@@ -15,7 +15,7 @@ export const CardDetails = [
     title: "Mobile First",
     descri:
       "Metalink Mining costs nothing. No pre-pay required. All one has to do is install app or open computer and sign up freely. Free Earning with zero cost.",
-    route: "#",
+    route: "/#",
     img: "../../img/index-page/mining.png",
   },
   {
@@ -23,7 +23,7 @@ export const CardDetails = [
     title: " User & Planet Friendly",
     descri:
       "Metalink Mining do not consume any bettery power in mobile and electricity from Computer. Also, very easy to mine from user perspective.",
-    route: "#",
+    route: "/#",
     img: "../../img/index-page/save-the-planet.png",
   },
   {
@@ -31,7 +31,7 @@ export const CardDetails = [
     title: "Higher Rate",
     descri:
       "Earn with higher rates through team building by invites & reference. More people under you can increase metalink mining exponentially.",
-    route: "#",
+    route: "/#",
     img: "../../img/index-page/profits.png",
   },
 ];

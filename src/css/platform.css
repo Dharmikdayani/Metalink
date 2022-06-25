@@ -107,6 +107,11 @@ Mainnet_Table
   box-shadow: 4px 4px 8px rgba(0, 16, 57, 0.2),
     -4px -4px 8px rgba(255, 255, 255, 0.8);
 }
+.acc__card__active{
+  background: #DEEFFD;
+box-shadow: inset 4px 4px 8px rgba(0, 16, 57, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+border-radius: 28px;
+}
 .acc__card::after {
   /* background: #DEEFFD; */
   box-shadow: inset 4px 4px 8px rgba(0, 16, 57, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.8);

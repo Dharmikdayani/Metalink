@@ -31,6 +31,7 @@ const Footer = () => {
                       href="https://www.facebook.com/Metalink-101550999177220"
                       className="social-icon"
                       target="_blank"
+                      rel="noreferrer" 
                     >
                       <img
                         src="../../img/icon/facebook.svg"
@@ -49,6 +50,7 @@ const Footer = () => {
                       href="https://twitter.com/MetalinkNetwork"
                       className="social-icon"
                       target="_blank"
+                      rel="noreferrer" 
                     >
                       <img
                         src="../../img/icon/twitter.svg"
@@ -67,6 +69,7 @@ const Footer = () => {
                       href="https://www.instagram.com/metalinknetwork/"
                       className="social-icon"
                       target="_blank"
+                      rel="noreferrer" 
                     >
                       <img
                         src="../../img/icon/instagram.svg"
@@ -85,6 +88,7 @@ const Footer = () => {
                       href="https://dsc.gg/metalink"
                       className="social-icon"
                       target="_blank"
+                      rel="noreferrer" 
                     >
                       <img
                         src="../../img/icon/discord.svg"
@@ -133,7 +137,7 @@ const Footer = () => {
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link to="#" className="nav-link">
+                        <Link to="/#" className="nav-link">
                           Support
                         </Link>
                       </li>
@@ -148,12 +152,12 @@ const Footer = () => {
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link to="#" className="nav-link">
+                        <Link to="/#" className="nav-link">
                           About Us
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link to="#" className="nav-link">
+                        <Link to="/#" className="nav-link">
                           Terms of Use
                         </Link>
                       </li>

@@ -6,11 +6,13 @@ import ManinHeader from "../Layout/ManinHeader";
 import "../../css/home.css";
 import { Link } from "react-router-dom";
 
+// eslint-disable-next-line 
+{
+  AOS.init();
+}
 function Home() {
   document.title = "Home";
-  {
-    AOS.init();
-  }
+ 
    
 
   localStorage.getItem("user");
@@ -34,14 +36,15 @@ function Home() {
                   with higher rate.
                 </p>
                 <div className="app-store d-flex justify-content-lg-start justify-content-center">
-                  <a href="#">
+                 
+                  <a href="/#">
                     <img
                       src="../../img/index-page/google-play.png"
                       alt=""
                       className="play-store"
                     />
                   </a>
-                  <a href="#">
+                  <a href="/#">
                     <img src="../../img/index-page/app-store.png" alt="" />
                   </a>
                 </div>
@@ -95,7 +98,7 @@ function Home() {
                       alt=""
                       className="img-fluid"
                     />
-                    <a href="#" className="track-content">
+                    <a href="/#" className="track-content">
                       Start Mining
                     </a>
                   </div>
@@ -106,7 +109,7 @@ function Home() {
                       alt=""
                       className="img-fluid"
                     />
-                    <a href="#" className="track-content">
+                    <a href="/#" className="track-content">
                       Increase Supremacy
                     </a>
                   </div>
@@ -119,7 +122,7 @@ function Home() {
                       alt=""
                       className="img-fluid"
                     />
-                    <a href="#" className="track-content">
+                    <a href="/#" className="track-content">
                       Earn Metalink
                     </a>
                   </div>
@@ -130,7 +133,7 @@ function Home() {
                       alt=""
                       className="img-fluid"
                     />
-                    <a href="#" className="track-content">
+                    <a href="/#" className="track-content">
                       Mine with higher rate
                     </a>
                   </div>
@@ -143,7 +146,7 @@ function Home() {
                       alt=""
                       className="img-fluid"
                     />
-                    <a href="#" className="track-content">
+                    <a href="/#" className="track-content">
                       Team Building
                     </a>
                   </div>
@@ -154,7 +157,7 @@ function Home() {
                       alt=""
                       className="img-fluid"
                     />
-                    <a href="#" className="track-content">
+                    <a href="/#" className="track-content">
                       Withdraw
                     </a>
                   </div>
@@ -183,7 +186,7 @@ function Home() {
                   metalink with single click.
                 </p>
                 <div className="light-play-store">
-                  <a href="#">
+                  <a href="/#">
                     <img
                       src="../../img/index-page/light-google-play.png"
                       alt=""
@@ -191,7 +194,7 @@ function Home() {
                     />
                   </a>
 
-                  <a href="#">
+                  <a href="/#">
                     <img
                       src="../../img/index-page/light-app-store.png"
                       alt=""
