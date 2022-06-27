@@ -25,10 +25,10 @@ const MetalinkTeamsMember = () => {
     try {
       const result = await instance.get("/coreTeam");
       const results = decryptData(result.data.data);
-      console.log("doSubmit", results);
+      console.log("coreTeam", results);
 
-      if (results.success) {  
-        let Teammember = results.data;
+      if (results.status) {  
+        let Teammember = results.data;  
         setTeam(Teammember.slice(3));
       } else {
         Toast.fire({

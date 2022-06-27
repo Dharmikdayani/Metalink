@@ -25,9 +25,9 @@ const Teammember = () => {
     try {
       const result = await instance.get("/coreTeam");
       const results = decryptData(result.data.data);
-      console.log("doSubmit", results);
+      console.log("coreTeam", results);
 
-      if (results.success) { 
+      if (results.status) { 
         // Toast.fire({
         //   icon: "success",
         //   title: result.data.message,
