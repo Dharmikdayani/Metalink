@@ -59,10 +59,10 @@ function Mine({ socket, miningStatus, currentBalance }) {
       document.querySelector(".layer-two ").classList.add("active");
       document.querySelector("#captcha-modals").style.display = "none";
 
-      Toast.fire({
-        icon: "success",
-        title: "Your Mining is started",
-      });
+      // Toast.fire({
+      //   icon: "success",
+      //   title: "Your Mining is started",
+      // });
       try {
         const result = await instance.get("/activeUser");
 
