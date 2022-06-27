@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import instance from "../baseUrl/baseUrl";
+import useEncryption from "../EncryptData/EncryptData";
 
 const Teammember = () => {
   const [team, setTeam] = useState([]);
   const effectCalled = useRef(false);
+  const {  decryptData } = useEncryption();
 
   /*============= Toast Fire Notifaction==========*/
   const Toast = Swal.mixin({
@@ -22,19 +24,20 @@ const Teammember = () => {
   const mineHistory = async () => {
     try {
       const result = await instance.get("/coreTeam");
-      console.log(result);
+      const results = decryptData(result.data.data);
+      console.log("doSubmit", results);
 
-      if (result.data.data) {
+      if (results.success) { 
         // Toast.fire({
         //   icon: "success",
         //   title: result.data.message,
         // });
-        let Teammember = result.data.data;
+        let Teammember = results.data;
         setTeam(Teammember.slice(0, 3));
       } else {
         Toast.fire({
           icon: "error",
-          title: result.data.message,
+          title: results.message,
         });
       }
     } catch (error) {
