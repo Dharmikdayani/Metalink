@@ -194,7 +194,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                   id="captcha-modal"
                   // onClick={block}
                 >
-                  <Link to="meainhome">Start</Link>
+                  <Link to="/meainhome" >Start</Link>
                 </h3>
               </div>
             </div>

@@ -81,7 +81,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route exact path="/" element={<Home />} />
-        <Route path="meainhome" element={<MeainHome/>}/>
+        <Route path="/meainhome" element={<MeainHome/>}/>
         <Route path="/platform" element={<Platfrom />} />
         <Route path="/team" element={<Team />} />
         <Route path="/contactus" element={<ContactUs />} />
