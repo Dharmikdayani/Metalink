@@ -1,0 +1,366 @@
+.coming-soon .container,  .header .container{
+    max-width: 1650px;
+    display: table;
+    width: 100%;
+    padding: 0 15px;
+}
+
+.hero {
+    background: none;
+}
+
+.hero.coming-soon .heading {
+    padding-top: 100px;
+}
+
+.hero .content {
+    font-size: 24px;
+    line-height: 30px;
+}
+.coming-soon .headline {
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 70px 0 70px 0;
+    text-align: center;
+    font-size: 40px;
+    margin-top: 40px;
+}
+
+.countdown ul li span {
+    display: block;
+    font-size: 30px;
+    text-align: center;
+}
+
+.countdown ul li {
+    background: #DEEFFD;
+    box-shadow: inset 3px 3px 6px rgba(0, 16, 57, 0.2), inset -3px -3px 6px rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 13px;
+    list-style-type: none;
+    text-transform: uppercase;
+    margin: 0 20px;
+    padding: 24px 20px;
+    font-weight: 500;
+    height: 112px;
+    width: 99px;
+}
+
+.countdown ul li:first-child {
+    margin-left: 0px !important;
+}
+
+.countdown ul li:last-child {
+    margin-right: 0px !important;
+}
+
+.countdown ul {
+    padding-left: 0px;
+    text-align: center;
+}
+
+.coming-soon .app-store {
+    padding: 43px 0 30px 0;
+}
+
+.soon-bg {
+    padding: 18px 40px;
+    background: #DEEFFD;
+    box-shadow: inset 3px 3px 6px rgba(0, 16, 57, 0.2), inset -3px -3px 6px rgba(255, 255, 255, 0.5);
+    border-radius: 100px;
+    
+}
+.animation-container {
+    display: relative;
+    width : 200px;
+    height : 300px;
+    margin: auto;
+    display: table;
+}
+
+.animation-container .container{
+    position: relative;
+    top : 30px;
+    height : 300px;
+    width : 190px;
+    transform : scale(0.5) translateX(0) scaleY(0.7);
+}
+
+.y-axis-container {
+    animation: bounce 2.6s infinite ease-in-out;
+}
+
+.shadow {
+    animation: scaling 2.6s infinite ease-in-out;
+}
+
+.coin {
+    position : absolute;
+    height : 300px;
+    left : 0;
+    width: 170px;
+    background : gold;
+    border-radius : 100%;
+    overflow : hidden;
+}
+
+.side-coin {
+    position : absolute;
+    left : 85px;
+    height : 300px;
+    width: 35px;
+    background : #f5b642;
+}
+
+.side {
+    position: absolute;
+    background : #f5b642;
+    left : 22px;
+    width : 165px;
+    height : 304px;
+    top: -2px;
+}
+
+.shine {
+    width : 400px;
+    height : 20px;
+    background : rgba(255,255,255,0.65);
+    transform: rotate(25deg);
+    animation : shine 5s infinite; 
+    transform: rotate(-30deg);
+}
+
+.flash {
+    z-index: 200;
+    position : absolute;
+    width : 15px;
+    height : 15px;
+    background : white;
+    top: 30px;
+    right : 20px;
+    animation : flash 7s infinite;
+}
+
+.dai {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    transform: rotate(53deg) skew(26deg);
+    top: 94px;
+    left: 5px;
+    overflow: hidden;
+}
+
+.dai img{
+    width: 30%;
+    transform: rotate(357deg);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.shadow { 
+    position : relative;
+    left : calc(50% - 60px);
+    top : -40px;
+    background : rgba(0,0,0,0.2);
+    height : 30px;
+    width : 100px;
+    animation : scaling 2.6s infinite;
+    border-radius: 100%;
+}
+.footer-social > div {
+    margin: 0px 15px 0 0px;
+}
+.header-md {
+    justify-content: space-between !important;
+}
+
+@keyframes bounce {
+    20% {
+    animation-timing-function: ease-out;
+    transform: translateY(-60px);
+    }
+    
+    50% {
+    animation-timing-function: ease-out;
+    transform: translateY(-80px);
+    }
+}
+
+@keyframes scaling {
+    20% {
+    transform: scale(0.6);
+    }
+    
+    50% {
+    transform: scale(0.5);
+    }
+}
+
+@keyframes flash {
+    0% {
+    transform : rotate(0deg) scale(0);
+    }
+    8% {
+    transform : rotate(0deg) scale(0);
+    }
+    10% {
+    transform : rotate(150deg) scale(1.8);
+    }
+    15% {
+    transform : rotate(45deg) scale(0);
+    }
+    100% {
+    transform : rotate(45deg) scale(0);
+    }
+}
+
+@keyframes shine {
+    20% {
+    transform : rotate(25deg) translateY(400px);
+    }
+    
+    100% {
+    transform : rotate(25deg) translateY(400px);
+    }
+}
+
+
+
+@keyframes flip {
+    0% {
+        transform: rotateY(0);
+   }
+    100% {
+        transform: rotateY(-180deg);
+   }
+}
+
+.money-text-loading {
+    font-size: 25px;
+    text-transform: capitalize;
+    letter-spacing: 5px;
+    position: absolute;
+}
+.money-text-loading:before {
+    color: #aaa;
+    content: attr(data-loading-text);
+}
+.money-text-loading:after {
+    top: 0;
+    left: 0;
+    width: 0;
+    opacity: 1;
+    color: rgb(0, 0, 0);
+    overflow: hidden;
+    position: absolute;
+    content: attr(data-loading-text);
+    animation: loading 5s infinite;
+}
+@keyframes loading {
+    0% {
+        width: 0;
+   }
+    100% {
+        width: 100%;
+   }
+}
+
+
+
+@media screen and (max-width:1536px){
+    .hero.coming-soon .heading {
+        padding-top: 0px;
+    }
+    .coming-soon .headline {
+        font-size: 30px;
+        padding: 40px 0 40px 0;
+    }
+    .hero .heading {
+        font-size: 38px;
+    }
+    .hero .content {
+        font-size: 22px;
+        line-height: 30px;
+    }
+}
+
+@media screen and (max-width:1336px){
+    .hero .heading {
+        font-size: 32px;
+        line-height: 40px;
+    }
+}
+
+@media screen and (max-width:767px){
+    .countdown ul li {
+        margin: 0 9px;
+    }
+}
+
+@media screen and (max-width:575px){
+    .countdown ul li {
+        margin: 0 9px;
+        padding: 24px 20px;
+        height: 112px;
+        width: 86px;
+    }
+}
+
+@media screen and (max-width:992px){
+    .hero .heading {
+        font-size: 30px;
+        line-height: 40px;
+    }
+    .hero.coming-soon .heading {
+        padding-top: 100px;
+    }
+}
+
+@media screen and (max-width:480px){
+    .hero .heading {
+        font-size: 23px;
+        line-height: 33px;
+    }
+    .header-md {
+        flex-direction: column;
+    }
+    .footer-social{
+        margin-top: 30px;
+    }
+    .coming-soon .headline {
+        font-size: 24px;
+        padding: 40px 0 40px 0;
+    }
+    .countdown ul li span {
+        font-size: 19px;
+    }
+    .countdown ul li {
+        font-size: 12px;
+        margin: 0 4px;
+        padding: 24px 14px;
+        height: 95px;
+        width: 80px;
+    }
+    .soon-bg {
+        padding: 12px 34px;
+    }
+
+}
+
+@media screen and (max-width:420px){
+    .countdown ul li {
+        padding: 22px 4px;
+        height: 98px;
+        width: 70px;
+    }
+    .countdown ul li:nth-child(3) {
+        margin-right: 0px;
+    }
+    .countdown ul li:last-child {
+        margin-top: 20px;
+    }
+}

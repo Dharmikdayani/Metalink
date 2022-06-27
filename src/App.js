@@ -25,6 +25,7 @@ import Protected from "./components/ProtectedRouter/Protected";
 import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 import { selecUser } from "./components/feature/user";
+import MeainHome from "./components/MeainHome/MeainHome";
 const App = () => {
   const effectCalled = useRef(false);
   const [socket, setSocket] = useState("");
@@ -43,28 +44,22 @@ const App = () => {
       toast.addEventListener("mouseleave", Swal.resumeTimer);
     },
   });
-  
-  const user = useSelector(selecUser);
 
+  const user = useSelector(selecUser);
 
   useEffect(() => {
     // console.log("first",user)
-    if (!effectCalled.current && getItem ) {
+    if (!effectCalled.current && getItem) {
       const socket = io("https://metalink-technomads.herokuapp.com");
-      socket.on(
-        "connect",
-        () => {
-          setSocket(socket);
-          socket.emit("joinRoom", JSON.parse(localStorage.getItem("user"))._id);
-          socket.on("currentBalance", (data) => {
-           
-            console.log("data",data);
-            setMiningStatus(data.miningStatus);
-            setCurrentBalance(data);
-          });
-        },
-    
-      );
+      socket.on("connect", () => {
+        setSocket(socket);
+        socket.emit("joinRoom", JSON.parse(localStorage.getItem("user"))._id);
+        socket.on("currentBalance", (data) => {
+          console.log("data", data);
+          setMiningStatus(data.miningStatus);
+          setCurrentBalance(data);
+        });
+      });
       effectCalled.current = true;
     }
   }, [user?._id]);
@@ -86,14 +81,13 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route exact path="/" element={<Home />} />
-
+        <Route path="meainhome" element={<MeainHome/>}/>
         <Route path="/platform" element={<Platfrom />} />
         <Route path="/team" element={<Team />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signinpno" element={<SigninPno />} />
-
         <Route path="/resetpassword" element={<Resetpassword />} />
         <Route path="/otpverification" element={<Otpverification />} />
         <Route path="/otpverification1" element={<Otpverification1 />} />

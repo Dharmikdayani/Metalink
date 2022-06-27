@@ -27,8 +27,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
   }, []);
   const getItem = JSON.parse(localStorage.getItem("user"));
   // const [isOpen, setIsOpen] = useState(false);
-  const {  decryptData } = useEncryption();
-
+  const { decryptData } = useEncryption();
 
   /*============= Toast Fire Notifaction==========*/
 
@@ -69,13 +68,12 @@ function Mine({ socket, miningStatus, currentBalance }) {
         const results = decryptData(result.data.data);
         console.log("doSubmit", results);
 
-        if (results.success) {         
+        if (results.success) {
           Toast.fire({
             icon: "success",
             title: results.message,
           });
           socket.emit("joinRoom", results.data._id);
-       
         } else {
           Toast.fire({
             icon: "error",
@@ -184,19 +182,20 @@ function Mine({ socket, miningStatus, currentBalance }) {
                   />
                   <span className="hours">/H</span>
                 </div>
-                {miningStatus ? (
+                {/* {miningStatus ? (
                   <h3 className="mining-start-btn-active " id="captcha-modal">
                     Mining..
                   </h3>
                 ) : (
-                  <h3
-                    className="btn mining-start-btn"
-                    id="captcha-modal"
-                    onClick={block}
-                  >
-                    Start
-                  </h3>
-                )}
+                  
+                )} */}
+                <h3
+                  className="btn mining-start-btn"
+                  id="captcha-modal"
+                  // onClick={block}
+                >
+                  <Link to="meainhome">Start</Link>
+                </h3>
               </div>
             </div>
           </div>
@@ -211,7 +210,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                     <div className="captcha-modal">
                       <h4 className="captcha-content d-flex justify-content-between align-items-center">
                         Prove you're a human
-                        <a href="#close" >
+                        <a href="#close">
                           <img src="../../img/profile/close.png" />
                         </a>
                       </h4>
