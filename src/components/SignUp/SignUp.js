@@ -9,6 +9,7 @@ import instance from "../baseUrl/baseUrl";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../../Firebase-config";
 import OtpVerification from "../OtpVerification/OtpVerification";
+import useEncryption from "../EncryptData/EncryptData";
 
 function SignUp() {
   const [username, setUsername] = useState("");
@@ -19,6 +20,7 @@ function SignUp() {
   const [cpwd, setCpwd] = useState("");
   const [refCode, setRefCode] = useState("");
   const [showOtpBox, setShowOtpBox] = useState(false);
+  const { encryptData, decryptData } = useEncryption();
 
   /*============= Toast Fire Notifaction==========*/
 
@@ -106,32 +108,35 @@ function SignUp() {
 
     setErrors(errorsObj);
     if (error) return;
-    SignUp()
+    SignUp();
   };
 
   /*================SignUp API===============*/
-
-  const navigate = useNavigate();
-
   const SignUp = async () => {
     try {
+      const encrypt = encryptData(
+        JSON.stringify({
+          username,
+          email,
+          countryCode,
+          phoneNumber: a,
+          password,
+          refCode,
+        })
+      );
       const result = await instance.post("/signup", {
-        username,
-        email,
-        countryCode,
-        phoneNumber: a,
-        password,
-        refCode,
+        data: encrypt,
       });
 
-      if (result.data.success) {
-        console.log(result);
+      const results = decryptData(result.data.data);
+      console.log("SignUp", results);
 
+      if (results.success) {
         Toast.fire({
           icon: "success",
-          title: result.data.message,
+          title: results.message,
         });
-        await setUpRecaptcha();
+        setUpRecaptcha();
         const mobile = countryCode + a;
         const appVerifier = window.recaptchaVerifier;
         console.log("otp sent on this number", mobile);
@@ -146,7 +151,6 @@ function SignUp() {
               icon: "success",
               title: "OTP sent",
             });
-
           })
           .catch((error) => {
             // Error; SMS not sent
@@ -159,19 +163,17 @@ function SignUp() {
           });
         dispatch(
           signup({
-            _id: result.data.data._id,
-            active: result.data.data.active,
-            username: result.data.data.username,
-            email: result.data.data.email,
-            countryCode: result.data.data.countryCode,
-            phoneNumber: result.data.data.phoneNumber,
-            refCode:result.data.data.inviteCode
+            username: results.data.username,
+            email: results.data.email,
+            countryCode: results.data.countryCode,
+            phoneNumber: results.data.phoneNumber,
+            refCode: results.data.inviteCode,
           })
         );
       } else {
         Toast.fire({
           icon: "error",
-          title: result.data.message,
+          title: results.message,
         });
       }
     } catch (err) {

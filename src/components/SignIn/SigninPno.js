@@ -6,11 +6,13 @@ import Swal from "sweetalert2";
 import instance from "../baseUrl/baseUrl";
 import { useDispatch } from "react-redux";
 import { signin } from "../feature/user";
+import useEncryption from "../EncryptData/EncryptData";
 
 function SigninPno() {
   const [emailOrMobile, setemailOrMobile] = useState("");
   const [countryCode, setcountryCode] = useState("");
   const [password, setPassword] = useState("");
+  const { encryptData, decryptData } = useEncryption();
   const dispatch = useDispatch();
 
   /*============= Toast Fire Notifaction==========*/
@@ -62,17 +64,23 @@ function SigninPno() {
 
   const SigninPno = async () => {
     try {
+      const encrypt = encryptData(
+        JSON.stringify({
+          countryCode,
+          emailOrMobile: a,
+          password,
+        })
+      );
       const result = await instance.post("/signin", {
-        countryCode,
-        emailOrMobile: a,
-        password,
+        data: encrypt,
       });
-      if (result.data.success) {
-        console.log(result);
-        // document.cookie = `jwttoken=${result.data.data.token}`;
+      const results = decryptData(result.data.data);
+      console.log(results);
+
+      if (results.success) {
         Toast.fire({
           icon: "success",
-          title: result.data.message,
+          title: results.message,
         });
         dispatch(
           signin({
@@ -82,8 +90,7 @@ function SigninPno() {
             email: result.data.data.email,
             countryCode: result.data.data.countryCode,
             phoneNumber: result.data.data.phoneNumber,
-            refCode:result.data.data.inviteCode
-           
+            refCode: result.data.data.inviteCode,
           })
         );
 
@@ -96,14 +103,14 @@ function SigninPno() {
             email: result.data.data.email,
             countryCode: result.data.data.countryCode,
             phoneNumber: result.data.data.phoneNumber,
-            refCode:result.data.data.inviteCode
+            refCode: result.data.data.inviteCode,
           })
         );
         navigate("/mine");
       } else {
         Toast.fire({
           icon: "error",
-          title: result.data.message,
+          title: results.message,
         });
       }
     } catch (err) {

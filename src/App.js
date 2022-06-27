@@ -48,7 +48,7 @@ const App = () => {
 
 
   useEffect(() => {
-    console.log("first",user)
+    // console.log("first",user)
     if (!effectCalled.current && getItem ) {
       const socket = io("http://192.168.29.105:3000");
       socket.on(
@@ -58,7 +58,7 @@ const App = () => {
           socket.emit("joinRoom", JSON.parse(localStorage.getItem("user"))._id);
           socket.on("currentBalance", (data) => {
            
-            console.log(data);
+            console.log("data",data);
             setMiningStatus(data.miningStatus);
             setCurrentBalance(data);
           });

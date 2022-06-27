@@ -2,11 +2,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import instance from "../../baseUrl/baseUrl";
+import useEncryption from "../../EncryptData/EncryptData";
 
 const Mining = () => {
   const [Layer, setLayer] = useState([{}]);
   const effectCalled = useRef(false);
   const [day, setDay] = useState("day");
+  const {  decryptData } = useEncryption();
 
   /*============= Toast Fire Notifaction==========*/
   const Toast = Swal.mixin({
@@ -25,12 +27,15 @@ const Mining = () => {
     try {
       const result = await instance.get(`/mineHistory?time=${day}`);
 
-      if (result.data.status) {
-        setLayer([result?.data?.data]);
+      const results = decryptData(result.data.data);
+      console.log("mineHistory", results);
+
+      if (results.status) {
+        setLayer([results?.data]);
       } else {
         Toast.fire({
           icon: "error",
-          title: result.data.message,
+          title: results.message,
         });
       }
     } catch (error) {

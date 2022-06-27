@@ -14,6 +14,7 @@ import "react-phone-input-2/lib/style.css";
 import OtpVerificationFormobile from "../OtpVerification/OtpVerificationFormobile";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../../Firebase-config";
+import useEncryption from "../EncryptData/EncryptData";
 
 const Profile = () => {
   document.title = "Profile";
@@ -31,11 +32,15 @@ const Profile = () => {
   const [mobile, setmobile] = useState();
   const [showOtpBox, setShowOtpBox] = useState(false);
   const [oldMobile, setOldMobile] = useState();
-
+  const { encryptData, decryptData } = useEncryption();
+  const [ProfileData, SetProfileData] = useState("");
   function closeOtpBox() {
     setShowOtpBox(false);
   }
+  // const a = phoneNumber.slice(countryCode.length - 1);
+  // console.log("ProfileData",ProfileData._id)
 
+  const name = ProfileData._id;
   /*============= Toast Fire Notifaction==========*/
 
   const Toast = Swal.mixin({
@@ -87,61 +92,56 @@ const Profile = () => {
     localStorage.removeItem("user");
     navigate("/");
   };
-  const a = phoneNumber.slice(countryCode.length - 1);
 
   /*=================getUserProfile API============= */
 
   const getUserProfile = async () => {
-    // console.log("old", oldMobile, "new", mobile);
     try {
       const result = await instance.get("/getUserProfile");
-      if (result.data.success) {
-        console.log(result);
 
+      const results = decryptData(result.data.data);
+      console.log("getUserProfile", results);
+
+      if (results.success) {
         // Toast.fire({
         //   icon: "success",
-        //   title: result.data.message,
+        //   title: results.message,
         // });
-        // localStorage.getItem("user");
-
-        setUserName(result.data.data.username);
-        setEmail(result.data.data.email);
-        setcountryCode(result.data.data.countryCode);
-        setPhoneNumber(result.data.data.phoneNumber);
-        setinviteCode(result.data.data.inviteCode);
-        setmobile(
-          result?.data?.data?.countryCode + result?.data?.data?.phoneNumber
-        );
-        setOldMobile(
-          result?.data?.data?.countryCode + result?.data?.data?.phoneNumber
-        );
+        SetProfileData(results.data);
+        setUserName(results.data.username);
+        setEmail(results.data.email);
+        setcountryCode(results.data.countryCode);
+        setPhoneNumber(results.data.phoneNumber);
+        setinviteCode(results.data.inviteCode);
+        setmobile(results?.data?.countryCode + results?.data?.phoneNumber);
+        setOldMobile(results?.data?.countryCode + results?.data?.phoneNumber);
         localStorage.setItem(
           "user",
           JSON.stringify({
-            _id: result.data.data._id,
-            active: result.data.data.active,
-            username: result.data.data.username,
-            email: result.data.data.email,
-            countryCode: result.data.data.countryCode,
-            phoneNumber: result.data.data.phoneNumber,
-            refCode: result.data.data.inviteCode,
+            _id: results.data._id,
+            active: results.data.active,
+            username: results.data.username,
+            email: results.data.email,
+            countryCode: results.data.countryCode,
+            phoneNumber: results.data.phoneNumber,
+            refCode: results.data.inviteCode,
           })
         );
         dispatch(
           updateProfile({
-            _id: result.data.data._id,
-            active: result.data.data.active,
-            username: result.data.data.username,
-            email: result.data.data.email,
-            countryCode: result.data.data.countryCode,
-            phoneNumber: result.data.data.phoneNumber,
-            refCode: result.data.data.inviteCode,
+            _id: results.data._id,
+            active: results.data.active,
+            username: results.data.username,
+            email: results.data.email,
+            countryCode: results.data.countryCode,
+            phoneNumber: results.data.phoneNumber,
+            refCode: results.data.inviteCode,
           })
         );
       } else {
         Toast.fire({
           icon: "error",
-          title: result.data.message,
+          title: results.message,
         });
       }
     } catch (err) {
@@ -167,62 +167,67 @@ const Profile = () => {
   /*=================updateProfile API============= */
   const savadata = async () => {
     if (oldMobile === mobile) {
-      //updateProfile api
       try {
         setShowOtpBox(false);
+        const encrypt = encryptData(
+          JSON.stringify({
+            username: ProfileData.username !== UserName ? UserName : null,
+            email: ProfileData.email !== email ? email : null,
+            password:password,
+            countryCode:
+              ProfileData.countryCode !== countryCode ? countryCode : null,
+            phoneNumber:
+              ProfileData.phoneNumber !== phoneNumber ? phoneNumber : null,
+          })
+        );
         const result = await instance.put("/updateProfile", {
-          username: UserName,
-          email: email,
-          password: password,
-          countryCode: countryCode,
-          phoneNumber: phoneNumber,
+          data: encrypt,
         });
-        if (result.data.success) {
-          console.log(result);
+
+        const results = decryptData(result.data.data);
+
+        if (results.success) {
           Toast.fire({
             icon: "success",
-            title: result.data.message,
+            title: results.message,
           });
+          SetProfileData(results.data);
           localStorage.setItem(
             "user",
             JSON.stringify({
-              _id: result.data.data._id,
-              active: result.data.data.active,
-              username: result.data.data.username,
-              email: result.data.data.email,
-              countryCode: result.data.data.countryCode,
-              phoneNumber: result.data.data.phoneNumber,
-              refCode: result.data.data.inviteCode,
+              _id: results.data._id,
+              active: results.data.active,
+              username: results.data.username,
+              email: results.data.email,
+              countryCode: results.data.countryCode,
+              phoneNumber: results.data.phoneNumber,
+              refCode: results.data.inviteCode,
             })
           );
 
-          setinviteCode(result.data.data.inviteCode);
-          setUserName(result.data.data.username);
-          setEmail(result.data.data.email);
-          setPhoneNumber(result.data.data.phoneNumber);
-          setcountryCode(result.data.data.countryCode);
-          setmobile(
-            result.data.data.countryCode + result.data.data.phoneNumber
-          );
-          setOldMobile(
-            result.data.data.countryCode + result.data.data.phoneNumber
-          );
+          setinviteCode(results.data.inviteCode);
+          setUserName(results.data.username);
+          setEmail(results.data.email);
+          setPhoneNumber(results.data.phoneNumber);
+          setcountryCode(results.data.countryCode);
+          setmobile(results.data.countryCode + results.data.phoneNumber);
+          setOldMobile(results.data.countryCode + results.data.phoneNumber);
 
           dispatch(
             updateProfile({
-              _id: result.data.data._id,
-              active: result.data.data.active,
-              username: result.data.data.username,
-              email: result.data.data.email,
-              countryCode: result.data.data.countryCode,
-              phoneNumber: result.data.data.phoneNumber,
-              refCode: result.data.data.inviteCode,
+              _id: results.data._id,
+              active: results.data.active,
+              username: results.data.username,
+              email: results.data.email,
+              countryCode: results.data.countryCode,
+              phoneNumber: results.data.phoneNumber,
+              refCode: results.data.inviteCode,
             })
           );
         } else {
           Toast.fire({
             icon: "error",
-            title: result.data.message,
+            title: results.message,
           });
         }
       } catch (err) {
@@ -230,7 +235,7 @@ const Profile = () => {
       }
     } else {
       setUpRecaptcha();
-      const mobile = countryCode + phoneNumber;
+      const mobile = oldMobile;
       const appVerifier = window.recaptchaVerifier;
       console.log("otp sent on this number", mobile);
       signInWithPhoneNumber(auth, mobile, appVerifier)
@@ -261,15 +266,17 @@ const Profile = () => {
     <div>
       {showOtpBox ? (
         <OtpVerificationFormobile
-          code={countryCode}
-          phone={phoneNumber}
-          mobile={mobile}
+
+        countryCode={countryCode}
+          phone={phoneNumber}        
+          oldMobile={oldMobile}
           username={UserName}
           email={email}
           password={password}
           closeOtpBox={closeOtpBox}
           setmobile={setmobile}
           setOldMobile={setOldMobile}
+          ProfileData={ProfileData}
         />
       ) : (
         <div className="mining-bg">
@@ -474,13 +481,7 @@ const Profile = () => {
                                         inputPhone.slice(countryCode.length - 1)
                                       );
 
-                                      // console.log(
-                                      //   inputPhone.slice(countryCode.length - 1)
-                                      // );
                                       setmobile("+" + inputPhone);
-                                      // setOldMobile( )
-                                      // console.log(inputPhone)
-                                      // console.log( inputPhone.slice(countryCode.length - 1))
                                     }}
                                     inputStyle={{
                                       background: "#E2F1FE",

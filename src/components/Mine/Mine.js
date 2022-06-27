@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, version } from "react";
+import React, { useEffect } from "react";
 import Footer from "../Layout/Footer";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Mining from "./CurrentMiningRate/Mining";
@@ -10,7 +10,6 @@ import Invited from "./InvitedByYou/Invited";
 import "../../css/mine.css";
 import {
   loadCaptchaEnginge,
-  LoadCanvasTemplate,
   LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
@@ -18,6 +17,7 @@ import Swal from "sweetalert2";
 import instance from "../baseUrl/baseUrl";
 import { Link } from "react-router-dom";
 import Odometer from "react-odometerjs";
+import useEncryption from "../EncryptData/EncryptData";
 
 function Mine({ socket, miningStatus, currentBalance }) {
   document.title = "Mine";
@@ -26,7 +26,8 @@ function Mine({ socket, miningStatus, currentBalance }) {
     loadCaptchaEnginge(6, "#d0eaff", "black", "top");
   }, []);
   const getItem = JSON.parse(localStorage.getItem("user"));
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  const {  decryptData } = useEncryption();
 
 
   /*============= Toast Fire Notifaction==========*/
@@ -64,19 +65,21 @@ function Mine({ socket, miningStatus, currentBalance }) {
       });
       try {
         const result = await instance.get("/activeUser");
-        if (result.data.success) {
-          console.log(result);
+
+        const results = decryptData(result.data.data);
+        console.log("doSubmit", results);
+
+        if (results.success) {         
           Toast.fire({
             icon: "success",
-            title: result.data.message,
+            title: results.message,
           });
-
-          socket.emit("joinRoom", result.data.data._id);
-          console.log(result.data.data._id);
+          socket.emit("joinRoom", results.data._id);
+       
         } else {
           Toast.fire({
             icon: "error",
-            title: result.data.message,
+            title: results.message,
           });
         }
       } catch (err) {
@@ -98,7 +101,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
   const block = () => {
     const ebModal = document.getElementById("captcha-modals");
     ebModal.style.display = "block";
-    isOpen = true
+    // isOpen = true
   };
 
   /*===========withdraw-modals==================*/
@@ -208,7 +211,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                     <div className="captcha-modal">
                       <h4 className="captcha-content d-flex justify-content-between align-items-center">
                         Prove you're a human
-                        <a href="#close" onClick={setIsOpen}>
+                        <a href="#close" >
                           <img src="../../img/profile/close.png" />
                         </a>
                       </h4>

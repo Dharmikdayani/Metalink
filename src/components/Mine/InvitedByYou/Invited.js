@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import Carousel from "react-elastic-carousel";
 import Swal from "sweetalert2";
 import instance from "../../baseUrl/baseUrl";
+import useEncryption from "../../EncryptData/EncryptData";
+
 
 const Invited = () => {
   // const [card] = useState(FilterDetails);
@@ -11,6 +12,8 @@ const Invited = () => {
   const [member, setMemeber] = useState([]);
   const effectCalled = useRef(false);
   const [invite, setInvite] = useState([]);
+  const { encryptData, decryptData } = useEncryption();
+
   /*============= Toast Fire Notifaction==========*/
   const Toast = Swal.mixin({
     toast: true,
@@ -37,17 +40,19 @@ const Invited = () => {
       const result = await instance.get(
         `/earningTeam?status=${selectedOption}&level=${Layer}`
       );
-      console.log(result);
-      if (result.data.status) {
-        while (result.data.data.earningTeam.length != 0) {
-          const data = result.data.data.earningTeam.splice(0, 6);
+      const results = decryptData(result.data.data);
+      console.log("filterData", results);
+
+      if (results.status) {
+        while (results.data.earningTeam.length != 0) {
+          const data = results.data.earningTeam.splice(0, 6);
           setMemeber((old) => [...old, data]);
         }
-        setInvite([result.data.data]);
+        setInvite([results.data]);
       } else {
         Toast.fire({
           icon: "error",
-          title: result.data.message,
+          title: results.message,
         });
       }
     } catch (error) {

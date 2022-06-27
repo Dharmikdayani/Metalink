@@ -4,10 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import instance from "../baseUrl/baseUrl";
 import { signin } from "../feature/user";
+import useEncryption from "../EncryptData/EncryptData";
 
 function SignIn() {
   const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
+  const { encryptData, decryptData } = useEncryption();
   const dispatch = useDispatch();
 
   /*============= Toast Fire Notifaction==========*/
@@ -55,21 +57,26 @@ function SignIn() {
   }
 
   /*================SignIn API===============*/
-  const navigate = useNavigate();
-
-  const getItem = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();  
   const SignIn = async () => {
     try {
+      const encrypt = encryptData(
+        JSON.stringify({
+          emailOrMobile: email,
+          password,
+        })
+      );
       const result = await instance.post("/signin", {
-        // countryCode:user.countryCode,
-        emailOrMobile: email,
-        password,
+        data: encrypt,
       });
-      if (result.data.success) {
-        console.log(result);
+
+      const results = decryptData(result.data.data);
+      console.log("SignIn",results);
+
+      if (results.success) {
         Toast.fire({
           icon: "success",
-          title: result.data.message,
+          title: results.message,
         });
 
         localStorage.setItem(
@@ -101,7 +108,7 @@ function SignIn() {
       } else {
         Toast.fire({
           icon: "error",
-          title: result.data.message,
+          title: results.message,
         });
       }
     } catch (err) {

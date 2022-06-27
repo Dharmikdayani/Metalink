@@ -9,10 +9,12 @@ import { selecUser, signup } from "../feature/user";
 import { useDispatch } from "react-redux";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../../Firebase-config";
+import useEncryption from "../EncryptData/EncryptData";
 
 function OtpVerificationFormobile({
-  code,
-  mobile,
+  ProfileData,
+  countryCode, 
+  oldMobile,
   phone,
   username,
   email,
@@ -24,6 +26,7 @@ function OtpVerificationFormobile({
   // console.log(mobiles);
   const [OTP, setOTP] = useState("");
   const dispatch = useDispatch();
+  const { encryptData, decryptData } = useEncryption();
 
   const setUpRecaptcha = () => {
     window.recaptchaVerifier = new RecaptchaVerifier(
@@ -55,7 +58,7 @@ function OtpVerificationFormobile({
 
   /*=================otpverification API============= */
 
-  const otpverification =  () => {
+  const otpverification = () => {
     const otpcode = OTP;
     window.confirmationResult
       .confirm(otpcode)
@@ -64,56 +67,62 @@ function OtpVerificationFormobile({
         const user = result.user;
         console.log(JSON.stringify(user));
         try {
+          const encrypt = encryptData(
+            JSON.stringify({
+              username:    ProfileData.username !== username ? username : null,
+              password: password,
+              email: ProfileData.email !== email ? email : null,
+              countryCode:ProfileData.countryCode !== countryCode ? countryCode : null,
+              phoneNumber: ProfileData.phoneNumber !== phone ? phone : null,
+            })
+          );
           const result = await baseUrl.put("/updateProfile", {
-            username: username,
-            password: password,
-            email: email,
-            countryCode: code,
-            phoneNumber: phone,
+            data: encrypt,
           });
-
-          if (result.data.success) {
-            console.log(result);
+          const results = decryptData(result.data.data);
+          console.log("SignUp", results);
+          if (results.success) {
             Toast.fire({
               icon: "success",
-              title: result.data.message,
+              title: results.message,
             });
-            setmobile(code + phone);
-            setOldMobile(code + phone);
+            setmobile(countryCode + phone);
+            setOldMobile(countryCode + phone);
             localStorage.setItem(
               "user",
               JSON.stringify({
-                _id: result.data.data._id,
-                active: result.data.data.active,
-                username: result.data.data.username,
-                email: result.data.data.email,
-                countryCode: result.data.data.countryCode,
-                phoneNumber: result.data.data.phoneNumber,
+                _id: results.data._id,
+                active: results.data.active,
+                username: results.data.username,
+                email: results.data.email,
+                countryCode: results.data.countryCode,
+                phoneNumber: results.data.phoneNumber,
+                refCode: results.data.inviteCode,
               })
             );
             dispatch(
               signup({
-                _id: result.data.data._id,
-                active: result.data.data.active,
-                username: result.data.data.username,
-                email: result.data.data.email,
-                countryCode: result.data.data.countryCode,
-                phoneNumber: result.data.data.phoneNumber,
-                refCode: result.data.data.inviteCode,
+                _id: results.data._id,
+                active: results.data.active,
+                username: results.data.username,
+                email: results.data.email,
+                countryCode: results.data.countryCode,
+                phoneNumber: results.data.phoneNumber,
+                refCode: results.data.inviteCode,
               })
             );
-            // navigate("/profile")
-            closeOtpBox(code + phone);
+
+            closeOtpBox(countryCode + phone);
           } else {
             Toast.fire({
               icon: "error",
-              title: result.data.message,
+              title: results.message,
             });
           }
         } catch (err) {
           console.log("err" + err);
         }
-        // navigate("/mine");
+      
       })
       .catch((error) => {
         // User couldn't sign in (bad verification code?)
@@ -129,7 +138,7 @@ function OtpVerificationFormobile({
 
   const ResendOTPverification = async () => {
     await setUpRecaptcha();
-    const mobile = code + phone;
+    const mobile = oldMobile;
     const appVerifier = window.recaptchaVerifier;
     console.log("otp sent on this number", mobile);
     signInWithPhoneNumber(auth, mobile, appVerifier)
@@ -200,7 +209,7 @@ function OtpVerificationFormobile({
                   <p className="sub-heading mb-0">
                     Enter the OTP you received at
                   </p>
-                  <p className="otp-no mb-0">{code + phone}</p>
+                  <p className="otp-no mb-0">{oldMobile}</p>
                   <div className="otp-group">
                     <form>
                       <OTPInput

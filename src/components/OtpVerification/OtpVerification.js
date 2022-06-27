@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selecUser, signup } from "../feature/user";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../../Firebase-config";
+import useEncryption from "../EncryptData/EncryptData";
 
 function OtpVerification({
   username,
@@ -20,8 +21,8 @@ function OtpVerification({
   const [OTP, setOTP] = useState("");
   const user = useSelector(selecUser);
   const navigate = useNavigate();
-  const getItem = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
+  const { encryptData, decryptData } = useEncryption();
 
   const setUpRecaptcha = () => {
     window.recaptchaVerifier = new RecaptchaVerifier(
@@ -62,49 +63,55 @@ function OtpVerification({
         const user = result.user;
         console.log(JSON.stringify(user));
         try {
+          const encrypt = encryptData(
+            JSON.stringify({
+              username: username,
+              email: email,
+              countryCode: countryCode,
+              phoneNumber: phoneNumber,
+              refCode: refCode,
+              password: password,
+              isVerified: true,
+            })
+          );
           const result = await baseUrl.post("/verifyPhoneNumber", {
-            username: username,
-            email: email,
-            countryCode: countryCode,
-            phoneNumber: phoneNumber,
-            refCode: refCode,
-            password: password,
-            isVerified: true,
+            data: encrypt,
           });
+          const results = decryptData(result.data.data);
+          console.log("SignOtpVerificationUp", results);
 
-          if (result.data.success) {
-            console.log(result);
+          if (results.success) {
             Toast.fire({
               icon: "success",
-              title: result.data.message,
+              title: results.message,
             });
             dispatch(
               signup({
-                _id: result.data.data._id,
-                active: result.data.data.active,
-                username: result.data.data.username,
-                email: result.data.data.email,
-                countryCode: result.data.data.countryCode,
-                phoneNumber: result.data.data.phoneNumber,
-                refCode:result.data.data.inviteCode
+                _id: results.data._id,
+                active: results.data.active,
+                username: results.data.username,
+                email: results.data.email,
+                countryCode: results.data.countryCode,
+                phoneNumber: results.data.phoneNumber,
+                refCode: results.data.inviteCode,
               })
             );
             localStorage.setItem(
               "user",
               JSON.stringify({
-                _id: result.data.data._id,
-                active: result.data.data.active,
-                username: result.data.data.username,
-                email: result.data.data.email,
-                countryCode: result.data.data.countryCode,
-                phoneNumber: result.data.data.phoneNumber,
-                refCode: result.data.data.inviteCode,
+                _id: results.data._id,
+                active: results.data.active,
+                username: results.data.username,
+                email: results.data.email,
+                countryCode: results.data.countryCode,
+                phoneNumber: results.data.phoneNumber,
+                refCode: results.data.inviteCode,
               })
             );
           } else {
             Toast.fire({
               icon: "error",
-              title: result.data.message,
+              title: results.message,
             });
           }
         } catch (err) {
@@ -143,7 +150,7 @@ function OtpVerification({
 
         Toast.fire({
           icon: "success",
-          title: "OTP sent",
+          title: "New OTP is sent",
         });
       })
       .catch((error) => {

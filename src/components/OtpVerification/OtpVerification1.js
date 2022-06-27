@@ -3,7 +3,6 @@ import OTPInput from "otp-input-react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "../../css/otp.css";
-import baseUrl from "../baseUrl/baseUrl";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../../Firebase-config";
 

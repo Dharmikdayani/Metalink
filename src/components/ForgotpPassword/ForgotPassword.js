@@ -7,11 +7,13 @@ import baseUrl from "../baseUrl/baseUrl";
 import OtpVerification1 from "../OtpVerification/OtpVerification1";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../../Firebase-config";
+import useEncryption from "../EncryptData/EncryptData";
 
 function Forgotpassword() {
   const [emailOrMobile, setemailOrMobile] = useState("");
   const [countryCode, setcountryCode] = useState("");
   const [showOtpBox, setShowOtpBox] = useState(false);
+  const { encryptData, decryptData } = useEncryption();
 
   /*============= Toast Fire Notifaction==========*/
   const Toast = Swal.mixin({
@@ -65,16 +67,25 @@ function Forgotpassword() {
   const a = emailOrMobile.slice(countryCode.length - 1);
   const forgotPassword = async () => {
     try {
+      const encrypt = encryptData(
+        JSON.stringify({
+          emailOrMobile: a,
+          countryCode,
+        })
+      );
       const result = await baseUrl.post("/forgotPassword", {
-        emailOrMobile: a,
-        countryCode,
+        data: encrypt,
       });
-      if (result.data.success) {
+
+      const results = decryptData(result.data.data);
+      console.log("SignUp", results);
+
+      if (results.success) {
         Toast.fire({
           icon: "success",
-          title: result.data.message,
+          title: results.message,
         });
-        await setUpRecaptcha();
+         setUpRecaptcha();
         const mobile = countryCode + a;
         const appVerifier = window.recaptchaVerifier;
         console.log("otp sent on this number", mobile);
@@ -102,7 +113,7 @@ function Forgotpassword() {
       } else {
         Toast.fire({
           icon: "error",
-          title: `hyy${result.data.message}`,
+          title: results.message,
         });
       }
     } catch (err) {

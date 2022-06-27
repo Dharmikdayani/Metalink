@@ -4,10 +4,12 @@ import "../../css/forgotPassword.css";
 import Swal from "sweetalert2";
 import baseUrl from "../baseUrl/baseUrl";
 import OtpVerification1 from "../OtpVerification/OtpVerification1";
+import useEncryption from "../EncryptData/EncryptData";
 
 function FpwdEmail() {
   const [email, setemail] = useState("");
   const [showOtpBox, setShowOtpBox] = useState(false);
+  const { encryptData, decryptData } = useEncryption();
 
   /*============= Toast Fire Notifaction==========*/
 
@@ -48,25 +50,31 @@ function FpwdEmail() {
   }
 
   /*=============== forgotPassword API===========*/
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const forgotPassword = async () => {
     console.log(email);
     try {
+      const encrypt = encryptData(
+        JSON.stringify({
+          emailOrMobile: email,
+        })
+      );
       const result = await baseUrl.post("/forgotPassword", {
-        emailOrMobile: email,
-        // countryCode:user.countryCode
+        data: encrypt,
       });
-      if (result.data.success) {
+      const results = decryptData(result.data.data);
+      console.log("SignUp", results);
+      if (results.success) {
         Toast.fire({
           icon: "success",
-          title: result.data.message,
+          title: results.message,
         });
         setShowOtpBox(true);
       } else {
         Toast.fire({
           icon: "error",
-          title: result.data.message,
+          title: results.message,
         });
       }
     } catch (err) {
