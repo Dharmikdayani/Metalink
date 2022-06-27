@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import instance from "../../baseUrl/baseUrl";
-import useEncryption from "../EncryptData/EncryptData";
+import useEncryption from "../../EncryptData/EncryptData";
 
 const MetalinkTeamsMember = () => {
   const [team, setTeam] = useState([]);
