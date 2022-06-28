@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import "../../css/coming-soon.css";
 // import "../../css/style.css";
 
 function MeainHome() {
-
   const [Timedays, Setday] = useState("00");
   const [TimeHours, SetHours] = useState("00");
   const [Timeminutes, Setminutes] = useState("00");
   const [Timeseconds, Setseconds] = useState("00");
 
   let interval = useRef();
-  
+
   const StartTimer = () => {
     const countdown = new Date("08 15, 2022 00:00:00").getTime();
 
@@ -42,21 +42,20 @@ function MeainHome() {
     };
   });
   return (
-    <div className="index-bg1">
+    <div className="index-bg">
       <>
         {/* ============ Header Start =========== */}
         <section className="header index-header">
           <div className="container">
             <div className="d-flex justify-content-between align-items-center header-md">
               <div>
-                <a href="index.html">
-                  {" "}
+                <Link to="/">
                   <img
                     src="../../img/logo/logo.png"
                     alt=""
                     className="header-logo img-fluid"
                   />
-                </a>
+                </Link>
               </div>
               <div>
                 <div className="footer-social d-sm-flex d-none">
@@ -135,7 +134,7 @@ function MeainHome() {
         </section>
         {/* ============ Header End =========== */}
         {/* ============ Hero Section Start =========== */}
-        <section className="hero coming-soon">
+        <section className=" coming-soon">
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-6">
@@ -251,24 +250,20 @@ function MeainHome() {
                 <div id="countdown" className="countdown">
                   <ul>
                     <li>
-                    <span>{Timedays}</span>
+                      <span>{Timedays}</span>
                       days
-                     
                     </li>
                     <li>
-                    <span>{TimeHours}</span>
+                      <span>{TimeHours}</span>
                       Hours
-                      
                     </li>
                     <li>
-                    <span>{Timeminutes}</span>
+                      <span>{Timeminutes}</span>
                       Minutes
-                     
                     </li>
                     <li>
-                    <span>{Timeseconds}</span>
+                      <span>{Timeseconds}</span>
                       Seconds
-                      
                     </li>
                   </ul>
                 </div>
