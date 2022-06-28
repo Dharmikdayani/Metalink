@@ -1,12 +1,10 @@
-import React,{ useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../css/footer.css";
 
-
 const Footer = () => {
-
   useEffect(() => {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }, []);
   const getItem = JSON.parse(localStorage.getItem("user"));
 
@@ -15,10 +13,10 @@ const Footer = () => {
       <section className="footer">
         <div className="container ">
           <div className="footer-inside footer-Icon">
-            <div className="row align-items-baseline">
-              <div className=" col-md-6">
+            <div className="row ">
+              <div className=" col-md-6 c">
+                {" "}
                 <Link to="/">
-                 
                   <img
                     src="../../img/logo/footer-logo.png"
                     alt=""
@@ -28,18 +26,18 @@ const Footer = () => {
                 <div className="footer-social d-flex ">
                   <div className="social-bg">
                     <a
-                      href="https://www.facebook.com/Metalink-101550999177220"
+                      href="https://dsc.gg/metalink"
                       className="social-icon"
                       target="_blank"
-                      rel="noreferrer" 
+                      rel="noreferrer"
                     >
                       <img
-                        src="../../img/icon/facebook.svg"
+                        src="../../img/icon/discord.svg"
                         alt=""
                         className="simple-social-icon"
                       />
                       <img
-                        src="../../img/icon/facebook-hover.svg"
+                        src="../../img/icon/discord-hover.png"
                         alt=""
                         className="fill-social-icon"
                       />
@@ -50,7 +48,7 @@ const Footer = () => {
                       href="https://twitter.com/MetalinkNetwork"
                       className="social-icon"
                       target="_blank"
-                      rel="noreferrer" 
+                      rel="noreferrer"
                     >
                       <img
                         src="../../img/icon/twitter.svg"
@@ -66,10 +64,30 @@ const Footer = () => {
                   </div>
                   <div className="social-bg">
                     <a
+                      href="https://www.linkedin.com/company/metalink-network"
+                      className="social-icon"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img
+                        src="../../img/icon/linkedinhover.png"
+                        alt=""
+                        className="simple-social-icon"
+                      />
+                      <img
+                        src="../../img/icon/linkedin.png"
+                        alt=""
+                        className="fill-social-icon"
+                      />
+                    </a>
+                  </div>
+
+                  <div className="social-bg">
+                    <a
                       href="https://www.instagram.com/metalinknetwork/"
                       className="social-icon"
                       target="_blank"
-                      rel="noreferrer" 
+                      rel="noreferrer"
                     >
                       <img
                         src="../../img/icon/instagram.svg"
@@ -83,60 +101,32 @@ const Footer = () => {
                       />
                     </a>
                   </div>
-                  <div className="social-bg">
-                    <a
-                      href="https://dsc.gg/metalink"
-                      className="social-icon"
-                      target="_blank"
-                      rel="noreferrer" 
-                    >
-                      <img
-                        src="../../img/icon/discord.svg"
-                        alt=""
-                        className="simple-social-icon"
-                      />
-                      <img
-                        src="../../img/icon/discord-hover.png"
-                        alt=""
-                        className="fill-social-icon"
-                      />
-                    </a>
-                  </div>
                 </div>
               </div>
-              <div className="col-md-6">
-                <div className="row d-flex justify-content-end hiden">
+              <div className="col-md-6 ">
+                <div className="row d-flex justify-content-end ">
                   <div className="col-xl-3 col-md-5 col-6">
-                    <p className="company mb-0">COMPANY</p>
-                    <ul className="list-unstyled">
-                      <li className="nav-item">
+                    <p className=" SUPPORT mb-0 setDisplay">COMPANY</p>
+                    <ul className="list-unstyled a">
+                      <li className="nav-item setDisplay ">
                         <Link
                           to={getItem ? "/mine" : "/signin"}
-                          className="nav-link"
-                          
+                          className="nav-link "
                         >
                           Mine
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link
-                          to="/platform"
-                          className="nav-link"
-                          
-                        >
+                        <Link to="/platform" className="nav-link">
                           Platform
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link
-                          to="/team"
-                          className="nav-link"
-                         
-                        >
+                        <Link to="/team" className="nav-link">
                           Team
                         </Link>
                       </li>
-                      <li className="nav-item">
+                      <li className="nav-item setDisplay">
                         <Link to="/#" className="nav-link">
                           Support
                         </Link>
@@ -144,14 +134,14 @@ const Footer = () => {
                     </ul>
                   </div>
                   <div className="col-xl-3 col-md-5 col-6">
-                    <p className="company mb-0">SUPPORT</p>
-                    <ul className="list-unstyled">
+                    <p className="SUPPORT mb-0 setDisplay">SUPPORT</p>
+                    <ul className="list-unstyled b">
                       <li className="nav-item">
                         <Link to="/contactus" className="nav-link">
                           Contact Us
                         </Link>
                       </li>
-                      <li className="nav-item">
+                      <li className="nav-item setDisplay">
                         <Link to="/#" className="nav-link">
                           About Us
                         </Link>
@@ -167,7 +157,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="copyright">
+          <div className="company">
             <p className="border"></p>
             <p className="content">2022 Ⓒ METALINK LTD, All Rights Reserved</p>
           </div>

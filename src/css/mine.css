@@ -702,7 +702,7 @@
   background: linear-gradient(180deg, #d9edfd 0%, #eff5f8 100%);
   box-shadow: 4px 4px 10px 1px rgba(0, 16, 57, 0.2),
     -4px -4px 13px rgba(255, 255, 255, 0.8);
-  margin-left: 192px;
+  margin-left: 288px;
 }
 
 .current-mining-rate table thead tr {

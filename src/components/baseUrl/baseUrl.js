@@ -1,6 +1,6 @@
 import axios from 'axios'
 const instance = axios.create({
-    baseURL: 'http://192.168.29.105:3000',
+    baseURL: 'https://metalink-technomads.herokuapp.com',
     withCredentials:true
   });
 

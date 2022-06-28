@@ -29,9 +29,10 @@ img {
 .platform-subtitle {
   color: #272d3d;
   font-size: 24px;
-  line-height: 24px;
-  font-weight: 300;
+  line-height: 30px;
+  font-weight: 350;
   margin-bottom: 35px;
+  text-align: justify;
 }
 .platform-aboutinfo {
   padding: 219px 0 170px;

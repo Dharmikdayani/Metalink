@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import "../../css/coming-soon.css";
+import "./coming-soon.css";
 
 
 function MeainHome() {
@@ -42,7 +42,7 @@ function MeainHome() {
     };
   });
   return (
-    <div className="MeainHome-bg">
+    <div className="MeainHome-bg ">
       <>
         {/* ============ Header Start =========== */}
         <section className="header index-header">
