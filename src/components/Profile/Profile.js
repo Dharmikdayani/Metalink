@@ -173,7 +173,7 @@ const Profile = () => {
           JSON.stringify({
             username: ProfileData.username !== UserName ? UserName : null,
             email: ProfileData.email !== email ? email : null,
-            password: password,
+            password:password,
             countryCode:
               ProfileData.countryCode !== countryCode ? countryCode : null,
             phoneNumber:
@@ -266,8 +266,9 @@ const Profile = () => {
     <div>
       {showOtpBox ? (
         <OtpVerificationFormobile
-          countryCode={countryCode}
-          phone={phoneNumber}
+
+        countryCode={countryCode}
+          phone={phoneNumber}        
           oldMobile={oldMobile}
           username={UserName}
           email={email}
@@ -308,10 +309,9 @@ const Profile = () => {
 
                               <div className="editing-btn">
                                 <img src="../../img/profile/editing.png" />
-
                                 <input
                                   type="text"
-                                  name="text"
+                                  name="John Wick"
                                   placeholder="User Name"
                                   className="profile-input"
                                   value={UserName ? UserName : ""}
@@ -411,6 +411,7 @@ const Profile = () => {
                             </a>
                           </div>
                           <div className="form-group multi-field-wrapper position-relative">
+                   
                             <div className="profile-name position-relative">
                               <span className="name-info w-100 d-inline-block">
                                 {email}
@@ -419,12 +420,13 @@ const Profile = () => {
                                 <img src="../../img/profile/editing.png" />
                                 <input
                                   type="email"
-                                  name="email"
-                                  placeholder="Email id"                                  
+                                  name="John Wick"
+                                  placeholder="Email id"
                                   className="profile-input"
                                   value={email ? email : ""}
-                                  oonChange={(e) => setEmail(e.target.value)}
+                                  onChange={(e) => setEmail(e.target.value)}
                                 />
+                                
                               </div>
                             </div>
                           </div>

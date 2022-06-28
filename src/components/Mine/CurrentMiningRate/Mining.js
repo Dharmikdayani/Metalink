@@ -5,10 +5,12 @@ import instance from "../../baseUrl/baseUrl";
 import useEncryption from "../../EncryptData/EncryptData";
 
 const Mining = () => {
-  const [Layer, setLayer] = useState([{}]);
+  const [Layer, setLayer] = useState([
+    { level1: 0, level2: 0, level3: 0, level4: 0, level5: 0, total: 0 },
+  ]);
   const effectCalled = useRef(false);
   const [day, setDay] = useState("day");
-  const {  decryptData } = useEncryption();
+  const { decryptData } = useEncryption();
 
   /*============= Toast Fire Notifaction==========*/
   const Toast = Swal.mixin({
@@ -37,9 +39,15 @@ const Mining = () => {
           icon: "error",
           title: results.message,
         });
+        setLayer([
+          { level1: 0, level2: 0, level3: 0, level4: 0, level5: 0, total: 0 },
+        ]);
       }
     } catch (error) {
-      console.log("err" + error);
+      console.log("err" + error.message);
+      setLayer([
+        { level1: 0, level2: 0, level3: 0, level4: 0, level5: 0, total: 0 },
+      ]);
     }
   };
 
