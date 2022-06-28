@@ -189,13 +189,15 @@ function Mine({ socket, miningStatus, currentBalance }) {
                 ) : (
                   
                 )} */}
-                <h3
-                  className="btn mining-start-btn"
-                  id="captcha-modal"
-                  // onClick={block}
-                >
-                  <Link to="/meainhome" >Start</Link>
-                </h3>
+                <Link to="/meainhome">
+                  <h3
+                    className="btn mining-start-btn"
+                    id="captcha-modal"
+                    // onClick={block}
+                  >
+                    Start
+                  </h3>
+                </Link>
               </div>
             </div>
           </div>
