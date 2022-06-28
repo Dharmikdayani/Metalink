@@ -649,10 +649,10 @@
 
   }
 
-  .metaRate {
+  /* .metaRate {
     padding: 5px 3px 0px 7px;
 
-  }
+  } */
 
   .mining-calculation .mining-per-hour {
     font-size: 13px;
@@ -1492,7 +1492,7 @@
   position: fixed;
 } */
 
-mine .block {
+.mine .block {
   display: block !important;
 }
 

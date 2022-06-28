@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../css/coming-soon.css";
-// import "../../css/style.css";
+
 
 function MeainHome() {
   const [Timedays, Setday] = useState("00");
@@ -114,7 +114,7 @@ function MeainHome() {
                     </a>
                   </div>
                   <div className="social-bg">
-                    <a href="javascript:void(0)" className="social-icon">
+                    <a href="/#" className="social-icon">
                       <img
                         src="../../img/icon/discord.svg"
                         alt=""
@@ -204,7 +204,7 @@ function MeainHome() {
                   </div>
                   <div className="social-bg">
                     <a
-                      href="javascript:void(0)"
+                      href="/#"
                       className="social-icon"
                       target="_blank"
                     >

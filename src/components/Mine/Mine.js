@@ -434,7 +434,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                     <h3 className="btn invite mb-0"> Invite </h3>
                     <div className="d-flex align-items-baseline justify-content-xl-end justify-content-center random-code">
                       <h2 className="invite-code mb-0">
-                        Code:
+                        Code :
                         <input
                           type="text"
                           id="copyClipboard"

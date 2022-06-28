@@ -6,14 +6,12 @@ import ManinHeader from "../Layout/ManinHeader";
 import "../../css/home.css";
 import { Link } from "react-router-dom";
 
-// eslint-disable-next-line 
+// eslint-disable-next-line
 {
   AOS.init();
 }
 function Home() {
   document.title = "Home";
- 
-   
 
   localStorage.getItem("user");
   return (
@@ -27,8 +25,7 @@ function Home() {
               <div className="col-lg-6">
                 <h1 className="heading">
                   Most valued Digital Currency You Can Mine On Your
-                  Phone/Computer And Withdraw Instantly 
-                
+                  Phone/Computer And Withdraw Instantly
                 </h1>
                 <p className="content">
                   Download the app & earn metalink cryptocurrency for free.
@@ -36,7 +33,6 @@ function Home() {
                   with higher rate.
                 </p>
                 <div className="app-store d-flex justify-content-lg-start justify-content-center">
-                 
                   <a href="/#">
                     <img
                       src="../../img/index-page/google-play.png"
@@ -83,7 +79,7 @@ function Home() {
                 className="vector-inner img-fluid"
               />
 
-              <div >
+              <div>
                 <Link to="/" className="join">
                   <img src="../../img/index-page/join.png" alt="" />
                   <h3>Join M</h3>

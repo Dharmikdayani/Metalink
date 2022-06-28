@@ -4,9 +4,9 @@ Profile
 .profile .common-heading {
   padding-bottom: 135px;
 }
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   display: none;
-}
+} */
 .currentuser-profile {
   background: #d9edfd;
   border-radius: 45px;
