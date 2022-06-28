@@ -1,9 +1,48 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../../css/coming-soon.css";
+// import "../../css/style.css";
 
 function MeainHome() {
+
+  const [Timedays, Setday] = useState("00");
+  const [TimeHours, SetHours] = useState("00");
+  const [Timeminutes, Setminutes] = useState("00");
+  const [Timeseconds, Setseconds] = useState("00");
+
+  let interval = useRef();
+  
+  const StartTimer = () => {
+    const countdown = new Date("08 15, 2022 00:00:00").getTime();
+
+    interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdown - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      if (distance < 0) {
+        clearInterval(interval.current);
+      } else {
+        Setday(days);
+        SetHours(hours);
+        Setminutes(minutes);
+        Setseconds(seconds);
+      }
+    }, 1000);
+  };
+  useEffect(() => {
+    StartTimer();
+    return () => {
+      clearInterval(interval.current);
+    };
+  });
   return (
-    <div className="index-bg">
+    <div className="index-bg1">
       <>
         {/* ============ Header Start =========== */}
         <section className="header index-header">
@@ -13,7 +52,7 @@ function MeainHome() {
                 <a href="index.html">
                   {" "}
                   <img
-                    src="../../assets/img/logo/logo.png"
+                    src="../../img/logo/logo.png"
                     alt=""
                     className="header-logo img-fluid"
                   />
@@ -28,12 +67,12 @@ function MeainHome() {
                       className="social-icon"
                     >
                       <img
-                        src="../../assets/img/icon/facebook.svg"
+                        src="../../img/icon/facebook.svg"
                         alt=""
                         className="simple-social-icon"
                       />
                       <img
-                        src="../../assets/img/icon/facebook-hover.svg"
+                        src="../../img/icon/facebook-hover.svg"
                         alt=""
                         className="fill-social-icon"
                       />
@@ -46,12 +85,12 @@ function MeainHome() {
                       className="social-icon"
                     >
                       <img
-                        src="../../assets/img/icon/twitter.svg"
+                        src="../../img/icon/twitter.svg"
                         alt=""
                         className="simple-social-icon"
                       />
                       <img
-                        src="../../assets/img/icon/twitter-hover.png"
+                        src="../../img/icon/twitter-hover.png"
                         alt=""
                         className="fill-social-icon"
                       />
@@ -64,12 +103,12 @@ function MeainHome() {
                       className="social-icon"
                     >
                       <img
-                        src="../../assets/img/icon/instagram.svg"
+                        src="../../img/icon/instagram.svg"
                         alt=""
                         className="simple-social-icon"
                       />
                       <img
-                        src="../../assets/img/icon/instagram-hover.png"
+                        src="../../img/icon/instagram-hover.png"
                         alt=""
                         className="fill-social-icon"
                       />
@@ -78,12 +117,12 @@ function MeainHome() {
                   <div className="social-bg">
                     <a href="javascript:void(0)" className="social-icon">
                       <img
-                        src="../../assets/img/icon/discord.svg"
+                        src="../../img/icon/discord.svg"
                         alt=""
                         className="simple-social-icon"
                       />
                       <img
-                        src="../../assets/img/icon/discord-hover.png"
+                        src="../../img/icon/discord-hover.png"
                         alt=""
                         className="fill-social-icon"
                       />
@@ -117,12 +156,12 @@ function MeainHome() {
                       target="_blank"
                     >
                       <img
-                        src="../../assets/img/icon/facebook.svg"
+                        src="../../img/icon/facebook.svg"
                         alt=""
                         className="simple-social-icon"
                       />
                       <img
-                        src="../../assets/img/icon/facebook-hover.svg"
+                        src="../../img/icon/facebook-hover.svg"
                         alt=""
                         className="fill-social-icon"
                       />
@@ -135,12 +174,12 @@ function MeainHome() {
                       target="_blank"
                     >
                       <img
-                        src="../../assets/img/icon/twitter.svg"
+                        src="../../img/icon/twitter.svg"
                         alt=""
                         className="simple-social-icon"
                       />
                       <img
-                        src="../../assets/img/icon/twitter-hover.png"
+                        src="../../img/icon/twitter-hover.png"
                         alt=""
                         className="fill-social-icon"
                       />
@@ -153,12 +192,12 @@ function MeainHome() {
                       target="_blank"
                     >
                       <img
-                        src="../../assets/img/icon/instagram.svg"
+                        src="../../img/icon/instagram.svg"
                         alt=""
                         className="simple-social-icon"
                       />
                       <img
-                        src="../../assets/img/icon/instagram-hover.png"
+                        src="../../img/icon/instagram-hover.png"
                         alt=""
                         className="fill-social-icon"
                       />
@@ -171,12 +210,12 @@ function MeainHome() {
                       target="_blank"
                     >
                       <img
-                        src="../../assets/img/icon/discord.svg"
+                        src="../../img/icon/discord.svg"
                         alt=""
                         className="simple-social-icon"
                       />
                       <img
-                        src="../../assets/img/icon/discord-hover.png"
+                        src="../../img/icon/discord-hover.png"
                         alt=""
                         className="fill-social-icon"
                       />
@@ -195,10 +234,7 @@ function MeainHome() {
                       <div className="side-coin" />
                       <div className="coin">
                         <div className="dai">
-                          <img
-                            src="../../assets/img/logo/coming-soon-m.png"
-                            alt=""
-                          />
+                          <img src="../../img/logo/coming-soon-m.png" alt="" />
                         </div>
                       </div>
                     </div>
@@ -215,20 +251,24 @@ function MeainHome() {
                 <div id="countdown" className="countdown">
                   <ul>
                     <li>
-                      <span id="days" />
+                    <span>{Timedays}</span>
                       days
+                     
                     </li>
                     <li>
-                      <span id="hours" />
+                    <span>{TimeHours}</span>
                       Hours
+                      
                     </li>
                     <li>
-                      <span id="minutes" />
+                    <span>{Timeminutes}</span>
                       Minutes
+                     
                     </li>
                     <li>
-                      <span id="seconds" />
+                    <span>{Timeseconds}</span>
                       Seconds
+                      
                     </li>
                   </ul>
                 </div>
@@ -239,6 +279,7 @@ function MeainHome() {
         <div className="privacy-policy container  pt-5">
           <a href="privacy-policy.html">Privacy Policy</a>
         </div>
+
         {/* ============ Hero Section End =========== */}
       </>
     </div>
