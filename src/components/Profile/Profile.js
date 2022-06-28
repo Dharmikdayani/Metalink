@@ -420,8 +420,7 @@ const Profile = () => {
                                 <input
                                   type="email"
                                   name="email"
-                                  placeholder="Email id"
-                                  minLength="8"
+                                  placeholder="Email id"                                  
                                   className="profile-input"
                                   value={email ? email : ""}
                                   oonChange={(e) => setEmail(e.target.value)}
