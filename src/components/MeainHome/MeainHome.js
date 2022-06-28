@@ -42,7 +42,7 @@ function MeainHome() {
     };
   });
   return (
-    <div className="index-bg">
+    <div className="MeainHome-bg">
       <>
         {/* ============ Header Start =========== */}
         <section className="header index-header">
@@ -134,7 +134,7 @@ function MeainHome() {
         </section>
         {/* ============ Header End =========== */}
         {/* ============ Hero Section Start =========== */}
-        <section className=" coming-soon">
+        <section className="hero coming-soon">
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-6">
