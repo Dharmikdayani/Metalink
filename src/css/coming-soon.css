@@ -7,7 +7,7 @@
 }
 
 .MeainHome-bg {
-    background-image: url("../../../public/img/index-page/index-bg.png");
+    background-image: url("../../public/img/index-page/index-bg.png");
     background-size: cover;
     background-repeat: no-repeat;
     height: 980px;
@@ -16,7 +16,7 @@
 
 @media screen and (max-width: 768px) {
     .MeainHome-bg {
-        background-image: url("../../../public/img/index-page/index-bg.png");
+        background-image: url("../../public/img/index-page/index-bg.png");
         background-size: cover;
         background-repeat: no-repeat;
         height: 1180px;
@@ -25,7 +25,7 @@
 
 @media screen and (max-width: 425px) {
     .MeainHome-bg {
-        background-image: url("../../../public/img/index-page/index-bg.png");
+        background-image: url("../../public/img/index-page/index-bg.png");
         background-size: cover;
         background-repeat: no-repeat;
         height: 1280px;
@@ -34,7 +34,7 @@
 
 @media screen and (max-width: 320px) {
     .MeainHome-bg {
-        background-image: url("../../../public/img/index-page/index-bg.png");
+        background-image: url("../../public/img/index-page/index-bg.png");
         background-size: cover;
         background-repeat: no-repeat;
         height: 180px;
@@ -374,7 +374,7 @@
 }
 
 @media screen and (max-width:480px) {
-    .hero .heading {
+    .MeainHome-bg .hero .heading {
         font-size: 23px;
         line-height: 33px;
     }
@@ -383,8 +383,10 @@
         flex-direction: column;
     }
 
-    .footer-social {
+    .MeainHome-bg  .footer-social {
         margin-top: 30px;
+        /* margin-bottom: 15px;
+            margin-left: 27px; */
     }
 
     .coming-soon .headline {

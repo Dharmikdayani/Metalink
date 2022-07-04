@@ -3,16 +3,17 @@ import Carousel from "react-elastic-carousel";
 import Swal from "sweetalert2";
 import instance from "../../baseUrl/baseUrl";
 import useEncryption from "../../EncryptData/EncryptData";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
-
-const Invited = () => {
+const Invited = ({ setIsOpen }) => {
   // const [card] = useState(FilterDetails);
   const [selectedOption, setSelectedOption] = useState("all");
   const [Layer, setLayer] = useState("all");
   const [member, setMemeber] = useState([]);
   const effectCalled = useRef(false);
   const [invite, setInvite] = useState([]);
-  const { encryptData, decryptData } = useEncryption();
+  const { decryptData } = useEncryption();
+  const getItem = JSON.parse(localStorage.getItem("user"));
 
   /*============= Toast Fire Notifaction==========*/
   const Toast = Swal.mixin({
@@ -172,41 +173,65 @@ const Invited = () => {
               })}
             </Carousel>
           ) : (
-            <h2 className="selectedOption text-center">
-              <div className="box">
-             
-                <img
-                  src="https://cdn.iconscout.com/icon/free/png-512/dizzy-face-cross-error-emoji-37675.png"
-                  width="70"
-                  className="center"
-                />
-                {/* <h2>Oh No Something Went Wrong</h2> */}
-              </div>
-              <br />
+            <div>
+              <h2 className="selectedOption text-center">
+                <div className="box">
+                  <img
+                    src="../../img/icon/sadFace.png"
+                    width="70"
+                    className="center"
+                  />
+                </div>
                 <br />
-              {selectedOption === "all" && Layer === "all"
-                ? `No  Member Found `
-                : selectedOption === "all" &&
-                  (Layer === "1" ||
-                    Layer === "2" ||
-                    Layer === "3" ||
-                    Layer === "4" ||
-                    Layer === "5")
-                ? `No  Member Found on Layer ${Layer}`
-                : (selectedOption === "active" ||
-                    selectedOption === "inactive") &&
-                  Layer === "all"
-                ? `No ${selectedOption} Member Found`
-                : (selectedOption === "active" ||
-                    selectedOption === "inactive") &&
-                  (Layer === "1" ||
-                    Layer === "2" ||
-                    Layer === "3" ||
-                    Layer === "4" ||
-                    Layer === "5")
-                ? `No ${selectedOption} Member Found on Layer ${Layer}`
-                : null}
-            </h2>
+                <br />
+                {selectedOption === "all" && Layer === "all"
+                  ? `No  Member Found `
+                  : selectedOption === "all" &&
+                    (Layer === "1" ||
+                      Layer === "2" ||
+                      Layer === "3" ||
+                      Layer === "4" ||
+                      Layer === "5")
+                  ? `No  Member Found on Layer ${Layer}`
+                  : (selectedOption === "active" ||
+                      selectedOption === "inactive") &&
+                    Layer === "all"
+                  ? `No ${selectedOption} Member Found`
+                  : (selectedOption === "active" ||
+                      selectedOption === "inactive") &&
+                    (Layer === "1" ||
+                      Layer === "2" ||
+                      Layer === "3" ||
+                      Layer === "4" ||
+                      Layer === "5")
+                  ? `No ${selectedOption} Member Found on Layer ${Layer}`
+                  : null}
+              </h2>
+
+              <div className="inputChange ">
+                <h3 className="btn invite mb-0" onClick={setIsOpen}>
+                  {" "}
+                  Invite{" "}
+                </h3>
+                {/* <div className="d-flex align-items-baseline justify-content-xl-end justify-content-center random-code"></div> */}
+              </div>
+              <div className="d-flex align-items-baseline  justify-content-center">
+                <h2 className="invite-code">Code :{getItem.refCode}</h2>
+
+                <img
+                  src="../../img/icon/copy.png"
+                  onClick={() => {
+                    navigator.clipboard.writeText(getItem.refCode);
+                    Toast.fire({
+                      icon: "success",
+                      title: "copied successfully",
+                    });
+                  }}
+                  className="copy-invite-code"
+                  alt="copyIcon"
+                />
+              </div>
+            </div>
           )}
         </div>
       </section>

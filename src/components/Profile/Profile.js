@@ -173,7 +173,7 @@ const Profile = () => {
           JSON.stringify({
             username: ProfileData.username !== UserName ? UserName : null,
             email: ProfileData.email !== email ? email : null,
-            password:password,
+            password: password,
             countryCode:
               ProfileData.countryCode !== countryCode ? countryCode : null,
             phoneNumber:
@@ -266,9 +266,8 @@ const Profile = () => {
     <div>
       {showOtpBox ? (
         <OtpVerificationFormobile
-
-        countryCode={countryCode}
-          phone={phoneNumber}        
+          countryCode={countryCode}
+          phone={phoneNumber}
           oldMobile={oldMobile}
           username={UserName}
           email={email}
@@ -291,10 +290,12 @@ const Profile = () => {
                   <div className="col-xl-8 col-12">
                     <h3 className="common-heading text-center mb-0">Profile</h3>
                     <form className="currentuser-profile">
-                      <div className="row profile-wrap">
+                      <div className="row profile-wrap align-items-baseline">
                         <div className="col-md-6 profile-padding">
                           <div className="profile-box">
-                            <h4 className="team-title">{UserName}</h4>
+                            <h4 className="team-title">
+                              {ProfileData.username}
+                            </h4>
 
                             <label className="label-title1 position-absolute">
                               Username
@@ -304,7 +305,7 @@ const Profile = () => {
                               onClick={profiles}
                             >
                               <span className="name-info1 w-100 d-inline-block">
-                                {UserName}
+                                {ProfileData.username}
                               </span>
 
                               <div className="editing-btn">
@@ -411,10 +412,9 @@ const Profile = () => {
                             </a>
                           </div>
                           <div className="form-group multi-field-wrapper position-relative">
-                   
                             <div className="profile-name position-relative">
                               <span className="name-info w-100 d-inline-block">
-                                {email}
+                                {ProfileData.email}
                               </span>
                               <div className="editing-btn">
                                 <img src="../../img/profile/editing.png" />
@@ -426,7 +426,6 @@ const Profile = () => {
                                   value={email ? email : ""}
                                   onChange={(e) => setEmail(e.target.value)}
                                 />
-                                
                               </div>
                             </div>
                           </div>

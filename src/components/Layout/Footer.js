@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="container ">
           <div className="footer-inside footer-Icon">
             <div className="row ">
-              <div className=" col-md-6 c">
+              <div className=" col-md-6 meta-img">
                 {" "}
                 <Link to="/">
                   <img
@@ -103,11 +103,11 @@ const Footer = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-md-6 ">
+              <div className="col-md-6 s-company ">
                 <div className="row d-flex justify-content-end ">
                   <div className="col-xl-3 col-md-5 col-6">
                     <p className=" SUPPORT mb-0 setDisplay">COMPANY</p>
-                    <ul className="list-unstyled a">
+                    <ul className="list-unstyled ">
                       <li className="nav-item setDisplay ">
                         <Link
                           to={getItem ? "/mine" : "/signin"}
@@ -161,6 +161,9 @@ const Footer = () => {
             <p className="border"></p>
             <p className="content">2022 Ⓒ METALINK LTD, All Rights Reserved</p>
           </div>
+        </div>
+        <div>
+          
         </div>
       </section>
     </div>

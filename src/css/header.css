@@ -4,15 +4,18 @@
   box-sizing: border-box;
   font-family: 'Sofia Pro', sans-serif;
 }
+
 .login-form .header-logo {
   padding-top: 24px;
 }
+
 .container {
   max-width: 1490px;
   padding: 0 20px;
   display: table;
   width: 100%;
 }
+
 .header {
   padding-top: 24px;
 }
@@ -29,7 +32,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: 20px;
-  margin: -5px 10px 0 0;
+  margin: 4px 30px 0px -15px;
   padding: 10px 21px;
   color: #001039;
 }
@@ -38,10 +41,12 @@
   margin-top: -5px;
   padding-left: 8px;
 }
+
 .header .sign-in:hover {
   border: none;
   padding: 13px 24px;
 }
+
 .header .sign-in {
   font-size: 16px !important;
   font-weight: 400 !important;
@@ -49,12 +54,9 @@
   border-radius: 7px;
   border: 3px solid transparent;
   border-radius: 7px;
-  background-image: linear-gradient(
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0)
-  ),
-  linear-gradient(101deg, rgba(0, 66, 129, 1), rgba(0, 16, 57, 1))
-  ;
+  background-image: linear-gradient(rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0)),
+    linear-gradient(101deg, rgba(0, 66, 129, 1), rgba(0, 16, 57, 1));
   box-shadow: 2px 1000px 1px #ecf4f9 inset;
 
   padding: 10px 21px;
@@ -68,8 +70,9 @@
 .header .sign-in:hover {
   box-shadow: none;
   color: white;
-  
+
 }
+
 .header .sign-up-bg {
   background: linear-gradient(180deg, #004585 0%, #000d35 100%);
   border-radius: 7px;
@@ -88,14 +91,13 @@
   text-decoration: none;
   display: inline-block;
   border: 3px solid transparent !important;
-  
+
 }
+
 .header .sign-up:hover {
   border: 3px solid transparent !important;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0)
-    ),
+  background-image: linear-gradient(rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0)),
     linear-gradient(101deg, rgba(0, 66, 129, 1), rgba(0, 16, 57, 1)) !important;
   box-shadow: 2px 1000px 1px #ecf4f9 inset !important;
   color: black !important;
@@ -109,10 +111,10 @@
   border-radius: 7px;
   font-size: 16px;
   line-height: 16px;
-  padding: 13px 14px 13px 13px;
+  padding: 13px 17px 14px 13px;
   color: white;
-
   text-decoration: none;
+  display: flex;
 }
 
 .wallet-icon {
@@ -138,6 +140,7 @@
   color: transparent;
   margin-top: 72px;
 }
+
 .user-stage .sub-heading {
   font-size: 18px;
   line-height: 18px;
@@ -152,40 +155,46 @@
     box-shadow: 2px 1000px 1px #e2f0fb inset;
   }
 }
+
 @media screen and (max-width: 1200px) {
   .header-logo {
     width: 150px;
   }
+
   .header ul .nav-link {
     padding: 10px 22px;
   }
+
   .connect-wallet {
     font-size: 13px;
     line-height: 12px;
     padding: 15px 18px 16px 19px;
   }
 }
+
 @media screen and (max-width: 992px) {
   .connect-wallet {
     padding: 11px 10px 11px 10px;
   }
+
   .header ul .nav-link {
     line-height: 20px;
 
     padding: 10px 12px;
   }
+
   .header .sign-in {
     margin-right: 15px !important;
   }
 }
+
 @media screen and (max-width: 768px) {
-  .header-md {
-    justify-content: center !important;
-  }
+
   .header-page-name {
     display: none !important;
   }
 }
+
 
 
 
@@ -196,35 +205,215 @@
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-  }
-  @-webkit-keyframes pulse {
+}
+
+@-webkit-keyframes pulse {
   0% {
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
   }
+
   50% {
-  -webkit-transform: scale3d(1.05, 1.05, 1.05);
-  transform: scale3d(1.05, 1.05, 1.05);
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
   }
+
   100% {
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
   }
-  }
-  @keyframes pulse {
+}
+
+@keyframes pulse {
   0% {
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
   }
+
   50% {
-  -webkit-transform: scale3d(1.05, 1.05, 1.05);
-  transform: scale3d(1.05, 1.05, 1.05);
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
   }
+
   100% {
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
   }
-  } 
+}
+
+.mobile-size {
+  display: none;
+}
+
+@media screen and (max-width: 450px) {
+
+  .header ul {
+    display: block
+  }
+
+  .header {
+    padding-top: 24px;
+    position: fixed;
+    background: #e2f0fb;
+    width: 100%;
+    height: 13%;
+  }
+
+}
+
+
+#menuToggle {
+  display: block;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+
+#menuToggle input {
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span {
+  display: block;
+  width: 33px;
+  height: 4px;
+  top: -2px;
+  margin-bottom: 5px;
+  position: relative;
+  background: #001039;
+  border-radius: 3px;
+  z-index: 1;
+  transform-origin: 4px 0px;
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    opacity 0.55s ease;
+}
+
+#menuToggle span:first-child {
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked~span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #001039;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked~span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked~span:nth-last-child(2) {
+  opacity: 1;
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu {
+  position: fixed;
+  width: 300px;
+  margin: -100px 50px 0 0;
+  padding: 50px;
+  padding-top: 125px;
+  right: -100px;
+  height: 112vh;
+  background: #e2f0fb;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+
+  transform-origin: 0% 0%;
+  transform: translate(100%, 0);
+
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+}
+
+#menu li {
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/*
+ * And let's fade it in from the left
+ */
+#menuToggle input:checked~ul {
+  transform: none;
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  #menu {
+    transform: none;
+    opacity: 0;
+
+    transition: opacity 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+  }
+}
+
+
+.Notification {
+
+  background: #E2F1FC;
+  box-shadow: -2px -2px 3px rgb(255 255 255 / 50%), 2px 2px 3px rgb(0 10 48 / 15%);
+  border-radius: 10px;
+  width: 48px;
+  height: 45px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  left: -25px;
+  position: relative;
+  /* top: -10px; */
+
+}
+
+.header .Notification:hover {
+  background: linear-gradient(180deg, #004585 0%, #000D35 100%);
+  box-shadow: -2px -2px 3px rgba(255, 255, 255, 0.5), 2px 2px 3px rgba(0, 10, 48, 0.15);
+  border-radius: 10px;  
+}
+.Notification:hover .Notification-hover{
+display: block !important;
+}
+
+.Notification:hover .Notification-without-hover{
+  display: none;
+}
+
 
 
 

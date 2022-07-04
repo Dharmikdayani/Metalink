@@ -294,6 +294,7 @@
   border-radius: 35px;
   padding: 15px 6px 14px 22px;
   margin-bottom: 15px;
+
 }
 
 .captcha-modal {
@@ -307,12 +308,12 @@
   transform: translate(-50%, -50%);
 }
 
-.captcha-content {
+/* .captcha-content {
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
   margin-bottom: 22px;
-}
+} */
 
 .captcha::placeholder {
   font-weight: 400;
@@ -351,6 +352,108 @@
   /* filter: blur(8px); */
   /* -webkit-filter: blur(8px); */
 
+}
+
+#Invite-Modal {
+  /* display: none; */
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99999;
+
+  /* Add the blur effect */
+  /* filter: blur(8px); */
+  /* -webkit-filter: blur(8px); */
+
+}
+
+.Invite-content {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 30px;
+  justify-content: center;
+  display: flex;
+  position: relative;
+  /* margin-bottom: 22px; */
+}
+
+.input-Invite-shre {
+  background: #d0eaff;
+  box-shadow: inset -2px -2px 2px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 2px rgba(0, 16, 57, 0.2);
+  border-radius: 35px;
+  padding: 15px 6px 14px 22px;
+  margin-bottom: 15px;
+  width: 395px;
+}
+
+
+
+.Invite .social-bg {
+  height: 55px;
+  width: 55px;
+  background: #deeffd;
+  box-shadow: 2px 2px 2px rgb(1 0 57 / 15%), -2px -2px 2px rgb(255 255 255 / 50%);
+  border-radius: 50px;
+  position: relative;
+}
+
+.copy-invite-share {
+  cursor: pointer;
+  padding-right: 15px;
+}
+
+.Invite-social {
+  padding: 33px 0px 36px 0px;
+  justify-content: space-around;
+}
+
+.Invite .Invite-modal .form-control {
+  background: transparent;
+  box-shadow: none;
+  border-radius: none;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  /* font-family: Sofia Pro; */
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+  /* color:#001039; */
+
+}
+
+.input-Invite {
+  background: #d0eaff;
+  box-shadow: inset -2px -2px 2px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 2px rgba(0, 16, 57, 0.2);
+  border-radius: 35px;
+  padding: 15px 6px 14px 22px;
+  margin-bottom: 15px;
+  width: 395px;
+}
+
+.Invite-modal {
+  background: #D0EAFF;
+  box-shadow: -3px -3px 16px #FFFFFF, 3px 3px 16px rgba(0, 16, 57, 0.3);
+  border-radius: 30px;
+  padding: 26px 55px 46px 40px;
+  /* width: 485px;
+height: 318px; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .invite-bg {
@@ -395,27 +498,22 @@
   font-weight: 400;
   line-height: 18px;
   color: #4e6a84;
-  padding-top: 15px;
+  padding: 13px 5px 0px 0px;
 
-  margin-right: 10px;
 
 }
 
 .copy-invite-code {
   cursor: pointer;
-  /* padding-left: 20px; */
-}
+  padding-right: 8px;
 
-.invite-code input {
-  max-width: 40%;
-  border: none;
-  background-color: transparent;
-  color: #4e6a84;
 }
 
 .invite-code input:focus {
   outline: none;
 }
+
+
 
 @media screen and (max-width: 1536px) {
   .user-stage .heading {
@@ -566,9 +664,9 @@
     padding: 16px 28px;
   }
 
-  .mining-bg {
+  /* .mining-bg {
     padding: 50px 0;
-  }
+  } */
 }
 
 @media screen and (max-width: 575px) {
@@ -614,9 +712,9 @@
     padding: 10px 22px;
   }
 
-  .mining-bg {
+  /* .mining-bg {
     padding: 200px 0;
-  }
+  } */
 }
 
 @media screen and (max-width: 400px) {
@@ -670,9 +768,9 @@
     margin-left: 20px;
   }
 
-  .mining-bg {
+  /* .mining-bg {
     padding: 239px 0;
-  }
+  } */
 }
 
 /* <!-- ------------------- MINING END ----------------- --> */
@@ -1307,7 +1405,7 @@
 }
 
 #withdraw-modals {
-  display: none;
+  /* display: none; */
   position: fixed;
   z-index: 1;
   padding-top: 100px;
@@ -1412,7 +1510,7 @@
 }
 
 #deposit-modals {
-  display: none;
+  /* display: none; */
   position: fixed;
   z-index: 1;
   padding-top: 100px;
@@ -1424,6 +1522,18 @@
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 99999;
+}
+
+.close-btn {
+  position: absolute;
+  top: 23px;
+  right: 29px;
+}
+
+.close-btn-withdraw {
+  
+  top: -25px;
+  right: -10px;
 }
 
 @media screen and (max-width: 1536px) {
@@ -1757,7 +1867,8 @@ video {
   color: #232840;
   margin: 56px 186px -36px 39px;
 }
-.box{
+
+.box {
   font-style: normal;
   font-weight: 300;
   font-size: 22px;
@@ -1765,5 +1876,34 @@ video {
   color: #232840;
 }
 
+.inputChange {
+  display: flex;
+  justify-content: center;
+  margin-top: 51px;
+}
+
+.invite-code-Earning {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #4e6a84;
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
 
 
+}
+
+
+.invite-code-Earning input {
+  max-width: 40%;
+  border: none;
+  background-color: transparent !important;
+  color: #4e6a84;
+}
+
+
+
+.invite-code-Earning input:focus {
+  outline: none;
+}

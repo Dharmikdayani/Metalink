@@ -50,7 +50,7 @@ const App = () => {
   useEffect(() => {
     // console.log("first",user)
     if (!effectCalled.current && getItem) {
-      const socket = io("https://metalink-technomads.herokuapp.com");
+      const socket = io("http://localhost:3000");
       socket.on("connect", () => {
         setSocket(socket);
         socket.emit("joinRoom", JSON.parse(localStorage.getItem("user"))._id);
