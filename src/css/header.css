@@ -257,6 +257,7 @@
     background: #e2f0fb;
     width: 100%;
     height: 13%;
+    z-index: 9999;
   }
 
 }
@@ -264,10 +265,10 @@
 
 #menuToggle {
   display: block;
-  position: absolute;
+  position: fixed;
   top: 50px;
   right: 50px;
-  z-index: 1;
+  z-index:1;
   -webkit-user-select: none;
   user-select: none;
 }
@@ -298,7 +299,7 @@
   position: relative;
   background: #001039;
   border-radius: 3px;
-  z-index: 1;
+  z-index: 999999;
   transform-origin: 4px 0px;
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
     background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
@@ -344,7 +345,7 @@
  * at the top left of the screen
  */
 #menu {
-  position: fixed;
+  position: absolute;
   width: 300px;
   margin: -100px 50px 0 0;
   padding: 50px;
@@ -355,10 +356,8 @@
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */
-
   transform-origin: 0% 0%;
-  transform: translate(100%, 0);
-
+  /* transform: translate(100%, 0); */
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
 }
 

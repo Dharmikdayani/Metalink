@@ -62,7 +62,7 @@ const ManinHeader = ({ socket }) => {
             </nav>
 
             {/*================= desktop Section======= */}
-            <div className="d-flex align-items-center header-page-name">
+            <div className="d-flex align-items-center header-page-name" >
               <ul>
                 <li className="nav-item">
                   <NavLink

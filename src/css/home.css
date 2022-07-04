@@ -182,8 +182,6 @@
   text-align: center;
   padding-top: 47px;
   height: 93%;
-
-  /* cursor: pointer; */
 }
 
 .network-box .network-bg {
@@ -193,6 +191,7 @@
   border-radius: 50%;
   position: relative;
   display: inline-block;
+  
 
 }
 
