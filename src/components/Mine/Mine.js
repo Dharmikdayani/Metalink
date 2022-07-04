@@ -26,8 +26,6 @@ function Mine({ socket, miningStatus, currentBalance }) {
   const { decryptData } = useEncryption();
   const getItem = JSON.parse(localStorage.getItem("user"));
 
-
-
   /*========outside click event Invite =========== */
 
   const Invite = useRef();
@@ -35,7 +33,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
     const checkIfClickedOutside = (e) => {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
-      console.log("current", Invite.current);
+
       if (
         // typeof isOpen === "number" &&
         Invite.current &&
@@ -51,7 +49,6 @@ function Mine({ socket, miningStatus, currentBalance }) {
     };
   }, [isOpen]);
 
-
   /*========outside click event withdraw =========== */
 
   const withdraw = useRef();
@@ -59,7 +56,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
     const checkIfClickedOutside = (e) => {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
-      console.log("current", withdraw.current);
+
       if (
         // typeof isOpen === "number" &&
         withdraw.current &&
@@ -75,15 +72,13 @@ function Mine({ socket, miningStatus, currentBalance }) {
     };
   }, [isOpenwithdraw]);
 
-
-
   /*========outside click event Deposit =========== */
   const Deposit = useRef();
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
-      console.log("current", Deposit.current);
+
       if (
         // typeof isOpen === "number" &&
         Deposit.current &&
@@ -99,7 +94,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
     };
   }, [isOpenDeposit]);
 
-/*========loadCaptcha=========== */
+  /*========loadCaptcha=========== */
   useEffect(() => {
     loadCaptchaEnginge(6, "#d0eaff", "black", "top");
   }, []);
@@ -175,8 +170,6 @@ function Mine({ socket, miningStatus, currentBalance }) {
     const ebModal = document.getElementById("captcha-modals");
     ebModal.style.display = "block";
   };
-
-
 
   return (
     <div className="mining-bg">

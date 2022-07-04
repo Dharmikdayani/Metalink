@@ -60,8 +60,8 @@ const MetalinkTeamsMember = () => {
                   >
                     <div className="team-box text-center">
                       <img
-                        className="teamMamberImg"
-                        src={`http://192.168.29.105:3000/uploads/${data.avatar}`}
+                        className="teamMamberImg"                     
+                        src={`https://metalink-technomads.herokuapp.com/uploads/${data.avatar}`}
                       />
                       <h4 className="team-title">{data.name}</h4>
                       <h6 className="team-subtitle">{data.role}</h6>
