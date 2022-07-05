@@ -197,6 +197,7 @@
 
 
 
+/*========logo-animation=========*/
 
 .pulse {
   -webkit-animation-name: pulse;
@@ -241,6 +242,9 @@
   }
 }
 
+
+/*========mobile-size=========*/
+
 .mobile-size {
   display: none;
 }
@@ -260,15 +264,18 @@
     z-index: 9999;
   }
 
+  .footer-social>div {
+    margin: -1px 23px 4px -13px;
+  }
 }
 
 
 #menuToggle {
   display: block;
   position: fixed;
-  top: 50px;
-  right: 50px;
-  z-index:1;
+  top: 35px;
+  right: 20px;
+  z-index: 1;
   -webkit-user-select: none;
   user-select: none;
 }
@@ -357,7 +364,7 @@
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */
   transform-origin: 0% 0%;
-  /* transform: translate(100%, 0); */
+  transform: translate(100%, 0);
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
 }
 
@@ -374,15 +381,14 @@
   opacity: 1;
 }
 
-@media screen and (max-width: 768px) {
-  #menu {
-    transform: none;
-    opacity: 0;
 
-    transition: opacity 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-  }
+.line-bar {
+  width: 100%;
+  border: darkgray solid 0.5px;
 }
 
+
+/*========Notification=========*/
 
 .Notification {
 
@@ -403,16 +409,13 @@
 .header .Notification:hover {
   background: linear-gradient(180deg, #004585 0%, #000D35 100%);
   box-shadow: -2px -2px 3px rgba(255, 255, 255, 0.5), 2px 2px 3px rgba(0, 10, 48, 0.15);
-  border-radius: 10px;  
-}
-.Notification:hover .Notification-hover{
-display: block !important;
+  border-radius: 10px;
 }
 
-.Notification:hover .Notification-without-hover{
+.Notification:hover .Notification-hover {
+  display: block !important;
+}
+
+.Notification:hover .Notification-without-hover {
   display: none;
 }
-
-
-
-

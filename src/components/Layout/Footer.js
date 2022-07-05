@@ -14,8 +14,7 @@ const Footer = () => {
         <div className="container ">
           <div className="footer-inside footer-Icon">
             <div className="row ">
-              <div className=" col-md-6 meta-img">
-                {" "}
+              <div className=" col-md-6 meta-img">               
                 <Link to="/">
                   <img
                     src="../../img/logo/footer-logo.png"

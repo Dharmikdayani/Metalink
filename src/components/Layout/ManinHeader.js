@@ -31,7 +31,7 @@ const ManinHeader = ({ socket }) => {
                 <span></span>
                 <span></span>
                 <ul id="menu">
-                  <li className="nav-item  ">
+                  <li className="nav-item">
                     <Link to="/" className="nav-link">
                       Home
                     </Link>
@@ -57,12 +57,105 @@ const ManinHeader = ({ socket }) => {
                       Terms of Use
                     </Link>
                   </li>
+                  <li>
+                    <div className="line-bar" />
+                  </li>
+                  <li>
+                    <div>
+                      <NavLink to="/">
+                        <img
+                          src="../../img/logo/logo.png"
+                          alt=""
+                          className="header-logo img-fluid pulse"
+                        />
+                      </NavLink>
+                    </div>
+                  </li>
+                  <div className="footer-social d-flex ">
+                    <div className="social-bg">
+                      <a
+                        href="https://dsc.gg/metalink"
+                        className="social-icon"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <img
+                          src="../../img/icon/discord.svg"
+                          alt=""
+                          className="simple-social-icon"
+                        />
+                        <img
+                          src="../../img/icon/discord-hover.png"
+                          alt=""
+                          className="fill-social-icon"
+                        />
+                      </a>
+                    </div>
+                    <div className="social-bg">
+                      <a
+                        href="https://twitter.com/MetalinkNetwork"
+                        className="social-icon"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <img
+                          src="../../img/icon/twitter.svg"
+                          alt=""
+                          className="simple-social-icon"
+                        />
+                        <img
+                          src="../../img/icon/twitter-hover.png"
+                          alt=""
+                          className="fill-social-icon"
+                        />
+                      </a>
+                    </div>
+                    <div className="social-bg">
+                      <a
+                        href="https://www.linkedin.com/company/metalink-network"
+                        className="social-icon"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <img
+                          src="../../img/icon/linkedinhover.png"
+                          alt=""
+                          className="simple-social-icon"
+                        />
+                        <img
+                          src="../../img/icon/linkedin.png"
+                          alt=""
+                          className="fill-social-icon"
+                        />
+                      </a>
+                    </div>
+
+                    <div className="social-bg">
+                      <a
+                        href="https://www.instagram.com/metalinknetwork/"
+                        className="social-icon"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <img
+                          src="../../img/icon/instagram.svg"
+                          alt=""
+                          className="simple-social-icon"
+                        />
+                        <img
+                          src="../../img/icon/instagram-hover.png"
+                          alt=""
+                          className="fill-social-icon"
+                        />
+                      </a>
+                    </div>
+                  </div>
                 </ul>
               </div>
             </nav>
 
             {/*================= desktop Section======= */}
-            <div className="d-flex align-items-center header-page-name" >
+            <div className="d-flex align-items-center header-page-name">
               <ul>
                 <li className="nav-item">
                   <NavLink

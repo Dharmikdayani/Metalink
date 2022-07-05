@@ -230,7 +230,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                   <h3 className="mining-start-btn-active " id="captcha-modal">
                     Mining..
                   </h3>
-                ) : (
+                ) : ( 
                   
                 )} */}
                 <Link to="/meainhome">
