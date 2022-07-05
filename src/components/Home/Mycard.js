@@ -6,7 +6,7 @@ const Mycard = ({title,descri,route,img}) => {
         <>
            
             <div className="col-xl-3 col-sm-6 network-main-box">
-                <Link to={route}>
+                {/* <Link to={route}> */}
                     <div className="network-box">
                              <div className="network-bg">
                                 <div className="network-one-image ">
@@ -24,7 +24,7 @@ const Mycard = ({title,descri,route,img}) => {
                                 </p>
                             </div>
                     </div>
-                </Link>
+                {/* </Link> */}
             </div>
                 
         </>
