@@ -57,7 +57,7 @@ function MeainHome() {
                   />
                 </Link>
               </div>
-              <div>
+              <div className="icon">
                 <div className="footer-social d-sm-flex d-none">
                   <div className="social-bg">
                     <a

@@ -13,7 +13,10 @@
     height: 980px;
 
 }
-
+.icon{
+    position: relative;
+    top: 50%;
+}
 @media screen and (max-width: 768px) {
     .MeainHome-bg {
         background-image: url("../../public/img/index-page/index-bg.png");

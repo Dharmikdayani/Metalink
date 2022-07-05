@@ -144,7 +144,7 @@ function SignIn() {
                     onChange={(e) => setemail(e.target.value)}
                     placeholder="Email Address "
                     className="form-control email-id"
-                    required
+                    // required
                   />
                   {errors.email && (
                     <div className="errorMsg">{errors.email}</div>

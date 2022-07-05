@@ -263,7 +263,7 @@ function SignUp() {
                           background: "#E2F1FE",
                           padding: "25px 1px 20px 50px",
                           marginTop: "22px",
-                          // margin: "0px 0px 17px 93px"
+                          margin: "0px 0px 17px 93px"
                         }}
                         inputProps={{
                           required: true,
