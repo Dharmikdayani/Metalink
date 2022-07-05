@@ -360,6 +360,11 @@ Profile
   text-align: left;
   width: 363px;
   z-index: 1;
+  border-radius: 5%;
+}
+
+.phone ::-webkit-scrollbar {
+  display: none;
 }
 .phone .react-tel-input .selected-flag .flag {
   position: absolute;
