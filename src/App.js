@@ -50,7 +50,7 @@ const App = () => {
   useEffect(() => {
     // console.log("first",user)
     if ( getItem) {
-      const socket = io("http://localhost:3000");
+      const socket = io("https://metalink-technomads.herokuapp.com");
       socket.on("connect", () => {
         setSocket(socket);
         // console.log( getItem._id)
