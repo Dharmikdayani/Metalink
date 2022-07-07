@@ -30,7 +30,7 @@ const Mining = () => {
       const result = await instance.get(`/mineHistory?time=${day}`);
 
       const results = decryptData(result.data.data);
-      console.log("mineHistory", results);
+      // console.log("mineHistory", results);
 
       if (results.status) {
         setLayer([results?.data]);
@@ -63,49 +63,51 @@ const Mining = () => {
       <section className="current-mining-rate">
         <div className="container">
           <h3 className="common-heading text-center">Current Mining Rate</h3>
-          <table>
-            <thead>
-              <tr>
-                <th className="borderradius-left">Layer</th>
+          <div className="d-flex justify-content-center">
+            <table>
+              <thead>
+                <tr>
+                  <th className="borderradius-left">Layer</th>
 
-                <th className="borderradius-right d-flex align-items-center justify-content-center">
-                  <span>Total</span>
-                  <img
-                    src="../../img/icon/total-minning.png"
-                    alt=""
-                    className="total-mining-image"
-                  />
-                  <select
-                    value={day}
-                    name="days"
-                    onChange={(e) => {
-                      setDay(e.target.value);
-                      effectCalled.current = false;
-                    }}
-                  >
-                    <option value="day">1D</option>
-                    <option value="week">7D</option>
-                    <option value="month">1M</option>
-                    <option value="year">1Y</option>
-                  </select>
-                </th>
-              </tr>
-            </thead>
-            {Object.keys(Layer[0]).map((data) => {
-              return (
-                <tbody key={data}>
-                  <tr>
-                    <td className="team-members">
-                      {data
-                        .replace("level", "Layer ")
-                        .replace("total", "Total")}
-                    </td>
-                    <td>{Layer[0][data]?.toFixed(3)}</td>
-                  </tr>
-                </tbody>
-              );
-            })}
-          </table>
+                  <th className="borderradius-right d-flex align-items-center justify-content-center">
+                    <span>Total</span>
+                    <img
+                      src="../../img/icon/total-minning.png"
+                      alt=""
+                      className="total-mining-image"
+                    />
+                    <select
+                      value={day}
+                      name="days"
+                      onChange={(e) => {
+                        setDay(e.target.value);
+                        effectCalled.current = false;
+                      }}
+                    >
+                      <option value="day">1D</option>
+                      <option value="week">7D</option>
+                      <option value="month">1M</option>
+                      <option value="year">1Y</option>
+                    </select>
+                  </th>
+                </tr>
+              </thead>
+              {Object.keys(Layer[0]).map((data) => {
+                return (
+                  <tbody key={data}>
+                    <tr>
+                      <td className="team-members">
+                        {data
+                          .replace("level", "Layer ")
+                          .replace("total", "Total")}
+                      </td>
+                      <td>{Layer[0][data]?.toFixed(3)}</td>
+                    </tr>
+                  </tbody>
+                );
+              })}
+            </table>
+          </div>
         </div>
       </section>
     </>

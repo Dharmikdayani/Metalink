@@ -4,6 +4,7 @@ Profile
 .profile .common-heading {
   padding-bottom: 135px;
 }
+
 /* ::-webkit-scrollbar {
   display: none;
 } */
@@ -14,9 +15,11 @@ Profile
   box-shadow: 3px 3px 6px rgba(0, 16, 57, 0.2),
     -3px -3px 6px rgba(255, 255, 255, 0.5);
 }
-.currentuser-profile .team-title {
+
+.currentuser-profile .team-title {
   margin-bottom: 35px;
 }
+
 .profile-box .form-group {
   background: #d9edfd;
   border-radius: 12px;
@@ -25,6 +28,7 @@ Profile
   box-shadow: 3px 3px 4px rgba(0, 16, 57, 0.2),
     -3px -3px 5px rgba(255, 255, 255, 0.5);
 }
+
 .profile-box .form-group .label-title {
   color: #272d3d;
   font-size: 14px;
@@ -54,6 +58,7 @@ Profile
   box-shadow: 3px 3px 4px rgb(0 16 57 / 20%),
     -3px -3px 5px rgb(255 255 255 / 50%);
 }
+
 .profile-box .form-group input {
   border: 0;
   width: 100%;
@@ -64,27 +69,34 @@ Profile
   font-weight: 500;
   display: inline-block;
   background: transparent;
+  /* position: absolute; */
 }
+
 .profile-box .form-group input::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: #001039;
 }
+
 .profile-box .form-group input::-moz-placeholder {
   /* Firefox 19+ */
   color: #001039;
 }
+
 .profile-box .form-group input:-ms-input-placeholder {
   /* IE 10+ */
   color: #001039;
 }
+
 .profile-box .form-group input:-moz-placeholder {
   /* Firefox 18- */
   color: #001039;
 }
+
 .share-dialog.is-open {
   display: block;
   z-index: 2;
 }
+
 .share-dialog {
   display: none;
   width: 95%;
@@ -96,6 +108,7 @@ Profile
   border-radius: 4px;
   background-color: #fff;
 }
+
 .share-dialog {
   position: absolute;
   top: 50%;
@@ -103,9 +116,11 @@ Profile
   border-radius: 20px;
   transform: translate(-50%, -50%);
 }
+
 .modal-headertop {
   margin-bottom: 20px;
 }
+
 /* .account-title{
     margin: 25px 0 43px;
     color: #001039;
@@ -120,6 +135,7 @@ Profile
   line-height: 25px;
   font-weight: 400;
 }
+
 .name-title {
   color: #001039;
   font-size: 18px;
@@ -127,17 +143,20 @@ Profile
   font-weight: 500;
   margin-bottom: 5px;
 }
+
 .members-info {
   color: #272d3d;
   font-size: 14px;
   line-height: 14px;
   font-weight: 300;
 }
+
 .toggle-box input[type="checkbox"] {
   height: 0;
   width: 0;
   visibility: hidden;
 }
+
 .toggle-box label {
   cursor: pointer;
   text-indent: -9999px;
@@ -150,6 +169,7 @@ Profile
   box-shadow: inset -1px -1px 1px rgba(255, 255, 255, 0.5),
     inset 1px 1px 1px rgba(0, 16, 57, 0.2);
 }
+
 .toggle-box label:after {
   content: "";
   position: absolute;
@@ -161,33 +181,39 @@ Profile
   transition: 0.3s;
   border-radius: 90px;
 }
-.toggle-box input:checked + label {
+
+.toggle-box input:checked+label {
   background: #00498b;
 }
-.toggle-box input:checked + label:after {
+
+.toggle-box input:checked+label:after {
   left: calc(100% - 3px);
   transform: translateX(-100%);
 }
+
 .request-btn {
   color: #001039;
-  font-size: 8px;
+  font-size: 11px;
   line-height: 1;
-  font-weight: 300;
+  font-weight: 400;
   padding: 5px 9px;
   border-radius: 12px;
   text-decoration: none;
   display: inline-block;
   border: 0.5px solid #001039;
 }
+
 .profile {
   padding: 160px 0 200px;
 }
+
 .save-btn {
   color: #001039;
   font-size: 18px;
   line-height: 18px;
   font-weight: 400;
 }
+
 .name-info {
   color: #001039;
   font-size: 20px;
@@ -198,27 +224,33 @@ Profile
   box-shadow: 3px 3px 4px rgba(0, 16, 57, 0.2),
     -3px -3px 5px rgba(255, 255, 255, 0.5);
 }
+
 .editing-btn.active {
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
 }
+
 .editing-btn.active img {
   display: none;
 }
+
 .editing-btn {
   position: absolute;
   right: 20px;
   bottom: 26px;
   cursor: pointer;
 }
+
 .editing-btn .profile-input {
   display: none;
 }
+
 .editing-btn.active .profile-input {
   display: block;
 }
+
 .profile-input {
   outline: none;
   width: 100%;
@@ -235,6 +267,7 @@ Profile
     inset -3px -3px 5px rgba(255, 255, 255, 0.5);
   resize: none;
 }
+
 .userNames {
   margin-bottom: 30px;
 }
@@ -243,21 +276,26 @@ Profile
   /* Chrome/Opera/Safari */
   color: #001039;
 }
+
 .profile-input::-moz-placeholder {
   /* Firefox 19+ */
   color: #001039;
 }
+
 .profile-input:-ms-input-placeholder {
   /* IE 10+ */
   color: #001039;
 }
+
 .profile-input:-moz-placeholder {
   /* Firefox 18- */
   color: #001039;
 }
+
 .form-group.multi-field-wrapper {
   margin-bottom: 30px;
 }
+
 .signout-btn {
   border: 0;
   display: table;
@@ -273,9 +311,11 @@ Profile
   box-shadow: 3px 3px 4px rgba(0, 16, 57, 0.2),
     -3px -3px 5px rgba(255, 255, 255, 0.5);
 }
+
 .profile-wrap {
   margin: 0 -41px;
 }
+
 .profile-padding {
   padding: 0 41px;
 }
@@ -297,11 +337,13 @@ Profile
   box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.5),
     inset 3px 3px 5px rgba(0, 16, 57, 0.2);
 }
+
 .profile-add .form-group textarea {
   height: 227px;
   resize: none;
   margin-bottom: 90px;
 }
+
 .profile-add .form-group input::-webkit-input-placeholder,
 .profile-add .form-group textarea::-webkit-input-placeholder {
   /* Edge */
@@ -318,6 +360,7 @@ Profile
 .profile-add .form-group textarea::placeholder {
   color: #465375;
 }
+
 .currentuser-profile .team-title {
   margin: 0 0 35px;
 }
@@ -347,10 +390,11 @@ Profile
   line-height: 1;
   font-weight: 500;
 }
-.phone  .react-tel-input .country-list {
+
+.phone .react-tel-input .country-list {
   background-color: #deeffd;
   box-shadow: 1px 2px 10px rgb(0 0 0 / 35%);
-  list-style: none; 
+  list-style: none;
   margin: 9px 4px 21px -27px;
   max-height: 200px;
   outline: none;
@@ -366,6 +410,7 @@ Profile
 .phone ::-webkit-scrollbar {
   display: none;
 }
+
 .phone .react-tel-input .selected-flag .flag {
   position: absolute;
   top: 32%;
@@ -399,13 +444,13 @@ Profile
 
 @media screen and (max-width: 1024px) {
   .phone .react-tel-input .form-control {
-    width: 388px;
+    width: 396px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .phone .react-tel-input .form-control {
-    width: 262px;
+    width: 267px;
   }
 }
 
@@ -420,4 +465,43 @@ Profile
   .phone .react-tel-input .form-control {
     width: 231px;
   }
+}
+
+#copyClipboard {
+  position: relative;
+  /* left: 93%; */
+  top: -11px;
+  display: flex;
+  justify-content: end;
+}
+
+.share-button {
+  position: relative;
+  justify-content: end;
+  display: flex;
+  align-items: baseline;
+  top: -12px;
+  left: 94%;
+}
+
+
+
+.errorMsg-profile {
+  color: #dc3545;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  margin-left: 2%; 
+  position: relative;
+  top: -23px;
+}
+
+.errorMsg-profile-email{
+  color: #dc3545;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  margin-left: 2%; 
+  position: relative;
+  top: 7px;
 }

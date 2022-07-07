@@ -21,6 +21,8 @@ function SignUp() {
   const [refCode, setRefCode] = useState("");
   const [showOtpBox, setShowOtpBox] = useState(false);
   const { encryptData, decryptData } = useEncryption();
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
 
   /*============= Toast Fire Notifaction==========*/
 
@@ -69,35 +71,40 @@ function SignUp() {
     let error = false;
 
     errorsObj = { ...errorsObj };
+
     if (username === "") {
-      errorsObj.username = "Invalid Username!";
+      errorsObj.username = "*Username is required!";
       error = true;
     }
 
     if (phoneNumber === "") {
-      errorsObj.phoneNumber = "Invalid PhoneNumber!";
+      errorsObj.phoneNumber = "*PhoneNumber is required!";
       error = true;
     }
 
     if (email === "") {
-      errorsObj.email = "Invalid Email!";
+      errorsObj.email = "*Email address is required!";
+      error = true;
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      errorsObj.email = "Invalid Email!";
+      errorsObj.email = "*Email address is invalid!";
+      error = true;
     }
 
     if (password === "") {
-      errorsObj.password = "Invalid Password!";
+      errorsObj.password = "*Password is required!";
+      error = true;
     } else if (password.length < 8) {
       errorsObj.password = "Password must be 8 or more characters";
+      error = true;
     }
 
     if (cpwd === "") {
-      errorsObj.cpwd = "Invalid Confirm Password!";
+      errorsObj.cpwd = "*Confirm Password is required!";
       error = true;
     }
 
     if (password !== cpwd) {
-      errorsObj.cpwd = "*Confirm password is not matched.";
+      errorsObj.cpwd = "*Confirm password is not matched!";
       error = true;
     }
 
@@ -181,6 +188,23 @@ function SignUp() {
     }
   };
 
+  //* Prevent User For Entering Spaces
+  const preventSpace = (e) => {
+    if (e.which === 32) {
+      e.preventDefault();
+    }
+  };
+
+  /*=======SHOW PASSWORD====== */
+  const onShowPassword = () => {
+    setShowPass(!showPass);
+  };
+
+  /*=======SHOW Confirm PASSWORD====== */
+  const onshowConfirmPass = () => {
+    setShowConfirmPass(!showConfirmPass);
+  };
+
   return (
     <div>
       {showOtpBox ? (
@@ -217,97 +241,129 @@ function SignUp() {
                       autoCorrect="off"
                       onSubmit={(e) => onSignInSubmit(e)}
                     >
-                      <input
-                        type="text"
-                        name="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder="User Name"
-                        className="form-control user-name"
-                      />
-                      {errors.username && (
-                        <div className="errorMsg ">{errors.username}</div>
-                      )}
-                      <input
-                        type="text"
-                        name="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Email Address "
-                        className="form-control email-id"
-                      />
-                      {errors.email && (
-                        <div className="errorMsg">{errors.email}</div>
-                      )}
-                      <PhoneInput
-                        className="daa"
-                        name="phoneNumber"
-                        type="phone"
-                        placeholder=" Phone Number "
-                        specialLabel={""}
-                        country={"in"}
-                        value={phoneNumber}
-                        onChange={(
-                          inputPhone,
-                          countryData,
-                          value,
-                          data,
-                          dialcode,
-                          inputNumber,
-                          e
-                        ) => {
-                          setcountryCode(`+${countryData.dialCode}`);
-                          setPhoneNumber(inputPhone);
-                        }}
-                        inputStyle={{
-                          background: "#E2F1FE",
-                          padding: "25px 1px 20px 50px",
-                          marginTop: "22px",
-                          margin: "0px 0px 17px 93px"
-                        }}
-                        inputProps={{
-                          required: true,
-                          autoFocus: true,
-                        }}
-                      />
-                      {errors.phoneNumber && (
-                        <div className="errorMsg">{errors.phoneNumber}</div>
-                      )}
+                      <div className="d-grid justify-content-center">
+                        <input
+                          type="text"
+                          name="username"
+                          value={username}
+                          onChange={(e) => setUsername(e.target.value)}
+                          placeholder="User Name"
+                          className="form-control user-name"
+                        />
+                        {errors.username && (
+                          <div className="errorMsg ">{errors.username}</div>
+                        )}
+                        <input
+                          type="text"
+                          name="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="Email Address "
+                          className="form-control email-id"
+                        />
+                        {errors.email && (
+                          <div className="errorMsg">{errors.email}</div>
+                        )}
+                        <div className="position-relative mt-4">
+                          <PhoneInput
+                            className="daa"
+                            name="phoneNumber"
+                            type="phone"
+                            placeholder=" Phone Number "
+                            specialLabel={""}
+                            country={"in"}
+                            value={phoneNumber}
+                            onChange={(
+                              inputPhone,
+                              countryData,
+                              value,
+                              data,
+                              dialcode,
+                              inputNumber,
+                              e
+                            ) => {
+                              setcountryCode(`+${countryData.dialCode}`);
+                              setPhoneNumber(inputPhone);
+                            }}
+                            inputStyle={{
+                              background: "#E2F1FE",
+                              padding: "25px 1px 20px 50px",
+                              marginTop: "10px",
+                              // margin: "0px 0px 17px 93px",
+                            }}
+                            inputProps={{
+                              required: true,
+                              autoFocus: true,
+                            }}
+                          />
+                          {errors.phoneNumber && (
+                            <div className="errorMsg">{errors.phoneNumber}</div>
+                          )}
+                        </div>
+                        <div className="position-relative">
+                          <input
+                            type={`${showPass ? "text" : "password"}`}
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            onKeyPress={preventSpace}
+                            placeholder="Password"
+                            className="form-control pwd"
+                            // security="password"
+                          />
+                          <img
+                            role="button"
+                            onClick={onShowPassword}
+                            src={`${
+                              showPass
+                                ? "../../img/profile/openeye.png"
+                                : "../../img/profile/hiddenEye.png"
+                            }`}
+                            className="Eye-icon"
+                          />
+                        </div>
 
-                      <input
-                        type="text"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Password"
-                        className="form-control pwd"
-                        // security="password"
-                      />
-                      {errors.password && (
-                        <div className="errorMsg">{errors.password}</div>
-                      )}
-                      <input
-                        type="text"
-                        name="cpwd"
-                        value={cpwd}
-                        onChange={(e) => setCpwd(e.target.value)}
-                        placeholder="Confirm Password"
-                        className="form-control conf-pwd"
-                      />
-                      {errors.cpwd && (
-                        <div className="errorMsg ">{errors.cpwd}</div>
-                      )}
-                      <input
-                        type="text"
-                        name="refCode"
-                        value={refCode}
-                        onChange={(e) => setRefCode(e.target.value)}
-                        placeholder="Invite Code"
-                        className="form-control invite-codes"
-                      />
-                      {errors.refCode && (
-                        <div className="errorMsg ">{errors.refCode}</div>
-                      )}
+                        {errors.password && (
+                          <div className="errorMsg">{errors.password}</div>
+                        )}
+                        <div className="position-relative">
+                          <input
+                            type={`${showConfirmPass ? "text" : "password"}`}
+                            name="cpwd"
+                            value={cpwd}
+                            onChange={(e) => setCpwd(e.target.value)}
+                            onKeyPress={preventSpace}
+                            placeholder="Confirm Password"
+                            className="form-control conf-pwd"
+                          />
+                          <img
+                            role="button"
+                            onClick={onshowConfirmPass}
+                            src={`${
+                              showConfirmPass
+                                ? "../../img/profile/openeye.png"
+                                : "../../img/profile/hiddenEye.png"
+                            }`}
+                            className="Eye-icon"
+                          />
+                        </div>
+
+                        {errors.cpwd && (
+                          <div className="errorMsg ">{errors.cpwd}</div>
+                        )}
+                        <input
+                          type="text"
+                          name="refCode"
+                          value={refCode}
+                          onChange={(e) => setRefCode(e.target.value)}
+                          placeholder="Invite Code"
+                          className="form-control invite-codes"
+                        />
+                        {errors.refCode && (
+                          <div className="errorMsg ">{errors.refCode}</div>
+                        )}
+                      </div>
+
                       <div id="sign-in-button" />
                       <button
                         className="sign-in"

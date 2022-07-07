@@ -49,20 +49,21 @@ const App = () => {
 
   useEffect(() => {
     // console.log("first",user)
-    if (!effectCalled.current && getItem) {
-      const socket = io("https://metalink-technomads.herokuapp.com");
+    if ( getItem) {
+      const socket = io("http://localhost:3000");
       socket.on("connect", () => {
         setSocket(socket);
-        socket.emit("joinRoom", JSON.parse(localStorage.getItem("user"))._id);
+        // console.log( getItem._id)
+        socket.emit("joinRoom", getItem._id);
         socket.on("currentBalance", (data) => {
-          console.log("data", data);
-          setMiningStatus(data.miningStatus);
+          // console.log("data", data);
+          setMiningStatus(data?.miningStatus);
           setCurrentBalance(data);
         });
       });
-      effectCalled.current = true;
+      // effectCalled.current = true;
     }
-  }, [user?._id]);
+  }, [getItem?._id]);
 
   return (
     <>
@@ -81,7 +82,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route exact path="/" element={<Home />} />
-        <Route path="/meainhome" element={<MeainHome/>}/>
+        <Route path="/meainhome" element={<MeainHome />} />
         <Route path="/platform" element={<Platfrom />} />
         <Route path="/team" element={<Team />} />
         <Route path="/contactus" element={<ContactUs />} />

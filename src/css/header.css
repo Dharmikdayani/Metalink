@@ -119,6 +119,8 @@
 
 .wallet-icon {
   padding-left: 8px;
+  position: relative;
+  top: 3px;
 }
 
 .header .nav-link.active {
@@ -166,9 +168,10 @@
   }
 
   .connect-wallet {
-    font-size: 13px;
+    font-size: 18px;
     line-height: 12px;
     padding: 15px 18px 16px 19px;
+    align-items: baseline;
   }
 }
 

@@ -3,10 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../css/resetpassword.css";
 import Swal from "sweetalert2";
 import baseUrl from "../baseUrl/baseUrl";
+import useEncryption from "../EncryptData/EncryptData";
 
 function Resetpassword() {
   const [password, setPassword] = useState("");
   const [cpwd, setCpwd] = useState("");
+  const { encryptData, decryptData } = useEncryption();
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
   /*============= Toast Fire Notifaction==========*/
 
   const Toast = Swal.mixin({
@@ -35,8 +39,10 @@ function Resetpassword() {
 
     if (password === "") {
       errorsObj.password = "*New Password is required";
+      error = true;
     } else if (password.length < 8) {
       errorsObj.password = "New Password must be 8 or more characters";
+      error = true;
     }
 
     if (cpwd === "") {
@@ -52,6 +58,7 @@ function Resetpassword() {
     setErrors(errorsObj);
 
     if (error) return;
+    setNewPassword();
   }
 
   /*================setNewPassword API===============*/
@@ -59,21 +66,30 @@ function Resetpassword() {
 
   const setNewPassword = async () => {
     try {
+      const encrypt = encryptData(
+        JSON.stringify({
+          password: password,
+          cpassword: cpwd,
+        })
+      );
       const result = await baseUrl.put("/setNewPassword", {
-        password: password,
-        cpassword: cpwd,
+        data: encrypt,
       });
-      if (result.data.success) {
+
+      const results = decryptData(result.data.data);
+      console.log("SignUp", results);
+
+      if (results.success) {
         Toast.fire({
           icon: "success",
-          title: result.data.message,
+          title: results.message,
         });
 
         navigate("/signinpno");
       } else {
         Toast.fire({
           icon: "error",
-          title: result.data.message,
+          title: results.message,
         });
       }
     } catch (err) {
@@ -81,6 +97,15 @@ function Resetpassword() {
     }
   };
 
+  /*=======SHOW PASSWORD====== */
+  const onShowPassword = () => {
+    setShowPass(!showPass);
+  };
+
+  /*=======SHOW Confirm PASSWORD====== */
+  const onshowConfirmPass = () => {
+    setShowConfirmPass(!showConfirmPass);
+  };
   return (
     <div className="logIn forgot-password-bg forgot-password">
       <section className="login-form ">
@@ -102,34 +127,56 @@ function Resetpassword() {
               <div className="login-form-bg">
                 <h2 className="heading text-center"> Reset Password</h2>
                 <form autoComplete="off" onSubmit={onSignUp}>
-                  <input
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="New Password"
-                    className="form-control pwd"
-                  />
-                  {errors.password && (
-                    <div className="errorMsg1">{errors.password}</div>
-                  )}
-                  <input
-                    type="password"
-                    name="cpwd"
-                    value={cpwd}
-                    onChange={(e) => setCpwd(e.target.value)}
-                    placeholder="New Confirm Password"
-                    className="form-control conf-pwd"
-                  />
-                  {errors.cpwd && (
-                    <div className="errorMsg1">{errors.cpwd}</div>
-                  )}
+                  <div className="d-grid justify-content-center">
+                    <div className="position-relative">
+                      <input
+                        type={`${showPass ? "text" : "password"}`}
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="New Password"
+                        className="form-control pwd"
+                      />
+                      <img
+                        role="button"
+                        onClick={onShowPassword}
+                        src={`${
+                          showPass
+                            ? "../../img/profile/openeye.png"
+                            : "../../img/profile/hiddenEye.png"
+                        }`}
+                        className="Eye-icon"
+                      />
+                    </div>
+                    {errors.password && (
+                      <div className="errorMsg">{errors.password}</div>
+                    )}
+                    <div className="position-relative">
+                      <input
+                        type={`${showConfirmPass ? "text" : "password"}`}
+                        name="cpwd"
+                        value={cpwd}
+                        onChange={(e) => setCpwd(e.target.value)}
+                        placeholder="New Confirm Password"
+                        className="form-control conf-pwd"
+                      />
+                      <img
+                        role="button"
+                        onClick={onshowConfirmPass}
+                        src={`${
+                          showConfirmPass
+                            ? "../../img/profile/openeye.png"
+                            : "../../img/profile/hiddenEye.png"
+                        }`}
+                        className="Eye-icon"
+                      />
+                    </div>
+                    {errors.cpwd && (
+                      <div className="errorMsg">{errors.cpwd}</div>
+                    )}
+                  </div>
 
-                  <button
-                    className="sign-in"
-                    type="submit"
-                    onClick={setNewPassword}
-                  >
+                  <button className="sign-in" type="submit">
                     Reset
                   </button>
                 </form>

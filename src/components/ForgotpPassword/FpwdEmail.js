@@ -39,14 +39,18 @@ function FpwdEmail() {
     errorsObj = { ...errorsObj };
 
     if (email === "") {
-      errorsObj.email = "*Email address is required";
+      errorsObj.email = "*Email address is required!";
+      error = true;
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      errorsObj.email = "*Email address is invalid";
+      errorsObj.email = "*Email address is invalid!";
+      error = true;
     }
 
     setErrors(errorsObj);
-
-    if (error) return;
+    if (error) {
+      return;
+    }
+    forgotPassword();
   }
 
   /*=============== forgotPassword API===========*/
@@ -107,22 +111,24 @@ function FpwdEmail() {
                   <div className="login-form-bg">
                     <h2 className="heading text-center"> Forgot Password</h2>
                     <form autoComplete="off" onSubmit={onSignUp}>
-                      <input
-                        type="email"
-                        name="email"
-                        value={email}
-                        onChange={(e) => setemail(e.target.value)}
-                        placeholder="Email Address "
-                        className="form-control email-id"
-                      />
-                      {errors.email && (
-                        <div className="errorMsg">{errors.email}</div>
-                      )}
+                      <div className="d-grid justify-content-center">
+                        <input
+                          type="text"
+                          name="email"
+                          value={email}
+                          onChange={(e) => setemail(e.target.value)}
+                          placeholder="Email Address "
+                          className="form-control email-id"
+                        />
+                        {errors.email && (
+                          <div className="errorMsg">{errors.email}</div>
+                        )}
+                      </div>
 
                       <button
                         type="submit"
                         className="sign-in"
-                        onClick={forgotPassword}
+                        // onClick={}
                       >
                         Send OTP
                       </button>

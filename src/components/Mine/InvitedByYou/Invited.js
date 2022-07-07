@@ -3,7 +3,6 @@ import Carousel from "react-elastic-carousel";
 import Swal from "sweetalert2";
 import instance from "../../baseUrl/baseUrl";
 import useEncryption from "../../EncryptData/EncryptData";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const Invited = ({ setIsOpen }) => {
   // const [card] = useState(FilterDetails);
@@ -42,7 +41,7 @@ const Invited = ({ setIsOpen }) => {
         `/earningTeam?status=${selectedOption}&level=${Layer}`
       );
       const results = decryptData(result.data.data);
-      console.log("filterData", results);
+      // console.log("filterData", results);
 
       if (results.status) {
         while (results.data.earningTeam.length != 0) {
@@ -51,10 +50,10 @@ const Invited = ({ setIsOpen }) => {
         }
         setInvite([results.data]);
       } else {
-        Toast.fire({
-          icon: "error",
-          title: results.message,
-        });
+        // Toast.fire({
+        //   icon: "error",
+        //   title: results.message,
+        // });
       }
     } catch (error) {
       console.log("err" + error);
@@ -210,10 +209,8 @@ const Invited = ({ setIsOpen }) => {
 
               <div className="inputChange ">
                 <h3 className="btn invite mb-0" onClick={setIsOpen}>
-                  {" "}
-                  Invite{" "}
+                  Invite
                 </h3>
-                {/* <div className="d-flex align-items-baseline justify-content-xl-end justify-content-center random-code"></div> */}
               </div>
               <div className="d-flex align-items-baseline  justify-content-center">
                 <h2 className="invite-code">Code :{getItem.refCode}</h2>

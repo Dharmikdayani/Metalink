@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "../../css/header.css";
-import { ImMenu } from "react-icons/im";
+
 const ManinHeader = ({ socket }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const getItem = JSON.parse(localStorage.getItem("user"));
   let location = useLocation();
-  console.log("location", location.pathname);
+
   return (
     <>
-      <section className="header index-header fix">
+      <section className="header index-header fix ">
         <div className="container">
           <div className="d-flex justify-content-between align-items-center header-md">
             <div>
@@ -220,11 +220,13 @@ const ManinHeader = ({ socket }) => {
                     <li className="nav-item">
                       <Link className="connect-wallet" to="/profile">
                         {getItem.username}
-                        <img
-                          src="../../img/icon/user-icon.png"
-                          alt=""
-                          className="wallet-icon"
-                        />
+                        <div>
+                          <img
+                            src="../../img/icon/user-icon.png"
+                            alt=""
+                            className="wallet-icon"
+                          />
+                        </div>
                       </Link>
                     </li>
                   </ul>

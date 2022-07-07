@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ManinHeader from "../Layout/ManinHeader";
 import Footer from "../Layout/Footer";
 import $, { data } from "jquery";
 import "../../css/profile.css";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, selecUser, signin, updateProfile } from "../feature/user";
+import { logout, selecUser, updateProfile } from "../feature/user";
 import instance from "../baseUrl/baseUrl";
 import { useNavigate } from "react-router-dom";
-import copy from "copy-to-clipboard";
+
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import OtpVerificationFormobile from "../OtpVerification/OtpVerificationFormobile";
@@ -64,21 +64,10 @@ const Profile = () => {
     });
   };
 
-  /*=================copy function==============*/
-
-  const copyToClipboard = () => {
-    copy(user.inviteCode);
-    Toast.fire({
-      icon: "success",
-      title: `copied successfully`,
-    });
-  };
-
   /*=============== useEffect for getUserProfile calling======= */
   useEffect(() => {
     if (!effectCalled.current) {
       getUserProfile();
-
       effectCalled.current = true;
     }
   }, [user]);
@@ -163,7 +152,52 @@ const Profile = () => {
       auth
     );
   };
+  /*================ERROR MESSAGE============= */
 
+  let errorsObj = {
+    username: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    cpwd: "",
+    refCode: "",
+  };
+  const [errors, setErrors] = useState(errorsObj);
+
+  const onSignInSubmit = (e) => {
+    e.preventDefault();
+
+    let error = false;
+
+    errorsObj = { ...errorsObj };
+
+    if (UserName === "") {
+      errorsObj.username = "*Username is required!";
+      error = true;
+    }
+
+    if (phoneNumber === "") {
+      errorsObj.phoneNumber = "*PhoneNumber is required!";
+      error = true;
+    }
+
+    if (email === "") {
+      errorsObj.email = "*Email address is required!";
+      error = true;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      errorsObj.email = "*Email address is invalid!";
+      error = true;
+    }
+
+    if (password && password.length < 8) {
+      errorsObj.password = "Password must be 8 or more characters";
+      error = true;
+    }
+
+    setErrors(errorsObj);
+    if (error) return;
+    savadata();
+  };
   /*=================updateProfile API============= */
   const savadata = async () => {
     if (oldMobile === mobile) {
@@ -276,6 +310,7 @@ const Profile = () => {
           setmobile={setmobile}
           setOldMobile={setOldMobile}
           ProfileData={ProfileData}
+          mobile={mobile}
         />
       ) : (
         <div className="mining-bg">
@@ -320,13 +355,18 @@ const Profile = () => {
                                 />
                               </div>
                             </div>
+                            {errors.username && (
+                              <div className="errorMsg-profile">
+                                {errors.username}
+                              </div>
+                            )}
                             <div className="form-group">
                               <label className="label-title">
                                 Invitation code to share
                               </label>
                               <div
                                 id="inviteCode"
-                                className="invite-page d-flex"
+                                className="invite-page position-absolute"
                               >
                                 <input
                                   name="name"
@@ -336,50 +376,37 @@ const Profile = () => {
                                   }
                                   readOnly
                                 />
-
-                                <div id="copyClipboard">
-                                  <img
-                                    src="../../img/profile/copy-icon.png"
-                                    className="copy-invite-code"
-                                    aria-hidden="true"
-                                    data-copytarget="#link"
-                                    onClick={copyToClipboard}
-                                  />
-                                </div>
+                              </div>
+                              <div id="copyClipboard">
+                                <img
+                                  src="../../img/profile/copy-icon.png"
+                                  className="copy-invite-code"
+                                  aria-hidden="true"
+                                  data-copytarget="#link"
+                                  // onClick={copyToClipboard}
+                                />
                               </div>
                             </div>
                             <div className="form-group">
                               <label className="label-title">
                                 Referral link to share
                               </label>
-                              <div className="referral-link d-flex justify-content-between">
+                              <div className="referral-link position-absolute">
                                 minepl.com/johnwick54
-                                <button
-                                  onClick={() => setIsOpen(true)}
-                                  className="share-button border-0 bg-transparent"
-                                  type="button"
-                                  title="Share this article"
-                                >
-                                  <img src="../../img/profile/share-link.png" />
-                                </button>
                               </div>
+                              <button
+                                onClick={() => setIsOpen(true)}
+                                className="share-button border-0 bg-transparent"
+                                type="button"
+                                title="Share this article"
+                              >
+                                <img src="../../img/profile/share-link.png" />
+                              </button>
                             </div>
                             <h6 className="account-title">
                               Account Verification
                             </h6>
-                            <div className="form-group">
-                              <label className="name-title">
-                                Hide real name
-                              </label>
-                              <div className="members-info d-flex justify-content-between align-items-start">
-                                Hide my real name from members of my earning
-                                team
-                                <div className="toggle-box d-flex">
-                                  <input type="checkbox" id="switch" />
-                                  <label htmlFor="switch">Toggle</label>
-                                </div>
-                              </div>
-                            </div>
+
                             <div className="form-group">
                               <label className="name-title">
                                 Account deletion
@@ -404,9 +431,9 @@ const Profile = () => {
                             <div id="sign-in-button" />
 
                             <a
-                              href="#"
+                              href="#save"
                               className="save-btn text-decoration-none"
-                              onClick={savadata}
+                              onClick={(e) => onSignInSubmit(e)}
                             >
                               Save
                             </a>
@@ -428,6 +455,11 @@ const Profile = () => {
                                 />
                               </div>
                             </div>
+                            {errors.email && (
+                              <div className="errorMsg-profile-email">
+                                {errors.email}
+                              </div>
+                            )}
                           </div>
                           <div className="form-group multi-field-wrapper position-relative">
                             <div className="profile-name position-relative">
@@ -447,6 +479,11 @@ const Profile = () => {
                                 />
                               </div>
                             </div>
+                            {errors.password && (
+                              <div className="errorMsg-profile-email">
+                                {errors.password}
+                              </div>
+                            )}
                           </div>
                           <div className="form-group multi-field-wrapper position-relative">
                             <div className="profile-name position-relative">
@@ -494,11 +531,14 @@ const Profile = () => {
                                       autoFocus: true,
                                     }}
                                   />
-                                  {/* {setOldMobile} */}
-                                  <div></div>
                                 </div>
                               </div>
                             </div>
+                            {errors.phoneNumber && (
+                              <div className="errorMsg-profile-email">
+                                {errors.phoneNumber}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>

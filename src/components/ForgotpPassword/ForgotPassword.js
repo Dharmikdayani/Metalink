@@ -54,13 +54,13 @@ function Forgotpassword() {
     errorsObj = { ...errorsObj };
 
     if (emailOrMobile === "") {
-      errorsObj.emailOrMobile = "*phoneNumber is required";
+      errorsObj.emailOrMobile = "*PhoneNumber is required!";
       error = true;
     }
 
     setErrors(errorsObj);
-
     if (error) return;
+    forgotPassword();
   }
 
   /*=============== forgotPassword API===========*/
@@ -85,7 +85,7 @@ function Forgotpassword() {
           icon: "success",
           title: results.message,
         });
-         setUpRecaptcha();
+        setUpRecaptcha();
         const mobile = countryCode + a;
         const appVerifier = window.recaptchaVerifier;
         console.log("otp sent on this number", mobile);
@@ -145,45 +145,44 @@ function Forgotpassword() {
                   <div className="login-form-bg">
                     <h2 className="heading text-center"> Forgot Password</h2>
                     <form autoComplete="off" onSubmit={onLogin}>
-                      <PhoneInput
-                        className="daa"
-                        name="phoneNumber"
-                        type="phone"
-                        placeholder=" Phone Number "
-                        specialLabel={""}
-                        country={"in"}
-                        value={emailOrMobile}
-                        onChange={(
-                          inputPhone,
-                          countryData,
-                          value,
-                          data,
-                          dialcode,
-                          inputNumber,
-                          e
-                        ) => {
-                          setcountryCode(`+${countryData.dialCode}`);
-                          setemailOrMobile(inputPhone);
-                        }}
-                        inputStyle={{
-                          background: "#E2F1FE",
-                          padding: "25px 1px 20px 50px",
-                          marginTop: "22px",
-                        }}
-                        inputProps={{
-                          required: true,
-                          autoFocus: true,
-                        }}
-                      />
-                      {errors.emailOrMobile && (
-                        <div className="errorMsg">{errors.emailOrMobile}</div>
-                      )}
+                      <div className="d-grid justify-content-center">
+                        <PhoneInput
+                          className="daa"
+                          name="phoneNumber"
+                          type="phone"
+                          placeholder=" Phone Number "
+                          specialLabel={""}
+                          country={"in"}
+                          value={emailOrMobile}
+                          onChange={(
+                            inputPhone,
+                            countryData,
+                            value,
+                            data,
+                            dialcode,
+                            inputNumber,
+                            e
+                          ) => {
+                            setcountryCode(`+${countryData.dialCode}`);
+                            setemailOrMobile(inputPhone);
+                          }}
+                          inputStyle={{
+                            background: "#E2F1FE",
+                            padding: "25px 1px 20px 50px",
+                            marginTop: "22px",
+                          }}
+                          inputProps={{
+                            required: true,
+                            autoFocus: true,
+                          }}
+                        />
+                        {errors.emailOrMobile && (
+                          <div className="errorMsg">{errors.emailOrMobile}</div>
+                        )}
+                      </div>
+
                       <div id="sign-in-button" />
-                      <button
-                        type="submit"
-                        className="sign-in"
-                        onClick={forgotPassword}
-                      >
+                      <button type="submit" className="sign-in">
                         Send OTP
                       </button>
                       <p className="text-center">

@@ -14,6 +14,7 @@ function SigninPno() {
   const [password, setPassword] = useState("");
   const { encryptData, decryptData } = useEncryption();
   const dispatch = useDispatch();
+  const [showPass, setShowPass] = useState(false);
 
   /*============= Toast Fire Notifaction==========*/
 
@@ -43,18 +44,19 @@ function SigninPno() {
     errorsObj = { ...errorsObj };
 
     if (emailOrMobile === "") {
-      errorsObj.emailOrMobile = "*phoneNumber is required";
+      errorsObj.emailOrMobile = "*PhoneNumber is required!";
       error = true;
     }
 
     if (password === "") {
-      errorsObj.password = "*phoneNumber is required";
+      errorsObj.password = "*Password is required!";
       error = true;
     }
 
     setErrors(errorsObj);
 
     if (error) return;
+    SigninPno();
   }
 
   /*================SigninPno API===============*/
@@ -84,26 +86,26 @@ function SigninPno() {
         });
         dispatch(
           signin({
-            _id: result.data.data._id,
-            active: result.data.data.active,
-            username: result.data.data.username,
-            email: result.data.data.email,
-            countryCode: result.data.data.countryCode,
-            phoneNumber: result.data.data.phoneNumber,
-            refCode: result.data.data.inviteCode,
+            _id: results.data._id,
+            active: results.data.active,
+            username: results.data.username,
+            email: results.data.email,
+            countryCode: results.data.countryCode,
+            phoneNumber: results.data.phoneNumber,
+            refCode: results.data.inviteCode,
           })
         );
 
         localStorage.setItem(
           "user",
           JSON.stringify({
-            _id: result.data.data._id,
-            active: result.data.data.active,
-            username: result.data.data.username,
-            email: result.data.data.email,
-            countryCode: result.data.data.countryCode,
-            phoneNumber: result.data.data.phoneNumber,
-            refCode: result.data.data.inviteCode,
+            _id: results.data._id,
+            active: results.data.active,
+            username: results.data.username,
+            email: results.data.email,
+            countryCode: results.data.countryCode,
+            phoneNumber: results.data.phoneNumber,
+            refCode: results.data.inviteCode,
           })
         );
         navigate("/mine");
@@ -118,6 +120,10 @@ function SigninPno() {
     }
   };
 
+  /*=======SHOW PASSWORD====== */
+  const onShowPassword = () => {
+    setShowPass(!showPass);
+  };
   return (
     <div className="logIn signin-bg">
       <section className="login-form signup-form">
@@ -125,7 +131,6 @@ function SigninPno() {
           <div className="d-flex justify-content-between align-items-center header-md">
             <div>
               <Link to="/">
-                {" "}
                 <img
                   src="../../img/logo/logo.png"
                   alt=""
@@ -139,59 +144,73 @@ function SigninPno() {
               <div className="login-form-bg">
                 <h2 className="heading text-center"> Sign In </h2>
                 <form autoComplete="off" onSubmit={onLogin}>
-                  <PhoneInput
-                    className="daa"
-                    name="phoneNumber"
-                    type="phone"
-                    placeholder=" Phone Number "
-                    specialLabel={""}
-                    country={"in"}
-                    value={emailOrMobile}
-                    onChange={(
-                      inputPhone,
-                      countryData,
-                      value,
-                      data,
-                      dialcode,
-                      inputNumber,
-                      e
-                    ) => {
-                      setcountryCode(`+${countryData.dialCode}`);
-                      setemailOrMobile(inputPhone);
-                    }}
-                    inputStyle={{
-                      background: "#E2F1FE",
-                      padding: "25px 1px 20px 50px",
-                      marginTop: "22px",
-                    }}
-                    inputProps={{
-                      required: true,
-                      autoFocus: true,
-                    }}
-                  />
-                  {errors.emailOrMobile && (
-                    <div className="errorMsg">{errors.emailOrMobile}</div>
-                  )}
+                  <div className="d-grid justify-content-center">
+                    <PhoneInput
+                      className="daa"
+                      name="phoneNumber"
+                      type="phone"
+                      placeholder=" Phone Number "
+                      specialLabel={""}
+                      country={"in"}
+                      value={emailOrMobile}
+                      onChange={(
+                        inputPhone,
+                        countryData,
+                        value,
+                        data,
+                        dialcode,
+                        inputNumber,
+                        e
+                      ) => {
+                        setcountryCode(`+${countryData.dialCode}`);
+                        setemailOrMobile(inputPhone);
+                      }}
+                      inputStyle={{
+                        background: "#E2F1FE",
+                        padding: "25px 1px 20px 50px",
+                        marginTop: "22px",
+                      }}
+                      inputProps={{
+                        required: true,
+                        autoFocus: true,
+                      }}
+                    />
+                    {errors.emailOrMobile && (
+                      <div className="errorMsg">{errors.emailOrMobile}</div>
+                    )}
+                    <div className="position-relative">
+                      <input
+                        type={`${showPass ? "text" : "password"}`}
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Password"
+                        className="form-control pwd"
+                      />
+                      <img
+                        role="button"
+                        onClick={onShowPassword}
+                        src={`${
+                          showPass
+                            ? "../../img/profile/openeye.png"
+                            : "../../img/profile/hiddenEye.png"
+                        }`}
+                        className="Eye-icon"
+                      />
+                    </div>
+                    {errors.password && (
+                      <div className="errorMsg">{errors.password}</div>
+                    )}
 
-                  <input
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                    className="form-control pwd"
-                  />
-                  {errors.password && (
-                    <div className="errorMsg">{errors.password}</div>
-                  )}
+                    <Link
+                      to="/forgotPassword"
+                      className="text-end w-100 d-inline-block forgot-password"
+                    >
+                      Forgot Password?
+                    </Link>
+                  </div>
 
-                  <Link
-                    to="/forgotPassword"
-                    className="text-end w-100 d-inline-block forgot-password"
-                  >
-                    Forgot Password?
-                  </Link>
-                  <button type="submit" className="sign-in" onClick={SigninPno}>
+                  <button type="submit" className="sign-in">
                     Sign In
                   </button>
                   <p className="text-center">

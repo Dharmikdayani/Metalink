@@ -3,7 +3,6 @@ import Footer from "../Layout/Footer";
 import Mainnet from "./Mainnet/Mainnet";
 import Accordions from "./Accordion/Accordion";
 import "../../css/platform.css";
-
 import ManinHeader from "../Layout/ManinHeader";
 // import "animate.css/animate.min.css";
 
@@ -15,11 +14,6 @@ const Platfrom = () => {
       <div className="platfrom-bg">
         {/* <!-- ------------------- MINING START ----------------- --> */}
 
-        {/* <section className="header">
-                            <div className="container">
-                                    <Header/>
-                            </div>    
-                        </section> */}
         <ManinHeader className="nav-link active" />
 
         {/* <!-- Platform_About --> */}
@@ -54,7 +48,7 @@ const Platfrom = () => {
                     </p>
                   </div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-6 d-flex justify-content-end align-items-center">
                   <img
                     src="../../img/platform/decentralized.png"
                     className="mb-md-0 mb-5"
@@ -111,19 +105,6 @@ const Platfrom = () => {
         {/* <!--------------- Footer Start --------------> */}
         <Footer />
         {/* <!-- ------------------- CURRENT MINING RATE END ----------------- --> */}
-
-        <script src="../../js/style.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script>
-          {/* function copy() {
-        var copyText = document.getElementById("copyClipboard");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999);
-        document.execCommand("copy");
-    } */}
-
-          {/* ==========================Arcidian ================================================== */}
-        </script>
       </div>
     </>
   );

@@ -6,14 +6,12 @@ import ManinHeader from "../Layout/ManinHeader";
 import "../../css/home.css";
 import { Link } from "react-router-dom";
 
-// eslint-disable-next-line 
+// eslint-disable-next-line
 {
   AOS.init();
 }
 function Home() {
   document.title = "Home";
- 
-   
 
   localStorage.getItem("user");
   return (
@@ -27,8 +25,7 @@ function Home() {
               <div className="col-lg-6">
                 <h1 className="heading">
                   Most valued Digital Currency You Can Mine On Your
-                  Phone/Computer And Withdraw Instantly 
-                
+                  Phone/Computer And Withdraw Instantly
                 </h1>
                 <p className="content">
                   Download the app & earn metalink cryptocurrency for free.
@@ -36,7 +33,6 @@ function Home() {
                   with higher rate.
                 </p>
                 <div className="app-store d-flex justify-content-lg-start justify-content-center">
-                 
                   <a href="/#">
                     <img
                       src="../../img/index-page/google-play.png"
@@ -83,7 +79,7 @@ function Home() {
                 className="vector-inner img-fluid"
               />
 
-              <div >
+              <div>
                 <Link to="/" className="join">
                   <img src="../../img/index-page/join.png" alt="" />
                   <h3>Join M</h3>
@@ -92,74 +88,62 @@ function Home() {
 
               <div className="started-tree">
                 <div className="row mx-0 justify-content-between first-layer">
-                  <div className="col-xl-3 col-2  justify-content-center track-box d-flex align-items-baseline">
+                  <div className="col-xl-3 col-2 d-flex justify-content-center align-items-lg-baseline track-box ">
                     <img
                       src="../../img/index-page/track-one.png"
                       alt=""
                       className="img-fluid"
                     />
-                    <a href="/#" className="track-content">
-                      Start Mining
-                    </a>
+                    <p className="track-content">Start Mining</p>
                   </div>
                   <div className="col-xl-6 col-8"></div>
-                  <div className="col-xl-3 col-2 justify-content-center track-box d-flex align-items-baseline">
+                  <div className="col-xl-3 col-2 d-flex justify-content-center align-items-lg-baseline track-box">
                     <img
                       src="../../img/index-page/track-one.png"
                       alt=""
                       className="img-fluid"
                     />
-                    <a href="/#" className="track-content">
-                      Increase Supremacy
-                    </a>
+                    <p className="track-content">Increase Supremacy</p>
                   </div>
                 </div>
 
                 <div className="row mx-0 justify-content-between secound-layer">
-                  <div className="col-xl-3 col-2 justify-content-center track-box d-flex align-items-baseline mining-higher-rate">
+                  <div className="col-xl-3 col-2 track-box d-flex justify-content-center align-items-lg-baseline mining-higher-rate">
                     <img
                       src="../../img/index-page/track-one.png"
                       alt=""
                       className="img-fluid"
                     />
-                    <a href="/#" className="track-content">
-                      Earn Metalink
-                    </a>
+                    <p className="track-content">Earn Metalink</p>
                   </div>
                   <div className="col-xl-6 col-8"></div>
-                  <div className="col-xl-3 col-2 justify-content-center track-box d-flex align-items-baseline mining-higher-rate">
+                  <div className="col-xl-3 col-2 justify-content-center track-box d-flex align-items-lg-baseline mining-higher-rate">
                     <img
                       src="../../img/index-page/track-one.png"
                       alt=""
                       className="img-fluid"
                     />
-                    <a href="/#" className="track-content">
-                      Mine with higher rate
-                    </a>
+                    <p className="track-content">Mine with higher rate</p>
                   </div>
                 </div>
 
                 <div className="row mx-0  justify-content-between thierd-layer">
-                  <div className="col-xl-3 col-2 justify-content-center track-box d-flex align-items-baseline">
+                  <div className="col-xl-3 col-2 justify-content-center track-box d-flex align-items-lg-baseline">
                     <img
                       src="../../img/index-page/track-one.png"
                       alt=""
                       className="img-fluid"
                     />
-                    <a href="/#" className="track-content">
-                      Team Building
-                    </a>
+                    <p className="track-content">Team Building</p>
                   </div>
                   <div className="col-xl-6 col-8"></div>
-                  <div className="col-xl-3 col-2 justify-content-center track-box d-flex align-items-baseline">
+                  <div className="col-xl-3 col-2 justify-content-center track-box d-flex align-items-lg-baseline">
                     <img
                       src="../../img/index-page/track-one.png"
                       alt=""
                       className="img-fluid"
                     />
-                    <a href="/#" className="track-content">
-                      Withdraw
-                    </a>
+                    <a className="track-content">Withdraw</a>
                   </div>
                 </div>
               </div>
@@ -179,7 +163,7 @@ function Home() {
             <div className="row align-items-center">
               <div className="col-lg-6">
                 <h1 className="sub-heading">
-                  Download the mobile app to start mining today?
+                  Download the mobile app to start mining today for free.
                 </h1>
                 <p className="content">
                   Join the great mining community of metalink and earn free

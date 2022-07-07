@@ -20,7 +20,8 @@ import useEncryption from "../EncryptData/EncryptData";
 
 function Mine({ socket, miningStatus, currentBalance }) {
   document.title = "Mine";
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenCaptcha, setIsOpenCaptcha] = useState(false);
+  const [isOpenInvite, setIsOpenInvite] = useState(false);
   const [isOpenwithdraw, setIsOpenwithdraw] = useState(false);
   const [isOpenDeposit, setIsOpenDeposit] = useState(false);
   const { decryptData } = useEncryption();
@@ -34,12 +35,8 @@ function Mine({ socket, miningStatus, currentBalance }) {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
 
-      if (
-        // typeof isOpen === "number" &&
-        Invite.current &&
-        !Invite.current.contains(e.target)
-      ) {
-        setIsOpen(false);
+      if (Invite.current && !Invite.current.contains(e.target)) {
+        setIsOpenInvite(false);
       }
     };
     document.addEventListener("mousedown", checkIfClickedOutside);
@@ -47,7 +44,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
       // Cleanup the event listener
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
-  }, [isOpen]);
+  }, [isOpenInvite]);
 
   /*========outside click event withdraw =========== */
 
@@ -57,11 +54,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
 
-      if (
-        // typeof isOpen === "number" &&
-        withdraw.current &&
-        !withdraw.current.contains(e.target)
-      ) {
+      if (withdraw.current && !withdraw.current.contains(e.target)) {
         setIsOpenwithdraw(false);
       }
     };
@@ -79,11 +72,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
 
-      if (
-        // typeof isOpen === "number" &&
-        Deposit.current &&
-        !Deposit.current.contains(e.target)
-      ) {
+      if (Deposit.current && !Deposit.current.contains(e.target)) {
         setIsOpenDeposit(false);
       }
     };
@@ -128,10 +117,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
       document.querySelector(".layer-two ").classList.add("active");
       document.querySelector("#captcha-modals").style.display = "none";
 
-      // Toast.fire({
-      //   icon: "success",
-      //   title: "Your Mining is started",
-      // });
+
       try {
         const result = await instance.get("/activeUser");
 
@@ -226,22 +212,22 @@ function Mine({ socket, miningStatus, currentBalance }) {
                   />
                   <span className="hours">/H</span>
                 </div>
-                {/* {miningStatus ? (
+                {miningStatus ? (
                   <h3 className="mining-start-btn-active " id="captcha-modal">
                     Mining..
                   </h3>
-                ) : ( 
-                  
-                )} */}
-                <Link to="/meainhome">
+                ) : (
                   <h3
                     className="btn mining-start-btn"
                     id="captcha-modal"
-                    // onClick={block}
+                    onClick={block}
                   >
                     Start
                   </h3>
-                </Link>
+                )}
+                {/* <Link to="/meainhome">
+      
+                </Link> */}
               </div>
             </div>
           </div>
@@ -254,11 +240,17 @@ function Mine({ socket, miningStatus, currentBalance }) {
                 <div className="row justify-content-center">
                   <div className="col-lg-5">
                     <div className="captcha-modal">
+                      <a
+                        href="#close"
+                        className="justify-content-end d-flex close-btn"
+                      >
+                        <img
+                          src="../../img/profile/close.png"
+                          onClick={() =>  document.querySelector("#captcha-modals").style.display = "none"}
+                        />
+                      </a>
                       <h4 className="captcha-content d-flex justify-content-between align-items-center">
                         Prove you're a human
-                        <a href="#close">
-                          <img src="../../img/profile/close.png" />
-                        </a>
                       </h4>
                       <div className="d-flex input-groups">
                         <input
@@ -491,7 +483,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
 
           {/* <!-- ------- Invite Modal Start ---------- --> */}
 
-          {isOpen ? (
+          {isOpenInvite ? (
             <div id="Invite-Modal">
               <section className="Invite">
                 <div className="container">
@@ -504,7 +496,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                         >
                           <img
                             src="../../img/profile/close.png"
-                            onClick={() => setIsOpen(false)}
+                            onClick={() => setIsOpenInvite(false)}
                           />
                         </a>
                         <h2 className="Invite-content  align-items-center">
@@ -616,7 +608,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
             <div className="row mx-0 justify-content-center">
               <div className="col-md-8 invite-bg">
                 <div className="row justify-content-between">
-                  <div className="col-xl-8 col-10">
+                  <div className="col-xxl-8 col-lg-7">
                     <h3 className="invite-title mb-0">
                       Invite your friends and earn more.
                     </h3>
@@ -625,17 +617,16 @@ function Mine({ socket, miningStatus, currentBalance }) {
                       friends for faster earnings.
                     </p>
                   </div>
-                  <div className="col-xl-4 col-2 text-end">
+                  <div className="col-xxl-3 col-lg-5 text-end">
                     <h3
-                      className="btn invite mb-0"
-                      onClick={() => setIsOpen(true)}
+                      className="btn invite mb-0 d-flex align-items-center justify-content-center"
+                      onClick={() => setIsOpenInvite(true)}
                     >
                       Invite
                     </h3>
 
-                    <div className="d-flex align-items-baseline  justify-content-xl-end justify-content-center">
+                    <div className="d-flex align-items-center justify-content-center">
                       <h2 className="invite-code">Code :{getItem.refCode}</h2>
-
                       <img
                         src="../../img/icon/copy.png"
                         onClick={() => {
@@ -663,7 +654,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
       {/* <!-- ------------------- CURRENT MINING RATE END ----------------- --> */}
 
       {/* <!-- ------------------- EARNING TIME START ----------------- --> */}
-      <Invited setIsOpen={setIsOpen} />
+      <Invited setIsOpen={setIsOpenInvite} />
       {/* <!-- ------------------- EARNING TIME END ----------------- --> */}
 
       {/* <!-- ------------------- ROLES START ----------------- --> */}

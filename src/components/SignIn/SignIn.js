@@ -11,7 +11,7 @@ function SignIn() {
   const [password, setPassword] = useState("");
   const { encryptData, decryptData } = useEncryption();
   const dispatch = useDispatch();
-
+  const [showPass, setShowPass] = useState(false);
   /*============= Toast Fire Notifaction==========*/
 
   const Toast = Swal.mixin({
@@ -41,23 +41,26 @@ function SignIn() {
     errorsObj = { ...errorsObj };
 
     if (email === "") {
-      errorsObj.email = "*Email address is required";
+      errorsObj.email = "*Email address is required!";
+      error = true;
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      errorsObj.email = "*Email address is invalid";
+      errorsObj.email = "*Email address is invalid!";
+      error = true;
     }
 
     if (password === "") {
-      errorsObj.password = "*phoneNumber is required";
+      errorsObj.password = "*Password is required!";
       error = true;
     }
 
     setErrors(errorsObj);
 
     if (error) return;
+    SignIn();
   }
 
   /*================SignIn API===============*/
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
   const SignIn = async () => {
     try {
       const encrypt = encryptData(
@@ -71,7 +74,7 @@ function SignIn() {
       });
 
       const results = decryptData(result.data.data);
-      console.log("SignIn",results);
+      console.log("SignIn", results);
 
       if (results.success) {
         Toast.fire({
@@ -82,25 +85,25 @@ function SignIn() {
         localStorage.setItem(
           "user",
           JSON.stringify({
-            _id: result.data.data._id,
-            active: result.data.data.active,
-            username: result.data.data.username,
-            email: result.data.data.email,
-            countryCode: result.data.data.countryCode,
-            phoneNumber: result.data.data.phoneNumber,
-            refCode: result.data.data.inviteCode,
+            _id: results.data._id,
+            active: results.data.active,
+            username: results.data.username,
+            email: results.data.email,
+            countryCode: results.data.countryCode,
+            phoneNumber: results.data.phoneNumber,
+            refCode: results.data.inviteCode,
           })
         );
 
         dispatch(
           signin({
-            _id: result.data.data._id,
-            active: result.data.data.active,
-            username: result.data.data.username,
-            email: result.data.data.email,
-            countryCode: result.data.data.countryCode,
-            phoneNumber: result.data.data.phoneNumber,
-            refCode: result.data.data.inviteCode,
+            _id: results.data._id,
+            active: results.data.active,
+            username: results.data.username,
+            email: results.data.email,
+            countryCode: results.data.countryCode,
+            phoneNumber: results.data.phoneNumber,
+            refCode: results.data.inviteCode,
           })
         );
 
@@ -114,6 +117,10 @@ function SignIn() {
     } catch (err) {
       console.log("err" + err);
     }
+  };
+  /*=======SHOW PASSWORD====== */
+  const onShowPassword = () => {
+    setShowPass(!showPass);
   };
 
   return (
@@ -137,38 +144,53 @@ function SignIn() {
               <div className="login-form-bg">
                 <h2 className="heading text-center"> Sign In </h2>
                 <form autoComplete="off" onSubmit={onLogin}>
-                  <input
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={(e) => setemail(e.target.value)}
-                    placeholder="Email Address "
-                    className="form-control email-id"
-                    // required
-                  />
-                  {errors.email && (
-                    <div className="errorMsg">{errors.email}</div>
-                  )}
+                  <div className="d-grid justify-content-center">
+                    <input
+                      type="email"
+                      name="email"
+                      value={email}
+                      onChange={(e) => setemail(e.target.value)}
+                      placeholder="Email Address "
+                      className="form-control email-id"
+                      // required
+                    />
+                    {errors.email && (
+                      <div className="errorMsg">{errors.email}</div>
+                    )}
+                    <div className="position-relative">
+                      <input
+                        type={`${showPass ? "text" : "password"}`}
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Password"
+                        className="form-control pwd"
+                      />
+                      <img
+                        role="button"
+                        onClick={onShowPassword}
+                        src={`${
+                          showPass
+                            ? "../../img/profile/openeye.png"
+                            : "../../img/profile/hiddenEye.png"
+                        }`}
+                        className="Eye-icon"
+                      />
+                    </div>
 
-                  <input
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                    className="form-control pwd"
-                  />
-                  {errors.password && (
-                    <div className="errorMsg">{errors.password}</div>
-                  )}
+                    {errors.password && (
+                      <div className="errorMsg">{errors.password}</div>
+                    )}
 
-                  <Link
-                    to="/forgotPassword"
-                    className="text-end w-100 d-inline-block forgot-password"
-                  >
-                    Forgot Password?
-                  </Link>
-                  <button type="submit" className="sign-in" onClick={SignIn}>
+                    <Link
+                      to="/forgotPassword"
+                      className="text-end w-100 d-inline-block forgot-password"
+                    >
+                      Forgot Password?
+                    </Link>
+                  </div>
+
+                  <button type="submit" className="sign-in">
                     Sign In
                   </button>
                   <p className="text-center">

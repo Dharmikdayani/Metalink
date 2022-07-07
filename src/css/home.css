@@ -191,7 +191,7 @@
   border-radius: 50%;
   position: relative;
   display: inline-block;
-  
+
 
 }
 
@@ -243,7 +243,7 @@
   padding-left: 35px;
 }
 
-.track-box .track-content,
+/* .track-box .track-content,
 .track-box .track-content:hover {
   font-size: 25px;
   font-weight: 500;
@@ -252,6 +252,14 @@
   text-decoration: none;
   padding: 36px 35px 27px 0px;
   white-space: nowrap;
+} */
+.track-content {
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 30px;
+  color: #00092e;
+  text-decoration: none;
+  padding: 36px 35px 27px 0px;
 }
 
 .get-started-bg {
@@ -316,15 +324,15 @@
 }
 
 .first-layer {
-  margin-top: -29px;
+  margin-top: -40px;
 }
 
 .secound-layer {
-  padding: 25px 0px
+  padding: 40px 0px
 }
 
 .thierd-layer {
-  margin-top: 29px;
+  margin-top: 10px;
 }
 
 .mining-higher-rate {
@@ -340,6 +348,10 @@
 
   .vector-inner {
     max-width: 270px;
+  }
+
+  .thierd-layer {
+    margin-top: -5px;
   }
 }
 

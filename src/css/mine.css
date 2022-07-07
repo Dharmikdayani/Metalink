@@ -460,7 +460,7 @@ height: 318px; */
   background: #ddeefd;
   box-shadow: inset 5px 6px 15px rgba(2, 65, 120, 0.1);
   border-radius: 45px;
-  padding: 56px 122px 56px 65px;
+  padding: 56px 56px 56px 65px;
 }
 
 .invite-title {
@@ -532,12 +532,10 @@ height: 318px; */
     font-size: 19px;
   }
 
-  .invite-bg {
-    padding: 30px 71px 30px 56px;
-  }
-
   .mining-bg .invite {
     padding: 13px 50px 13px 50px;
+    max-width: 140px;
+    margin: auto;
   }
 }
 
@@ -584,12 +582,12 @@ height: 318px; */
   }
 
   .invite-bg {
-    padding: 30px 105px 30px 35px;
+    padding: 30px 30px 30px 35px;
   }
 
-  .mining-bg .invite {
+  /* .mining-bg .invite {
     padding: 10px 40px 10px 40px;
-  }
+  } */
 }
 
 @media screen and (max-width: 992px) {
@@ -642,10 +640,12 @@ height: 318px; */
   .mining-bg .invite {
     font-size: 18px;
     padding: 7px 40px 7px 40px;
+    max-width: 160px;
+    margin: auto;
   }
 
   .invite-bg {
-    padding: 30px 100px 30px 35px;
+    padding: 30px 30px 30px 35px;
   }
 }
 
@@ -800,7 +800,7 @@ height: 318px; */
   background: linear-gradient(180deg, #d9edfd 0%, #eff5f8 100%);
   box-shadow: 4px 4px 10px 1px rgba(0, 16, 57, 0.2),
     -4px -4px 13px rgba(255, 255, 255, 0.8);
-  margin-left: 288px;
+
 }
 
 .current-mining-rate table thead tr {
@@ -1176,6 +1176,7 @@ height: 318px; */
   font-size: 24px;
   line-height: 28px;
   font-weight: 500;
+  color: #001039;
 }
 
 .transection-amount {
@@ -1531,7 +1532,7 @@ height: 318px; */
 }
 
 .close-btn-withdraw {
-  
+
   top: -25px;
   right: -10px;
 }

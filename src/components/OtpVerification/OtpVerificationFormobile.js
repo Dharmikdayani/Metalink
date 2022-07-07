@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import OTPInput from "otp-input-react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -13,7 +13,8 @@ import useEncryption from "../EncryptData/EncryptData";
 
 function OtpVerificationFormobile({
   ProfileData,
-  countryCode, 
+  countryCode,
+  mobile,
   oldMobile,
   phone,
   username,
@@ -23,10 +24,48 @@ function OtpVerificationFormobile({
   setmobile,
   setOldMobile,
 }) {
-  // console.log(mobiles);
+  console.log("setmobile", mobile, "setOldMobile", oldMobile);
   const [OTP, setOTP] = useState("");
   const dispatch = useDispatch();
   const { encryptData, decryptData } = useEncryption();
+
+  const defaultCount = 60;
+  const intervalGap = 1000;
+  const [timerCount, setTimerCount] = useState(defaultCount);
+
+  /*===== RESEND OTP TIMER======== */
+  const startTimerWrapper = useCallback((func) => {
+    let timeInterval: NodeJS.Timer;
+    return () => {
+      if (timeInterval) {
+        clearInterval(timeInterval);
+      }
+      setTimerCount(defaultCount);
+      timeInterval = setInterval(() => {
+        func(timeInterval);
+      }, intervalGap);
+    };
+  }, []);
+
+  const timer = useCallback(
+    startTimerWrapper((intervalfn: NodeJS.Timeout) => {
+      setTimerCount((val) => {
+        if (val === 0) {
+          clearInterval(intervalfn);
+          return val;
+        }
+        return val - 1;
+      });
+    }),
+    []
+  );
+
+  useEffect(() => {
+    timer();
+    return () => {
+      clearInterval(timer);
+    };
+  }, [timer]);
 
   const setUpRecaptcha = () => {
     window.recaptchaVerifier = new RecaptchaVerifier(
@@ -41,6 +80,7 @@ function OtpVerificationFormobile({
       auth
     );
   };
+
   /*============= Toast Fire Notifaction==========*/
 
   const Toast = Swal.mixin({
@@ -69,10 +109,11 @@ function OtpVerificationFormobile({
         try {
           const encrypt = encryptData(
             JSON.stringify({
-              username:    ProfileData.username !== username ? username : null,
+              username: ProfileData.username !== username ? username : null,
               password: password,
               email: ProfileData.email !== email ? email : null,
-              countryCode:ProfileData.countryCode !== countryCode ? countryCode : null,
+              countryCode:
+                ProfileData.countryCode !== countryCode ? countryCode : null,
               phoneNumber: ProfileData.phoneNumber !== phone ? phone : null,
             })
           );
@@ -88,6 +129,8 @@ function OtpVerificationFormobile({
             });
             setmobile(countryCode + phone);
             setOldMobile(countryCode + phone);
+            console.log("setmobile", mobile, "setOldMobile", oldMobile);
+
             localStorage.setItem(
               "user",
               JSON.stringify({
@@ -122,7 +165,6 @@ function OtpVerificationFormobile({
         } catch (err) {
           console.log("err" + err);
         }
-      
       })
       .catch((error) => {
         // User couldn't sign in (bad verification code?)
@@ -160,28 +202,6 @@ function OtpVerificationFormobile({
         Toast.fire({
           icon: "error",
           title: "SMS not sent Please try again.",
-        });
-      });
-    const code = OTP;
-    console.log(code);
-    window.confirmationResult
-      .confirm(code)
-      .then(async (result) => {
-        // User signed in successfully.
-        const user = result.user;
-        console.log(JSON.stringify(user));
-        Toast.fire({
-          icon: "success",
-          title: "user is verified",
-        });
-        // navigate("/resetpassword");
-      })
-      .catch((error) => {
-        // User couldn't sign in (bad verification code?)
-        console.log("err", error);
-        Toast.fire({
-          icon: "error",
-          title: "invalid verification code",
         });
       });
   };
@@ -227,13 +247,21 @@ function OtpVerificationFormobile({
                   <button className="otp-verify-btn" onClick={otpverification}>
                     Verify
                   </button>
-                  <Link
-                    to="#"
-                    onClick={ResendOTPverification}
-                    className="resend-otp"
-                  >
-                    Resend OTP
-                  </Link>
+                  {!timerCount == 0 ? (
+                    <p className="resend-otp">
+                      Resend OTP in
+                      <span> {timerCount}</span>
+                    </p>
+                  ) : (
+                    <Link
+                      to="#"
+                      disabled={!timerCount == 0}
+                      className="resend-otp"
+                      onClick={ResendOTPverification}
+                    >
+                      Resend OTP
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

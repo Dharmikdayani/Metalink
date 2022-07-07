@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import OTPInput from "otp-input-react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -8,7 +8,43 @@ import { auth } from "../../Firebase-config";
 
 function OtpVerification1({ phone, countryCode }) {
   const [OTP, setOTP] = useState("");
+  const defaultCount = 60;
+  const intervalGap = 1000;
+  const [timerCount, setTimerCount] = useState(defaultCount);
 
+  /*===== RESEND OTP TIMER======== */
+  const startTimerWrapper = useCallback((func) => {
+    let timeInterval: NodeJS.Timer;
+    return () => {
+      if (timeInterval) {
+        clearInterval(timeInterval);
+      }
+      setTimerCount(defaultCount);
+      timeInterval = setInterval(() => {
+        func(timeInterval);
+      }, intervalGap);
+    };
+  }, []);
+  
+  const timer = useCallback(
+    startTimerWrapper((intervalfn: NodeJS.Timeout) => {
+      setTimerCount((val) => {
+        if (val === 0) {
+          clearInterval(intervalfn);
+          return val;
+        }
+        return val - 1;
+      });
+    }),
+    []
+  );
+  useEffect(() => {
+    timer();
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [timer]);
   /*============= Toast Fire Notifaction==========*/
 
   const Toast = Swal.mixin({
@@ -80,8 +116,9 @@ function OtpVerification1({ phone, countryCode }) {
 
         Toast.fire({
           icon: "success",
-          title: "OTP sent",
+          title: "New OTP is sent",
         });
+        setTimerCount(defaultCount);
       })
       .catch((error) => {
         // Error; SMS not sent
@@ -90,29 +127,6 @@ function OtpVerification1({ phone, countryCode }) {
         Toast.fire({
           icon: "error",
           title: "SMS not sent Please try again.",
-        });
-      });
-    const code = OTP;
-    console.log(code);
-    window.confirmationResult
-      .confirm(code)
-      .then(async (result) => {
-        // User signed in successfully.
-        const user = result.user;
-        console.log(JSON.stringify(user));
-        Toast.fire({
-          icon: "success",
-          title: "user is verified",
-        });
-        // navigate("/resetpassword");
-      })
-      .catch((error) => {
-        console.log(countryCode + phone);
-        // User couldn't sign in (bad verification code?)
-        console.log("err", error);
-        Toast.fire({
-          icon: "error",
-          title: "invalid verification code",
         });
       });
   };
@@ -161,13 +175,21 @@ function OtpVerification1({ phone, countryCode }) {
                   >
                     Verify
                   </button>
-                  <Link
-                    to="#"
-                    onClick={ResendOTPverification}
-                    className="resend-otp"
-                  >
-                    Resend OTP
-                  </Link>
+                  {!timerCount == 0 ? (
+                    <p className="resend-otp">
+                      Resend OTP IN
+                      <span> {timerCount}</span>
+                    </p>
+                  ) : (
+                    <Link
+                      to="#"
+                      disabled={!timerCount == 0}
+                      className="resend-otp"
+                      onClick={ResendOTPverification}
+                    >
+                      Resend OTP
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
