@@ -24,7 +24,7 @@ Profile
   background: #d9edfd;
   border-radius: 12px;
   margin-bottom: 30px;
-  padding: 12px 15px 11px 20px;
+  padding: 12px 15px 22.5px 20px;
   box-shadow: 3px 3px 4px rgba(0, 16, 57, 0.2),
     -3px -3px 5px rgba(255, 255, 255, 0.5);
 }
@@ -43,7 +43,7 @@ Profile
   line-height: 14px;
   font-weight: 300;
   z-index: 9;
-  margin-top: 11px;
+  margin-top: 20px;
   margin-left: 21px;
 }
 
@@ -52,7 +52,7 @@ Profile
   font-size: 20px;
   line-height: 20px;
   background: #d9edfd;
-  padding: 26px 20px;
+  padding: 39px 19px 15px;
   border-radius: 12px;
   margin-top: 4px;
   box-shadow: 3px 3px 4px rgb(0 16 57 / 20%),
@@ -94,7 +94,7 @@ Profile
 
 .share-dialog.is-open {
   display: block;
-  z-index: 2;
+  z-index: 10;
 }
 
 .share-dialog {
@@ -219,7 +219,7 @@ Profile
   font-size: 20px;
   line-height: 20px;
   background: #d9edfd;
-  padding: 26px 20px;
+  padding: 39px 19px 15px;
   border-radius: 12px;
   box-shadow: 3px 3px 4px rgba(0, 16, 57, 0.2),
     -3px -3px 5px rgba(255, 255, 255, 0.5);
@@ -247,6 +247,15 @@ Profile
   display: none;
 }
 
+.show-eye {
+  position: absolute;
+  top: 46%;
+  left: 91%;
+}
+.show-active{
+  display: none;
+}
+
 .editing-btn.active .profile-input {
   display: block;
 }
@@ -256,7 +265,7 @@ Profile
   width: 100%;
   height: 100%;
   border: 0;
-  padding: 20px;
+  padding: 39px 19px 15px;
   font-size: 20px;
   line-height: 1;
   font-weight: 500;
@@ -373,18 +382,17 @@ Profile
   position: absolute;
   font-size: 14px;
   letter-spacing: 0.01rem;
-  margin-top: -19px !important;
-  margin-bottom: 0;
+  margin-top: -38px !important;
+  /* margin-bottom: 0; */
   background: #d9edfd !important;
   margin-left: -19px !important;
   border-radius: 11px;
   line-height: 25px;
   height: 71px;
-  width: 433px;
-  box-shadow: inset 3px 3px 4px rgba(0, 16, 57, 0.2),
-    inset -3px -3px 5px rgba(255, 255, 255, 0.5);
+  width: 436px;
+  box-shadow: inset 3px 3px 4px rgb(0 16 57 / 20%), inset -3px -3px 5px rgb(255 255 255 / 50%);
   outline: none;
-  padding: 11px 1px 9px 38px !important;
+  padding: 39px 38px 15px !important;
   border: none;
   font-size: 20px;
   line-height: 1;
@@ -395,7 +403,7 @@ Profile
   background-color: #deeffd;
   box-shadow: 1px 2px 10px rgb(0 0 0 / 35%);
   list-style: none;
-  margin: 9px 4px 21px -27px;
+  margin: 37px 4px 21px -27px;
   max-height: 200px;
   outline: none;
   overflow-y: scroll;
@@ -412,10 +420,8 @@ Profile
 }
 
 .phone .react-tel-input .selected-flag .flag {
-  position: absolute;
-  top: 32%;
-  margin-top: 14px;
-  margin-left: -52px;
+  margin-top: 23px;
+  margin-left: -50px;
 }
 
 @media screen and (max-width: 1440px) {
@@ -467,21 +473,26 @@ Profile
   }
 }
 
+
+
+/* .editing-btn.active img {
+  display: block;
+} */
+
 #copyClipboard {
   position: relative;
-  /* left: 93%; */
-  top: -11px;
+  left: 0%;
+  top: -8px;
   display: flex;
   justify-content: end;
 }
 
 .share-button {
   position: relative;
-  justify-content: end;
-  display: flex;
-  align-items: baseline;
-  top: -12px;
   left: 94%;
+  top: -8px;
+  display: flex;
+  justify-content: end;
 }
 
 
@@ -491,17 +502,17 @@ Profile
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
-  margin-left: 2%; 
+  margin-left: 2%;
   position: relative;
   top: -23px;
 }
 
-.errorMsg-profile-email{
+.errorMsg-profile-email {
   color: #dc3545;
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
-  margin-left: 2%; 
+  margin-left: 2%;
   position: relative;
   top: 7px;
 }

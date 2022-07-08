@@ -26,6 +26,7 @@ import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 import { selecUser } from "./components/feature/user";
 import MeainHome from "./components/MeainHome/MeainHome";
+import OtpVerificationFormobile from "./components/OtpVerification/OtpVerificationFormobile";
 const App = () => {
   const effectCalled = useRef(false);
   const [socket, setSocket] = useState("");
@@ -48,9 +49,10 @@ const App = () => {
   const user = useSelector(selecUser);
 
   useEffect(() => {
+    setCurrentBalance({});
     // console.log("first",user)
-    if ( getItem) {
-      const socket = io("https://metalink-technomads.herokuapp.com");
+    if (getItem) {
+      const socket = io("http://localhost:3000");
       socket.on("connect", () => {
         setSocket(socket);
         // console.log( getItem._id)
@@ -91,7 +93,14 @@ const App = () => {
         <Route path="/signinpno" element={<SigninPno />} />
         <Route path="/resetpassword" element={<Resetpassword />} />
         <Route path="/otpverification" element={<Otpverification />} />
-        <Route path="/otpverification1" element={<Otpverification1 />} />
+        <Route
+          path="/otpverificationForForgotPassword"
+          element={<Otpverification1 />}
+        />
+        <Route
+          path="/OtpVerificationForUpdatemobile"
+          element={<OtpVerificationFormobile />}
+        />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/fpwdemail" element={<FpwdEmail />} />
       </Routes>

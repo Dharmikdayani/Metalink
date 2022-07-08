@@ -24,7 +24,7 @@ function OtpVerificationFormobile({
   setmobile,
   setOldMobile,
 }) {
-  console.log("setmobile", mobile, "setOldMobile", oldMobile);
+  // console.log("setmobile",countryCode , "setOldMobile", phone);
   const [OTP, setOTP] = useState("");
   const dispatch = useDispatch();
   const { encryptData, decryptData } = useEncryption();
@@ -96,6 +96,27 @@ function OtpVerificationFormobile({
   });
   const user = useSelector(selecUser);
 
+  /*=======ERROR MESSAGE =========*/
+  let errorsObj = {
+    otp1: "",
+  };
+  const [errors, setErrors] = useState(errorsObj);
+  const onSignInSubmit = (e) => {
+    e.preventDefault();
+
+    let error = false;
+
+    errorsObj = { ...errorsObj };
+
+    if (OTP.length < 6) {
+      errorsObj.otp1 = "*OTP is required!";
+      error = true;
+    }
+
+    setErrors(errorsObj);
+    if (error) return;
+    otpverification();
+  };
   /*=================otpverification API============= */
 
   const otpverification = () => {
@@ -112,9 +133,8 @@ function OtpVerificationFormobile({
               username: ProfileData.username !== username ? username : null,
               password: password,
               email: ProfileData.email !== email ? email : null,
-              countryCode:
-                ProfileData.countryCode !== countryCode ? countryCode : null,
-              phoneNumber: ProfileData.phoneNumber !== phone ? phone : null,
+              countryCode: countryCode,
+              phoneNumber: phone,
             })
           );
           const result = await baseUrl.put("/updateProfile", {
@@ -230,8 +250,8 @@ function OtpVerificationFormobile({
                     Enter the OTP you received at
                   </p>
                   <p className="otp-no mb-0">{oldMobile}</p>
-                  <div className="otp-group">
-                    <form>
+                  <form onSubmit={(e) => onSignInSubmit(e)}>
+                    <div className="otp-group">
                       <OTPInput
                         value={OTP}
                         onChange={setOTP}
@@ -240,13 +260,16 @@ function OtpVerificationFormobile({
                         otpType="number"
                         disabled={false}
                       />
-                    </form>
-                  </div>
-                  <div id="sign-in-button" />
+                      {errors.otp1 && (
+                        <div className="errorMsg">{errors.otp1}</div>
+                      )}
+                      <div id="sign-in-button" />
+                      <button className="otp-verify-btn" type="submit">
+                        Verify
+                      </button>
+                    </div>
+                  </form>
 
-                  <button className="otp-verify-btn" onClick={otpverification}>
-                    Verify
-                  </button>
                   {!timerCount == 0 ? (
                     <p className="resend-otp">
                       Resend OTP in

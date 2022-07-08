@@ -27,8 +27,6 @@ function OtpVerification({
   const intervalGap = 1000;
   const [timerCount, setTimerCount] = useState(defaultCount);
 
-
-
   /*===== RESEND OTP TIMER======== */
   const startTimerWrapper = useCallback((func) => {
     let timeInterval: NodeJS.Timer;
@@ -70,6 +68,8 @@ function OtpVerification({
         size: "invisible",
         callback: (response) => {
           console.log(response);
+          setTimerCount(defaultCount);
+
           // reCAPTCHA solved, allow signInWithPhoneNumber.
         },
       },
@@ -91,6 +91,27 @@ function OtpVerification({
     },
   });
 
+  /*=======ERROR MESSAGE =========*/
+  let errorsObj = {
+    otp1: "",
+  };
+  const [errors, setErrors] = useState(errorsObj);
+  const onSignInSubmit = (e) => {
+    e.preventDefault();
+
+    let error = false;
+
+    errorsObj = { ...errorsObj };
+
+    if (OTP.length < 6 ) {
+      errorsObj.otp1 = "*OTP is required!";
+      error = true;
+    }
+
+    setErrors(errorsObj);
+    if (error) return;
+    OnsubmitOtp();
+  };
   /*=================otpverification API============= */
 
   const OnsubmitOtp = async () => {
@@ -193,6 +214,7 @@ function OtpVerification({
           title: "New OTP is sent",
         });
         setTimerCount(defaultCount);
+        timer();
       })
 
       .catch((error) => {
@@ -232,8 +254,8 @@ function OtpVerification({
                   <p className="otp-no mb-0">
                     {user?.countryCode + user?.phoneNumber}
                   </p>
-                  <div className="otp-group">
-                    <form>
+                  <form onSubmit={(e) => onSignInSubmit(e)}>
+                    <div className="otp-group">
                       <OTPInput
                         value={OTP}
                         onChange={setOTP}
@@ -242,13 +264,15 @@ function OtpVerification({
                         otpType="number"
                         disabled={false}
                       />
-                    </form>
-                  </div>
-                  <div id="sign-in-button" />
-
-                  <button className="otp-verify-btn" onClick={OnsubmitOtp}>
-                    Verify
-                  </button>
+                      {errors.otp1 && (
+                        <div className="errorMsg">{errors.otp1}</div>
+                      )}
+                      <div id="sign-in-button" />
+                      <button className="otp-verify-btn" type="submit">
+                        Verify
+                      </button>
+                    </div>
+                  </form>
 
                   {!timerCount == 0 ? (
                     <p className="resend-otp">

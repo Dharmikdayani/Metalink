@@ -11,6 +11,7 @@ function OtpVerification1({ phone, countryCode }) {
   const defaultCount = 60;
   const intervalGap = 1000;
   const [timerCount, setTimerCount] = useState(defaultCount);
+  const navigate = useNavigate();
 
   /*===== RESEND OTP TIMER======== */
   const startTimerWrapper = useCallback((func) => {
@@ -71,8 +72,29 @@ function OtpVerification1({ phone, countryCode }) {
       auth
     );
   };
+
+    /*=======ERROR MESSAGE =========*/
+    let errorsObj = {
+      otp1: "",
+    };
+    const [errors, setErrors] = useState(errorsObj);
+    const onSignInSubmit = (e) => {
+      e.preventDefault();
+  
+      let error = false;
+  
+      errorsObj = { ...errorsObj };
+  
+      if (OTP.length < 6 ) {
+        errorsObj.otp1 = "*OTP is required!";
+        error = true;
+      }
+  
+      setErrors(errorsObj);
+      if (error) return;
+      verifyForgotPasswordOtp()
+    };
   /*=================verifyForgotPasswordOtp API============= */
-  const navigate = useNavigate();
 
   const verifyForgotPasswordOtp = () => {
     const code = OTP;
@@ -155,8 +177,8 @@ function OtpVerification1({ phone, countryCode }) {
                     Enter the OTP you received at
                   </p>
                   <p className="otp-no mb-0">{countryCode + phone}</p>
-                  <div className="otp-group">
-                    <form>
+                  <form onSubmit={(e) => onSignInSubmit(e)}>
+                    <div className="otp-group">
                       <OTPInput
                         value={OTP}
                         onChange={setOTP}
@@ -165,16 +187,15 @@ function OtpVerification1({ phone, countryCode }) {
                         otpType="number"
                         disabled={false}
                       />
-                    </form>
-                  </div>
-                  <div id="sign-in-button" />
-
-                  <button
-                    className="otp-verify-btn"
-                    onClick={verifyForgotPasswordOtp}
-                  >
-                    Verify
-                  </button>
+                      {errors.otp1 && (
+                        <div className="errorMsg">{errors.otp1}</div>
+                      )}
+                      <div id="sign-in-button" />
+                      <button className="otp-verify-btn" type="submit">
+                        Verify
+                      </button>
+                    </div>
+                  </form>
                   {!timerCount == 0 ? (
                     <p className="resend-otp">
                       Resend OTP IN

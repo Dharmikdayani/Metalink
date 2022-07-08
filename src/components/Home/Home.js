@@ -88,16 +88,17 @@ function Home() {
 
               <div className="started-tree">
                 <div className="row mx-0 justify-content-between first-layer">
-                  <div className="col-xl-3 col-2 d-flex justify-content-center align-items-lg-baseline track-box ">
+                  <div className="col-xl-3 col-2 track-box ">
                     <img
                       src="../../img/index-page/track-one.png"
                       alt=""
                       className="img-fluid"
                     />
+
                     <p className="track-content">Start Mining</p>
                   </div>
                   <div className="col-xl-6 col-8"></div>
-                  <div className="col-xl-3 col-2 d-flex justify-content-center align-items-lg-baseline track-box">
+                  <div className="col-xl-3 col-2 track-box">
                     <img
                       src="../../img/index-page/track-one.png"
                       alt=""
@@ -108,7 +109,7 @@ function Home() {
                 </div>
 
                 <div className="row mx-0 justify-content-between secound-layer">
-                  <div className="col-xl-3 col-2 track-box d-flex justify-content-center align-items-lg-baseline mining-higher-rate">
+                  <div className="col-xl-3 col-2 track-box  mining-higher-rate">
                     <img
                       src="../../img/index-page/track-one.png"
                       alt=""
@@ -117,7 +118,7 @@ function Home() {
                     <p className="track-content">Earn Metalink</p>
                   </div>
                   <div className="col-xl-6 col-8"></div>
-                  <div className="col-xl-3 col-2 justify-content-center track-box d-flex align-items-lg-baseline mining-higher-rate">
+                  <div className="col-xl-3 col-2  track-box  mining-higher-rate">
                     <img
                       src="../../img/index-page/track-one.png"
                       alt=""
@@ -128,7 +129,7 @@ function Home() {
                 </div>
 
                 <div className="row mx-0  justify-content-between thierd-layer">
-                  <div className="col-xl-3 col-2 justify-content-center track-box d-flex align-items-lg-baseline">
+                  <div className="col-xl-3 col-2  track-box ">
                     <img
                       src="../../img/index-page/track-one.png"
                       alt=""
@@ -137,13 +138,13 @@ function Home() {
                     <p className="track-content">Team Building</p>
                   </div>
                   <div className="col-xl-6 col-8"></div>
-                  <div className="col-xl-3 col-2 justify-content-center track-box d-flex align-items-lg-baseline">
+                  <div className="col-xl-3 col-2  track-box ">
                     <img
                       src="../../img/index-page/track-one.png"
                       alt=""
                       className="img-fluid"
                     />
-                    <a className="track-content">Withdraw</a>
+                    <p className="track-content">Withdraw</p>
                   </div>
                 </div>
               </div>

@@ -65,9 +65,6 @@
     } */
 .timer {}
 
-.otp-group input {
-  margin: 0 35px 0 0;
-}
 
 .otp-group input {
   margin: auto;
@@ -94,6 +91,7 @@
   padding: 14px 47px 14px 46px;
   border: 0;
   outline: 0;
+  margin-top: 15%;
 }
 
 .resend-otp,
@@ -101,17 +99,27 @@
   font-size: 13.5px;
   font-weight: 400;
   line-height: 12px;
-
   color: rgba(0, 128, 243, 1);
   text-decoration: none;
-  display: inline-block;
+  display: block;
   width: 100%;
-  margin-top: 15px;
+  margin-top: -15%;
+}
+
+.otp-group .errorMsg {
+  color: #dc3545;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 18px;
+  display: flex;
+  justify-content: center;
+  /* margin-left: 41%; */
+  margin-top: 5%;
 }
 
 @media screen and (max-width: 15336px) {
   .otp-bg {
-    padding: 60px 119px 60px 119px;
+    padding: 60px 119px 100px 119px;
     margin: 50px 0px 50px 0px;
   }
 
@@ -161,17 +169,8 @@
 
 @media screen and (max-width: 1024px) {
   .otp-group input {
-    margin: auto;
-    width: 60px !important;
-    height: 72px !important;
-    background: #ddefff;
-    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.5),
-      inset 2px 2px 3px rgba(0, 16, 57, 0.2);
-    border-radius: 14px;
-    border: 0;
-    outline: 0;
-    text-align: center !important;
-    font-size: 20px;
-    font-style: normal;
+
+    width: 53px !important;
+
   }
 }

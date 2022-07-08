@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import ManinHeader from "../Layout/ManinHeader";
 import Footer from "../Layout/Footer";
-import $, { data } from "jquery";
+import $ from "jquery";
 import "../../css/profile.css";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selecUser, updateProfile } from "../feature/user";
 import instance from "../baseUrl/baseUrl";
 import { useNavigate } from "react-router-dom";
-
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import OtpVerificationFormobile from "../OtpVerification/OtpVerificationFormobile";
@@ -25,22 +24,22 @@ const Profile = () => {
   const [countryCode, setcountryCode] = useState("");
   const [password, setPassword] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const effectCalled = useRef(false);
-  const user = useSelector(selecUser);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [mobile, setmobile] = useState();
   const [showOtpBox, setShowOtpBox] = useState(false);
   const [oldMobile, setOldMobile] = useState();
-  const { encryptData, decryptData } = useEncryption();
   const [ProfileData, SetProfileData] = useState("");
+  const [showPass, setShowPass] = useState(false);
+  const [showimg, setshowImg] = useState(false);
+  const getItem = JSON.parse(localStorage.getItem("user"));
+  const effectCalled = useRef(false);
+  const { encryptData, decryptData } = useEncryption();
+  const user = useSelector(selecUser);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   function closeOtpBox() {
     setShowOtpBox(false);
   }
-  // const a = phoneNumber.slice(countryCode.length - 1);
-  // console.log("ProfileData",ProfileData._id)
 
-  const name = ProfileData._id;
   /*============= Toast Fire Notifaction==========*/
 
   const Toast = Swal.mixin({
@@ -56,13 +55,20 @@ const Profile = () => {
   });
 
   /*================editing btn========== */
-  const profiles = () => {
-    var selector = ".editing-btn";
-    $(selector).on("click", function () {
-      $(selector).removeClass("active");
-      $(this).addClass("active");
-    });
-  };
+
+  var selector = ".editing-btn";
+  $(selector).on("click", function () {
+    $(selector).removeClass("active");
+    $(this).addClass("active");
+  });
+
+  // const editprofile = () => {
+  //   var selector = ".editing-btn";
+  //   document.getElementsByClassName(selector).value ="";
+  //   document.querySelector(selector).classList.remove("active");
+  //   document.querySelector(selector).classList.add("active");
+
+  // };
 
   /*=============== useEffect for getUserProfile calling======= */
   useEffect(() => {
@@ -102,8 +108,8 @@ const Profile = () => {
         setcountryCode(results.data.countryCode);
         setPhoneNumber(results.data.phoneNumber);
         setinviteCode(results.data.inviteCode);
-        setmobile(results?.data?.countryCode + results?.data?.phoneNumber);
-        setOldMobile(results?.data?.countryCode + results?.data?.phoneNumber);
+        setmobile(results.data.countryCode + results.data.phoneNumber);
+        setOldMobile(results.data.countryCode + results.data.phoneNumber);
         localStorage.setItem(
           "user",
           JSON.stringify({
@@ -165,6 +171,7 @@ const Profile = () => {
   const [errors, setErrors] = useState(errorsObj);
 
   const onSignInSubmit = (e) => {
+    setshowImg(false);
     e.preventDefault();
 
     let error = false;
@@ -178,6 +185,9 @@ const Profile = () => {
 
     if (phoneNumber === "") {
       errorsObj.phoneNumber = "*PhoneNumber is required!";
+      error = true;
+    }else if (phoneNumber.length < 5-10) {
+      errorsObj.phoneNumber = "*PhoneNumber is invalid!";
       error = true;
     }
 
@@ -200,6 +210,9 @@ const Profile = () => {
   };
   /*=================updateProfile API============= */
   const savadata = async () => {
+    var selector = ".editing-btn";
+    $(selector).removeClass("active");
+
     if (oldMobile === mobile) {
       try {
         setShowOtpBox(false);
@@ -296,6 +309,11 @@ const Profile = () => {
     }
   };
 
+  /*=======SHOW PASSWORD====== */
+  const onShowPassword = () => {
+    setShowPass(!showPass);
+  };
+
   return (
     <div>
       {showOtpBox ? (
@@ -324,7 +342,7 @@ const Profile = () => {
                 <div className="row justify-content-center">
                   <div className="col-xl-8 col-12">
                     <h3 className="common-heading text-center mb-0">Profile</h3>
-                    <form className="currentuser-profile">
+                    <form className="currentuser-profile" autoComplete="off">
                       <div className="row profile-wrap align-items-baseline">
                         <div className="col-md-6 profile-padding">
                           <div className="profile-box">
@@ -337,13 +355,16 @@ const Profile = () => {
                             </label>
                             <div
                               className="profile-name position-relative userNames"
-                              onClick={profiles}
+                              onClick={() => selector}
                             >
                               <span className="name-info1 w-100 d-inline-block">
                                 {ProfileData.username}
                               </span>
 
-                              <div className="editing-btn">
+                              <div
+                                className="editing-btn"
+                                onClick={() => setshowImg(false)}
+                              >
                                 <img src="../../img/profile/editing.png" />
                                 <input
                                   type="text"
@@ -380,10 +401,17 @@ const Profile = () => {
                               <div id="copyClipboard">
                                 <img
                                   src="../../img/profile/copy-icon.png"
+                                  onClick={() => {
+                                    navigator.clipboard.writeText(
+                                      getItem.refCode
+                                    );
+                                    Toast.fire({
+                                      icon: "success",
+                                      title: "copied successfully",
+                                    });
+                                  }}
                                   className="copy-invite-code"
-                                  aria-hidden="true"
-                                  data-copytarget="#link"
-                                  // onClick={copyToClipboard}
+                                  alt="copyIcon"
                                 />
                               </div>
                             </div>
@@ -424,7 +452,7 @@ const Profile = () => {
                         </div>
                         <div
                           className="col-md-6 profile-padding"
-                          onClick={() => profiles()}
+                          onClick={() => selector}
                         >
                           <div className="profile-tabs d-flex align-items-start justify-content-between">
                             <h6 className="account-title mt-0">Profile</h6>
@@ -439,11 +467,17 @@ const Profile = () => {
                             </a>
                           </div>
                           <div className="form-group multi-field-wrapper position-relative">
+                            <label className="label-title1 position-absolute">
+                              Email id
+                            </label>
                             <div className="profile-name position-relative">
                               <span className="name-info w-100 d-inline-block">
                                 {ProfileData.email}
                               </span>
-                              <div className="editing-btn">
+                              <div
+                                className="editing-btn"
+                                onClick={() => setshowImg(false)}
+                              >
                                 <img src="../../img/profile/editing.png" />
                                 <input
                                   type="email"
@@ -462,14 +496,20 @@ const Profile = () => {
                             )}
                           </div>
                           <div className="form-group multi-field-wrapper position-relative">
+                            <label className="label-title1 position-absolute">
+                              Password
+                            </label>
                             <div className="profile-name position-relative">
                               <span className="name-info w-100 d-inline-block">
                                 ********
                               </span>
-                              <div className="editing-btn">
+                              <div
+                                className="editing-btn"
+                                onClick={() => setshowImg(true)}
+                              >
                                 <img src="../../img/profile/editing.png" />
                                 <input
-                                  type="password"
+                                  type={`${showPass ? "text" : "password"}`}
                                   name="pwd"
                                   placeholder="Password"
                                   minLength="8"
@@ -479,19 +519,41 @@ const Profile = () => {
                                 />
                               </div>
                             </div>
+                            {showimg ? (
+                              <img
+                                role="button"
+                                onClick={onShowPassword}
+                                src={`${
+                                  showPass
+                                    ? "../../img/profile/openeye.png"
+                                    : "../../img/profile/hiddenEye.png"
+                                }`}
+                                className="show-eye"
+                              />
+                            ) : (
+                              <div className="d-none"></div>
+                            )}
+
                             {errors.password && (
                               <div className="errorMsg-profile-email">
                                 {errors.password}
                               </div>
                             )}
                           </div>
+
                           <div className="form-group multi-field-wrapper position-relative">
+                            <label className="label-title1 position-absolute">
+                              Phone Number
+                            </label>
                             <div className="profile-name position-relative">
                               <span className="name-info w-100 d-inline-block">
-                                {/* {countryCode} {phoneNumber} */}
-                                {mobile}
+                                {countryCode} {phoneNumber}
+                                {/* {mobile} */}
                               </span>
-                              <div className="editing-btn">
+                              <div
+                                className="editing-btn"
+                                onClick={() => setshowImg(false)}
+                              >
                                 <img src="../../img/profile/editing.png" />
 
                                 <div className=" phone ">
@@ -530,6 +592,20 @@ const Profile = () => {
                                       required: true,
                                       autoFocus: true,
                                     }}
+                                    isValid={(value, country) => {
+                                      if (value.match(/12345/)) {
+                                        return (
+                                          "Invalid value: " +
+                                          value +
+                                          ", " +
+                                          country.name
+                                        );
+                                      } else if (value.match(/1234/)) {
+                                        return false;
+                                      } else {
+                                        return true;
+                                      }
+                                    }}
                                   />
                                 </div>
                               </div>
@@ -557,7 +633,7 @@ const Profile = () => {
                 <div className="modal-headertop d-flex justify-content-between align-items-center">
                   <h3 className="dialog-title mb-0">Share this pen</h3>
                   <button
-                    onClick={() => setIsOpen((data = false))}
+                    onClick={() => setIsOpen(false)}
                     className="close-button border-0 bg-transparent"
                   >
                     <a href="#close">

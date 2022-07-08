@@ -234,8 +234,11 @@
   box-shadow: -3px -3px 5px rgba(255, 255, 255, 0.7),
     3px 3px 4px rgba(0, 16, 57, 0.2);
   border-radius: 16px;
-  padding: 0px;
+  /* padding: 0px; */
   height: 93px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .track-box img {
@@ -259,7 +262,7 @@
   line-height: 30px;
   color: #00092e;
   text-decoration: none;
-  padding: 36px 35px 27px 0px;
+  display: contents;
 }
 
 .get-started-bg {
@@ -386,6 +389,7 @@
     width: 100%;
     margin-top: -14px;
     line-height: 20px;
+
   }
 
   .track-box img {
@@ -524,8 +528,8 @@
 .download-app .sub-heading {
   font-size: 48px;
   font-weight: 700;
-  line-height: 48px;
-  padding-top: 303px;
+  line-height: 62px;
+  /* padding-top: 303px; */
   color: #ffffff;
 }
 

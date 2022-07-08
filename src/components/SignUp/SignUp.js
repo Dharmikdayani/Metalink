@@ -251,7 +251,7 @@ function SignUp() {
                           className="form-control user-name"
                         />
                         {errors.username && (
-                          <div className="errorMsg ">{errors.username}</div>
+                          <div className="errorMsg">{errors.username}</div>
                         )}
                         <input
                           type="text"
