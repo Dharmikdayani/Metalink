@@ -64,14 +64,6 @@ const Profile = () => {
     $(this).addClass("active");
   });
 
-  // const editprofile = () => {
-  //   var selector = ".editing-btn";
-  //   document.getElementsByClassName(selector).value ="";
-  //   document.querySelector(selector).classList.remove("active");
-  //   document.querySelector(selector).classList.add("active");
-
-  // };
-
   /*=============== useEffect for getUserProfile calling======= */
   useEffect(() => {
     if (!effectCalled.current) {
@@ -79,6 +71,25 @@ const Profile = () => {
       effectCalled.current = true;
     }
   }, [user]);
+
+  // /*========outside click event Invite =========== */
+
+  // const Invite = useRef();
+  // useEffect(() => {
+  //   const checkIfClickedOutside = (e) => {
+  //     // If the menu is open and the clicked target is not within the menu,
+  //     // then close the menu
+
+  //     if (Invite.current && !Invite.current.contains(e.target)) {
+  //       selector(false);
+  //     }
+  //   };
+  //   document.addEventListener("mousedown", checkIfClickedOutside);
+  //   return () => {
+  //     // Cleanup the event listener
+  //     document.removeEventListener("mousedown", checkIfClickedOutside);
+  //   };
+  // }, [selector]);
 
   /*=============LOGOUT FUNCTION===========*/
   const handleogout = (e) => {
@@ -375,7 +386,11 @@ const Profile = () => {
                               </span>
 
                               <div className="editing-btn">
-                                <img src="../../img/profile/editing.png" />
+                                <img
+                                  src="../../img/profile/editing.png"
+                                  onClick={() => setshowImg(false)}
+                                  // ref={Invite}
+                                />
                                 <input
                                   type="text"
                                   name="John Wick"
@@ -485,7 +500,10 @@ const Profile = () => {
                                 {ProfileData.email}
                               </span>
                               <div className="editing-btn">
-                                <img src="../../img/profile/editing.png" />
+                                <img
+                                  src="../../img/profile/editing.png"
+                                  onClick={() => setshowImg(false)}
+                                />
                                 <input
                                   type="email"
                                   name="John Wick"
@@ -589,7 +607,10 @@ const Profile = () => {
                                 {/* {mobile} */}
                               </span>
                               <div className="editing-btn">
-                                <img src="../../img/profile/editing.png" />
+                                <img
+                                  src="../../img/profile/editing.png"
+                                  onClick={() => setshowImg(false)}
+                                />
 
                                 <div className=" phone ">
                                   <PhoneInput

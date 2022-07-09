@@ -129,7 +129,7 @@ const Invited = ({ setIsOpen }) => {
             </div>
           </div>
 
-          {member.length && setMemeber([]) > 0 ? (
+          {member.length  ? (
             <Carousel>
               {member.map((data, index) => {
                 return (
