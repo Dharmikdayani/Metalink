@@ -23,6 +23,7 @@ const Profile = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [countryCode, setcountryCode] = useState("");
   const [password, setPassword] = useState("");
+  const [cpwd, setCpwd] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [mobile, setmobile] = useState();
   const [showOtpBox, setShowOtpBox] = useState(false);
@@ -30,6 +31,7 @@ const Profile = () => {
   const [ProfileData, SetProfileData] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [showimg, setshowImg] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
   const getItem = JSON.parse(localStorage.getItem("user"));
   const effectCalled = useRef(false);
   const { encryptData, decryptData } = useEncryption();
@@ -186,7 +188,7 @@ const Profile = () => {
     if (phoneNumber === "") {
       errorsObj.phoneNumber = "*PhoneNumber is required!";
       error = true;
-    }else if (phoneNumber.length < 5-10) {
+    } else if (phoneNumber.length < 5 - 10) {
       errorsObj.phoneNumber = "*PhoneNumber is invalid!";
       error = true;
     }
@@ -202,17 +204,21 @@ const Profile = () => {
     if (password && password.length < 8) {
       errorsObj.password = "Password must be 8 or more characters";
       error = true;
+      setshowImg(true);
     }
 
+    if (password !== cpwd) {
+      errorsObj.cpwd = "*Confirm password is not matched!";
+      error = true;
+      setshowImg(true);
+    }
+    // setshowImg(true);
     setErrors(errorsObj);
     if (error) return;
     savadata();
   };
   /*=================updateProfile API============= */
   const savadata = async () => {
-    var selector = ".editing-btn";
-    $(selector).removeClass("active");
-
     if (oldMobile === mobile) {
       try {
         setShowOtpBox(false);
@@ -238,6 +244,8 @@ const Profile = () => {
             icon: "success",
             title: results.message,
           });
+          var selector = ".editing-btn";
+          $(selector).removeClass("active");
           SetProfileData(results.data);
           localStorage.setItem(
             "user",
@@ -314,6 +322,11 @@ const Profile = () => {
     setShowPass(!showPass);
   };
 
+  // /*=======SHOW Confirm PASSWORD====== */
+  // const onshowConfirmPass = () => {
+  //   setShowConfirmPass(!showConfirmPass);
+  // };
+
   return (
     <div>
       {showOtpBox ? (
@@ -361,10 +374,7 @@ const Profile = () => {
                                 {ProfileData.username}
                               </span>
 
-                              <div
-                                className="editing-btn"
-                                onClick={() => setshowImg(false)}
-                              >
+                              <div className="editing-btn">
                                 <img src="../../img/profile/editing.png" />
                                 <input
                                   type="text"
@@ -474,10 +484,7 @@ const Profile = () => {
                               <span className="name-info w-100 d-inline-block">
                                 {ProfileData.email}
                               </span>
-                              <div
-                                className="editing-btn"
-                                onClick={() => setshowImg(false)}
-                              >
+                              <div className="editing-btn">
                                 <img src="../../img/profile/editing.png" />
                                 <input
                                   type="email"
@@ -540,6 +547,37 @@ const Profile = () => {
                               </div>
                             )}
                           </div>
+                          {showimg ? (
+                            <div className="position-relative">
+                              <label className="label-title1 position-absolute">
+                                Confirm Password
+                              </label>
+                              <input
+                                type="text"
+                                name="cpwd"
+                                placeholder="Confirm Password"
+                                minLength="8"
+                                className="profile-input mb-4"
+                                value={cpwd}
+                                onChange={(e) => setCpwd(e.target.value)}
+                              />
+                              {/* <img
+                                role="button"
+                                onClick={onshowConfirmPass}
+                                src={`${
+                                  showConfirmPass
+                                    ? "../../img/profile/openeye.png"
+                                    : "../../img/profile/hiddenEye.png"
+                                }`}
+                                className="show-eye top-36"
+                              /> */}
+                              {errors.cpwd && (
+                                <div className="errorMsg-profile   ">
+                                  {errors.cpwd}
+                                </div>
+                              )}
+                            </div>
+                          ) : null}
 
                           <div className="form-group multi-field-wrapper position-relative">
                             <label className="label-title1 position-absolute">
@@ -550,10 +588,7 @@ const Profile = () => {
                                 {countryCode} {phoneNumber}
                                 {/* {mobile} */}
                               </span>
-                              <div
-                                className="editing-btn"
-                                onClick={() => setshowImg(false)}
-                              >
+                              <div className="editing-btn">
                                 <img src="../../img/profile/editing.png" />
 
                                 <div className=" phone ">
@@ -618,13 +653,13 @@ const Profile = () => {
                           </div>
                         </div>
                       </div>
-                      <button
-                        className="signout-btn"
-                        onClick={(e) => handleogout(e)}
-                      >
-                        Sign out
-                      </button>
                     </form>
+                    <button
+                      className="signout-btn"
+                      onClick={(e) => handleogout(e)}
+                    >
+                      Sign out
+                    </button>
                   </div>
                 </div>
               </div>

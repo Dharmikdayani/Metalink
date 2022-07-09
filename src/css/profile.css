@@ -11,7 +11,7 @@ Profile
 .currentuser-profile {
   background: #d9edfd;
   border-radius: 45px;
-  padding: 50px 60px 40px 60px;
+  padding: 50px 60px 120px 60px;
   box-shadow: 3px 3px 6px rgba(0, 16, 57, 0.2),
     -3px -3px 6px rgba(255, 255, 255, 0.5);
 }
@@ -315,7 +315,7 @@ Profile
   background: #d9edfd;
   padding: 15px 25px;
   border-radius: 23px;
-  margin: 45px auto 0;
+  margin: -79px auto 0;
 
   box-shadow: 3px 3px 4px rgba(0, 16, 57, 0.2),
     -3px -3px 5px rgba(255, 255, 255, 0.5);
