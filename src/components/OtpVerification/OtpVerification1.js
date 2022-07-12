@@ -141,6 +141,7 @@ function OtpVerification1({ phone, countryCode }) {
           title: "New OTP is sent",
         });
         setTimerCount(defaultCount);
+        timer();
       })
       .catch((error) => {
         // Error; SMS not sent

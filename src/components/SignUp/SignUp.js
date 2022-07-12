@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Swal from "sweetalert2";
@@ -23,7 +23,9 @@ function SignUp() {
   const { encryptData, decryptData } = useEncryption();
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
-
+  const [IsValid, setIsValid] = useState(false);
+  const [phone, setphone] = useState("");
+  const [selCountryExpectedLength, setSelCountryExpectedLength] = useState(0);
   /*============= Toast Fire Notifaction==========*/
 
   const Toast = Swal.mixin({
@@ -79,6 +81,9 @@ function SignUp() {
 
     if (phoneNumber === "") {
       errorsObj.phoneNumber = "*PhoneNumber is required!";
+      error = true;
+    } else if (!IsValid) {
+      errorsObj.phoneNumber = "*PhoneNumber is wrong!";
       error = true;
     }
 
@@ -248,7 +253,11 @@ function SignUp() {
                           value={username}
                           onChange={(e) => setUsername(e.target.value)}
                           placeholder="User Name"
-                          className="form-control user-name"
+                          className={`${
+                            errors.username
+                              ? " form-control-error user-name"
+                              : "form-control user-name"
+                          }`}
                         />
                         {errors.username && (
                           <div className="errorMsg">{errors.username}</div>
@@ -259,20 +268,27 @@ function SignUp() {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="Email Address "
-                          className="form-control email-id"
+                          className={
+                            errors.email
+                              ? "form-control-error email-id mt-4"
+                              : "form-control email-id mt-4"
+                          }
                         />
                         {errors.email && (
                           <div className="errorMsg">{errors.email}</div>
                         )}
                         <div className="position-relative mt-4">
                           <PhoneInput
-                            className="daa"
                             name="phoneNumber"
                             type="phone"
                             placeholder=" Phone Number "
                             specialLabel={""}
                             country={"in"}
+                            countryCodeEditable={false}
+                            enableClickOutside
+                            jumpCursorToEnd={false}
                             value={phoneNumber}
+                            enableSearch
                             onChange={(
                               inputPhone,
                               countryData,
@@ -280,21 +296,44 @@ function SignUp() {
                               data,
                               dialcode,
                               inputNumber,
-                              e
+                              e,
+                              formattedValue
                             ) => {
+                              console.log("phone", phone.length);
+                              console.log("IsValid", IsValid);
                               setcountryCode(`+${countryData.dialCode}`);
                               setPhoneNumber(inputPhone);
+                              setphone(data);
+                              setSelCountryExpectedLength(
+                                countryData.format.length
+                              );
+                              console.log(
+                                "selCountryExpectedLength",
+                                selCountryExpectedLength
+                              );
                             }}
                             inputStyle={{
                               background: "#E2F1FE",
                               padding: "25px 1px 20px 50px",
                               marginTop: "10px",
-                              // margin: "0px 0px 17px 93px",
+                              border: errors.phoneNumber
+                                ? "red 1px solid"
+                                : "none",
                             }}
                             inputProps={{
                               required: true,
                               autoFocus: true,
                             }}
+                            onBlur={() => {
+                              phone.length !== selCountryExpectedLength
+                                ? setIsValid(false)
+                                : setIsValid(true);
+                            }}
+                            isValid={() =>
+                              !IsValid
+                                ? phone.length == selCountryExpectedLength
+                                : IsValid
+                            }
                           />
                           {errors.phoneNumber && (
                             <div className="errorMsg">{errors.phoneNumber}</div>
@@ -308,7 +347,11 @@ function SignUp() {
                             onChange={(e) => setPassword(e.target.value)}
                             onKeyPress={preventSpace}
                             placeholder="Password"
-                            className="form-control pwd"
+                            className={
+                              errors.password
+                                ? "form-control-error pwd "
+                                : "form-control pwd"
+                            }
                             // security="password"
                           />
                           <img
@@ -334,7 +377,11 @@ function SignUp() {
                             onChange={(e) => setCpwd(e.target.value)}
                             onKeyPress={preventSpace}
                             placeholder="Confirm Password"
-                            className="form-control conf-pwd"
+                            className={
+                              errors.cpwd
+                                ? "form-control-error conf-pwd "
+                                : "form-control conf-pwd"
+                            }
                           />
                           <img
                             role="button"
@@ -357,7 +404,11 @@ function SignUp() {
                           value={refCode}
                           onChange={(e) => setRefCode(e.target.value)}
                           placeholder="Invite Code"
-                          className="form-control invite-codes"
+                          className={
+                            errors.refCode
+                              ? "form-control-error invite-codes"
+                              : "form-control invite-codes"
+                          }
                         />
                         {errors.refCode && (
                           <div className="errorMsg ">{errors.refCode}</div>

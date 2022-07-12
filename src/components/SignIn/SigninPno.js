@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
+// import "react-phone-input-2/lib/style.css";
 import Swal from "sweetalert2";
 import instance from "../baseUrl/baseUrl";
 import { useDispatch } from "react-redux";
@@ -15,7 +15,9 @@ function SigninPno() {
   const { encryptData, decryptData } = useEncryption();
   const dispatch = useDispatch();
   const [showPass, setShowPass] = useState(false);
-
+  const [IsValid, setIsValid] = useState(false);
+  const [phone, setphone] = useState("");
+  const [selCountryExpectedLength, setSelCountryExpectedLength] = useState(0);
   /*============= Toast Fire Notifaction==========*/
 
   const Toast = Swal.mixin({
@@ -45,6 +47,9 @@ function SigninPno() {
 
     if (emailOrMobile === "") {
       errorsObj.emailOrMobile = "*PhoneNumber is required!";
+      error = true;
+    }else if (!IsValid) {
+      errorsObj.emailOrMobile = "*PhoneNumber is wrong!";
       error = true;
     }
 
@@ -150,8 +155,10 @@ function SigninPno() {
                       name="phoneNumber"
                       type="phone"
                       placeholder=" Phone Number "
-                      specialLabel={""}
+                      specialLabel={"+91"}
                       country={"in"}
+                      enableSearch
+                      countryCodeEditable={false}
                       value={emailOrMobile}
                       onChange={(
                         inputPhone,
@@ -164,16 +171,31 @@ function SigninPno() {
                       ) => {
                         setcountryCode(`+${countryData.dialCode}`);
                         setemailOrMobile(inputPhone);
+                        setphone(data);
+                        setSelCountryExpectedLength(
+                          countryData.format.length
+                        );
                       }}
                       inputStyle={{
                         background: "#E2F1FE",
                         padding: "25px 1px 20px 50px",
                         marginTop: "22px",
+                        border: errors.emailOrMobile ? "red 1px solid" : "none",
                       }}
                       inputProps={{
                         required: true,
                         autoFocus: true,
                       }}
+                      onBlur={() => {
+                        phone.length !== selCountryExpectedLength
+                          ? setIsValid(false)
+                          : setIsValid(true);
+                      }}
+                      isValid={() =>
+                        !IsValid
+                          ? phone.length == selCountryExpectedLength
+                          : IsValid
+                      }
                     />
                     {errors.emailOrMobile && (
                       <div className="errorMsg">{errors.emailOrMobile}</div>
@@ -185,7 +207,11 @@ function SigninPno() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
-                        className="form-control pwd"
+                        className={
+                          errors.password
+                            ? "form-control-error pwd "
+                            : "form-control pwd"
+                        }
                       />
                       <img
                         role="button"

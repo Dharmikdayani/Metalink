@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../css/forgotPassword.css";
 import Swal from "sweetalert2";
 import baseUrl from "../baseUrl/baseUrl";
 import OtpVerification1 from "../OtpVerification/OtpVerification1";
 import useEncryption from "../EncryptData/EncryptData";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { auth } from "../../Firebase-config";
 
 function FpwdEmail() {
   const [email, setemail] = useState("");
   const [showOtpBox, setShowOtpBox] = useState(false);
+  const [storedata, setstoredata] = useState("");
   const { encryptData, decryptData } = useEncryption();
 
   /*============= Toast Fire Notifaction==========*/
@@ -24,8 +27,22 @@ function FpwdEmail() {
       toast.addEventListener("mouseleave", Swal.resumeTimer);
     },
   });
+  const setUpRecaptcha = () => {
+    window.recaptchaVerifier = new RecaptchaVerifier(
+      "sign-in-button",
+      {
+        size: "invisible",
+        callback: (response) => {
+          console.log(response);
+          // reCAPTCHA solved, allow signInWithPhoneNumber.
+          // onSignUp();
+        },
+      },
+      auth
+    );
+  };
 
-  /*================ERROR MESSAGE============= */
+ /*================ERROR MESSAGE============= */
 
   let errorsObj = {
     email: "",
@@ -57,7 +74,6 @@ function FpwdEmail() {
   // const navigate = useNavigate();
 
   const forgotPassword = async () => {
-    console.log(email);
     try {
       const encrypt = encryptData(
         JSON.stringify({
@@ -69,12 +85,38 @@ function FpwdEmail() {
       });
       const results = decryptData(result.data.data);
       console.log("SignUp", results);
+
       if (results.success) {
         Toast.fire({
           icon: "success",
           title: results.message,
         });
-        setShowOtpBox(true);
+        setstoredata(results.data)
+        setUpRecaptcha();
+        const mobile = storedata.countryCode + storedata.phoneNumber;
+        const appVerifier = window.recaptchaVerifier;
+        console.log("otp sent on this number", mobile);
+        signInWithPhoneNumber(auth, mobile, appVerifier)
+          .then((confirmationResult) => {
+            // SMS sent. Prompt user to type the code from the message, then sign the
+            // user in with confirmationResult.confirm(code).
+            window.confirmationResult = confirmationResult;
+            console.log("otp sent");
+            setShowOtpBox(true);
+            Toast.fire({
+              icon: "success",
+              title: "OTP sent",
+            });
+          })
+          .catch((error) => {
+            // Error; SMS not sent
+            // ...
+            console.log("error",error);
+            Toast.fire({
+              icon: "error",
+              title: "SMS not sent Please try again.",
+            });
+          });
       } else {
         Toast.fire({
           icon: "error",
@@ -82,14 +124,17 @@ function FpwdEmail() {
         });
       }
     } catch (err) {
-      console.log("err" + err);
+      console.log("err123" + err);
     }
   };
-
+  // console.log("storedata",storedata) 
   return (
     <div>
       {showOtpBox ? (
-        <OtpVerification1 email={email} />
+        <OtpVerification1
+          countryCode={storedata.countryCode}
+          phone={storedata.phoneNumber}
+        />
       ) : (
         <div className="logIn forgot-password-bg forgot-password">
           <section className="login-form ">
@@ -118,7 +163,11 @@ function FpwdEmail() {
                           value={email}
                           onChange={(e) => setemail(e.target.value)}
                           placeholder="Email Address "
-                          className="form-control email-id"
+                          className={
+                            errors.email
+                              ? "form-control-error email-id mt-0"
+                              : "form-control email-id mt-0"
+                          }
                         />
                         {errors.email && (
                           <div className="errorMsg">{errors.email}</div>

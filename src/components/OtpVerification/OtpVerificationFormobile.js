@@ -214,6 +214,8 @@ function OtpVerificationFormobile({
           icon: "success",
           title: "OTP sent",
         });
+        setTimerCount(defaultCount);
+        timer();
       })
       .catch((error) => {
         // Error; SMS not sent

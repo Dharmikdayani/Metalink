@@ -158,6 +158,7 @@
   .mining-calculation .mining-per-hour {
     margin-top: 40px;
     font-size: 29px;
+    white-space: nowrap;
   }
 }
 
@@ -747,10 +748,6 @@ height: 318px; */
 
   }
 
-  /* .metaRate {
-    padding: 5px 3px 0px 7px;
-
-  } */
 
   .mining-calculation .mining-per-hour {
     font-size: 13px;
@@ -882,6 +879,11 @@ height: 318px; */
   .team-members,
   .borderradius-left {
     padding-left: 40px !important;
+  }
+
+  .metaRate {
+    padding: 5px 3px 0px 7px !important;
+
   }
 }
 

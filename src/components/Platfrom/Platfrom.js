@@ -48,7 +48,7 @@ const Platfrom = () => {
                     </p>
                   </div>
                 </div>
-                <div className="col-md-6 d-flex justify-content-end align-items-center">
+                <div className="col-md-6 d-flex justify-content-end align-items-center  align-items-md-baseline">
                   <img
                     src="../../img/platform/decentralized.png"
                     className="mb-md-0 mb-5"

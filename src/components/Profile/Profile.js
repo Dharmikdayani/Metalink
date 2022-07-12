@@ -31,7 +31,9 @@ const Profile = () => {
   const [ProfileData, SetProfileData] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [showimg, setshowImg] = useState(false);
-  const [showConfirmPass, setShowConfirmPass] = useState(false);
+  const [IsValid, setIsValid] = useState(false);
+  const [phone, setphone] = useState("");
+  const [selCountryExpectedLength, setSelCountryExpectedLength] = useState(0);
   const getItem = JSON.parse(localStorage.getItem("user"));
   const effectCalled = useRef(false);
   const { encryptData, decryptData } = useEncryption();
@@ -199,8 +201,8 @@ const Profile = () => {
     if (phoneNumber === "") {
       errorsObj.phoneNumber = "*PhoneNumber is required!";
       error = true;
-    } else if (phoneNumber.length < 5 - 10) {
-      errorsObj.phoneNumber = "*PhoneNumber is invalid!";
+    } else if (!IsValid) {
+      errorsObj.phoneNumber = "*PhoneNumber is wrong!";
       error = true;
     }
 
@@ -395,7 +397,12 @@ const Profile = () => {
                                   type="text"
                                   name="John Wick"
                                   placeholder="User Name"
-                                  className="profile-input"
+                                  // className="profile-input"
+                                  className={`${
+                                    errors.username
+                                      ? "profile-input-errorMsg"
+                                      : "profile-input"
+                                  }`}
                                   value={UserName ? UserName : ""}
                                   onChange={(e) => setUserName(e.target.value)}
                                 />
@@ -508,7 +515,12 @@ const Profile = () => {
                                   type="email"
                                   name="John Wick"
                                   placeholder="Email id"
-                                  className="profile-input"
+                                  // className="profile-input"
+                                  className={`${
+                                    errors.email
+                                      ? "profile-input-errorMsg"
+                                      : "profile-input"
+                                  }`}
                                   value={email ? email : ""}
                                   onChange={(e) => setEmail(e.target.value)}
                                 />
@@ -538,7 +550,12 @@ const Profile = () => {
                                   name="pwd"
                                   placeholder="Password"
                                   minLength="8"
-                                  className="profile-input"
+                                  // className="profile-input"
+                                  className={`${
+                                    errors.password
+                                      ? "profile-input-errorMsg"
+                                      : "profile-input"
+                                  }`}
                                   value={password}
                                   onChange={(e) => setPassword(e.target.value)}
                                 />
@@ -575,20 +592,15 @@ const Profile = () => {
                                 name="cpwd"
                                 placeholder="Confirm Password"
                                 minLength="8"
-                                className="profile-input mb-4"
+                                // className="profile-input mb-4"
+                                className={`${
+                                  errors.password
+                                    ? "profile-input-errorMsg mb-4"
+                                    : "profile-input mb-4"
+                                }`}
                                 value={cpwd}
                                 onChange={(e) => setCpwd(e.target.value)}
                               />
-                              {/* <img
-                                role="button"
-                                onClick={onshowConfirmPass}
-                                src={`${
-                                  showConfirmPass
-                                    ? "../../img/profile/openeye.png"
-                                    : "../../img/profile/hiddenEye.png"
-                                }`}
-                                className="show-eye top-36"
-                              /> */}
                               {errors.cpwd && (
                                 <div className="errorMsg-profile   ">
                                   {errors.cpwd}
@@ -618,9 +630,11 @@ const Profile = () => {
                                     name="phoneNumber "
                                     type="phone"
                                     placeholder=" Phone Number "
+                                    countryCodeEditable={false}
                                     specialLabel={""}
                                     country={"in"}
                                     value={mobile}
+                                    enableSearch
                                     onChange={(
                                       inputPhone,
                                       countryData,
@@ -636,32 +650,35 @@ const Profile = () => {
                                       setPhoneNumber(
                                         inputPhone.slice(countryCode.length - 1)
                                       );
-
                                       setmobile("+" + inputPhone);
+                                      setphone(data);
+                                      setSelCountryExpectedLength(
+                                        countryData.format.length
+                                      );
                                     }}
                                     inputStyle={{
                                       background: "#E2F1FE",
                                       padding: "25px 1px 20px 50px",
                                       marginTop: "22px",
+                                      border: errors.phoneNumber
+                                        ? "red 1px solid"
+                                        : "none",
                                     }}
                                     inputProps={{
                                       required: true,
                                       autoFocus: true,
                                     }}
-                                    isValid={(value, country) => {
-                                      if (value.match(/12345/)) {
-                                        return (
-                                          "Invalid value: " +
-                                          value +
-                                          ", " +
-                                          country.name
-                                        );
-                                      } else if (value.match(/1234/)) {
-                                        return false;
-                                      } else {
-                                        return true;
-                                      }
+                                    onBlur={() => {
+                                      phone.length !== selCountryExpectedLength
+                                        ? setIsValid(false)
+                                        : setIsValid(true);
                                     }}
+                                    isValid={() =>
+                                      !IsValid
+                                        ? phone.length ==
+                                          selCountryExpectedLength
+                                        : IsValid
+                                    }
                                   />
                                 </div>
                               </div>

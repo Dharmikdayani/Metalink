@@ -14,6 +14,9 @@ function Forgotpassword() {
   const [countryCode, setcountryCode] = useState("");
   const [showOtpBox, setShowOtpBox] = useState(false);
   const { encryptData, decryptData } = useEncryption();
+  const [IsValid, setIsValid] = useState(false);
+  const [phone, setphone] = useState("");
+  const [selCountryExpectedLength, setSelCountryExpectedLength] = useState(0);
 
   /*============= Toast Fire Notifaction==========*/
   const Toast = Swal.mixin({
@@ -55,6 +58,9 @@ function Forgotpassword() {
 
     if (emailOrMobile === "") {
       errorsObj.emailOrMobile = "*PhoneNumber is required!";
+      error = true;
+    } else if (!IsValid) {
+      errorsObj.emailOrMobile = "*PhoneNumber is wrong!";
       error = true;
     }
 
@@ -154,6 +160,8 @@ function Forgotpassword() {
                           specialLabel={""}
                           country={"in"}
                           value={emailOrMobile}
+                          countryCodeEditable={false}
+                          enableSearch
                           onChange={(
                             inputPhone,
                             countryData,
@@ -165,16 +173,33 @@ function Forgotpassword() {
                           ) => {
                             setcountryCode(`+${countryData.dialCode}`);
                             setemailOrMobile(inputPhone);
+                            setphone(data);
+                            setSelCountryExpectedLength(
+                              countryData.format.length
+                            );
                           }}
                           inputStyle={{
                             background: "#E2F1FE",
                             padding: "25px 1px 20px 50px",
                             marginTop: "22px",
+                            border: errors.emailOrMobile
+                              ? "red 1px solid"
+                              : "none",
                           }}
                           inputProps={{
                             required: true,
                             autoFocus: true,
                           }}
+                          onBlur={() => {
+                            phone.length !== selCountryExpectedLength
+                              ? setIsValid(false)
+                              : setIsValid(true);
+                          }}
+                          isValid={() =>
+                            !IsValid
+                              ? phone.length == selCountryExpectedLength
+                              : IsValid
+                          }
                         />
                         {errors.emailOrMobile && (
                           <div className="errorMsg">{errors.emailOrMobile}</div>

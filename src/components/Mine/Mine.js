@@ -205,9 +205,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                     Meta Rate: {currentBalance.metaRate}
                   </h3>
                   <img
-                    src="../../img/logo/header-m.png"
-                    // alt=""
-                    // className="metalink-sm metaRate"
+                    src="../../img/logo/header-m.png"                    // a
                     className="metalink-sm metaRate"
                   />
                   <span className="hours">/H</span>

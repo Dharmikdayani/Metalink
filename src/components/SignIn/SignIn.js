@@ -150,8 +150,12 @@ function SignIn() {
                       name="email"
                       value={email}
                       onChange={(e) => setemail(e.target.value)}
-                      placeholder="Email Address "
-                      className="form-control email-id"
+                      placeholder="Email Address"
+                      className={
+                        errors.email
+                          ? "form-control-error email-id"
+                          : "form-control email-id mt-0"
+                      }
                       // required
                     />
                     {errors.email && (
@@ -164,7 +168,11 @@ function SignIn() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
-                        className="form-control pwd"
+                        className={
+                          errors.password
+                            ? "form-control-error pwd "
+                            : "form-control pwd"
+                        }
                       />
                       <img
                         role="button"
