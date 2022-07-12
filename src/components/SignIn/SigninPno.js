@@ -129,6 +129,14 @@ function SigninPno() {
   const onShowPassword = () => {
     setShowPass(!showPass);
   };
+
+    //* Prevent User For Entering Spaces
+    const preventSpace = (e) => {
+      if (e.which === 32) {
+        e.preventDefault();
+      }
+    };
+  
   return (
     <div className="logIn signin-bg">
       <section className="login-form signup-form">
@@ -178,7 +186,7 @@ function SigninPno() {
                       }}
                       inputStyle={{
                         background: "#E2F1FE",
-                        padding: "25px 1px 20px 50px",
+                        padding: "26px 1px 20px 50px",
                         marginTop: "22px",
                         border: errors.emailOrMobile ? "red 1px solid" : "none",
                       }}
@@ -205,6 +213,7 @@ function SigninPno() {
                         type={`${showPass ? "text" : "password"}`}
                         name="password"
                         value={password}
+                        onKeyPress={preventSpace}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
                         className={

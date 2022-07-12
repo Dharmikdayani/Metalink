@@ -106,6 +106,14 @@ function Resetpassword() {
   const onshowConfirmPass = () => {
     setShowConfirmPass(!showConfirmPass);
   };
+
+  //* Prevent User For Entering Spaces
+  const preventSpace = (e) => {
+    if (e.which === 32) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className="logIn forgot-password-bg forgot-password">
       <section className="login-form ">
@@ -133,9 +141,14 @@ function Resetpassword() {
                         type={`${showPass ? "text" : "password"}`}
                         name="password"
                         value={password}
+                        onKeyPress={preventSpace}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="New Password"
-                        className="form-control pwd"
+                        className={
+                          errors.password
+                            ? "form-control-error pwd "
+                            : "form-control pwd"
+                        }
                       />
                       <img
                         role="button"
@@ -156,9 +169,14 @@ function Resetpassword() {
                         type={`${showConfirmPass ? "text" : "password"}`}
                         name="cpwd"
                         value={cpwd}
+                        onKeyPress={preventSpace}
                         onChange={(e) => setCpwd(e.target.value)}
                         placeholder="New Confirm Password"
-                        className="form-control conf-pwd"
+                        className={
+                          errors.cpwd
+                            ? "form-control-error conf-pwd "
+                            : "form-control conf-pwd"
+                        }
                       />
                       <img
                         role="button"

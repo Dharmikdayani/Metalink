@@ -249,7 +249,7 @@ function SignUp() {
                       <div className="d-grid justify-content-center">
                         <input
                           type="text"
-                          name="username"
+                          name="username"                   
                           value={username}
                           onChange={(e) => setUsername(e.target.value)}
                           placeholder="User Name"
@@ -283,6 +283,7 @@ function SignUp() {
                             type="phone"
                             placeholder=" Phone Number "
                             specialLabel={""}
+                            searchPlaceholder="Search"
                             country={"in"}
                             countryCodeEditable={false}
                             enableClickOutside
@@ -316,6 +317,7 @@ function SignUp() {
                               background: "#E2F1FE",
                               padding: "25px 1px 20px 50px",
                               marginTop: "10px",
+                              // color: "#9098AE",
                               border: errors.phoneNumber
                                 ? "red 1px solid"
                                 : "none",

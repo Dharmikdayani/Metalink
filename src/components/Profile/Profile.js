@@ -25,9 +25,9 @@ const Profile = () => {
   const [password, setPassword] = useState("");
   const [cpwd, setCpwd] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [mobile, setmobile] = useState();
+  const [mobile, setmobile] = useState("");
   const [showOtpBox, setShowOtpBox] = useState(false);
-  const [oldMobile, setOldMobile] = useState();
+  const [oldMobile, setOldMobile] = useState("");
   const [ProfileData, SetProfileData] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [showimg, setshowImg] = useState(false);
@@ -65,7 +65,31 @@ const Profile = () => {
     $(selector).removeClass("active");
     $(this).addClass("active");
   });
+  const remove = () => {
+    var selector = ".editing-btn";
+    $(selector).removeClass("active");
+    console.log("first");
+    setshowImg(false);
+  };
 
+  /*========outside click event Invite =========== */
+
+  const Invite = useRef();
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+
+      if (Invite.current && !Invite.current.contains(e.target)) {
+        remove(false);
+      }
+    };
+    document.addEventListener("mousedown", checkIfClickedOutside);
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [remove]);
   /*=============== useEffect for getUserProfile calling======= */
   useEffect(() => {
     if (!effectCalled.current) {
@@ -73,25 +97,6 @@ const Profile = () => {
       effectCalled.current = true;
     }
   }, [user]);
-
-  // /*========outside click event Invite =========== */
-
-  // const Invite = useRef();
-  // useEffect(() => {
-  //   const checkIfClickedOutside = (e) => {
-  //     // If the menu is open and the clicked target is not within the menu,
-  //     // then close the menu
-
-  //     if (Invite.current && !Invite.current.contains(e.target)) {
-  //       selector(false);
-  //     }
-  //   };
-  //   document.addEventListener("mousedown", checkIfClickedOutside);
-  //   return () => {
-  //     // Cleanup the event listener
-  //     document.removeEventListener("mousedown", checkIfClickedOutside);
-  //   };
-  // }, [selector]);
 
   /*=============LOGOUT FUNCTION===========*/
   const handleogout = (e) => {
@@ -124,6 +129,12 @@ const Profile = () => {
         setPhoneNumber(results.data.phoneNumber);
         setinviteCode(results.data.inviteCode);
         setmobile(results.data.countryCode + results.data.phoneNumber);
+        if (!IsValid) {
+          phone.length !== selCountryExpectedLength
+            ? setIsValid(false)
+            : setIsValid(true);
+        }
+
         setOldMobile(results.data.countryCode + results.data.phoneNumber);
         localStorage.setItem(
           "user",
@@ -257,9 +268,9 @@ const Profile = () => {
             icon: "success",
             title: results.message,
           });
+          SetProfileData(results.data);
           var selector = ".editing-btn";
           $(selector).removeClass("active");
-          SetProfileData(results.data);
           localStorage.setItem(
             "user",
             JSON.stringify({
@@ -272,7 +283,7 @@ const Profile = () => {
               refCode: results.data.inviteCode,
             })
           );
-
+          setCpwd('')
           setinviteCode(results.data.inviteCode);
           setUserName(results.data.username);
           setEmail(results.data.email);
@@ -335,10 +346,12 @@ const Profile = () => {
     setShowPass(!showPass);
   };
 
-  // /*=======SHOW Confirm PASSWORD====== */
-  // const onshowConfirmPass = () => {
-  //   setShowConfirmPass(!showConfirmPass);
-  // };
+  //* Prevent User For Entering Spaces
+  const preventSpace = (e) => {
+    if (e.which === 32) {
+      e.preventDefault();
+    }
+  };
 
   return (
     <div>
@@ -357,7 +370,7 @@ const Profile = () => {
           mobile={mobile}
         />
       ) : (
-        <div className="mining-bg">
+        <div className="mining-bg ">
           {/* <!-- ------------------- MINING START ----------------- --> */}
 
           <ManinHeader />
@@ -367,8 +380,17 @@ const Profile = () => {
               <div className="container">
                 <div className="row justify-content-center">
                   <div className="col-xl-8 col-12">
-                    <h3 className="common-heading text-center mb-0">Profile</h3>
-                    <form className="currentuser-profile" autoComplete="off">
+                    <h3
+                      className="common-heading text-center mb-0"
+                      // onClick={() => remove()}
+                    >
+                      Profile
+                    </h3>
+                    <form
+                      className="currentuser-profile"
+                      autoComplete="off"
+                      ref={Invite}
+                    >
                       <div className="row profile-wrap align-items-baseline">
                         <div className="col-md-6 profile-padding">
                           <div className="profile-box">
@@ -550,7 +572,7 @@ const Profile = () => {
                                   name="pwd"
                                   placeholder="Password"
                                   minLength="8"
-                                  // className="profile-input"
+                                  onKeyPress={preventSpace}
                                   className={`${
                                     errors.password
                                       ? "profile-input-errorMsg"
@@ -583,7 +605,7 @@ const Profile = () => {
                             )}
                           </div>
                           {showimg ? (
-                            <div className="position-relative">
+                            <div className="position-relative" >
                               <label className="label-title1 position-absolute">
                                 Confirm Password
                               </label>
@@ -592,7 +614,7 @@ const Profile = () => {
                                 name="cpwd"
                                 placeholder="Confirm Password"
                                 minLength="8"
-                                // className="profile-input mb-4"
+                                onKeyPress={preventSpace}
                                 className={`${
                                   errors.password
                                     ? "profile-input-errorMsg mb-4"
@@ -651,6 +673,7 @@ const Profile = () => {
                                         inputPhone.slice(countryCode.length - 1)
                                       );
                                       setmobile("+" + inputPhone);
+
                                       setphone(data);
                                       setSelCountryExpectedLength(
                                         countryData.format.length

@@ -122,6 +122,13 @@ function SignIn() {
   const onShowPassword = () => {
     setShowPass(!showPass);
   };
+  
+  //* Prevent User For Entering Spaces
+  const preventSpace = (e) => {
+    if (e.which === 32) {
+      e.preventDefault();
+    }
+  };
 
   return (
     <div className="logIn signin-bg">
@@ -166,6 +173,7 @@ function SignIn() {
                         type={`${showPass ? "text" : "password"}`}
                         name="password"
                         value={password}
+                        onKeyPress={preventSpace}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
                         className={
