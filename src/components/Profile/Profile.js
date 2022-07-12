@@ -283,7 +283,7 @@ const Profile = () => {
               refCode: results.data.inviteCode,
             })
           );
-          setCpwd('')
+          setCpwd("");
           setinviteCode(results.data.inviteCode);
           setUserName(results.data.username);
           setEmail(results.data.email);
@@ -386,11 +386,7 @@ const Profile = () => {
                     >
                       Profile
                     </h3>
-                    <form
-                      className="currentuser-profile"
-                      autoComplete="off"
-                      ref={Invite}
-                    >
+                    <form className="currentuser-profile" autoComplete="off">
                       <div className="row profile-wrap align-items-baseline">
                         <div className="col-md-6 profile-padding">
                           <div className="profile-box">
@@ -409,11 +405,11 @@ const Profile = () => {
                                 {ProfileData.username}
                               </span>
 
-                              <div className="editing-btn">
+                              <div className="editing-btn" ref={Invite}>
                                 <img
                                   src="../../img/profile/editing.png"
                                   onClick={() => setshowImg(false)}
-                                  // ref={Invite}
+                                  //
                                 />
                                 <input
                                   type="text"
@@ -528,7 +524,7 @@ const Profile = () => {
                               <span className="name-info w-100 d-inline-block">
                                 {ProfileData.email}
                               </span>
-                              <div className="editing-btn">
+                              <div className="editing-btn" ref={Invite}>
                                 <img
                                   src="../../img/profile/editing.png"
                                   onClick={() => setshowImg(false)}
@@ -554,82 +550,86 @@ const Profile = () => {
                               </div>
                             )}
                           </div>
-                          <div className="form-group multi-field-wrapper position-relative">
-                            <label className="label-title1 position-absolute">
-                              Password
-                            </label>
-                            <div className="profile-name position-relative">
-                              <span className="name-info w-100 d-inline-block">
-                                ********
-                              </span>
-                              <div
-                                className="editing-btn"
-                                onClick={() => setshowImg(true)}
-                              >
-                                <img src="../../img/profile/editing.png" />
+                          <div ref={Invite}>
+                            <div className="form-group multi-field-wrapper position-relative">
+                              <label className="label-title1 position-absolute">
+                                Password
+                              </label>
+                              <div className="profile-name position-relative">
+                                <span className="name-info w-100 d-inline-block">
+                                  ********
+                                </span>
+                                <div
+                                  className="editing-btn "
+                                  onClick={() => setshowImg(true)}
+                                >
+                                  <img src="../../img/profile/editing.png" />
+                                  <input
+                                    type={`${showPass ? "text" : "password"}`}
+                                    name="pwd"
+                                    placeholder="Password"
+                                    minLength="8"
+                                    onKeyPress={preventSpace}
+                                    className={`${
+                                      errors.password
+                                        ? "profile-input-errorMsg"
+                                        : "profile-input"
+                                    }`}
+                                    value={password}
+                                    onChange={(e) =>
+                                      setPassword(e.target.value)
+                                    }
+                                  />
+                                </div>
+                              </div>
+                              {showimg ? (
+                                <img
+                                  role="button"
+                                  onClick={onShowPassword}
+                                  src={`${
+                                    showPass
+                                      ? "../../img/profile/openeye.png"
+                                      : "../../img/profile/hiddenEye.png"
+                                  }`}
+                                  className="show-eye"
+                                />
+                              ) : (
+                                <div className="d-none"></div>
+                              )}
+
+                              {errors.password && (
+                                <div className="errorMsg-profile-email">
+                                  {errors.password}
+                                </div>
+                              )}
+                            </div>
+                            {showimg ? (
+                              <div className="position-relative">
+                                <label className="label-title1 position-absolute">
+                                  Confirm Password
+                                </label>
                                 <input
-                                  type={`${showPass ? "text" : "password"}`}
-                                  name="pwd"
-                                  placeholder="Password"
+                                  type="text"
+                                  name="cpwd"
+                                  placeholder="Confirm Password"
                                   minLength="8"
                                   onKeyPress={preventSpace}
                                   className={`${
                                     errors.password
-                                      ? "profile-input-errorMsg"
-                                      : "profile-input"
+                                      ? "profile-input-errorMsg mb-4"
+                                      : "profile-input mb-4"
                                   }`}
-                                  value={password}
-                                  onChange={(e) => setPassword(e.target.value)}
+                                  value={cpwd}
+                                  onChange={(e) => setCpwd(e.target.value)}
                                 />
+                                {errors.cpwd && (
+                                  <div className="errorMsg-profile   ">
+                                    {errors.cpwd}
+                                  </div>
+                                )}
                               </div>
-                            </div>
-                            {showimg ? (
-                              <img
-                                role="button"
-                                onClick={onShowPassword}
-                                src={`${
-                                  showPass
-                                    ? "../../img/profile/openeye.png"
-                                    : "../../img/profile/hiddenEye.png"
-                                }`}
-                                className="show-eye"
-                              />
-                            ) : (
-                              <div className="d-none"></div>
-                            )}
-
-                            {errors.password && (
-                              <div className="errorMsg-profile-email">
-                                {errors.password}
-                              </div>
-                            )}
+                            ) : null}
                           </div>
-                          {showimg ? (
-                            <div className="position-relative" >
-                              <label className="label-title1 position-absolute">
-                                Confirm Password
-                              </label>
-                              <input
-                                type="text"
-                                name="cpwd"
-                                placeholder="Confirm Password"
-                                minLength="8"
-                                onKeyPress={preventSpace}
-                                className={`${
-                                  errors.password
-                                    ? "profile-input-errorMsg mb-4"
-                                    : "profile-input mb-4"
-                                }`}
-                                value={cpwd}
-                                onChange={(e) => setCpwd(e.target.value)}
-                              />
-                              {errors.cpwd && (
-                                <div className="errorMsg-profile   ">
-                                  {errors.cpwd}
-                                </div>
-                              )}
-                            </div>
-                          ) : null}
 
                           <div className="form-group multi-field-wrapper position-relative">
                             <label className="label-title1 position-absolute">
@@ -640,7 +640,7 @@ const Profile = () => {
                                 {countryCode} {phoneNumber}
                                 {/* {mobile} */}
                               </span>
-                              <div className="editing-btn">
+                              <div className="editing-btn" ref={Invite}>
                                 <img
                                   src="../../img/profile/editing.png"
                                   onClick={() => setshowImg(false)}
