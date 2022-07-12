@@ -11,7 +11,7 @@ const Invited = ({ setIsOpen }) => {
   const [member, setMemeber] = useState([]);
   const effectCalled = useRef(false);
   const [invite, setInvite] = useState([]);
-  const [Loader, setLoader] = useState(true);
+  const [Loader, setLoader] = useState(false);
   const { decryptData } = useEncryption();
   const getItem = JSON.parse(localStorage.getItem("user"));
 
@@ -39,7 +39,7 @@ const Invited = ({ setIsOpen }) => {
     setMemeber([]);
     try {
       //true
-      setLoader(false);
+      setLoader(true);
       const result = await instance.get(
         `/earningTeam?status=${selectedOption}&level=${Layer}`
       );
@@ -52,9 +52,9 @@ const Invited = ({ setIsOpen }) => {
           setMemeber((old) => [...old, data]);
         }
         setInvite([results.data]);
-        setLoader(true);
+        setLoader(false);
       } else {
-        setLoader(true);
+        setLoader(false);
         // Toast.fire({
         //   icon: "error",
         //   title: results.message,
@@ -62,7 +62,7 @@ const Invited = ({ setIsOpen }) => {
       }
     } catch (error) {
       console.log("err" + error);
-      setLoader(true);
+      setLoader(false);
     }
   };
 
