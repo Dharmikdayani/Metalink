@@ -5,11 +5,21 @@ import Footer from "../../components/Layout/Footer";
 
 const Contactus = () => {
   document.title = "Contactus";
-  const [FirstName, setFirstName] = useState("");
-  const [LastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [YourComments, setYourComments] = useState("");
+  const [Data, setData] = useState({
+    FirstName: "",
+    LastName: "",
+    email: "",
+    YourComments: "",
+  });
+
   /*================ERROR MESSAGE============= */
+  const InputChange = (e) => {
+    const { name, value } = e.target;
+    setData({
+      ...Data,
+      [name]: value,
+    });
+  };
 
   let errorsObj = {
     FirstName: "",
@@ -26,24 +36,24 @@ const Contactus = () => {
 
     errorsObj = { ...errorsObj };
 
-    if (FirstName === "") {
-      errorsObj.username = "*Username is required!";
+    if (Data.FirstName === "") {
+      errorsObj.FirstName = "*FirstName is required!";
       error = true;
     }
-    if (LastName === "") {
-      errorsObj.username = "*Username is required!";
+    if (Data.LastName === "") {
+      errorsObj.LastName = "*LastName is required!";
       error = true;
     }
 
-    if (email === "") {
+    if (Data.email === "") {
       errorsObj.email = "*Email address is required!";
       error = true;
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
+    } else if (!/\S+@\S+\.\S+/.test(Data.email)) {
       errorsObj.email = "*Email address is invalid!";
       error = true;
     }
-    if (YourComments === "") {
-      errorsObj.username = "*Username is required!";
+    if (Data.YourComments === "") {
+      errorsObj.YourComments = "*Message is required!";
       error = true;
     }
     setErrors(errorsObj);
@@ -65,54 +75,105 @@ const Contactus = () => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
-                <form id="myform" autoComplete="off" autoCorrect="off">
+                <form
+                  id="myform"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  onSubmit={(e) => onSignInSubmit(e)}
+                >
                   <div className="profile-add w-100 d-inline-block">
                     <div className="row">
                       <div className="col-md-6">
-                        <div className="form-group form-profile">
+                        <div
+                          className={
+                            errors.FirstName
+                              ? "form-group-errorMsg "
+                              : "form-group form-profile"
+                          }
+                        >
                           <div className="form-happy">
                             <input
                               type="text"
                               id="name"
-                              name="name"
+                              name="FirstName"
                               placeholder="First Name"
-                              value={FirstName}
-                              onChange={(e) => setFirstName(e.target.value)}
+                              onChange={InputChange}
                             />
+                            {errors.FirstName && (
+                              <div className="errorMsg-Contactus">
+                                {errors.FirstName}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
                       <div className="col-md-6">
-                        <div className="form-group form-profile">
+                        <div
+                          className={
+                            errors.LastName
+                              ? "form-group-errorMsg "
+                              : "form-group form-profile"
+                          }
+                        >
                           <div className="form-happy">
                             <input
                               type="text"
                               id="name"
-                              name="name"
+                              name="LastName"
                               placeholder="Last Name"
+                              onChange={InputChange}
                             />
+                            {errors.LastName && (
+                              <div className="errorMsg-Contactus">
+                                {errors.LastName}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="form-group form-profile">
+                    <div
+                      className={
+                        errors.email
+                          ? "form-group-errorMsg "
+                          : "form-group form-profile"
+                      }
+                    >
                       <div className="form-happy">
                         <input
                           type="text"
                           id="email"
                           name="email"
                           placeholder="Email Address"
+                          onChange={InputChange}
                         />
+                        {errors.email && (
+                          <div className="errorMsg-Contactus">
+                            {errors.email}
+                          </div>
+                        )}
                       </div>
                     </div>
-                    <div className="form-group form-profile">
+                    <div
+                      className={
+                        errors.YourComments
+                          ? "form-group-errorMsg "
+                          : "form-group form-profile"
+                      }
+                    >
                       <textarea
                         id="w3review"
-                        name="w3review"
+                        name="YourComments"
                         rows="4"
                         cols="50"
                         placeholder="Your Comments"
-                      ></textarea>
+                        onChange={InputChange}
+                      />
+                      {errors.YourComments && (
+                        <div className="errorMsg-Contactus-textarea">
+                          {errors.YourComments}
+                        </div>
+                      )}
                     </div>
                     <button className="btn-send text-center">Send</button>
                   </div>

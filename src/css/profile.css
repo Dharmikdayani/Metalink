@@ -106,8 +106,8 @@ Profile
   border: none;
   padding: 20px;
   border-radius: 4px;
-  background-color:#D0EAFF;
- 
+  background-color: #D0EAFF;
+
 }
 
 .share-dialog {
@@ -253,7 +253,8 @@ Profile
   top: 36%;
   left: 91%;
 }
-.show-active{
+
+.show-active {
   display: none;
 }
 
@@ -328,47 +329,6 @@ Profile
 
 .profile-padding {
   padding: 0 41px;
-}
-
-.profile-add .form-group input,
-.profile-add .form-group textarea {
-  width: 100%;
-  border: 0;
-  outline: none;
-  font-size: 20px;
-  line-height: 1;
-  font-weight: 400;
-  padding: 21px 35px;
-  background: #d9edfd;
-  margin-bottom: 40px;
-  border-radius: 35px;
-  display: inline-block;
-
-  box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.5),
-    inset 3px 3px 5px rgba(0, 16, 57, 0.2);
-}
-
-.profile-add .form-group textarea {
-  height: 227px;
-  resize: none;
-  margin-bottom: 90px;
-}
-
-.profile-add .form-group input::-webkit-input-placeholder,
-.profile-add .form-group textarea::-webkit-input-placeholder {
-  /* Edge */
-  color: #465375;
-}
-
-.profile-add .form-group input:-ms-input-placeholder,
-.profile-add .form-group textarea:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: #465375;
-}
-
-.profile-add .form-group input::placeholder,
-.profile-add .form-group textarea::placeholder {
-  color: #465375;
 }
 
 .currentuser-profile .team-title {
@@ -517,7 +477,8 @@ Profile
   position: relative;
   top: 7px;
 }
-.profile-input-errorMsg{
+
+.profile-input-errorMsg {
   outline: none;
   width: 100%;
   height: 100%;
@@ -540,3 +501,6 @@ Profile
 .editing-btn.active .profile-input-errorMsg {
   display: block;
 }
+
+
+
