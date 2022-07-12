@@ -52,7 +52,7 @@ const App = () => {
     setCurrentBalance({});
     // console.log("first",user)
     if (getItem) {
-      const socket = io(" https://metalink-technomads.herokuapp.com");
+      const socket = io("https://metalink-technomads.herokuapp.com");
       socket.on("connect", () => {
         setSocket(socket);
         // console.log( getItem._id)
