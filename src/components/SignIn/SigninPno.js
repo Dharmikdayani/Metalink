@@ -131,12 +131,12 @@ function SigninPno() {
   };
 
     //* Prevent User For Entering Spaces
-    const preventSpace = (e) => {
-      if (e.which === 32) {
-        e.preventDefault();
-      }
-    };
-  
+  const preventSpace = (e) => {
+    if (e.which === 32) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className="logIn signin-bg">
       <section className="login-form signup-form">
@@ -165,6 +165,7 @@ function SigninPno() {
                       placeholder=" Phone Number "
                       specialLabel={"+91"}
                       country={"in"}
+                      searchPlaceholder="Search"
                       enableSearch
                       countryCodeEditable={false}
                       value={emailOrMobile}

@@ -20,7 +20,7 @@ import useEncryption from "../EncryptData/EncryptData";
 
 function Mine({ socket, miningStatus, currentBalance }) {
   document.title = "Mine";
-  const [isOpenCaptcha, setIsOpenCaptcha] = useState(false);
+
   const [isOpenInvite, setIsOpenInvite] = useState(false);
   const [isOpenwithdraw, setIsOpenwithdraw] = useState(false);
   const [isOpenDeposit, setIsOpenDeposit] = useState(false);
@@ -117,7 +117,6 @@ function Mine({ socket, miningStatus, currentBalance }) {
       document.querySelector(".layer-two ").classList.add("active");
       document.querySelector("#captcha-modals").style.display = "none";
 
-
       try {
         const result = await instance.get("/activeUser");
 
@@ -205,7 +204,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                     Meta Rate: {currentBalance.metaRate}
                   </h3>
                   <img
-                    src="../../img/logo/header-m.png"                    // a
+                    src="../../img/logo/header-m.png" // a
                     className="metalink-sm metaRate"
                   />
                   <span className="hours">/H</span>
@@ -244,7 +243,11 @@ function Mine({ socket, miningStatus, currentBalance }) {
                       >
                         <img
                           src="../../img/profile/close.png"
-                          onClick={() =>  document.querySelector("#captcha-modals").style.display = "none"}
+                          onClick={() =>
+                            (document.querySelector(
+                              "#captcha-modals"
+                            ).style.display = "none")
+                          }
                         />
                       </a>
                       <h4 className="captcha-content d-flex justify-content-between align-items-center">

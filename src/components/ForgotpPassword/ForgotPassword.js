@@ -158,6 +158,7 @@ function Forgotpassword() {
                           type="phone"
                           placeholder=" Phone Number "
                           specialLabel={""}
+                          searchPlaceholder="Search"
                           country={"in"}
                           value={emailOrMobile}
                           countryCodeEditable={false}

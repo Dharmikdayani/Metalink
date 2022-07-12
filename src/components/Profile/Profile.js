@@ -65,6 +65,7 @@ const Profile = () => {
     $(selector).removeClass("active");
     $(this).addClass("active");
   });
+
   const remove = () => {
     var selector = ".editing-btn";
     $(selector).removeClass("active");
@@ -72,6 +73,12 @@ const Profile = () => {
     setshowImg(false);
   };
 
+  const remove1 = () => {
+    var selector = ".editing-btn";
+    $(selector).removeClass("active");
+    console.log("first");
+    setshowImg(false);
+  };
   /*========outside click event Invite =========== */
 
   const Invite = useRef();
@@ -90,6 +97,27 @@ const Profile = () => {
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
   }, [remove]);
+
+  /*========outside click event Invite =========== */
+
+  // const emailoutside = useRef();
+  // useEffect(() => {
+  //   const checkIfClickedOutside = (e) => {
+  //     // If the menu is open and the clicked target is not within the menu,
+  //     // then close the menu
+
+  //     if (emailoutside.current && !emailoutside.current.contains(e.target)) {
+  //       remove1(false);
+  //     }
+  //   };
+  //   document.addEventListener("mousedown", checkIfClickedOutside);
+  //   return () => {
+  //     // Cleanup the event listener
+  //     document.removeEventListener("mousedown", checkIfClickedOutside);
+  //   };
+  // }, [remove1]);
+
+  
   /*=============== useEffect for getUserProfile calling======= */
   useEffect(() => {
     if (!effectCalled.current) {
@@ -379,14 +407,18 @@ const Profile = () => {
             <section className="profile w-100 d-md-inline-block position-relative">
               <div className="container">
                 <div className="row justify-content-center">
-                  <div className="col-xl-8 col-12">
+                  <div className="col-xl-8 col-lg-10 col-12">
                     <h3
                       className="common-heading text-center mb-0"
                       // onClick={() => remove()}
                     >
                       Profile
                     </h3>
-                    <form className="currentuser-profile" autoComplete="off">
+                    <form
+                      className="currentuser-profile"
+                      autoComplete="off"
+                      ref={Invite}
+                    >
                       <div className="row profile-wrap align-items-baseline">
                         <div className="col-md-6 profile-padding">
                           <div className="profile-box">
@@ -405,7 +437,7 @@ const Profile = () => {
                                 {ProfileData.username}
                               </span>
 
-                              <div className="editing-btn" ref={Invite}>
+                              <div className="editing-btn">
                                 <img
                                   src="../../img/profile/editing.png"
                                   onClick={() => setshowImg(false)}
@@ -524,7 +556,7 @@ const Profile = () => {
                               <span className="name-info w-100 d-inline-block">
                                 {ProfileData.email}
                               </span>
-                              <div className="editing-btn" ref={Invite}>
+                              <div className="editing-btn">
                                 <img
                                   src="../../img/profile/editing.png"
                                   onClick={() => setshowImg(false)}
@@ -550,7 +582,7 @@ const Profile = () => {
                               </div>
                             )}
                           </div>
-                          <div ref={Invite}>
+                          <div>
                             <div className="form-group multi-field-wrapper position-relative">
                               <label className="label-title1 position-absolute">
                                 Password
@@ -640,7 +672,7 @@ const Profile = () => {
                                 {countryCode} {phoneNumber}
                                 {/* {mobile} */}
                               </span>
-                              <div className="editing-btn" ref={Invite}>
+                              <div className="editing-btn">
                                 <img
                                   src="../../img/profile/editing.png"
                                   onClick={() => setshowImg(false)}
@@ -654,6 +686,7 @@ const Profile = () => {
                                     placeholder=" Phone Number "
                                     countryCodeEditable={false}
                                     specialLabel={""}
+                                    searchPlaceholder="Search"
                                     country={"in"}
                                     value={mobile}
                                     enableSearch

@@ -3,7 +3,7 @@ export const LayerDetails = [
     {
         id:1,
         Layer:"Layer 1",
-        content:"Layer 1 Members are members joined from your direct Invitations.They have used your referralcode for signing up.",
+        content:"Layer 1 Members are members joined from your direct Invitations.They have used your referral code for signing up.",
     },
     {
         id:2,
