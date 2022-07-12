@@ -11,6 +11,7 @@ const Invited = ({ setIsOpen }) => {
   const [member, setMemeber] = useState([]);
   const effectCalled = useRef(false);
   const [invite, setInvite] = useState([]);
+  const [Loader, setLoader] = useState(false);
   const { decryptData } = useEncryption();
   const getItem = JSON.parse(localStorage.getItem("user"));
 
@@ -37,6 +38,8 @@ const Invited = ({ setIsOpen }) => {
   const filterData = async () => {
     setMemeber([]);
     try {
+      //true
+      setLoader(true);
       const result = await instance.get(
         `/earningTeam?status=${selectedOption}&level=${Layer}`
       );
@@ -49,7 +52,9 @@ const Invited = ({ setIsOpen }) => {
           setMemeber((old) => [...old, data]);
         }
         setInvite([results.data]);
+        setLoader(false);
       } else {
+        setLoader(false);
         // Toast.fire({
         //   icon: "error",
         //   title: results.message,
@@ -57,6 +62,7 @@ const Invited = ({ setIsOpen }) => {
       }
     } catch (error) {
       console.log("err" + error);
+      setLoader(false);
     }
   };
 
@@ -128,8 +134,13 @@ const Invited = ({ setIsOpen }) => {
               </select>
             </div>
           </div>
-
-          {member.length  ? (
+          {Loader ? (
+            <div className="snippet" data-title=".dot-spin">
+              <div className="stage">
+                <div className="dot-spin"></div>
+              </div>
+            </div>
+          ) : member.length ? (
             <Carousel>
               {member.map((data, index) => {
                 return (
@@ -214,7 +225,7 @@ const Invited = ({ setIsOpen }) => {
                 </h3>
               </div>
               <div className="d-flex align-items-baseline  justify-content-center">
-                <h2 className="invite-code">Code :{getItem.refCode}</h2>
+                <h2 className="invite-code">Code: {getItem.refCode}</h2>
 
                 <img
                   src="../../img/icon/copy.png"
