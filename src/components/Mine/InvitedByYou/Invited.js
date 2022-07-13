@@ -101,7 +101,7 @@ const Invited = ({ setIsOpen }) => {
             </div>
           </div>
           <h5 className="invited-title">Invited By You</h5>
-          <div className="d-flex justify-content-center mt-5">
+          <div className="d-flex justify-content-center mt-5 ">
             <div className="d-flex align-items-baseline justify-content-around" >
               <h1 className="Status">Status:</h1>
               <select

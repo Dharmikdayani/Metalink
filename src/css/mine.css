@@ -2021,3 +2021,13 @@ video {
       -18px 0 0 -5px rgba(152, 128, 255, 0), -12.72984px -12.72984px 0 0 #001540;
   }
 }
+
+.lcwibA {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 100%;
+  direction: ltr;
+  margin-top: 5%;
+}
