@@ -125,6 +125,7 @@ const Invited = ({ setIsOpen }) => {
                   setLayer(e.target.value);
                   effectCalled.current = false;
                 }}
+                className="select"
               >
                 <option value="all">All</option>
                 <option value="1">Layer 1</option>

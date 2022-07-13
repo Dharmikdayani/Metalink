@@ -92,8 +92,6 @@ const Profile = () => {
     };
   }, [remove]);
 
-
-
   /*=============== useEffect for getUserProfile calling======= */
   useEffect(() => {
     if (!effectCalled.current) {
@@ -489,20 +487,21 @@ const Profile = () => {
                                 <img src="../../img/profile/share-link.png" />
                               </button>
                             </div>
-                            <h6 className="account-title">
-                              Account Verification
-                            </h6>
-
-                            <div className="form-group">
-                              <label className="name-title">
-                                Account deletion
-                              </label>
-                              <div className="members-info d-flex justify-content-between align-items-center">
-                                Tap here to delete your account.
-                                <div className="request-info">
-                                  <a href="#" className="request-btn">
-                                    Request
-                                  </a>
+                            <div className="p-1">
+                              <h6 className="account-title  mb-4">
+                                Account Verification
+                              </h6>
+                              <div className="form-group">
+                                <label className="name-title">
+                                  Account deletion
+                                </label>
+                                <div className="members-info d-flex justify-content-between align-items-center">
+                                  Tap here to delete your account.
+                                  <div className="request-info">
+                                    <a href="#" className="request-btn">
+                                      Request
+                                    </a>
+                                  </div>
                                 </div>
                               </div>
                             </div>

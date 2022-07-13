@@ -51,6 +51,7 @@ Profile
   color: #001039;
   font-size: 20px;
   line-height: 20px;
+  font-weight: 500;
   background: #d9edfd;
   padding: 39px 19px 15px;
   border-radius: 12px;
@@ -146,10 +147,11 @@ Profile
 }
 
 .members-info {
-  color: #272d3d;
+  color: #272d3d;  
+  font-style: normal;
+  font-weight: 300;
   font-size: 14px;
   line-height: 14px;
-  font-weight: 300;
 }
 
 .toggle-box input[type="checkbox"] {
@@ -219,6 +221,7 @@ Profile
   color: #001039;
   font-size: 20px;
   line-height: 20px;
+  font-weight: 500;
   background: #d9edfd;
   padding: 39px 19px 15px;
   border-radius: 12px;
@@ -502,5 +505,10 @@ Profile
   display: block;
 }
 
-
-
+.referral-link {
+  font-family: 'Sofia Pro';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+}
