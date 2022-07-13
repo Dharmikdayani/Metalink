@@ -117,7 +117,6 @@ const Profile = () => {
   //   };
   // }, [remove1]);
 
-  
   /*=============== useEffect for getUserProfile calling======= */
   useEffect(() => {
     if (!effectCalled.current) {
@@ -202,7 +201,7 @@ const Profile = () => {
     window.recaptchaVerifier = new RecaptchaVerifier(
       "sign-in-button",
       {
-        size: "invisible",
+        // size: "invisible",
         callback: (response) => {
           console.log(response);
           // reCAPTCHA solved, allow signInWithPhoneNumber.
@@ -538,7 +537,6 @@ const Profile = () => {
                         >
                           <div className="profile-tabs d-flex align-items-start justify-content-between">
                             <h6 className="account-title mt-0">Profile</h6>
-                            <div id="sign-in-button" />
 
                             <a
                               href="#save"
@@ -745,6 +743,7 @@ const Profile = () => {
                               </div>
                             )}
                           </div>
+                          <div id="sign-in-button" />
                         </div>
                       </div>
                     </form>

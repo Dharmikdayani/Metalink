@@ -44,7 +44,7 @@ function SignUp() {
     window.recaptchaVerifier = new RecaptchaVerifier(
       "sign-in-button",
       {
-        size: "invisible",
+        // size: "invisible",
         callback: (response) => {
           console.log(response);
           // reCAPTCHA solved, allow signInWithPhoneNumber.
@@ -249,7 +249,7 @@ function SignUp() {
                       <div className="d-grid justify-content-center">
                         <input
                           type="text"
-                          name="username"                   
+                          name="username"
                           value={username}
                           onChange={(e) => setUsername(e.target.value)}
                           placeholder="User Name"
@@ -417,7 +417,10 @@ function SignUp() {
                         )}
                       </div>
 
-                      <div id="sign-in-button" />
+                      <div
+                        className="d-flex justify-content-center m-2 align-items-center"
+                        id="sign-in-button"
+                      />
                       <button
                         className="sign-in"
                         type="submit"

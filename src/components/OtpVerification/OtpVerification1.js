@@ -8,7 +8,7 @@ import { auth } from "../../Firebase-config";
 
 function OtpVerification1({ phone, countryCode }) {
   const [OTP, setOTP] = useState("");
-  const defaultCount = 60;
+  const defaultCount = 10;
   const intervalGap = 1000;
   const [timerCount, setTimerCount] = useState(defaultCount);
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ function OtpVerification1({ phone, countryCode }) {
       }, intervalGap);
     };
   }, []);
-  
+
   const timer = useCallback(
     startTimerWrapper((intervalfn: NodeJS.Timeout) => {
       setTimerCount((val) => {
@@ -73,27 +73,27 @@ function OtpVerification1({ phone, countryCode }) {
     );
   };
 
-    /*=======ERROR MESSAGE =========*/
-    let errorsObj = {
-      otp1: "",
-    };
-    const [errors, setErrors] = useState(errorsObj);
-    const onSignInSubmit = (e) => {
-      e.preventDefault();
-  
-      let error = false;
-  
-      errorsObj = { ...errorsObj };
-  
-      if (OTP.length < 6 ) {
-        errorsObj.otp1 = "*OTP is required!";
-        error = true;
-      }
-  
-      setErrors(errorsObj);
-      if (error) return;
-      verifyForgotPasswordOtp()
-    };
+  /*=======ERROR MESSAGE =========*/
+  let errorsObj = {
+    otp1: "",
+  };
+  const [errors, setErrors] = useState(errorsObj);
+  const onSignInSubmit = (e) => {
+    e.preventDefault();
+
+    let error = false;
+
+    errorsObj = { ...errorsObj };
+
+    if (OTP.length < 6) {
+      errorsObj.otp1 = "*OTP is required!";
+      error = true;
+    }
+
+    setErrors(errorsObj);
+    if (error) return;
+    verifyForgotPasswordOtp();
+  };
   /*=================verifyForgotPasswordOtp API============= */
 
   const verifyForgotPasswordOtp = () => {
@@ -125,7 +125,7 @@ function OtpVerification1({ phone, countryCode }) {
   /*=================ResendOTPverification API============= */
 
   const ResendOTPverification = async () => {
-    await setUpRecaptcha();
+    setUpRecaptcha();
     const mobile = countryCode + phone;
     const appVerifier = window.recaptchaVerifier;
     console.log("otp sent on this number", mobile);
@@ -191,11 +191,12 @@ function OtpVerification1({ phone, countryCode }) {
                       {errors.otp1 && (
                         <div className="errorMsg">{errors.otp1}</div>
                       )}
-                      <div id="sign-in-button" />
+
                       <button className="otp-verify-btn" type="submit">
                         Verify
                       </button>
                     </div>
+                    <div id="sign-in-button" />
                   </form>
                   {!timerCount == 0 ? (
                     <p className="resend-otp">

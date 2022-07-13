@@ -13,7 +13,7 @@ function FpwdEmail() {
   const [showOtpBox, setShowOtpBox] = useState(false);
   const [storedata, setstoredata] = useState("");
   const { encryptData, decryptData } = useEncryption();
-
+  console.log(storedata);
   /*============= Toast Fire Notifaction==========*/
 
   const Toast = Swal.mixin({
@@ -31,18 +31,19 @@ function FpwdEmail() {
     window.recaptchaVerifier = new RecaptchaVerifier(
       "sign-in-button",
       {
-        size: "invisible",
+        // size: "invisible",
+        theme : 'red',
         callback: (response) => {
           console.log(response);
           // reCAPTCHA solved, allow signInWithPhoneNumber.
-          // onSignUp();
+          onSignUp();
         },
       },
       auth
     );
   };
 
- /*================ERROR MESSAGE============= */
+  /*================ERROR MESSAGE============= */
 
   let errorsObj = {
     email: "",
@@ -71,7 +72,6 @@ function FpwdEmail() {
   }
 
   /*=============== forgotPassword API===========*/
-  // const navigate = useNavigate();
 
   const forgotPassword = async () => {
     try {
@@ -91,7 +91,8 @@ function FpwdEmail() {
           icon: "success",
           title: results.message,
         });
-        setstoredata(results.data)
+        console.log("first");
+        setstoredata(results.data);
         setUpRecaptcha();
         const mobile = storedata.countryCode + storedata.phoneNumber;
         const appVerifier = window.recaptchaVerifier;
@@ -111,7 +112,7 @@ function FpwdEmail() {
           .catch((error) => {
             // Error; SMS not sent
             // ...
-            console.log("error",error);
+            console.log("error", error);
             Toast.fire({
               icon: "error",
               title: "SMS not sent Please try again.",
@@ -127,9 +128,9 @@ function FpwdEmail() {
       console.log("err123" + err);
     }
   };
-  // console.log("storedata",storedata) 
+  // console.log("storedata",storedata)
   return (
-    <div>
+    <>
       {showOtpBox ? (
         <OtpVerification1
           countryCode={storedata.countryCode}
@@ -167,13 +168,13 @@ function FpwdEmail() {
                             errors.email
                               ? "form-control-error email-id mt-0"
                               : "form-control email-id mt-0"
-                          }
+                          } 
                         />
                         {errors.email && (
                           <div className="errorMsg">{errors.email}</div>
                         )}
                       </div>
-
+                      <div className="d-flex justify-content-center m-2 align-items-center" id="sign-in-button" />
                       <button
                         type="submit"
                         className="sign-in"
@@ -194,7 +195,7 @@ function FpwdEmail() {
           </section>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

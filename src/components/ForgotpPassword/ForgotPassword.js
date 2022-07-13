@@ -34,7 +34,7 @@ function Forgotpassword() {
     window.recaptchaVerifier = new RecaptchaVerifier(
       "sign-in-button",
       {
-        size: "invisible",
+        // size: "invisible",
         callback: (response) => {
           console.log(response);
           // reCAPTCHA solved, allow signInWithPhoneNumber.
@@ -206,8 +206,10 @@ function Forgotpassword() {
                           <div className="errorMsg">{errors.emailOrMobile}</div>
                         )}
                       </div>
-
-                      <div id="sign-in-button" />
+                      <div
+                        className="d-flex justify-content-center m-2 align-items-center"
+                        id="sign-in-button"
+                      />
                       <button type="submit" className="sign-in">
                         Send OTP
                       </button>
