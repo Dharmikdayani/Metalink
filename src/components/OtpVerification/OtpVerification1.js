@@ -8,7 +8,7 @@ import { auth } from "../../Firebase-config";
 
 function OtpVerification1({ phone, countryCode }) {
   const [OTP, setOTP] = useState("");
-  const defaultCount = 10;
+  const defaultCount = 60;
   const intervalGap = 1000;
   const [timerCount, setTimerCount] = useState(defaultCount);
   const navigate = useNavigate();

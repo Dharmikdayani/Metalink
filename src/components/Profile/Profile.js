@@ -73,12 +73,6 @@ const Profile = () => {
     setshowImg(false);
   };
 
-  const remove1 = () => {
-    var selector = ".editing-btn";
-    $(selector).removeClass("active");
-    console.log("first");
-    setshowImg(false);
-  };
   /*========outside click event Invite =========== */
 
   const Invite = useRef();
@@ -98,24 +92,7 @@ const Profile = () => {
     };
   }, [remove]);
 
-  /*========outside click event Invite =========== */
 
-  // const emailoutside = useRef();
-  // useEffect(() => {
-  //   const checkIfClickedOutside = (e) => {
-  //     // If the menu is open and the clicked target is not within the menu,
-  //     // then close the menu
-
-  //     if (emailoutside.current && !emailoutside.current.contains(e.target)) {
-  //       remove1(false);
-  //     }
-  //   };
-  //   document.addEventListener("mousedown", checkIfClickedOutside);
-  //   return () => {
-  //     // Cleanup the event listener
-  //     document.removeEventListener("mousedown", checkIfClickedOutside);
-  //   };
-  // }, [remove1]);
 
   /*=============== useEffect for getUserProfile calling======= */
   useEffect(() => {

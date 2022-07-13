@@ -101,8 +101,8 @@ const Invited = ({ setIsOpen }) => {
             </div>
           </div>
           <h5 className="invited-title">Invited By You</h5>
-          <div className="d-flex justify-content-center">
-            <div className="text-center">
+          <div className="d-flex justify-content-center mt-5">
+            <div className="d-flex align-items-baseline justify-content-around" >
               <h1 className="Status">Status:</h1>
               <select
                 value={selectedOption}
@@ -116,7 +116,8 @@ const Invited = ({ setIsOpen }) => {
                 <option value="inactive">In-Active</option>
               </select>
             </div>
-            <div>
+            <div className="px-5"></div>
+            <div className=" d-flex align-items-baseline">
               <h1 className="Status">Layers:</h1>
               <select
                 value={Layer}
@@ -135,9 +136,9 @@ const Invited = ({ setIsOpen }) => {
             </div>
           </div>
           {Loader ? (
-            <div className="snippet" data-title=".dot-spin">
+            <div className="snippet " data-title=".dot-spin">
               <div className="stage">
-                <div className="dot-spin"></div>
+                <div className="dot-spin "></div>
               </div>
             </div>
           ) : member.length ? (
@@ -185,7 +186,7 @@ const Invited = ({ setIsOpen }) => {
             </Carousel>
           ) : (
             <div>
-              <h2 className="selectedOption text-center">
+              <h2 className="selectedOption text-center mt-5">
                 <div className="box">
                   <img
                     src="../../img/icon/sadFace.png"

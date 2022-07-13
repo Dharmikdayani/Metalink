@@ -206,10 +206,7 @@ function Forgotpassword() {
                           <div className="errorMsg">{errors.emailOrMobile}</div>
                         )}
                       </div>
-                      <div
-                        className="d-flex justify-content-center m-2 align-items-center"
-                        id="sign-in-button"
-                      />
+                      <div id="sign-in-button"  className="recaptcha"/>
                       <button type="submit" className="sign-in">
                         Send OTP
                       </button>

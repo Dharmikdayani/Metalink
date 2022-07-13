@@ -300,18 +300,18 @@ function SignUp() {
                               e,
                               formattedValue
                             ) => {
-                              console.log("phone", phone.length);
-                              console.log("IsValid", IsValid);
+                              // console.log("phone", phone.length);
+                              // console.log("IsValid", IsValid);
                               setcountryCode(`+${countryData.dialCode}`);
                               setPhoneNumber(inputPhone);
                               setphone(data);
                               setSelCountryExpectedLength(
                                 countryData.format.length
                               );
-                              console.log(
-                                "selCountryExpectedLength",
-                                selCountryExpectedLength
-                              );
+                              // console.log(
+                              //   "selCountryExpectedLength",
+                              //   selCountryExpectedLength
+                              // );
                             }}
                             inputStyle={{
                               background: "#E2F1FE",
@@ -417,10 +417,7 @@ function SignUp() {
                         )}
                       </div>
 
-                      <div
-                        className="d-flex justify-content-center m-2 align-items-center"
-                        id="sign-in-button"
-                      />
+                      <div id="sign-in-button"  className="recaptcha" />
                       <button
                         className="sign-in"
                         type="submit"

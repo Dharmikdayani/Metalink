@@ -13,7 +13,6 @@ function FpwdEmail() {
   const [showOtpBox, setShowOtpBox] = useState(false);
   const [storedata, setstoredata] = useState("");
   const { encryptData, decryptData } = useEncryption();
-  console.log(storedata);
   /*============= Toast Fire Notifaction==========*/
 
   const Toast = Swal.mixin({
@@ -32,7 +31,7 @@ function FpwdEmail() {
       "sign-in-button",
       {
         // size: "invisible",
-        theme : 'red',
+        theme: "red",
         callback: (response) => {
           console.log(response);
           // reCAPTCHA solved, allow signInWithPhoneNumber.
@@ -85,16 +84,17 @@ function FpwdEmail() {
       });
       const results = decryptData(result.data.data);
       console.log("SignUp", results);
-
+      // console.log("storedata", storedata);
       if (results.success) {
         Toast.fire({
           icon: "success",
           title: results.message,
         });
-        console.log("first");
+
         setstoredata(results.data);
+
         setUpRecaptcha();
-        const mobile = storedata.countryCode + storedata.phoneNumber;
+        const mobile = results.data.countryCode + results.data.phoneNumber;
         const appVerifier = window.recaptchaVerifier;
         console.log("otp sent on this number", mobile);
         signInWithPhoneNumber(auth, mobile, appVerifier)
@@ -128,7 +128,7 @@ function FpwdEmail() {
       console.log("err123" + err);
     }
   };
-  // console.log("storedata",storedata)
+
   return (
     <>
       {showOtpBox ? (
@@ -168,13 +168,13 @@ function FpwdEmail() {
                             errors.email
                               ? "form-control-error email-id mt-0"
                               : "form-control email-id mt-0"
-                          } 
+                          }
                         />
                         {errors.email && (
                           <div className="errorMsg">{errors.email}</div>
                         )}
                       </div>
-                      <div className="d-flex justify-content-center m-2 align-items-center" id="sign-in-button" />
+                      <div id="sign-in-button" className="recaptcha" />
                       <button
                         type="submit"
                         className="sign-in"
