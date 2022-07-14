@@ -277,7 +277,7 @@ function SignUp() {
                         {errors.email && (
                           <div className="errorMsg">{errors.email}</div>
                         )}
-                        <div className="position-relative mt-4">
+                        <div className="position-relative mt-4 p-0">
                           <PhoneInput
                             name="phoneNumber"
                             type="phone"

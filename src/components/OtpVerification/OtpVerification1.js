@@ -157,7 +157,7 @@ function OtpVerification1({ phone, countryCode }) {
 
   /*========******* replce function======== */
   const getMaskedNumber = (number) => {
-    const endDigits = number.slice(-4);
+    const endDigits = number.slice(-3);
     return endDigits.padStart(number.length, "*");
   };
   

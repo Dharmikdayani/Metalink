@@ -66,31 +66,107 @@ const Profile = () => {
     $(this).addClass("active");
   });
 
-  const remove = () => {
-    var selector = ".editing-btn";
-    $(selector).removeClass("active");
-    //console.log("first");
-    setshowImg(false);
-  };
-
-  /*========outside click event Invite =========== */
-
-  const Invite = useRef();
-  useEffect(() => {
-    const checkIfClickedOutside = (e) => {
-      // If the menu is open and the clicked target is not within the menu,
-      // then close the menu
-
-      if (Invite.current && !Invite.current.contains(e.target)) {
-        remove(false);
+  /*========outside click event username =========== */
+  function useOutsideclickusername(username) {
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event) {
+        if (username.current && !username.current.contains(event.target)) {
+          var selector = ".username";
+          $(selector).removeClass("active");
+        }
       }
-    };
-    document.addEventListener("mousedown", checkIfClickedOutside);
-    return () => {
-      // Cleanup the event listener
-      document.removeEventListener("mousedown", checkIfClickedOutside);
-    };
-  }, [remove]);
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [username]);
+  }
+  const username = useRef(null);
+  useOutsideclickusername(username);
+
+
+
+
+  /*========outside click event email =========== */
+  function useOutsidclickemail(emailclick) {
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event) {
+        if (emailclick.current && !emailclick.current.contains(event.target)) {
+          var selector = ".emailclick";
+          $(selector).removeClass("active");
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [emailclick]);
+  }
+  const emailclick = useRef(null);
+  useOutsidclickemail(emailclick);
+
+
+
+  /*========outside click event password =========== */
+  function useOutsidclickpassord(passwordclick) {
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event) {
+        if (passwordclick.current && !passwordclick.current.contains(event.target)) {
+          var selector = ".passwordclick";
+          $(selector).removeClass("active");
+          setshowImg(false)
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [passwordclick]);
+  }
+  const passwordclick = useRef(null);
+  useOutsidclickpassord(passwordclick);
+
+
+
+  /*========outside click event Phone Number =========== */
+  function useOutsidclickPhoneNumber(PhoneNumber) {
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event) {
+        if (PhoneNumber.current && !PhoneNumber.current.contains(event.target)) {
+          var selector = ".PhoneNumber";
+          $(selector).removeClass("active");
+          // setshowImg(false)
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [PhoneNumber]);
+  }
+  const PhoneNumber = useRef(null);
+  useOutsidclickPhoneNumber(PhoneNumber);
+
 
   /*=============== useEffect for getUserProfile calling======= */
   useEffect(() => {
@@ -391,7 +467,7 @@ const Profile = () => {
                     <form className="currentuser-profile" autoComplete="off">
                       <div
                         className="row profile-wrap align-items-baseline"
-                        ref={Invite}
+                        // ref={Invite}
                       >
                         <div className="col-md-6 profile-padding">
                           <div className="profile-box">
@@ -410,7 +486,10 @@ const Profile = () => {
                                 {ProfileData.username}
                               </span>
 
-                              <div className="editing-btn">
+                              <div
+                                className="editing-btn username"
+                                ref={username}
+                              >
                                 <img
                                   src="../../img/profile/editing.png"
                                   onClick={() => setshowImg(false)}
@@ -529,7 +608,10 @@ const Profile = () => {
                               <span className="name-info w-100 d-inline-block">
                                 {ProfileData.email}
                               </span>
-                              <div className="editing-btn">
+                              <div
+                                className="editing-btn emailclick"
+                                ref={emailclick}
+                              >
                                 <img
                                   src="../../img/profile/editing.png"
                                   onClick={() => setshowImg(false)}
@@ -555,7 +637,7 @@ const Profile = () => {
                               </div>
                             )}
                           </div>
-                          <div>
+                          <div ref={passwordclick} className=" passwordclick">
                             <div className="form-group multi-field-wrapper position-relative">
                               <label className="label-title1 position-absolute">
                                 Password
@@ -565,8 +647,9 @@ const Profile = () => {
                                   ********
                                 </span>
                                 <div
-                                  className="editing-btn "
+                                  className="editing-btn passwordclick"
                                   onClick={() => setshowImg(true)}
+                                  
                                 >
                                   <img src="../../img/profile/editing.png" />
                                   <input
@@ -608,8 +691,9 @@ const Profile = () => {
                                 </div>
                               )}
                             </div>
+                            {/* ref={Confirmpasswordclick} */}
                             {showimg ? (
-                              <div className="position-relative">
+                              <div className="position-relative " >
                                 <label className="label-title1 position-absolute">
                                   Confirm Password
                                 </label>
@@ -645,13 +729,13 @@ const Profile = () => {
                                 {countryCode} {phoneNumber}
                                 {/* {mobile} */}
                               </span>
-                              <div className="editing-btn">
+                              <div className="editing-btn PhoneNumber"ref={PhoneNumber} >
                                 <img
                                   src="../../img/profile/editing.png"
                                   onClick={() => setshowImg(false)}
                                 />
 
-                                <div className=" phone ">
+                                <div className="phone">
                                   <PhoneInput
                                     className="profile-input"
                                     name="phoneNumber "
