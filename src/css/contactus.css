@@ -78,6 +78,8 @@
     align-items: baseline;
     position: relative;
     top: -40px;
+    left: 10px;
+
 }
 
 .errorMsg-Contactus-textarea {
@@ -85,6 +87,7 @@
     align-items: baseline;
     position: relative;
     top: -96px;
+    left: 10px;
 }
 
 .form-group-errorMsg input,

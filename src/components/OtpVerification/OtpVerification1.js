@@ -63,10 +63,11 @@ function OtpVerification1({ phone, countryCode }) {
     window.recaptchaVerifier = new RecaptchaVerifier(
       "sign-in-button",
       {
-        size: "invisible",
+        // size: "invisible",
         callback: (response) => {
           //console.log(response);
           // reCAPTCHA solved, allow signInWithPhoneNumber.
+          onSignInSubmit(response);
         },
       },
       auth
@@ -96,12 +97,12 @@ function OtpVerification1({ phone, countryCode }) {
   };
   /*=================verifyForgotPasswordOtp API============= */
 
-  const verifyForgotPasswordOtp = () => {
+  const verifyForgotPasswordOtp = async () => {
     const code = OTP;
     //console.log(code);
     window.confirmationResult
       .confirm(code)
-      .then(async (result) => {
+      .then((result) => {
         // User signed in successfully.
         const user = result.user;
         //console.log(JSON.stringify(user));
@@ -127,7 +128,7 @@ function OtpVerification1({ phone, countryCode }) {
   const ResendOTPverification = async () => {
     setUpRecaptcha();
     const mobile = countryCode + phone;
-    const appVerifier = window.recaptchaVerifier;
+    const appVerifier = await window.recaptchaVerifier;
     //console.log("otp sent on this number", mobile);
     signInWithPhoneNumber(auth, mobile, appVerifier)
       .then((confirmationResult) => {
@@ -135,7 +136,7 @@ function OtpVerification1({ phone, countryCode }) {
         // user in with confirmationResult.confirm(code).
         window.confirmationResult = confirmationResult;
         //console.log("otp sent");
-
+        window.recaptchaVerifier.clear();
         Toast.fire({
           icon: "success",
           title: "New OTP is sent",
@@ -154,6 +155,12 @@ function OtpVerification1({ phone, countryCode }) {
       });
   };
 
+  /*========******* replce function======== */
+  const getMaskedNumber = (number) => {
+    const endDigits = number.slice(-4);
+    return endDigits.padStart(number.length, "*");
+  };
+  
   return (
     <>
       <div className="logIn otp1-bg">
@@ -177,7 +184,9 @@ function OtpVerification1({ phone, countryCode }) {
                   <p className="sub-heading mb-0">
                     Enter the OTP you received at
                   </p>
-                  <p className="otp-no mb-0">{countryCode + phone}</p>
+                  <p className="otp-no mb-0">
+                    {countryCode + " " + getMaskedNumber(phone)}
+                  </p>
                   <form onSubmit={(e) => onSignInSubmit(e)}>
                     <div className="otp-group">
                       <OTPInput
@@ -191,12 +200,11 @@ function OtpVerification1({ phone, countryCode }) {
                       {errors.otp1 && (
                         <div className="errorMsg">{errors.otp1}</div>
                       )}
-
+                      <div id="sign-in-button" className="recaptcha" />
                       <button className="otp-verify-btn" type="submit">
                         Verify
                       </button>
                     </div>
-                    <div id="sign-in-button" />
                   </form>
                   {!timerCount == 0 ? (
                     <p className="resend-otp">

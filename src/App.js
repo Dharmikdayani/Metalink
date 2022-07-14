@@ -52,7 +52,7 @@ const App = () => {
     setCurrentBalance({});
     // console.log("first",user)
     if (getItem) {
-      const socket = io("https://metalink-technomads.herokuapp.com");
+      const socket = io("http://localhost:3000");
       socket.on("connect", () => {
         setSocket(socket);
         // console.log( getItem._id)
@@ -98,7 +98,7 @@ const App = () => {
           element={<Otpverification1 />}
         />
         <Route
-          path="/OtpVerificationForUpdatemobile"
+          path="/otpVerificationForUpdatemobile"
           element={<OtpVerificationFormobile />}
         />
         <Route path="/forgotPassword" element={<ForgotPassword />} />

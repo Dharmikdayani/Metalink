@@ -141,11 +141,10 @@ function Mine({ socket, miningStatus, currentBalance }) {
     } else {
       <div className="toast-fire">
         {Toast.fire({
-        
           icon: "error",
           title: "Captcha Does Not Match",
         })}
-      </div>
+      </div>;
 
       document.getElementById("user_captcha_input").value = "";
     }

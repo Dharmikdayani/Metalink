@@ -287,7 +287,7 @@ function SignUp() {
                             country={"in"}
                             countryCodeEditable={false}
                             enableClickOutside
-                            // disableCountryCode={true}
+                            disableCountryCode={false}
                             jumpCursorToEnd={false}
                             value={phoneNumber}
                             enableSearch

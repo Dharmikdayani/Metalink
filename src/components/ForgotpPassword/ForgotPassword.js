@@ -38,7 +38,8 @@ function Forgotpassword() {
         callback: (response) => {
           // console.log(response);
           // reCAPTCHA solved, allow signInWithPhoneNumber.
-          onLogin();
+          onLogin(response);
+          console.log("response",response)
         },
       },
       auth
@@ -93,7 +94,7 @@ function Forgotpassword() {
         });
         setUpRecaptcha();
         const mobile = countryCode + a;
-        const appVerifier = window.recaptchaVerifier;
+        const appVerifier = await window.recaptchaVerifier;
         // console.log("otp sent on this number", mobile);
         signInWithPhoneNumber(auth, mobile, appVerifier)
           .then((confirmationResult) => {
@@ -206,7 +207,7 @@ function Forgotpassword() {
                           <div className="errorMsg">{errors.emailOrMobile}</div>
                         )}
                       </div>
-                      <div id="sign-in-button"  className="recaptcha"/>
+                      <div id="sign-in-button" className="recaptcha" />
                       <button type="submit" className="sign-in">
                         Send OTP
                       </button>

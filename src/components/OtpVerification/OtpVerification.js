@@ -65,8 +65,9 @@ function OtpVerification({
     window.recaptchaVerifier = new RecaptchaVerifier(
       "sign-in-button",
       {
-        size: "invisible",
+        // size: "invisible",
         callback: (response) => {
+          onSignInSubmit(response);
           // console.log(response);
           setTimerCount(defaultCount);
 
@@ -103,7 +104,7 @@ function OtpVerification({
 
     errorsObj = { ...errorsObj };
 
-    if (OTP.length < 6 ) {
+    if (OTP.length < 6) {
       errorsObj.otp1 = "*OTP is required!";
       error = true;
     }
@@ -208,7 +209,7 @@ function OtpVerification({
         // user in with confirmationResult.confirm(code).
         window.confirmationResult = confirmationResult;
         // console.log("otp sent");
-
+        window.recaptchaVerifier.clear();
         Toast.fire({
           icon: "success",
           title: "New OTP is sent",
@@ -226,6 +227,12 @@ function OtpVerification({
           title: "SMS not sent Please try again.",
         });
       });
+  };
+
+  /*========******* replce function======== */
+  const getMaskedNumber = (number) => {
+    const endDigits = number.slice(-4);
+    return endDigits.padStart(number.length, "*");
   };
 
   return (
@@ -252,7 +259,9 @@ function OtpVerification({
                     Enter the OTP you received at
                   </p>
                   <p className="otp-no mb-0">
-                    {user?.countryCode + user?.phoneNumber}
+                    {user?.countryCode +
+                      " " +
+                      getMaskedNumber(user?.phoneNumber)}
                   </p>
                   <form onSubmit={(e) => onSignInSubmit(e)}>
                     <div className="otp-group">
@@ -267,7 +276,7 @@ function OtpVerification({
                       {errors.otp1 && (
                         <div className="errorMsg">{errors.otp1}</div>
                       )}
-                      <div id="sign-in-button" />
+                      <div id="sign-in-button" className="recaptcha" />
                       <button className="otp-verify-btn" type="submit">
                         Verify
                       </button>

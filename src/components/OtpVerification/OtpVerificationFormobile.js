@@ -14,7 +14,6 @@ import useEncryption from "../EncryptData/EncryptData";
 function OtpVerificationFormobile({
   ProfileData,
   countryCode,
-  mobile,
   oldMobile,
   phone,
   username,
@@ -24,11 +23,10 @@ function OtpVerificationFormobile({
   setmobile,
   setOldMobile,
 }) {
-  // //console.log("setmobile",countryCode , "setOldMobile", phone);
+  // console.log(ProfileData,countryCode , oldMobile, phone);
   const [OTP, setOTP] = useState("");
   const dispatch = useDispatch();
   const { encryptData, decryptData } = useEncryption();
-
   const defaultCount = 60;
   const intervalGap = 1000;
   const [timerCount, setTimerCount] = useState(defaultCount);
@@ -71,8 +69,9 @@ function OtpVerificationFormobile({
     window.recaptchaVerifier = new RecaptchaVerifier(
       "sign-in-button",
       {
-        size: "invisible",
+        // size: "invisible",
         callback: (response) => {
+          onSignInSubmit(response);
           //console.log(response);
           // reCAPTCHA solved, allow signInWithPhoneNumber.
         },
@@ -209,7 +208,7 @@ function OtpVerificationFormobile({
         // user in with confirmationResult.confirm(code).
         window.confirmationResult = confirmationResult;
         //console.log("otp sent");
-
+        window.recaptchaVerifier.clear();
         Toast.fire({
           icon: "success",
           title: "OTP sent",
@@ -226,6 +225,12 @@ function OtpVerificationFormobile({
           title: "SMS not sent Please try again.",
         });
       });
+  };
+
+  /*========******* replce function======== */
+  const getMaskedNumber = (number) => {
+    const endDigits = number.slice(-4);
+    return endDigits.padStart(number.length, "*");
   };
 
   return (
@@ -251,7 +256,7 @@ function OtpVerificationFormobile({
                   <p className="sub-heading mb-0">
                     Enter the OTP you received at
                   </p>
-                  <p className="otp-no mb-0">{oldMobile}</p>
+                  <p className="otp-no mb-0">{ProfileData?.countryCode + " " + getMaskedNumber(ProfileData?.phoneNumber)}</p>
                   <form onSubmit={(e) => onSignInSubmit(e)}>
                     <div className="otp-group">
                       <OTPInput
@@ -265,7 +270,7 @@ function OtpVerificationFormobile({
                       {errors.otp1 && (
                         <div className="errorMsg">{errors.otp1}</div>
                       )}
-                      <div id="sign-in-button" />
+                      <div id="sign-in-button" className="recaptcha" />
                       <button className="otp-verify-btn" type="submit">
                         Verify
                       </button>

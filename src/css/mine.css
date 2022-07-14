@@ -886,7 +886,7 @@ height: 318px; */
   }
 
   .login-form-bg .sign-in {
-    margin: 80px auto 15px auto !important;
+    margin: 35px auto 15px auto !important;
   }
 }
 
@@ -1998,4 +1998,10 @@ video {
   }
 }
 
-/*  */
+
+
+/* .react-tel-input * {
+  color: gray ;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+} */
