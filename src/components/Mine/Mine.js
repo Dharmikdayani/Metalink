@@ -121,7 +121,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
         const result = await instance.get("/activeUser");
 
         const results = decryptData(result.data.data);
-        console.log("doSubmit", results);
+        // console.log("doSubmit", results);
 
         if (results.success) {
           Toast.fire({
@@ -136,15 +136,16 @@ function Mine({ socket, miningStatus, currentBalance }) {
           });
         }
       } catch (err) {
-        console.log("err" + err);
+        // console.log("err" + err);
       }
     } else {
       <div className="toast-fire">
         {Toast.fire({
+        
           icon: "error",
           title: "Captcha Does Not Match",
         })}
-      </div>;
+      </div>
 
       document.getElementById("user_captcha_input").value = "";
     }

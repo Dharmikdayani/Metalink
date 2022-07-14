@@ -14,7 +14,7 @@ const useEncryption = () => {
 
       return cryptoJS.AES.encrypt(dataToBeEncrypted, cryptoKey).toString();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -26,7 +26,7 @@ const useEncryption = () => {
 
       return JSON.parse(plain.toString(cryptoJS.enc.Utf8));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

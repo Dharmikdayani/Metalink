@@ -35,16 +35,16 @@ const Mining = () => {
       if (results.status) {
         setLayer([results?.data]);
       } else {
-        Toast.fire({
-          icon: "error",
-          title: results.message,
-        });
+        // Toast.fire({
+        //   icon: "error",
+        //   title: results.message,
+        // });
         setLayer([
           { level1: 0, level2: 0, level3: 0, level4: 0, level5: 0, total: 0 },
         ]);
       }
     } catch (error) {
-      console.log("err" + error.message);
+      // console.log("err" + error.message);
       setLayer([
         { level1: 0, level2: 0, level3: 0, level4: 0, level5: 0, total: 0 },
       ]);

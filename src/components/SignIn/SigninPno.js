@@ -82,7 +82,7 @@ function SigninPno() {
         data: encrypt,
       });
       const results = decryptData(result.data.data);
-      console.log(results);
+      //console.log(results);
 
       if (results.success) {
         Toast.fire({
@@ -121,7 +121,7 @@ function SigninPno() {
         });
       }
     } catch (err) {
-      console.log("err" + err);
+      //console.log("err" + err);
     }
   };
 

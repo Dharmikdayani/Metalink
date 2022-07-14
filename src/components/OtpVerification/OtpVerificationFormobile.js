@@ -24,7 +24,7 @@ function OtpVerificationFormobile({
   setmobile,
   setOldMobile,
 }) {
-  // console.log("setmobile",countryCode , "setOldMobile", phone);
+  // //console.log("setmobile",countryCode , "setOldMobile", phone);
   const [OTP, setOTP] = useState("");
   const dispatch = useDispatch();
   const { encryptData, decryptData } = useEncryption();
@@ -73,7 +73,7 @@ function OtpVerificationFormobile({
       {
         size: "invisible",
         callback: (response) => {
-          console.log(response);
+          //console.log(response);
           // reCAPTCHA solved, allow signInWithPhoneNumber.
         },
       },
@@ -126,7 +126,7 @@ function OtpVerificationFormobile({
       .then(async (result) => {
         // User signed in successfully.
         const user = result.user;
-        console.log(JSON.stringify(user));
+        //console.log(JSON.stringify(user));
         try {
           const encrypt = encryptData(
             JSON.stringify({
@@ -141,7 +141,7 @@ function OtpVerificationFormobile({
             data: encrypt,
           });
           const results = decryptData(result.data.data);
-          console.log("SignUp", results);
+          //console.log("SignUp", results);
           if (results.success) {
             Toast.fire({
               icon: "success",
@@ -149,7 +149,7 @@ function OtpVerificationFormobile({
             });
             setmobile(countryCode + phone);
             setOldMobile(countryCode + phone);
-            console.log("setmobile", mobile, "setOldMobile", oldMobile);
+            //console.log("setmobile", mobile, "setOldMobile", oldMobile);
 
             localStorage.setItem(
               "user",
@@ -183,12 +183,12 @@ function OtpVerificationFormobile({
             });
           }
         } catch (err) {
-          console.log("err" + err);
+          //console.log("err" + err);
         }
       })
       .catch((error) => {
         // User couldn't sign in (bad verification code?)
-        console.log("err", error);
+        //console.log("err", error);
         Toast.fire({
           icon: "error",
           title: "invalid verification code",
@@ -202,13 +202,13 @@ function OtpVerificationFormobile({
     await setUpRecaptcha();
     const mobile = oldMobile;
     const appVerifier = window.recaptchaVerifier;
-    console.log("otp sent on this number", mobile);
+    //console.log("otp sent on this number", mobile);
     signInWithPhoneNumber(auth, mobile, appVerifier)
       .then((confirmationResult) => {
         // SMS sent. Prompt user to type the code from the message, then sign the
         // user in with confirmationResult.confirm(code).
         window.confirmationResult = confirmationResult;
-        console.log("otp sent");
+        //console.log("otp sent");
 
         Toast.fire({
           icon: "success",
@@ -220,7 +220,7 @@ function OtpVerificationFormobile({
       .catch((error) => {
         // Error; SMS not sent
         // ...
-        console.log(error);
+        //console.log(error);
         Toast.fire({
           icon: "error",
           title: "SMS not sent Please try again.",

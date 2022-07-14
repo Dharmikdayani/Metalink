@@ -69,7 +69,7 @@ const Profile = () => {
   const remove = () => {
     var selector = ".editing-btn";
     $(selector).removeClass("active");
-    console.log("first");
+    //console.log("first");
     setshowImg(false);
   };
 
@@ -117,7 +117,7 @@ const Profile = () => {
       const result = await instance.get("/getUserProfile");
 
       const results = decryptData(result.data.data);
-      console.log("getUserProfile", results);
+      //console.log("getUserProfile", results);
 
       if (results.success) {
         // Toast.fire({
@@ -168,7 +168,7 @@ const Profile = () => {
         });
       }
     } catch (err) {
-      console.log("err" + err);
+      //console.log("err" + err);
     }
   };
 
@@ -178,7 +178,7 @@ const Profile = () => {
       {
         // size: "invisible",
         callback: (response) => {
-          console.log(response);
+          //console.log(response);
           // reCAPTCHA solved, allow signInWithPhoneNumber.
           // savadata();
         },
@@ -312,20 +312,20 @@ const Profile = () => {
           });
         }
       } catch (err) {
-        console.log("err" + err);
+        //console.log("err" + err);
       }
     } else {
       setUpRecaptcha();
       const mobile = oldMobile;
       const appVerifier = window.recaptchaVerifier;
-      console.log("otp sent on this number", mobile);
+      //console.log("otp sent on this number", mobile);
       signInWithPhoneNumber(auth, mobile, appVerifier)
         .then((confirmationResult) => {
           // SMS sent. Prompt user to type the code from the message, then sign the
           // user in with confirmationResult.confirm(code).
           window.confirmationResult = confirmationResult;
           setShowOtpBox(true);
-          console.log("otp sent");
+          //console.log("otp sent");
           Toast.fire({
             icon: "success",
             title: "otp sent",
@@ -334,7 +334,7 @@ const Profile = () => {
         .catch((error) => {
           // Error; SMS not sent
           // ...
-          console.log(error);
+          //console.log(error);
           Toast.fire({
             icon: "error",
             title: "SMS not sent Plase try again.",
@@ -388,12 +388,11 @@ const Profile = () => {
                     >
                       Profile
                     </h3>
-                    <form
-                      className="currentuser-profile"
-                      autoComplete="off"
-                      ref={Invite}
-                    >
-                      <div className="row profile-wrap align-items-baseline">
+                    <form className="currentuser-profile" autoComplete="off">
+                      <div
+                        className="row profile-wrap align-items-baseline"
+                        ref={Invite}
+                      >
                         <div className="col-md-6 profile-padding">
                           <div className="profile-box">
                             <h4 className="team-title">
@@ -735,15 +734,16 @@ const Profile = () => {
               {/* <!-- Referral_link_to_share_Popup --> */}
               <div className={isOpen ? "share-dialog is-open" : "share-dialog"}>
                 <div className="modal-headertop d-flex justify-content-between align-items-center">
-                  <h3 className="dialog-title mb-0">Share this pen</h3>
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="close-button border-0 bg-transparent"
+                  <a
+                    href="#close"
+                    className="justify-content-end d-flex close-btn"
                   >
-                    <a href="#close">
-                      <img src="../../img/profile/close.png" />
-                    </a>
-                  </button>
+                    <img
+                      src="../../img/profile/close.png"
+                      onClick={() => setIsOpen(false)}
+                    />
+                  </a>
+                  <h3 className="dialog-title mb-0">Share this pen</h3>
                 </div>
                 <div className="targets">
                   <div className="footer-social d-flex">

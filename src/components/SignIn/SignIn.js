@@ -74,7 +74,7 @@ function SignIn() {
       });
 
       const results = decryptData(result.data.data);
-      console.log("SignIn", results);
+      //console.log("SignIn", results);
 
       if (results.success) {
         Toast.fire({
@@ -115,7 +115,7 @@ function SignIn() {
         });
       }
     } catch (err) {
-      console.log("err" + err);
+      //console.log("err" + err);
     }
   };
   /*=======SHOW PASSWORD====== */

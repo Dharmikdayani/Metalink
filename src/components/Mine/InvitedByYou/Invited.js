@@ -61,7 +61,7 @@ const Invited = ({ setIsOpen }) => {
         // });
       }
     } catch (error) {
-      console.log("err" + error);
+      // console.log("err" + error);
       setLoader(false);
     }
   };

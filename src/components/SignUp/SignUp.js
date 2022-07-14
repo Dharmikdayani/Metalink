@@ -46,7 +46,7 @@ function SignUp() {
       {
         // size: "invisible",
         callback: (response) => {
-          console.log(response);
+          //console.log(response);
           // reCAPTCHA solved, allow signInWithPhoneNumber.
           onSignInSubmit();
         },
@@ -141,7 +141,7 @@ function SignUp() {
       });
 
       const results = decryptData(result.data.data);
-      console.log("SignUp", results);
+      //console.log("SignUp", results);
 
       if (results.success) {
         Toast.fire({
@@ -151,13 +151,13 @@ function SignUp() {
         setUpRecaptcha();
         const mobile = countryCode + a;
         const appVerifier = window.recaptchaVerifier;
-        console.log("otp sent on this number", mobile);
+        //console.log("otp sent on this number", mobile);
         signInWithPhoneNumber(auth, mobile, appVerifier)
           .then((confirmationResult) => {
             // SMS sent. Prompt user to type the code from the message, then sign the
             // user in with confirmationResult.confirm(code).
             window.confirmationResult = confirmationResult;
-            console.log("otp sent");
+            //console.log("otp sent");
             setShowOtpBox(true);
             Toast.fire({
               icon: "success",
@@ -167,7 +167,7 @@ function SignUp() {
           .catch((error) => {
             // Error; SMS not sent
             // ...
-            console.log(error);
+            //console.log(error);
             Toast.fire({
               icon: "error",
               title: "SMS not sent Please try again.",
@@ -189,7 +189,7 @@ function SignUp() {
         });
       }
     } catch (err) {
-      console.log("err" + err);
+      //console.log("err" + err);
     }
   };
 
@@ -287,6 +287,7 @@ function SignUp() {
                             country={"in"}
                             countryCodeEditable={false}
                             enableClickOutside
+                            // disableCountryCode={true}
                             jumpCursorToEnd={false}
                             value={phoneNumber}
                             enableSearch
@@ -300,15 +301,15 @@ function SignUp() {
                               e,
                               formattedValue
                             ) => {
-                              // console.log("phone", phone.length);
-                              // console.log("IsValid", IsValid);
+                              // //console.log("phone", phone.length);
+                              // //console.log("IsValid", IsValid);
                               setcountryCode(`+${countryData.dialCode}`);
                               setPhoneNumber(inputPhone);
                               setphone(data);
                               setSelCountryExpectedLength(
                                 countryData.format.length
                               );
-                              // console.log(
+                              // //console.log(
                               //   "selCountryExpectedLength",
                               //   selCountryExpectedLength
                               // );

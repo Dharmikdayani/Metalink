@@ -33,7 +33,7 @@ function FpwdEmail() {
         // size: "invisible",
         theme: "red",
         callback: (response) => {
-          console.log(response);
+          // console.log(response);
           // reCAPTCHA solved, allow signInWithPhoneNumber.
           onSignUp();
         },
@@ -83,7 +83,7 @@ function FpwdEmail() {
         data: encrypt,
       });
       const results = decryptData(result.data.data);
-      console.log("SignUp", results);
+      // console.log("SignUp", results);
       // console.log("storedata", storedata);
       if (results.success) {
         Toast.fire({
@@ -96,13 +96,13 @@ function FpwdEmail() {
         setUpRecaptcha();
         const mobile = results.data.countryCode + results.data.phoneNumber;
         const appVerifier = window.recaptchaVerifier;
-        console.log("otp sent on this number", mobile);
+        // console.log("otp sent on this number", mobile);
         signInWithPhoneNumber(auth, mobile, appVerifier)
           .then((confirmationResult) => {
             // SMS sent. Prompt user to type the code from the message, then sign the
             // user in with confirmationResult.confirm(code).
             window.confirmationResult = confirmationResult;
-            console.log("otp sent");
+            // console.log("otp sent");
             setShowOtpBox(true);
             Toast.fire({
               icon: "success",
@@ -112,7 +112,7 @@ function FpwdEmail() {
           .catch((error) => {
             // Error; SMS not sent
             // ...
-            console.log("error", error);
+            // console.log("error", error);
             Toast.fire({
               icon: "error",
               title: "SMS not sent Please try again.",
@@ -125,7 +125,7 @@ function FpwdEmail() {
         });
       }
     } catch (err) {
-      console.log("err123" + err);
+      // console.log("err123" + err);
     }
   };
 

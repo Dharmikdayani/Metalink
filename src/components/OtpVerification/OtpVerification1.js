@@ -65,7 +65,7 @@ function OtpVerification1({ phone, countryCode }) {
       {
         size: "invisible",
         callback: (response) => {
-          console.log(response);
+          //console.log(response);
           // reCAPTCHA solved, allow signInWithPhoneNumber.
         },
       },
@@ -98,13 +98,13 @@ function OtpVerification1({ phone, countryCode }) {
 
   const verifyForgotPasswordOtp = () => {
     const code = OTP;
-    console.log(code);
+    //console.log(code);
     window.confirmationResult
       .confirm(code)
       .then(async (result) => {
         // User signed in successfully.
         const user = result.user;
-        console.log(JSON.stringify(user));
+        //console.log(JSON.stringify(user));
         Toast.fire({
           icon: "success",
           title: "user is verified",
@@ -114,7 +114,7 @@ function OtpVerification1({ phone, countryCode }) {
       .catch((error) => {
         // User couldn't sign in (bad verification code?)
 
-        console.log("err", error);
+        //console.log("err", error);
         Toast.fire({
           icon: "error",
           title: "invalid verification code",
@@ -128,13 +128,13 @@ function OtpVerification1({ phone, countryCode }) {
     setUpRecaptcha();
     const mobile = countryCode + phone;
     const appVerifier = window.recaptchaVerifier;
-    console.log("otp sent on this number", mobile);
+    //console.log("otp sent on this number", mobile);
     signInWithPhoneNumber(auth, mobile, appVerifier)
       .then((confirmationResult) => {
         // SMS sent. Prompt user to type the code from the message, then sign the
         // user in with confirmationResult.confirm(code).
         window.confirmationResult = confirmationResult;
-        console.log("otp sent");
+        //console.log("otp sent");
 
         Toast.fire({
           icon: "success",
@@ -146,7 +146,7 @@ function OtpVerification1({ phone, countryCode }) {
       .catch((error) => {
         // Error; SMS not sent
         // ...
-        console.log(error);
+        //console.log(error);
         Toast.fire({
           icon: "error",
           title: "SMS not sent Please try again.",

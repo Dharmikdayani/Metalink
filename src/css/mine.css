@@ -337,8 +337,7 @@
 
 #captcha-modals {
   display: none;
-  position: fixed;
-  z-index: 1;
+  position: fixed; 
   padding-top: 100px;
   left: 0;
   top: 0;
@@ -884,6 +883,10 @@ height: 318px; */
   .metaRate {
     padding: 5px 3px 0px 7px !important;
 
+  }
+
+  .login-form-bg .sign-in {
+    margin: 80px auto 15px auto !important;
   }
 }
 
@@ -1787,62 +1790,35 @@ video {
   grid-template-columns: auto auto;
 }
 
-
-
-
-
-
-
-
 .eAyARa {
   color: #999;
-  transition: all 0s ease !important;
-  /* box-sizing:  content-box !important; */
-  transition: none !important;
-  font-size: 0 !important;
   background: #DEEFFD !important;
   box-shadow: 2px 2px 3px rgba(0, 16, 57, 0.2), -2px -2px 3px rgba(255, 255, 255, 0.8) !important;
-  border-radius: 50%;
-  padding: 0;
-  width: 50px;
-  height: 50px;
-  min-width: 50px;
-  line-height: 50px;
-  align-self: center;
-  outline: none;
-  background-image: url(../../public/img/icon/play.png) !important;
-  background-repeat: no-repeat !important;
   background-position: calc(-4% - -16px) calc(3em + 14px), calc(100% - -5px) calc(5em + 7px), 100% 0 !important;
 }
 
-
-
-
-.eWjCzc {
-  color: #999;
-  transition: none !important;
-  /* box-sizing: border-box;  */
-  font-size: 0 !important;
-  background: #DEEFFD !important;
-  box-shadow: 2px 2px 3px rgba(0, 16, 57, 0.2), -2px -2px 3px rgba(255, 255, 255, 0.8) !important;
-  border-radius: 50%;
-  padding: 0;
-  width: 50px;
-  height: 50px;
-  min-width: 50px;
-  line-height: 50px;
-  align-self: center;
-  outline: none;
-  background-image: url(../../public/img/icon/play.png) !important;
-  background-repeat: no-repeat !important;
-  background-position: calc(-4% - -20px) calc(3em + 15px), calc(100% - -5px) calc(5em + 7px), 100% 0 !important;
+.eWjCzc:hover:enabled,
+.eWjCzc:focus:enabled {
+  color: #999 !important;
+  background-color: rgba(103, 58, 183, 1);
+  box-shadow: 0 0 2px 0 #333;
 }
 
+.eWjCzc {
+  color: #999 !important;
+  background: #DEEFFD !important;
+  box-shadow: 2px 2px 3px rgba(0, 16, 57, 0.2), -2px -2px 3px rgba(255, 255, 255, 0.8) !important;
+  background-position: calc(-4% - -20px) calc(3em + 15px), calc(100% - -5px) calc(5em + 7px), 100% 0 !important;
+}
 
 .eWjCzc:hover:enabled {
   background-color: rgba(103, 58, 183, 1);
   box-shadow: 0 0 2px 0 #333 !important;
   box-shadow: inset 2px 2px 3px rgb(0 16 57 / 20%), inset -2px -2px 3px rgb(255 255 255 / 80%) !important;
+}
+
+.grUxXV {
+  margin-top: 5%;
 }
 
 .krmNah {
@@ -2022,12 +1998,4 @@ video {
   }
 }
 
-.lcwibA {
-  display: flex;
-  flex-direction: column;
-  -webkit-box-align: center;
-  align-items: center;
-  width: 100%;
-  direction: ltr;
-  margin-top: 5%;
-}
+/*  */

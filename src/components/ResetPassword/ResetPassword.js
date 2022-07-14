@@ -77,7 +77,7 @@ function Resetpassword() {
       });
 
       const results = decryptData(result.data.data);
-      console.log("SignUp", results);
+      //console.log("SignUp", results);
 
       if (results.success) {
         Toast.fire({
@@ -93,7 +93,7 @@ function Resetpassword() {
         });
       }
     } catch (err) {
-      console.log("err" + err);
+      //console.log("err" + err);
     }
   };
 

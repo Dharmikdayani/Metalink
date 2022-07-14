@@ -25,7 +25,7 @@ const MetalinkTeamsMember = () => {
     try {
       const result = await instance.get("/coreTeam");
       const results = decryptData(result.data.data);
-      console.log("coreTeam", results);
+      //console.log("coreTeam", results);
 
       if (results.status) {  
         let Teammember = results.data;  
@@ -37,7 +37,7 @@ const MetalinkTeamsMember = () => {
         });
       }
     } catch (error) {
-      console.log("err" + error);
+      //console.log("err" + error);
     }
   };
   useEffect(() => {
