@@ -50,19 +50,22 @@ const App = () => {
 
   useEffect(() => {
     setCurrentBalance({});
-    // console.log("first",user)
+    setMiningStatus(false)
+    setSocket("")
+    console.log("getItem",getItem)
     if (getItem) {
-      const socket = io("https://metalink-technomads.herokuapp.com");
+      const socket = io("http://localhost:3000");
       socket.on("connect", () => {
         setSocket(socket);
-        // console.log( getItem._id)
+        console.log("id", getItem._id)
         socket.emit("joinRoom", getItem._id);
         socket.on("currentBalance", (data) => {
-          // console.log("data", data);
+          console.log("data", data);
           setMiningStatus(data?.miningStatus);
           setCurrentBalance(data);
         });
       });
+      // socket.
       // effectCalled.current = true;
     }
   }, [getItem?._id]);
@@ -81,7 +84,7 @@ const App = () => {
               />
             }
           />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile  socket={socket}/>} />
         </Route>
         <Route exact path="/" element={<Home />} />
         <Route path="/meainhome" element={<MeainHome />} />
@@ -98,7 +101,7 @@ const App = () => {
           element={<Otpverification1 />}
         />
         <Route
-          path="/otpVerificationForUpdatemobile"
+          path="/OtpVerificationForUpdatemobile"
           element={<OtpVerificationFormobile />}
         />
         <Route path="/forgotPassword" element={<ForgotPassword />} />

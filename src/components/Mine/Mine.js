@@ -119,7 +119,6 @@ function Mine({ socket, miningStatus, currentBalance }) {
 
       try {
         const result = await instance.get("/activeUser");
-
         const results = decryptData(result.data.data);
         // console.log("doSubmit", results);
 
@@ -128,7 +127,9 @@ function Mine({ socket, miningStatus, currentBalance }) {
             icon: "success",
             title: results.message,
           });
+          // currentBalance({})
           socket.emit("joinRoom", results.data._id);
+          // console.log("first", results.data._id);
         } else {
           Toast.fire({
             icon: "error",
@@ -144,7 +145,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
           icon: "error",
           title: "Captcha Does Not Match",
         })}
-      </div>;
+      </div>
 
       document.getElementById("user_captcha_input").value = "";
     }
@@ -627,7 +628,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                     </h3>
 
                     <div className="d-flex align-items-center justify-content-center">
-                      <h2 className="invite-code">Code :{getItem.refCode}</h2>
+                      <h2 className="invite-code">Code: {getItem.refCode}</h2>
                       <img
                         src="../../img/icon/copy.png"
                         onClick={() => {

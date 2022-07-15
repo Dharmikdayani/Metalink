@@ -15,7 +15,7 @@ import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../../Firebase-config";
 import useEncryption from "../EncryptData/EncryptData";
 
-const Profile = () => {
+const Profile = ({ socket }) => {
   document.title = "Profile";
   const [UserName, setUserName] = useState("");
   const [inviteCode, setinviteCode] = useState("");
@@ -89,9 +89,6 @@ const Profile = () => {
   const username = useRef(null);
   useOutsideclickusername(username);
 
-
-
-
   /*========outside click event email =========== */
   function useOutsidclickemail(emailclick) {
     useEffect(() => {
@@ -115,8 +112,6 @@ const Profile = () => {
   const emailclick = useRef(null);
   useOutsidclickemail(emailclick);
 
-
-
   /*========outside click event password =========== */
   function useOutsidclickpassord(passwordclick) {
     useEffect(() => {
@@ -124,10 +119,13 @@ const Profile = () => {
        * Alert if clicked on outside of element
        */
       function handleClickOutside(event) {
-        if (passwordclick.current && !passwordclick.current.contains(event.target)) {
+        if (
+          passwordclick.current &&
+          !passwordclick.current.contains(event.target)
+        ) {
           var selector = ".passwordclick";
           $(selector).removeClass("active");
-          setshowImg(false)
+          setshowImg(false);
         }
       }
       // Bind the event listener
@@ -141,8 +139,6 @@ const Profile = () => {
   const passwordclick = useRef(null);
   useOutsidclickpassord(passwordclick);
 
-
-
   /*========outside click event Phone Number =========== */
   function useOutsidclickPhoneNumber(PhoneNumber) {
     useEffect(() => {
@@ -150,7 +146,10 @@ const Profile = () => {
        * Alert if clicked on outside of element
        */
       function handleClickOutside(event) {
-        if (PhoneNumber.current && !PhoneNumber.current.contains(event.target)) {
+        if (
+          PhoneNumber.current &&
+          !PhoneNumber.current.contains(event.target)
+        ) {
           var selector = ".PhoneNumber";
           $(selector).removeClass("active");
           // setshowImg(false)
@@ -167,11 +166,12 @@ const Profile = () => {
   const PhoneNumber = useRef(null);
   useOutsidclickPhoneNumber(PhoneNumber);
 
-
   /*=============== useEffect for getUserProfile calling======= */
   useEffect(() => {
     if (!effectCalled.current) {
       getUserProfile();
+
+      // socket.disconnect();
       effectCalled.current = true;
     }
   }, [user]);
@@ -179,12 +179,12 @@ const Profile = () => {
   /*=============LOGOUT FUNCTION===========*/
   const handleogout = (e) => {
     e.preventDefault();
-
+    socket.disconnect(ProfileData?._id);
     dispatch(logout());
-
     localStorage.removeItem("user");
     navigate("/");
   };
+  // console.log(ProfileData._id)
 
   /*=================getUserProfile API============= */
 
@@ -649,7 +649,6 @@ const Profile = () => {
                                 <div
                                   className="editing-btn passwordclick"
                                   onClick={() => setshowImg(true)}
-                                  
                                 >
                                   <img src="../../img/profile/editing.png" />
                                   <input
@@ -693,7 +692,7 @@ const Profile = () => {
                             </div>
                             {/* ref={Confirmpasswordclick} */}
                             {showimg ? (
-                              <div className="position-relative " >
+                              <div className="position-relative ">
                                 <label className="label-title1 position-absolute">
                                   Confirm Password
                                 </label>
@@ -729,7 +728,10 @@ const Profile = () => {
                                 {countryCode} {phoneNumber}
                                 {/* {mobile} */}
                               </span>
-                              <div className="editing-btn PhoneNumber"ref={PhoneNumber} >
+                              <div
+                                className="editing-btn PhoneNumber"
+                                ref={PhoneNumber}
+                              >
                                 <img
                                   src="../../img/profile/editing.png"
                                   onClick={() => setshowImg(false)}
