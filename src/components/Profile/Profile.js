@@ -32,6 +32,7 @@ const Profile = ({ socket }) => {
   const [showPass, setShowPass] = useState(false);
   const [showimg, setshowImg] = useState(false);
   const [IsValid, setIsValid] = useState(false);
+  const [Loader, setLoader] = useState(false);
   const [phone, setphone] = useState("");
   const [selCountryExpectedLength, setSelCountryExpectedLength] = useState(0);
   const getItem = JSON.parse(localStorage.getItem("user"));
@@ -190,8 +191,8 @@ const Profile = ({ socket }) => {
 
   const getUserProfile = async () => {
     try {
+      setLoader(true);
       const result = await instance.get("/getUserProfile");
-
       const results = decryptData(result.data.data);
       //console.log("getUserProfile", results);
 
@@ -237,14 +238,17 @@ const Profile = ({ socket }) => {
             refCode: results.data.inviteCode,
           })
         );
+        setLoader(false);
       } else {
         Toast.fire({
           icon: "error",
           title: results.message,
         });
       }
+      setLoader(false);
     } catch (err) {
       //console.log("err" + err);
+      setLoader(false);
     }
   };
 
@@ -454,409 +458,424 @@ const Profile = ({ socket }) => {
           <ManinHeader />
           {/* <!-- ------------------- Profile ----------------- -->     */}
           <div>
-            <section className="profile w-100 d-md-inline-block position-relative">
-              <div className="container">
-                <div className="row justify-content-center">
-                  <div className="col-xl-8 col-lg-10 col-12">
-                    <h3
-                      className="common-heading text-center mb-0"
-                      // onClick={() => remove()}
-                    >
-                      Profile
-                    </h3>
-                    <form className="currentuser-profile" autoComplete="off">
-                      <div
-                        className="row profile-wrap align-items-baseline"
-                        // ref={Invite}
+            {Loader ? (
+              <div className="snippet " data-title=".dot-spin">
+                <div className="stage">
+                  <div className="dot-spin "></div>
+                </div>
+              </div>
+            ) : (
+              <section className="profile w-100 d-md-inline-block position-relative">
+                <div className="container">
+                  <div className="row justify-content-center">
+                    <div className="col-xl-8 col-lg-10 col-12">
+                      <h3
+                        className="common-heading text-center mb-0"
+                        // onClick={() => remove()}
                       >
-                        <div className="col-md-6 profile-padding">
-                          <div className="profile-box">
-                            <h4 className="team-title">
-                              {ProfileData.username}
-                            </h4>
-
-                            <label className="label-title1 position-absolute">
-                              Username
-                            </label>
-                            <div
-                              className="profile-name position-relative userNames"
-                              onClick={() => selector}
-                            >
-                              <span className="name-info1 w-100 d-inline-block">
+                        Profile
+                      </h3>
+                      <form className="currentuser-profile" autoComplete="off">
+                        <div
+                          className="row profile-wrap align-items-baseline"
+                          // ref={Invite}
+                        >
+                          <div className="col-md-6 profile-padding">
+                            <div className="profile-box">
+                              <h4 className="team-title">
                                 {ProfileData.username}
-                              </span>
+                              </h4>
 
-                              <div
-                                className="editing-btn username"
-                                ref={username}
-                              >
-                                <img
-                                  src="../../img/profile/editing.png"
-                                  onClick={() => setshowImg(false)}
-                                  //
-                                />
-                                <input
-                                  type="text"
-                                  name="John Wick"
-                                  placeholder="User Name"
-                                  // className="profile-input"
-                                  className={`${
-                                    errors.username
-                                      ? "profile-input-errorMsg"
-                                      : "profile-input"
-                                  }`}
-                                  value={UserName ? UserName : ""}
-                                  onChange={(e) => setUserName(e.target.value)}
-                                />
-                              </div>
-                            </div>
-                            {errors.username && (
-                              <div className="errorMsg-profile">
-                                {errors.username}
-                              </div>
-                            )}
-                            <div className="form-group">
-                              <label className="label-title">
-                                Invitation code to share
+                              <label className="label-title1 position-absolute">
+                                Username
                               </label>
                               <div
-                                id="inviteCode"
-                                className="invite-page position-absolute"
+                                className="profile-name position-relative userNames"
+                                onClick={() => selector}
                               >
-                                <input
-                                  name="name"
-                                  value={inviteCode ? inviteCode : ""}
-                                  onChange={(e) =>
-                                    setinviteCode(e.target.value)
-                                  }
-                                  readOnly
-                                />
+                                <span className="name-info1 w-100 d-inline-block">
+                                  {ProfileData.username}
+                                </span>
+
+                                <div
+                                  className="editing-btn username"
+                                  ref={username}
+                                >
+                                  <img
+                                    src="../../img/profile/editing.png"
+                                    onClick={() => setshowImg(false)}
+                                    //
+                                  />
+                                  <input
+                                    type="text"
+                                    name="John Wick"
+                                    placeholder="User Name"
+                                    // className="profile-input"
+                                    className={`${
+                                      errors.username
+                                        ? "profile-input-errorMsg"
+                                        : "profile-input"
+                                    }`}
+                                    value={UserName ? UserName : ""}
+                                    onChange={(e) =>
+                                      setUserName(e.target.value)
+                                    }
+                                  />
+                                </div>
                               </div>
-                              <div id="copyClipboard">
-                                <img
-                                  src="../../img/profile/copy-icon.png"
-                                  onClick={() => {
-                                    navigator.clipboard.writeText(
-                                      getItem.refCode
-                                    );
-                                    Toast.fire({
-                                      icon: "success",
-                                      title: "copied successfully",
-                                    });
-                                  }}
-                                  className="copy-invite-code"
-                                  alt="copyIcon"
-                                />
-                              </div>
-                            </div>
-                            <div className="form-group">
-                              <label className="label-title">
-                                Referral link to share
-                              </label>
-                              <div className="referral-link position-absolute">
-                                minepl.com/johnwick54
-                              </div>
-                              <button
-                                onClick={() => setIsOpen(true)}
-                                className="share-button border-0 bg-transparent"
-                                type="button"
-                                title="Share this article"
-                              >
-                                <img src="../../img/profile/share-link.png" />
-                              </button>
-                            </div>
-                            <div className="p-1">
-                              <h6 className="account-title  mb-4">
-                                Account Verification
-                              </h6>
+                              {errors.username && (
+                                <div className="errorMsg-profile">
+                                  {errors.username}
+                                </div>
+                              )}
                               <div className="form-group">
-                                <label className="name-title">
-                                  Account deletion
+                                <label className="label-title">
+                                  Invitation code to share
                                 </label>
-                                <div className="members-info d-flex justify-content-between align-items-center">
-                                  Tap here to delete your account.
-                                  <div className="request-info">
-                                    <a href="#" className="request-btn">
-                                      Request
-                                    </a>
+                                <div
+                                  id="inviteCode"
+                                  className="invite-page position-absolute"
+                                >
+                                  <input
+                                    name="name"
+                                    value={inviteCode ? inviteCode : ""}
+                                    onChange={(e) =>
+                                      setinviteCode(e.target.value)
+                                    }
+                                    readOnly
+                                  />
+                                </div>
+                                <div id="copyClipboard">
+                                  <img
+                                    src="../../img/profile/copy-icon.png"
+                                    onClick={() => {
+                                      navigator.clipboard.writeText(
+                                        getItem.refCode
+                                      );
+                                      Toast.fire({
+                                        icon: "success",
+                                        title: "copied successfully",
+                                      });
+                                    }}
+                                    className="copy-invite-code"
+                                    alt="copyIcon"
+                                  />
+                                </div>
+                              </div>
+                              <div className="form-group">
+                                <label className="label-title">
+                                  Referral link to share
+                                </label>
+                                <div className="referral-link position-absolute">
+                                  minepl.com/johnwick54
+                                </div>
+                                <button
+                                  onClick={() => setIsOpen(true)}
+                                  className="share-button border-0 bg-transparent"
+                                  type="button"
+                                  title="Share this article"
+                                >
+                                  <img src="../../img/profile/share-link.png" />
+                                </button>
+                              </div>
+                              <div className="p-1">
+                                <h6 className="account-title  mb-4">
+                                  Account Verification
+                                </h6>
+                                <div className="form-group">
+                                  <label className="name-title">
+                                    Account deletion
+                                  </label>
+                                  <div className="members-info d-flex justify-content-between align-items-center">
+                                    Tap here to delete your account.
+                                    <div className="request-info">
+                                      <a href="#" className="request-btn">
+                                        Request
+                                      </a>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div
-                          className="col-md-6 profile-padding"
-                          onClick={() => selector}
-                        >
-                          <div className="profile-tabs d-flex align-items-start justify-content-between">
-                            <h6 className="account-title mt-0">Profile</h6>
+                          <div
+                            className="col-md-6 profile-padding"
+                            onClick={() => selector}
+                          >
+                            <div className="profile-tabs d-flex align-items-start justify-content-between">
+                              <h6 className="account-title mt-0">Profile</h6>
 
-                            <a
-                              href="#save"
-                              className="save-btn text-decoration-none"
-                              onClick={(e) => onSignInSubmit(e)}
-                            >
-                              Save
-                            </a>
-                          </div>
-                          <div className="form-group multi-field-wrapper position-relative">
-                            <label className="label-title1 position-absolute">
-                              Email id
-                            </label>
-                            <div className="profile-name position-relative">
-                              <span className="name-info w-100 d-inline-block">
-                                {ProfileData.email}
-                              </span>
-                              <div
-                                className="editing-btn emailclick"
-                                ref={emailclick}
+                              <a
+                                href="#save"
+                                className="save-btn text-decoration-none"
+                                onClick={(e) => onSignInSubmit(e)}
                               >
-                                <img
-                                  src="../../img/profile/editing.png"
-                                  onClick={() => setshowImg(false)}
-                                />
-                                <input
-                                  type="email"
-                                  name="John Wick"
-                                  placeholder="Email id"
-                                  // className="profile-input"
-                                  className={`${
-                                    errors.email
-                                      ? "profile-input-errorMsg"
-                                      : "profile-input"
-                                  }`}
-                                  value={email ? email : ""}
-                                  onChange={(e) => setEmail(e.target.value)}
-                                />
-                              </div>
+                                Save
+                              </a>
                             </div>
-                            {errors.email && (
-                              <div className="errorMsg-profile-email">
-                                {errors.email}
-                              </div>
-                            )}
-                          </div>
-                          <div ref={passwordclick} className=" passwordclick">
                             <div className="form-group multi-field-wrapper position-relative">
                               <label className="label-title1 position-absolute">
-                                Password
+                                Email id
                               </label>
                               <div className="profile-name position-relative">
                                 <span className="name-info w-100 d-inline-block">
-                                  ********
+                                  {ProfileData.email}
                                 </span>
                                 <div
-                                  className="editing-btn passwordclick"
-                                  onClick={() => setshowImg(true)}
+                                  className="editing-btn emailclick"
+                                  ref={emailclick}
                                 >
-                                  <img src="../../img/profile/editing.png" />
+                                  <img
+                                    src="../../img/profile/editing.png"
+                                    onClick={() => setshowImg(false)}
+                                  />
                                   <input
-                                    type={`${showPass ? "text" : "password"}`}
-                                    name="pwd"
-                                    placeholder="Password"
+                                    type="email"
+                                    name="John Wick"
+                                    placeholder="Email id"
+                                    // className="profile-input"
+                                    className={`${
+                                      errors.email
+                                        ? "profile-input-errorMsg"
+                                        : "profile-input"
+                                    }`}
+                                    value={email ? email : ""}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                  />
+                                </div>
+                              </div>
+                              {errors.email && (
+                                <div className="errorMsg-profile-email">
+                                  {errors.email}
+                                </div>
+                              )}
+                            </div>
+                            <div ref={passwordclick} className=" passwordclick">
+                              <div className="form-group multi-field-wrapper position-relative">
+                                <label className="label-title1 position-absolute">
+                                  Password
+                                </label>
+                                <div className="profile-name position-relative">
+                                  <span className="name-info w-100 d-inline-block">
+                                    ********
+                                  </span>
+                                  <div
+                                    className="editing-btn passwordclick"
+                                    onClick={() => setshowImg(true)}
+                                  >
+                                    <img src="../../img/profile/editing.png" />
+                                    <input
+                                      type={`${showPass ? "text" : "password"}`}
+                                      name="pwd"
+                                      placeholder="Password"
+                                      minLength="8"
+                                      onKeyPress={preventSpace}
+                                      className={`${
+                                        errors.password
+                                          ? "profile-input-errorMsg"
+                                          : "profile-input"
+                                      }`}
+                                      value={password}
+                                      onChange={(e) =>
+                                        setPassword(e.target.value)
+                                      }
+                                    />
+                                  </div>
+                                </div>
+                                {showimg ? (
+                                  <img
+                                    role="button"
+                                    onClick={onShowPassword}
+                                    src={`${
+                                      showPass
+                                        ? "../../img/profile/openeye.png"
+                                        : "../../img/profile/hiddenEye.png"
+                                    }`}
+                                    className="show-eye"
+                                  />
+                                ) : (
+                                  <div className="d-none"></div>
+                                )}
+
+                                {errors.password && (
+                                  <div className="errorMsg-profile-email">
+                                    {errors.password}
+                                  </div>
+                                )}
+                              </div>
+                              {/* ref={Confirmpasswordclick} */}
+                              {showimg ? (
+                                <div className="position-relative">
+                                  <label className="label-title1 position-absolute">
+                                    Confirm Password
+                                  </label>
+                                  <input
+                                    type="text"
+                                    name="cpwd"
+                                    placeholder="Confirm Password"
                                     minLength="8"
                                     onKeyPress={preventSpace}
                                     className={`${
                                       errors.password
-                                        ? "profile-input-errorMsg"
-                                        : "profile-input"
+                                        ? "profile-input-errorMsg mb-4"
+                                        : "profile-input mb-4"
                                     }`}
-                                    value={password}
-                                    onChange={(e) =>
-                                      setPassword(e.target.value)
-                                    }
+                                    value={cpwd}
+                                    onChange={(e) => setCpwd(e.target.value)}
                                   />
+                                  {errors.cpwd && (
+                                    <div className="errorMsg-profile   ">
+                                      {errors.cpwd}
+                                    </div>
+                                  )}
                                 </div>
-                              </div>
-                              {showimg ? (
-                                <img
-                                  role="button"
-                                  onClick={onShowPassword}
-                                  src={`${
-                                    showPass
-                                      ? "../../img/profile/openeye.png"
-                                      : "../../img/profile/hiddenEye.png"
-                                  }`}
-                                  className="show-eye"
-                                />
-                              ) : (
-                                <div className="d-none"></div>
-                              )}
-
-                              {errors.password && (
-                                <div className="errorMsg-profile-email">
-                                  {errors.password}
-                                </div>
-                              )}
+                              ) : null}
                             </div>
-                            {/* ref={Confirmpasswordclick} */}
-                            {showimg ? (
-                              <div className="position-relative" >
-                                <label className="label-title1 position-absolute">
-                                  Confirm Password
-                                </label>
-                                <input
-                                  type="text"
-                                  name="cpwd"
-                                  placeholder="Confirm Password"
-                                  minLength="8"
-                                  onKeyPress={preventSpace}
-                                  className={`${
-                                    errors.password
-                                      ? "profile-input-errorMsg mb-4"
-                                      : "profile-input mb-4"
-                                  }`}
-                                  value={cpwd}
-                                  onChange={(e) => setCpwd(e.target.value)}
-                                />
-                                {errors.cpwd && (
-                                  <div className="errorMsg-profile   ">
-                                    {errors.cpwd}
+
+                            <div className="form-group multi-field-wrapper position-relative">
+                              <label className="label-title1 position-absolute">
+                                Phone Number
+                              </label>
+                              <div className="profile-name position-relative">
+                                <span className="name-info w-100 d-inline-block">
+                                  {countryCode} {phoneNumber}
+                                  {/* {mobile} */}
+                                </span>
+                                <div
+                                  className="editing-btn PhoneNumber"
+                                  ref={PhoneNumber}
+                                >
+                                  <img
+                                    src="../../img/profile/editing.png"
+                                    onClick={() => setshowImg(false)}
+                                  />
+
+                                  <div className="phone">
+                                    <PhoneInput
+                                      className="profile-input"
+                                      name="phoneNumber "
+                                      type="phone"
+                                      placeholder=" Phone Number "
+                                      countryCodeEditable={false}
+                                      specialLabel={""}
+                                      searchPlaceholder="Search"
+                                      country={"in"}
+                                      value={mobile}
+                                      enableSearch
+                                      onChange={(
+                                        inputPhone,
+                                        countryData,
+                                        value,
+                                        data,
+                                        dialcode,
+                                        inputNumber,
+                                        e
+                                      ) => {
+                                        setcountryCode(
+                                          `+${countryData.dialCode}`
+                                        );
+                                        setPhoneNumber(
+                                          inputPhone.slice(
+                                            countryCode.length - 1
+                                          )
+                                        );
+                                        setmobile("+" + inputPhone);
+
+                                        setphone(data);
+                                        setSelCountryExpectedLength(
+                                          countryData.format.length
+                                        );
+                                      }}
+                                      inputStyle={{
+                                        background: "#E2F1FE",
+                                        padding: "25px 1px 20px 50px",
+                                        marginTop: "22px",
+                                        border: errors.phoneNumber
+                                          ? "red 1px solid"
+                                          : "none",
+                                      }}
+                                      inputProps={{
+                                        required: true,
+                                        autoFocus: true,
+                                      }}
+                                      onBlur={() => {
+                                        phone.length !==
+                                        selCountryExpectedLength
+                                          ? setIsValid(false)
+                                          : setIsValid(true);
+                                      }}
+                                      isValid={() =>
+                                        !IsValid
+                                          ? phone.length ==
+                                            selCountryExpectedLength
+                                          : IsValid
+                                      }
+                                    />
                                   </div>
-                                )}
-                              </div>
-                            ) : null}
-                          </div>
-
-                          <div className="form-group multi-field-wrapper position-relative">
-                            <label className="label-title1 position-absolute">
-                              Phone Number
-                            </label>
-                            <div className="profile-name position-relative">
-                              <span className="name-info w-100 d-inline-block">
-                                {countryCode} {phoneNumber}
-                                {/* {mobile} */}
-                              </span>
-                              <div
-                                className="editing-btn PhoneNumber"
-                                ref={PhoneNumber}
-                              >
-                                <img
-                                  src="../../img/profile/editing.png"
-                                  onClick={() => setshowImg(false)}
-                                />
-
-                                <div className="phone">
-                                  <PhoneInput
-                                    className="profile-input"
-                                    name="phoneNumber "
-                                    type="phone"
-                                    placeholder=" Phone Number "
-                                    countryCodeEditable={false}
-                                    specialLabel={""}
-                                    searchPlaceholder="Search"
-                                    country={"in"}
-                                    value={mobile}
-                                    enableSearch
-                                    onChange={(
-                                      inputPhone,
-                                      countryData,
-                                      value,
-                                      data,
-                                      dialcode,
-                                      inputNumber,
-                                      e
-                                    ) => {
-                                      setcountryCode(
-                                        `+${countryData.dialCode}`
-                                      );
-                                      setPhoneNumber(
-                                        inputPhone.slice(countryCode.length - 1)
-                                      );
-                                      setmobile("+" + inputPhone);
-
-                                      setphone(data);
-                                      setSelCountryExpectedLength(
-                                        countryData.format.length
-                                      );
-                                    }}
-                                    inputStyle={{
-                                      background: "#E2F1FE",
-                                      padding: "25px 1px 20px 50px",
-                                      marginTop: "22px",
-                                      border: errors.phoneNumber
-                                        ? "red 1px solid"
-                                        : "none",
-                                    }}
-                                    inputProps={{
-                                      required: true,
-                                      autoFocus: true,
-                                    }}
-                                    onBlur={() => {
-                                      phone.length !== selCountryExpectedLength
-                                        ? setIsValid(false)
-                                        : setIsValid(true);
-                                    }}
-                                    isValid={() =>
-                                      !IsValid
-                                        ? phone.length ==
-                                          selCountryExpectedLength
-                                        : IsValid
-                                    }
-                                  />
                                 </div>
                               </div>
+                              {errors.phoneNumber && (
+                                <div className="errorMsg-profile-email">
+                                  {errors.phoneNumber}
+                                </div>
+                              )}
                             </div>
-                            {errors.phoneNumber && (
-                              <div className="errorMsg-profile-email">
-                                {errors.phoneNumber}
-                              </div>
-                            )}
+                            <div id="sign-in-button" />
                           </div>
-                          <div id="sign-in-button" />
                         </div>
-                      </div>
-                    </form>
-                    <button
-                      className="signout-btn"
-                      onClick={(e) => handleogout(e)}
+                      </form>
+                      <button
+                        className="signout-btn"
+                        onClick={(e) => handleogout(e)}
+                      >
+                        Sign out
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {/* <!-- Referral_link_to_share_Popup --> */}
+                <div
+                  className={isOpen ? "share-dialog is-open" : "share-dialog"}
+                >
+                  <div className="modal-headertop d-flex justify-content-between align-items-center">
+                    <a
+                      href="#close"
+                      className="justify-content-end d-flex close-btn"
                     >
-                      Sign out
-                    </button>
+                      <img
+                        src="../../img/profile/close.png"
+                        onClick={() => setIsOpen(false)}
+                      />
+                    </a>
+                    <h3 className="dialog-title mb-0">Share this pen</h3>
                   </div>
-                </div>
-              </div>
-              {/* <!-- Referral_link_to_share_Popup --> */}
-              <div className={isOpen ? "share-dialog is-open" : "share-dialog"}>
-                <div className="modal-headertop d-flex justify-content-between align-items-center">
-                  <a
-                    href="#close"
-                    className="justify-content-end d-flex close-btn"
-                  >
-                    <img
-                      src="../../img/profile/close.png"
-                      onClick={() => setIsOpen(false)}
-                    />
-                  </a>
-                  <h3 className="dialog-title mb-0">Share this pen</h3>
-                </div>
-                <div className="targets">
-                  <div className="footer-social d-flex">
-                    <div className="social-bg position-relative mt-0">
-                      <a href="#" className="social-icon">
-                        <img src="../../img/icon/facebook.png" alt="" />
-                      </a>
-                    </div>
-                    <div className="social-bg position-relative mt-0">
-                      <a href="#" className="social-icon">
-                        <img src="../../img/icon/twitter.png" alt="" />
-                      </a>
-                    </div>
-                    <div className="social-bg position-relative mt-0">
-                      <a href="#" className="social-icon">
-                        <img src="../../img/icon/instagram.png" alt="" />
-                      </a>
-                    </div>
-                    <div className="social-bg position-relative mt-0">
-                      <a href="#" className="social-icon">
-                        <img src="../../img/icon/discord.png" alt="" />
-                      </a>
+                  <div className="targets">
+                    <div className="footer-social d-flex">
+                      <div className="social-bg position-relative mt-0">
+                        <a href="#" className="social-icon">
+                          <img src="../../img/icon/facebook.png" alt="" />
+                        </a>
+                      </div>
+                      <div className="social-bg position-relative mt-0">
+                        <a href="#" className="social-icon">
+                          <img src="../../img/icon/twitter.png" alt="" />
+                        </a>
+                      </div>
+                      <div className="social-bg position-relative mt-0">
+                        <a href="#" className="social-icon">
+                          <img src="../../img/icon/instagram.png" alt="" />
+                        </a>
+                      </div>
+                      <div className="social-bg position-relative mt-0">
+                        <a href="#" className="social-icon">
+                          <img src="../../img/icon/discord.png" alt="" />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            )}
           </div>
 
           {/* <!--------------- Footer Start --------------> */}

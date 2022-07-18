@@ -12,6 +12,8 @@
   background-image: url(../../public/img/index-page/mining-bg.png);
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
 }
 
 .common-heading {
