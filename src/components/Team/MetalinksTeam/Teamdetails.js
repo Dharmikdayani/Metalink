@@ -4,7 +4,7 @@ export const Teamdetails = [
     src:"/img/our-team/uploads/bhavesh.jpeg",
     teamtitle:"Bhavesh G",
     teamsubtitle:"Lead - App Team",
-    linkedin:"",
+    linkedin:"https://in.linkedin.com/in/bhavesh-gohil-93b6a1189",
     twitter:""
   },
   {
@@ -20,7 +20,7 @@ export const Teamdetails = [
     src:"/img/our-team/uploads/ravibahi.png",
     teamtitle:"Ravi G",
     teamsubtitle:"Frontend developer",
-    linkedin:"",
+    linkedin:"https://in.linkedin.com/in/ravi-gediya-414086231",
     twitter:""
   },
   {
@@ -36,14 +36,16 @@ export const Teamdetails = [
     src:"/img/our-team/uploads/rohan.png",
     teamtitle:"Rohan V",
     teamsubtitle:"Nodejs developer",
-    linkedin:"",
+    linkedin:"https://www.linkedin.com/in/rohan-vaghasiya-13465b219/",
     twitter:""
   },
   {
     id: 6,
-    src:"/img/our-team/uploads/nomamber.png",
+    src:"/img/our-team/uploads/parin.jpeg",
     teamtitle:"Parin S",
     teamsubtitle:"Nodejs developer",
+    linkedin:"https://www.linkedin.com/in/parinsuvagiya/",
+    twitter:""
   },
   {
     id: 7,
@@ -82,12 +84,12 @@ export const Teamdetails = [
     src:"/img/our-team/uploads/yagnik.jpeg",
     teamtitle:"Yagnik V",
     teamsubtitle:"React developer",
-    linkedin:"",
+    linkedin:"https://www.linkedin.com/in/yagnik-vadadoriya-98991b243/",
     twitter:""
   },
   {
     id: 12,
-    src:"/img/our-team/uploads/ravi.png",
+    src:"/img/our-team/uploads/ravi.jpeg",
     teamtitle:"Ravi Sanghani",
     teamsubtitle:"Blockchain developer",
     linkedin:"https://www.linkedin.com/in/ravi-sanghani",

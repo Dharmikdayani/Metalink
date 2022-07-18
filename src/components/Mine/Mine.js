@@ -589,6 +589,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                             name="user_captcha_input"
                             type="text"
                             className="form-control"
+                            readOnly
                           />
                           <img
                             src="../../img/icon/copy.png"
