@@ -692,7 +692,7 @@ const Profile = ({ socket }) => {
                             </div>
                             {/* ref={Confirmpasswordclick} */}
                             {showimg ? (
-                              <div className="position-relative ">
+                              <div className="position-relative" >
                                 <label className="label-title1 position-absolute">
                                   Confirm Password
                                 </label>

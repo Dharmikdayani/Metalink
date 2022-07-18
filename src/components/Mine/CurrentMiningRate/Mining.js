@@ -68,8 +68,7 @@ const Mining = () => {
               <thead>
                 <tr>
                   <th className="borderradius-left">Layer</th>
-
-                  <th className="borderradius-right d-flex align-items-center justify-content-center">
+                  <th className="borderradius-right d-flex align-items-baseline  justify-content-center">
                     <span>Total</span>
                     <img
                       src="../../img/icon/total-minning.png"

@@ -33,7 +33,7 @@
   font-weight: 500;
   line-height: 20px;
   margin: 4px 30px 0px -15px;
-  padding: 10px 21px;
+  padding: 10px 21px 6px ;
   color: #001039;
 }
 
@@ -84,9 +84,7 @@
   font-size: 16px !important;
   font-weight: 400 !important;
   line-height: 16px !important;
-
-  padding: 10px 21px !important;
-
+  padding: 11px 21px !important;
   color: white !important;
   text-decoration: none;
   display: inline-block;
@@ -413,6 +411,7 @@
   background: linear-gradient(180deg, #004585 0%, #000D35 100%);
   box-shadow: -2px -2px 3px rgba(255, 255, 255, 0.5), 2px 2px 3px rgba(0, 10, 48, 0.15);
   border-radius: 10px;
+  padding: 10px 0px 0px;
 }
 
 .Notification:hover .Notification-hover {

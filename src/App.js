@@ -54,7 +54,7 @@ const App = () => {
     setSocket("")
     console.log("getItem",getItem)
     if (getItem) {
-      const socket = io("https://metalink-technomads.herokuapp.com");
+      const socket = io("http://localhost:3000");
       socket.on("connect", () => {
         setSocket(socket);
         console.log("id", getItem._id)
