@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const MyAccordion = ({ title, ans, heading, key1, target }) => {
   return (

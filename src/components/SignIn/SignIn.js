@@ -184,6 +184,7 @@ function SignIn() {
                       />
                       <img
                         role="button"
+                        alt="Eye-icon-img"
                         onClick={onShowPassword}
                         src={`${
                           showPass

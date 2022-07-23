@@ -187,8 +187,12 @@ Mainnet_Table
   font-size: 20px;
   font-weight: 300;
   line-height: 20px;
-
   color: #272d3d;
+}
+.questions{
+  background: #DEEFFD;
+  box-shadow: inset 4px 4px 8px rgba(0, 16, 57, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+  border-radius: 28px;
 }
 
 .asked-question {

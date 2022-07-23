@@ -334,7 +334,7 @@ function SignUp() {
                             }}
                             isValid={() =>
                               !IsValid
-                                ? phone.length == selCountryExpectedLength
+                                ? phone.length === selCountryExpectedLength
                                 : IsValid
                             }
                           />
@@ -359,6 +359,7 @@ function SignUp() {
                           />
                           <img
                             role="button"
+                            alt="Eye-icon-img"
                             onClick={onShowPassword}
                             src={`${
                               showPass
@@ -388,6 +389,7 @@ function SignUp() {
                           />
                           <img
                             role="button"
+                            alt="Eye-icon-img"
                             onClick={onshowConfirmPass}
                             src={`${
                               showConfirmPass

@@ -145,7 +145,19 @@
     padding-right: 0px;
     padding-bottom: 15px;
   }
+
+  .card1 {
+    margin: auto;
+    /* margin-top: 16px; */
+  }
+
+  .card2 {
+    margin: auto;
+    margin-top: 16px;
+  }
 }
+
+@media screen and(max-width: 375px) {}
 
 @media screen and (max-width: 768px) {
   .hero .heading {
@@ -182,6 +194,8 @@
   text-align: center;
   padding-top: 47px;
   height: 93%;
+  transition: transform 0.7s ease-out;
+  transition: 0.7s ease-in-out;
 }
 
 .network-box .network-bg {
@@ -285,6 +299,7 @@
   -webkit-animation-duration: 2s;
   animation-duration: 1s;
   -webkit-animation-delay: 2s;
+  animation-delay: 2s;
 }
 
 .get-started .join {
@@ -301,6 +316,7 @@
   -webkit-animation-duration: 2s;
   animation-duration: 1s;
   -webkit-animation-delay: 2s;
+  animation-delay: 2s;
 }
 
 @keyframes fading {
@@ -481,6 +497,9 @@
 
 .network-main-box:hover .network-box {
   background-color: #001039;
+  transition: transform 0.2s ease-out;
+  transition: 0.7s ease-in-out;
+  transform: translateY(-40px)
 }
 
 .network-main-box a {
@@ -502,6 +521,7 @@
 
 .network-main-box:hover .white-image {
   display: block;
+  transition: 0.7s ease-in-out;
 }
 
 .network-main-box:hover .blue-image {
@@ -513,6 +533,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: 0.7s ease-in-out;
 }
 
 /* ---------- Hover Effect End ------------ */
@@ -595,3 +616,101 @@
 
 
 /* <!--------------- Download Section End  --------------> */
+
+.card1 {
+  background-image: url(../../public/img/index-page/android.svg);
+  background-repeat: no-repeat;
+  position: relative;
+  width: 150px;
+  height: 47px;
+  padding-right: 25%;
+
+
+}
+
+.card2 {
+  background-image: url(../../public/img/index-page/ios.svg);
+  background-repeat: no-repeat;
+  position: relative;
+  width: 150px;
+  height: 47px;
+  /* margin-top: 16px */
+}
+
+.card3 {
+  background-image: url(../../public/img/index-page/android-app.svg);
+  background-repeat: no-repeat;
+  position: re;
+  width: 150px;
+  height: 47px;
+  cursor: pointer;
+  padding-right: 25%;
+}
+
+.card4 {
+  background-image: url(../../public/img/index-page/ios-app.svg);
+  background-repeat: no-repeat;
+  position: relative;
+  width: 150px;
+  height: 47px;
+
+}
+
+#cast:hover {
+  position: absolute;
+  opacity: 1;
+  transition: 0.7s ease-in-out;
+}
+
+#cast {
+  position: absolute;
+  opacity: 0;
+  transition: 0.7s ease-in-out;
+}
+
+
+
+
+.buttonD {
+  display: inline-block;
+  border-radius: 5px;
+  text-decoration: none;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+}
+
+.buttonD:hover {
+  animation-name: rubberBand;
+}
+
+
+@keyframes rubberBand {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    transform: scale3d(.95, 1.05, 1);
+  }
+
+  75% {
+    transform: scale3d(1.05, .95, 1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}

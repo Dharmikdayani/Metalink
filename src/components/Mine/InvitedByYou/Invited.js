@@ -33,6 +33,7 @@ const Invited = ({ setIsOpen }) => {
       filterData();
       effectCalled.current = true;
     }
+    //eslint-disable-next-line
   }, [selectedOption, Layer]);
 
   const filterData = async () => {
@@ -47,7 +48,7 @@ const Invited = ({ setIsOpen }) => {
       // console.log("filterData", results);
 
       if (results.status) {
-        while (results.data.earningTeam.length != 0) {
+        while (results.data.earningTeam.length !== 0) {
           const data = results.data.earningTeam.splice(0, 6);
           setMemeber((old) => [...old, data]);
         }
@@ -193,6 +194,7 @@ const Invited = ({ setIsOpen }) => {
                     src="../../img/icon/sadFace.png"
                     width="70"
                     className="center"
+                    alt="loader-img"
                   />
                 </div>
                 <br />

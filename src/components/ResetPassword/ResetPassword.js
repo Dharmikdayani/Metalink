@@ -50,7 +50,7 @@ function Resetpassword() {
       error = true;
     }
 
-    if (password != cpwd) {
+    if (password !== cpwd) {
       errorsObj.cpwd = "*New Confirm Password is not matched With Password";
       error = true;
     }
@@ -152,6 +152,7 @@ function Resetpassword() {
                       />
                       <img
                         role="button"
+                        alt="Eye-icon-img"
                         onClick={onShowPassword}
                         src={`${
                           showPass
@@ -180,6 +181,7 @@ function Resetpassword() {
                       />
                       <img
                         role="button"
+                        alt="Eye-icon-img"
                         onClick={onshowConfirmPass}
                         src={`${
                           showConfirmPass

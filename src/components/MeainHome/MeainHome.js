@@ -38,6 +38,7 @@ function MeainHome() {
   useEffect(() => {
     StartTimer();
     return () => {
+      //eslint-disable-next-line
       clearInterval(interval.current);
     };
   });
@@ -64,6 +65,7 @@ function MeainHome() {
                       href="https://www.facebook.com/Metalink-101550999177220"
                       target="_blank"
                       className="social-icon"
+                      rel="noreferrer" 
                     >
                       <img
                         src="../../img/icon/facebook.svg"
@@ -82,6 +84,7 @@ function MeainHome() {
                       href="https://twitter.com/MetalinkNetwork"
                       target="_blank"
                       className="social-icon"
+                      rel="noreferrer" 
                     >
                       <img
                         src="../../img/icon/twitter.svg"
@@ -100,6 +103,7 @@ function MeainHome() {
                       href="https://www.instagram.com/metalinknetwork/"
                       target="_blank"
                       className="social-icon"
+                      rel="noreferrer" 
                     >
                       <img
                         src="../../img/icon/instagram.svg"
@@ -153,6 +157,7 @@ function MeainHome() {
                       href="https://www.facebook.com/Metalink-101550999177220"
                       className="social-icon"
                       target="_blank"
+                      rel="noreferrer" 
                     >
                       <img
                         src="../../img/icon/facebook.svg"
@@ -171,6 +176,7 @@ function MeainHome() {
                       href="https://twitter.com/MetalinkNetwork"
                       className="social-icon"
                       target="_blank"
+                      rel="noreferrer" 
                     >
                       <img
                         src="../../img/icon/twitter.svg"
@@ -189,6 +195,7 @@ function MeainHome() {
                       href="https://www.instagram.com/metalinknetwork/"
                       className="social-icon"
                       target="_blank"
+                      rel="noreferrer" 
                     >
                       <img
                         src="../../img/icon/instagram.svg"

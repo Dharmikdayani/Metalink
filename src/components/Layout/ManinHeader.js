@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "../../css/header.css";
 
@@ -7,8 +7,33 @@ const ManinHeader = ({ socket }) => {
     window.scrollTo(0, 0);
   }, []);
   const getItem = JSON.parse(localStorage.getItem("user"));
+  const [openNotifaction, setOpenNotifaction] = useState(false);
   let location = useLocation();
+  /*========outside click event withdraw =========== */
 
+  const withdraw = useRef();
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+
+      if (withdraw.current && !withdraw.current.contains(e.target)) {
+        setOpenNotifaction(false);
+
+        document.querySelector("#popup1").style.display = "none";
+        console.log("first");
+      }
+    };
+    document.addEventListener("mousedown", checkIfClickedOutside);
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [openNotifaction]);
+
+  function Markasread (){
+    // document.getElementById("popup1").style.background="red"
+  }
   return (
     <>
       <section className="header index-header fix ">
@@ -58,7 +83,7 @@ const ManinHeader = ({ socket }) => {
                     </Link>
                   </li>
                   <li>
-                    <div className="line-bar" />
+                    <div className="border-bottom" />
                   </li>
                   <li>
                     <div>
@@ -197,10 +222,14 @@ const ManinHeader = ({ socket }) => {
                     Team
                   </NavLink>
                 </li>
-
+                {/* =========notification popup============ */}
                 {location.pathname === "/mine" ? (
                   <ul>
-                    <a className="Notification" href="#">
+                    <a
+                      className="Notification button"
+                      href="#popup1"
+                      onClick={() => setOpenNotifaction(true)}
+                    >
                       <img
                         src="../../img/icon/notification.png"
                         alt=""
@@ -211,10 +240,72 @@ const ManinHeader = ({ socket }) => {
                         alt=""
                         className="d-none Notification-hover"
                       />
+                      {openNotifaction ? (
+                        <div id="popup1" className="overlay" ref={withdraw}>
+                          <span className="space-menu-rect"></span>
+                          <div className="popup">
+                            <div className="d-flex justify-content-between border-bottom content">
+                              <h2 className="notification-font">
+                                Notification
+                              </h2>
+                              <p className="mark-read" onClick={Markasread}>Mark as read</p>
+                            </div>
+
+                            <div className="user-notification mt-2 d-flex border-bottom">
+                              <img
+                                className="user-icon"
+                                src="../../img/icon/Group.svg"
+                                alt="user-icon"
+                              />
+                              <div className="mt-3 mx-2">
+                                <h2 className="user-name">Notification</h2>
+                                <p className="user-Describe">
+                                  Describe the event here.
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="user-notification mt-2 d-flex border-bottom">
+                              <img
+                                className="user-icon"
+                                src="../../img/icon/Group.svg"
+                                alt="user-icon"
+                              />
+                              <div className="mt-3 mx-2">
+                                <h2 className="user-name">Notification</h2>
+                                <p className="user-Describe">
+                                  Describe the event here.
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="user-notification mt-2 d-flex border-bottom">
+                              <img
+                                className="user-icon"
+                                src="../../img/icon/Group.svg"
+                                alt="user-icon"
+                              />
+                              <div className="mt-3 mx-2">
+                                <h2 className="user-name">Notification</h2>
+                                <p className="user-Describe">
+                                  Describe the event here.
+                                </p>
+                              </div>
+                            </div>
+                            <div>
+                              <p className="View mt-3 mx-1">
+                                View all notifications
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ) : null}
                     </a>
                   </ul>
                 ) : null}
-
+                {/* <a className="close" href="#">
+                      &times;
+                    </a> */}
                 {getItem ? (
                   <ul>
                     <li className="nav-item">

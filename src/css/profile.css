@@ -5,9 +5,7 @@ Profile
   padding-bottom: 135px;
 }
 
-/* ::-webkit-scrollbar {
-  display: none;
-} */
+
 .currentuser-profile {
   background: #d9edfd;
   border-radius: 45px;
@@ -147,7 +145,7 @@ Profile
 }
 
 .members-info {
-  color: #272d3d;  
+  color: #272d3d;
   font-style: normal;
   font-weight: 300;
   font-size: 14px;
@@ -338,9 +336,9 @@ Profile
   margin: 0 0 35px;
 }
 
-.react-tel-input .form-control {
-  /* margin-top: 22px !important; */
-}
+/* .react-tel-input .form-control {
+  margin-top: 22px !important;
+} */
 
 .phone .react-tel-input .form-control {
   position: absolute;
@@ -448,7 +446,9 @@ Profile
   left: 0%;
   top: -8px;
   display: flex;
-  justify-content: end;
+  /* justify-content: end; */
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .share-button {
@@ -456,7 +456,8 @@ Profile
   left: 94%;
   top: -8px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 

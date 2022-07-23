@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ContactUs from "./components/contactUs/ContactUs";
 import Home from "./components/Home/Home";
 import Mine from "./components/Mine/Mine";
@@ -13,54 +13,48 @@ import SignIn from "./components/SignIn/SignIn";
 import Profile from "./components/Profile/Profile";
 import SigninPno from "./components/SignIn/SigninPno";
 import FpwdEmail from "./components/ForgotpPassword/FpwdEmail";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  useNavigate,
-} from "react-router-dom";
-import Swal from "sweetalert2";
+import { Routes, Route } from "react-router-dom";
+// import Swal from "sweetalert2";
 import Protected from "./components/ProtectedRouter/Protected";
 import { io } from "socket.io-client";
-import { useSelector } from "react-redux";
-import { selecUser } from "./components/feature/user";
+// import { useSelector } from "react-redux";
+// import { selecUser } from "./components/feature/user";
 import MeainHome from "./components/MeainHome/MeainHome";
 import OtpVerificationFormobile from "./components/OtpVerification/OtpVerificationFormobile";
 const App = () => {
-  const effectCalled = useRef(false);
+  // const effectCalled = useRef(false);
   const [socket, setSocket] = useState("");
   const [currentBalance, setCurrentBalance] = useState({});
   const [miningStatus, setMiningStatus] = useState(false);
   const getItem = JSON.parse(localStorage.getItem("user"));
 
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
+  // const Toast = Swal.mixin({
+  //   toast: true,
+  //   position: "top-end",
+  //   showConfirmButton: false,
+  //   timer: 3000,
+  //   timerProgressBar: true,
+  //   didOpen: (toast) => {
+  //     toast.addEventListener("mouseenter", Swal.stopTimer);
+  //     toast.addEventListener("mouseleave", Swal.resumeTimer);
+  //   },
+  // });
 
-  const user = useSelector(selecUser);
+  // const user = useSelector(selecUser);
 
   useEffect(() => {
     setCurrentBalance({});
-    setMiningStatus(false)
-    setSocket("")
-    console.log("getItem",getItem)
+    setMiningStatus(false);
+    setSocket("");
+    // console.log("getItem", getItem);
     if (getItem) {
-      const socket = io(" https://metalink-technomads.herokuapp.com");
+      const socket = io("https://metalink-technomads.herokuapp.com");
       socket.on("connect", () => {
         setSocket(socket);
-        console.log("id", getItem._id)
+        // console.log("id", getItem._id);
         socket.emit("joinRoom", getItem._id);
         socket.on("currentBalance", (data) => {
-          console.log("data", data);
+          // console.log("data", data);
           setMiningStatus(data?.miningStatus);
           setCurrentBalance(data);
         });
@@ -68,6 +62,7 @@ const App = () => {
       // socket.
       // effectCalled.current = true;
     }
+    //eslint-disable-next-line
   }, [getItem?._id]);
 
   return (
@@ -84,7 +79,7 @@ const App = () => {
               />
             }
           />
-          <Route path="/profile" element={<Profile  socket={socket}/>} />
+          <Route path="/profile" element={<Profile socket={socket} />} />
         </Route>
         <Route exact path="/" element={<Home />} />
         <Route path="/meainhome" element={<MeainHome />} />

@@ -207,6 +207,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                   <img
                     src="../../img/logo/header-m.png" // a
                     className="metalink-sm metaRate"
+                    alt="metaRate-img"
                   />
                   <span className="hours">/H</span>
                 </div>
@@ -244,6 +245,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                       >
                         <img
                           src="../../img/profile/close.png"
+                          alt="close-img"
                           onClick={() =>
                             (document.querySelector(
                               "#captcha-modals"
@@ -319,13 +321,14 @@ function Mine({ socket, miningStatus, currentBalance }) {
                 <div className="container">
                   <div className="row justify-content-center ">
                     <div className="col-xl-7 col-md-9">
-                      <div className="withdraw-popup" ref={withdraw}>
+                      <div className="withdraw-popup " ref={withdraw}>
                         <a
                           href="#close"
                           className="justify-content-end d-flex position-relative close-btn-withdraw"
                         >
                           <img
                             src="../../img/profile/close.png"
+                            alt="close-img"
                             onClick={() => setIsOpenwithdraw(false)}
                           />
                         </a>
@@ -401,6 +404,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                         >
                           <img
                             src="../../img/profile/close.png"
+                            alt="close-img"
                             onClick={() => setIsOpenDeposit(false)}
                           />
                         </a>
@@ -498,6 +502,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                         >
                           <img
                             src="../../img/profile/close.png"
+                            alt="close-img"
                             onClick={() => setIsOpenInvite(false)}
                           />
                         </a>

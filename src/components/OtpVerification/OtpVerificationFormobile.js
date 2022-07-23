@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import OTPInput from "otp-input-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import "../../css/otp.css";
 import baseUrl from "../baseUrl/baseUrl";
-import { useSelector } from "react-redux";
-import { selecUser, signup } from "../feature/user";
+// import { useSelector } from "react-redux";
+import {  signup } from "../feature/user";
 import { useDispatch } from "react-redux";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../../Firebase-config";
@@ -44,7 +44,7 @@ function OtpVerificationFormobile({
       }, intervalGap);
     };
   }, []);
-
+//eslint-disable-next-line
   const timer = useCallback(
     startTimerWrapper((intervalfn: NodeJS.Timeout) => {
       setTimerCount((val) => {
@@ -93,7 +93,7 @@ function OtpVerificationFormobile({
       toast.addEventListener("mouseleave", Swal.resumeTimer);
     },
   });
-  const user = useSelector(selecUser);
+  // const user = useSelector(selecUser);
 
   /*=======ERROR MESSAGE =========*/
   let errorsObj = {
@@ -124,7 +124,7 @@ function OtpVerificationFormobile({
       .confirm(otpcode)
       .then(async (result) => {
         // User signed in successfully.
-        const user = result.user;
+        // const user = result.user;
         //console.log(JSON.stringify(user));
         try {
           const encrypt = encryptData(
@@ -277,7 +277,7 @@ function OtpVerificationFormobile({
                     </div>
                   </form>
 
-                  {!timerCount == 0 ? (
+                  {!timerCount === 0 ? (
                     <p className="resend-otp">
                       Resend OTP in
                       <span> {timerCount}</span>
@@ -285,7 +285,7 @@ function OtpVerificationFormobile({
                   ) : (
                     <Link
                       to="#"
-                      disabled={!timerCount == 0}
+                      disabled={!timerCount === 0}
                       className="resend-otp"
                       onClick={ResendOTPverification}
                     >

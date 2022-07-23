@@ -26,8 +26,8 @@ function OtpVerification1({ phone, countryCode }) {
       }, intervalGap);
     };
   }, []);
-
-  const timer = useCallback(
+//eslint-disable-next-line
+const timer = useCallback(
     startTimerWrapper((intervalfn: NodeJS.Timeout) => {
       setTimerCount((val) => {
         if (val === 0) {
@@ -104,7 +104,7 @@ function OtpVerification1({ phone, countryCode }) {
       .confirm(code)
       .then((result) => {
         // User signed in successfully.
-        const user = result.user;
+        // const user = result.user;
         //console.log(JSON.stringify(user));
         Toast.fire({
           icon: "success",
@@ -206,7 +206,7 @@ function OtpVerification1({ phone, countryCode }) {
                       </button>
                     </div>
                   </form>
-                  {!timerCount == 0 ? (
+                  {!timerCount === 0 ? (
                     <p className="resend-otp">
                       Resend OTP IN
                       <span> {timerCount}</span>
@@ -214,7 +214,7 @@ function OtpVerification1({ phone, countryCode }) {
                   ) : (
                     <Link
                       to="#"
-                      disabled={!timerCount == 0}
+                      disabled={!timerCount === 0}
                       className="resend-otp"
                       onClick={ResendOTPverification}
                     >

@@ -199,7 +199,7 @@ function Forgotpassword() {
                           }}
                           isValid={() =>
                             !IsValid
-                              ? phone.length == selCountryExpectedLength
+                              ? phone.length === selCountryExpectedLength
                               : IsValid
                           }
                         />

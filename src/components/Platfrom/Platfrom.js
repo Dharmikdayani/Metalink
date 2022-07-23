@@ -52,6 +52,7 @@ const Platfrom = () => {
                   <img
                     src="../../img/platform/decentralized.png"
                     className="mb-md-0 mb-5"
+                    alt="decentralized-img"
                   />
                 </div>
               </div>
@@ -62,6 +63,7 @@ const Platfrom = () => {
                   <img
                     src="../../img/platform/decentralized-surfing.png"
                     className="mb-md-0 mb-5"
+                    alt="decentralized-surfing-img"
                   />
                 </div>
                 <div className="col-md-6">
@@ -93,7 +95,7 @@ const Platfrom = () => {
               </div>
             </div>
             <div className="platform-box m-auto d-table ">
-              <img src="../../img/platform/world.png" className="world" />
+              <img src="../../img/platform/world.png" className="world" alt="world-img" />
             </div>
           </div>
         </section>

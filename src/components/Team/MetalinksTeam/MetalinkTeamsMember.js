@@ -5,10 +5,10 @@ import useEncryption from "../../EncryptData/EncryptData";
 import { Teamdetails } from "./Teamdetails";
 
 const MetalinkTeamsMember = () => {
-  const [team, setTeam] = useState([]);
+  // const [team, setTeam] = useState([]);
   const effectCalled = useRef(false);
   const { decryptData } = useEncryption();
-  const [teamlist, setteamlist] = useState(Teamdetails);
+  const [teamlist] = useState(Teamdetails);
   /*============= Toast Fire Notifaction==========*/
   const Toast = Swal.mixin({
     toast: true,
@@ -29,8 +29,8 @@ const MetalinkTeamsMember = () => {
       //console.log("coreTeam", results);
 
       if (results.status) {
-        let Teammember = results.data;
-        setTeam(Teammember.slice(3));
+        // let Teammember = results.data;
+        // setTeam(Teammember.slice(3));
       } else {
         Toast.fire({
           icon: "error",
@@ -46,6 +46,7 @@ const MetalinkTeamsMember = () => {
       mineHistory();
       effectCalled.current = true;
     }
+    //eslint-disable-next-line
   }, []);
   return (
     <>
@@ -63,7 +64,7 @@ const MetalinkTeamsMember = () => {
                     <div className="team-box text-center">
                       <img
                         className="teamMamberImg"                     
-                        src={`https://metalink-technomads.herokuapp.com/uploads/${data.avatar}`}
+                        src={`http://192.168.29.107:3008/uploads/${data.avatar}`}
                       />
                       <h4 className="team-title">{data.name}</h4>
                       <h6 className="team-subtitle">{data.role}</h6>
@@ -106,24 +107,35 @@ const MetalinkTeamsMember = () => {
                     <div className="team-box text-center">
                       <img
                         className="teamMamberImg"
+                        alt="teamMamberImg"
                         src={data.src}
                       />
                       <h4 className="team-title">{data.teamtitle}</h4>
                       <h6 className="team-subtitle">{data.teamsubtitle}</h6>
                       <ul className="list-unstyled d-flex justify-content-center mb-0 p-0 align-items-center">
                         <li>
-                          <a href={data.linkedin} target="_blank">
+                          <a
+                            href={data.linkedin}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             <img
-                              src="../../img/our-team/linkedin-small.png"
+                              src={data.linkedin_img}
                               className="img-fluid"
+                              alt="teamMamberImg"
                             />
                           </a>
                         </li>
                         <li>
-                          <a href={data.twitter} target="_blank">
+                          <a
+                            href={data.twitter}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             <img
-                              src="../../img/our-team/twitter-small.png"
+                              src={data.twitter_img}
                               className="me-0 img-fluid"
+                              alt="teamMamberImg"
                             />
                           </a>
                         </li>

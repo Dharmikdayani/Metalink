@@ -33,7 +33,7 @@
   font-weight: 500;
   line-height: 20px;
   margin: 4px 30px 0px -15px;
-  padding: 10px 21px 6px ;
+  padding: 10px 21px 6px;
   color: #001039;
 }
 
@@ -89,6 +89,7 @@
   text-decoration: none;
   display: inline-block;
   border: 3px solid transparent !important;
+  transition: 0.4s ease-in-out;
 
 }
 
@@ -98,9 +99,9 @@
       rgba(255, 255, 255, 0)),
     linear-gradient(101deg, rgba(0, 66, 129, 1), rgba(0, 16, 57, 1)) !important;
   box-shadow: 2px 1000px 1px #ecf4f9 inset !important;
-  color: black !important;
+  color:#001039 !important;
   border-radius: 7px;
-
+  transition: 0.4s ease-in-out;
 }
 
 .connect-wallet,
@@ -284,11 +285,11 @@
 
 #menuToggle input {
   display: block;
-  width: 40px;
-  height: 32px;
+  width: 92px;
+  height: 35px;
   position: absolute;
   top: -7px;
-  left: -5px;
+  left: -30px;
   cursor: pointer;
   opacity: 0;
   z-index: 2;
@@ -385,14 +386,13 @@
 
 .line-bar {
   width: 100%;
-  border: darkgray solid 0.5px;
+  border: 0.5px solid #9098AE;
 }
 
 
 /*========Notification=========*/
 
 .Notification {
-
   background: #E2F1FC;
   box-shadow: -2px -2px 3px rgb(255 255 255 / 50%), 2px 2px 3px rgb(0 10 48 / 15%);
   border-radius: 10px;
@@ -411,7 +411,9 @@
   background: linear-gradient(180deg, #004585 0%, #000D35 100%);
   box-shadow: -2px -2px 3px rgba(255, 255, 255, 0.5), 2px 2px 3px rgba(0, 10, 48, 0.15);
   border-radius: 10px;
-  padding: 10px 0px 0px;
+  position: relative;
+
+  /* padding: 10px; */
 }
 
 .Notification:hover .Notification-hover {
@@ -420,4 +422,132 @@
 
 .Notification:hover .Notification-without-hover {
   display: none;
+}
+
+
+
+.button {
+  padding: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.button:hover {
+  border: none;
+}
+
+.overlay {
+  position: absolute;
+  right: 0;
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  left: 0;
+}
+
+.overlay:target {
+  visibility: visible;
+  /* display: block; */
+  opacity: 1;
+  /* z-index: 1; */
+}
+
+.popup {
+  background: #E2F1FC;
+  box-shadow: -3px -3px 5px rgb(255 255 255 / 50%), 3px 3px 4px rgb(0 16 57 / 20%);
+  padding: 25px;
+  border-radius: 5px;
+  position: absolute;
+  top: 49px;
+  right: 0;
+  min-width: 400px;
+  transition: all 5s ease-in-out;
+  width: max-content;
+  z-index: 999999999;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+@media screen and (max-width: 700px) {
+  .box {
+    width: 70%;
+  }
+
+  .popup {
+    width: 70%;
+  }
+}
+
+.notification-font {
+
+  font-family: 'Sofia Pro';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 20px;
+  color: #001039;
+}
+
+.mark-read {
+  font-family: 'Sofia Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  text-align: right;
+  color: #004585;
+}
+
+.user-name {
+  font-family: 'Sofia Pro';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  color: #001039;
+}
+
+.user-Describe {
+  font-family: 'Sofia Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  color: #272D3D;
+}
+
+.View {
+  font-family: 'Sofia Pro';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: #004585;
+}
+
+.border-bottom {
+  border-bottom: 0.5px solid #9098AE !important;
+}
+
+.space-menu-rect {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 33.49px;
+  left: 10px;
+  background: #E2F1FC;
+  border-radius: 1px;
+  z-index: 11;
+  transform: rotate(-45deg);
+  /* background-color: #001039; */
 }

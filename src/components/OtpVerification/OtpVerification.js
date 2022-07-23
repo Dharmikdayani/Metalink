@@ -40,7 +40,7 @@ function OtpVerification({
       }, intervalGap);
     };
   }, []);
-
+//eslint-disable-next-line
   const timer = useCallback(
     startTimerWrapper((intervalfn: NodeJS.Timeout) => {
       setTimerCount((val) => {
@@ -122,7 +122,7 @@ function OtpVerification({
       .confirm(code)
       .then(async (result) => {
         // User signed in successfully.
-        const user = result.user;
+        // const user = result.user;
         // console.log(JSON.stringify(user));
         try {
           const encrypt = encryptData(
@@ -283,7 +283,7 @@ function OtpVerification({
                     </div>
                   </form>
 
-                  {!timerCount == 0 ? (
+                  {!timerCount === 0 ? (
                     <p className="resend-otp">
                       Resend OTP in
                       <span> {timerCount}</span>
@@ -291,7 +291,7 @@ function OtpVerification({
                   ) : (
                     <Link
                       to="#"
-                      disabled={!timerCount == 0}
+                      disabled={!timerCount === 0}
                       className="resend-otp"
                       onClick={ResendOTPverification}
                     >

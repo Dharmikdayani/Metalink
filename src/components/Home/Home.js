@@ -1,19 +1,65 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AOS from "aos";
 import Footer from "../Layout/Footer";
 import Cards from "./Cards";
 import ManinHeader from "../Layout/ManinHeader";
 import "../../css/home.css";
 import { Link } from "react-router-dom";
-
+import useEncryption from "../EncryptData/EncryptData";
+import instance from "../baseUrl/baseUrl";
+import Swal from "sweetalert2";
 // eslint-disable-next-line
 {
   AOS.init();
 }
 function Home() {
   document.title = "Home";
+  const { decryptData } = useEncryption();
+  const [data, setdata] = useState("");
+  const effectCalled = useRef(false);
+  /*============= Toast Fire Notifaction==========*/
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+  useEffect(() => {
+    if (!effectCalled.current) {
+      donwloadAPk();
+      // socket.disconnect();
+      effectCalled.current = true;
+    }
+    //eslint-disable-next-line
+  }, []);
+  /*================SignUp API===============*/
+  const donwloadAPk = async () => {
+    try {
+      const result = await instance.get("/getApplication");
+      const results = decryptData(result.data.data);
+      if (results.status) {
+        // Toast.fire({
+        //   icon: "success",
+        //   title: results.message,
+        // });
+        setdata(results?.data);
+      } else {
+        Toast.fire({
+          icon: "error",
+          title: results.message,
+        });
+      }
+    } catch (err) {
+      //console.log("err" + err);
+    }
+  };
+  console.log("data", data);
 
-  localStorage.getItem("user");
   return (
     <>
       <div className="index-bg">
@@ -32,17 +78,27 @@ function Home() {
                   Build team under you by inviting friends & family and earn
                   with higher rate.
                 </p>
-                <div className="app-store d-flex justify-content-lg-start justify-content-center">
-                  <a href="/#">
+                <div className="app-store d-flex justify-content-lg-start justify-content-center ">
+                  <Link
+                    to={`https://metalink-technomads.herokuapp.com/${data}`}
+                    className="card1 " 
+                  >
                     <img
-                      src="../../img/index-page/google-play.png"
-                      alt=""
-                      className="play-store"
+                      id="cast"
+                      src="../../img/index-page/light-andriod.svg"
+                      alt="ios"
                     />
-                  </a>
-                  <a href="/#">
-                    <img src="../../img/index-page/app-store.png" alt="" />
-                  </a>
+                  </Link>
+                  <Link
+                    to={`https://metalink-technomads.herokuapp.com/${data}`}
+                    className="card2"
+                  >
+                    <img
+                      id="cast"
+                      src="../../img/index-page/light-ios.svg"
+                      alt="robert shaw"
+                    />
+                  </Link>
                 </div>
               </div>
               <div className="col-lg-6 text-lg-end text-center digital-currency d-md-block d-sm-none">
@@ -68,7 +124,7 @@ function Home() {
               <img
                 src="../../img/index-page/MicrosoftTeams-image.png"
                 alt=""
-                className="get-started-bg"
+                className="get-started-bg "
                 data-aos="zoom-in"
                 data-aos-duration="2000"
               />
@@ -86,13 +142,13 @@ function Home() {
                 </Link>
               </div>
 
-              <div className="started-tree">
+              <div className="started-tree ">
                 <div className="row mx-0 justify-content-between first-layer">
                   <div className="col-xl-3 col-2 track-box ">
                     <img
                       src="../../img/index-page/track-one.png"
                       alt=""
-                      className="img-fluid"
+                      className="img-fluid "
                     />
 
                     <p className="track-content">Start Mining</p>
@@ -170,21 +226,29 @@ function Home() {
                   Join the great mining community of metalink and earn free
                   metalink with single click.
                 </p>
-                <div className="light-play-store">
-                  <a href="/#">
+                <div className="light-play-store  d-flex justify-content-lg-start justify-content-center">
+                  {/* <div className="light-google-play"> */}
+                  <Link
+                    to={`http://192.168.29.107:3008/${data}`}
+                    className="card3"
+                  >
                     <img
-                      src="../../img/index-page/light-google-play.png"
-                      alt=""
-                      className="light-google-play"
+                      id="cast"
+                      src="../../img/index-page/andriod-dark.svg"
+                      alt="ios"
                     />
-                  </a>
-
-                  <a href="/#">
+                  </Link>
+                  <Link
+                    to={`http://192.168.29.107:3008/${data}`}
+                    className="card4"
+                  >
                     <img
-                      src="../../img/index-page/light-app-store.png"
-                      alt=""
+                      id="cast"
+                      src="../../img/index-page/ios-dark.svg"
+                      alt="Lorraine Gary"
                     />
-                  </a>
+                  </Link>
+                  {/* </div> */}
                 </div>
               </div>
               <div className="col-lg-6 text-lg-end text-md-center">

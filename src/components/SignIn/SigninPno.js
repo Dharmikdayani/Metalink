@@ -202,7 +202,7 @@ function SigninPno() {
                       }}
                       isValid={() =>
                         !IsValid
-                          ? phone.length == selCountryExpectedLength
+                          ? phone.length === selCountryExpectedLength
                           : IsValid
                       }
                     />
@@ -225,6 +225,7 @@ function SigninPno() {
                       />
                       <img
                         role="button"
+                        alt="Eye-icon-img"
                         onClick={onShowPassword}
                         src={`${
                           showPass
