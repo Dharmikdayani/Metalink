@@ -133,7 +133,7 @@
 }
 
 .mining-calculation .mining-amount {
-  font-size: 66px;
+  font-size: 57px;
   font-weight: 600;
   line-height: 66px;
   margin-bottom: 7px;
@@ -237,7 +237,7 @@
   font-style: normal;
   font-weight: 700;
   font-size: 28px;
-  line-height: 28px;
+  line-height: 27px;
   background: linear-gradient(91.79deg, #00498A 0.91%, #001540 99.39%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -569,7 +569,7 @@ height: 318px; */
   }
 
   .mining-calculation .mining-amount {
-    font-size: 46px;
+    font-size: 42px;
     line-height: 45px;
 
   }

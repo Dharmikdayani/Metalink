@@ -24,6 +24,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
   const [isOpenInvite, setIsOpenInvite] = useState(false);
   const [isOpenwithdraw, setIsOpenwithdraw] = useState(false);
   const [isOpenDeposit, setIsOpenDeposit] = useState(false);
+  // const [miningData, setMineingData] = useState(currentBalance);
   const { decryptData } = useEncryption();
   const getItem = JSON.parse(localStorage.getItem("user"));
 
@@ -145,7 +146,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
           icon: "error",
           title: "Captcha Does Not Match",
         })}
-      </div>
+      </div>;
 
       document.getElementById("user_captcha_input").value = "";
     }
@@ -157,6 +158,20 @@ function Mine({ socket, miningStatus, currentBalance }) {
     ebModal.style.display = "block";
   };
 
+  function currentBalancevalue(currentBalance) {
+    if (currentBalance.currentBalance < 1000.0) {
+      // setMineingData()
+      return currentBalance.currentBalance?.toFixed(3);
+    } else if (currentBalance.currentBalance < 10000.0) {
+      return currentBalance.currentBalance?.toFixed(2);
+    } else if (currentBalance.currentBalance < 100000.0) {
+      return currentBalance.currentBalance?.toFixed(1);
+    } else {
+      return currentBalance.currentBalance?.toFixed(0);
+    }
+  }
+  // console.log(typeof (currentBalance.currentBalance))
+  // console.log(currentBalance)
   return (
     <div className="mining-bg">
       {/* <!-- ------------------- MINING START ----------------- --> */}
@@ -188,11 +203,28 @@ function Mine({ socket, miningStatus, currentBalance }) {
                 <div className="d-flex align-items-baseline justify-content-center">
                   <h1 className="mining-amount d-flex">
                     <Odometer
-                      format="(.ddd),dd"
+                      // format="(.ddd),dd"
+                      // from 0 to 999.99999999
+                      // format="(dd.dd),dd"
+                      // from 1000.000 to 9999.9999999
+                      // format="(ddddd.d),dd"
+                      // from 10,000.000 to 99,999.00000
+                      format={
+                        (currentBalance.currentBalance) < 1000.0
+                          ? "(.ddd),dd" : null
+                          // : (currentBalance.currentBalance) < 10000.0
+                          // ? "(dd.dd),dd"
+                          // : (currentBalance.currentBalance) < 100000.0
+                          // ? "(ddddd.d),dd"
+                          // : ""
+                        
+                      }
+                      // format={}
                       theme="default"
                       duration={1000}
-                      value={currentBalance.currentBalance?.toFixed(3)}
+                      value={currentBalancevalue(currentBalance)}
                     />
+                    {/* {currentBalance.currentBalance} */}
                   </h1>
                   <img
                     src="../../img/icon/Metalink2.png"

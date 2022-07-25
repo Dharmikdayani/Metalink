@@ -14,33 +14,20 @@ import Profile from "./components/Profile/Profile";
 import SigninPno from "./components/SignIn/SigninPno";
 import FpwdEmail from "./components/ForgotpPassword/FpwdEmail";
 import { Routes, Route } from "react-router-dom";
-// import Swal from "sweetalert2";
 import Protected from "./components/ProtectedRouter/Protected";
 import { io } from "socket.io-client";
-// import { useSelector } from "react-redux";
-// import { selecUser } from "./components/feature/user";
+import { useSelector } from "react-redux";
+import { selecUser } from "./components/feature/user";
 import MeainHome from "./components/MeainHome/MeainHome";
 import OtpVerificationFormobile from "./components/OtpVerification/OtpVerificationFormobile";
 const App = () => {
-  // const effectCalled = useRef(false);
   const [socket, setSocket] = useState("");
   const [currentBalance, setCurrentBalance] = useState({});
   const [miningStatus, setMiningStatus] = useState(false);
   const getItem = JSON.parse(localStorage.getItem("user"));
 
-  // const Toast = Swal.mixin({
-  //   toast: true,
-  //   position: "top-end",
-  //   showConfirmButton: false,
-  //   timer: 3000,
-  //   timerProgressBar: true,
-  //   didOpen: (toast) => {
-  //     toast.addEventListener("mouseenter", Swal.stopTimer);
-  //     toast.addEventListener("mouseleave", Swal.resumeTimer);
-  //   },
-  // });
-
-  // const user = useSelector(selecUser);
+  //eslint-disable-next-line
+  const user = useSelector(selecUser);
 
   useEffect(() => {
     setCurrentBalance({});
@@ -48,7 +35,7 @@ const App = () => {
     setSocket("");
     // console.log("getItem", getItem);
     if (getItem) {
-      const socket = io("https://metalink-technomads.herokuapp.com");
+      const socket = io("http://localhost:3008");
       socket.on("connect", () => {
         setSocket(socket);
         // console.log("id", getItem._id);
@@ -59,7 +46,7 @@ const App = () => {
           setCurrentBalance(data);
         });
       });
-      // socket.
+
       // effectCalled.current = true;
     }
     //eslint-disable-next-line

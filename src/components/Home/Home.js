@@ -79,18 +79,18 @@ function Home() {
                   with higher rate.
                 </p>
                 <div className="app-store d-flex justify-content-lg-start justify-content-center ">
-                  <Link
-                    to={`https://metalink-technomads.herokuapp.com/${data}`}
-                    className="card1 " 
+                  <a
+                    href={`https://metalink-technomads.herokuapp.com/${data}` }
+                    className="card1 "
                   >
                     <img
                       id="cast"
                       src="../../img/index-page/light-andriod.svg"
                       alt="ios"
                     />
-                  </Link>
-                  <Link
-                    to={`https://metalink-technomads.herokuapp.com/${data}`}
+                  </a>
+                  <a
+                    href={`https://metalink-technomads.herokuapp.com/${data}`}
                     className="card2"
                   >
                     <img
@@ -98,7 +98,7 @@ function Home() {
                       src="../../img/index-page/light-ios.svg"
                       alt="robert shaw"
                     />
-                  </Link>
+                  </a>
                 </div>
               </div>
               <div className="col-lg-6 text-lg-end text-center digital-currency d-md-block d-sm-none">

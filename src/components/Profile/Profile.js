@@ -180,7 +180,8 @@ const Profile = ({ socket }) => {
   /*=============LOGOUT FUNCTION===========*/
   const handleogout = (e) => {
     e.preventDefault();
-    socket.disconnect(ProfileData?._id);
+    socket.disconnect(getItem?._id);
+    console.log("first,",getItem?._id)
     dispatch(logout());
     localStorage.removeItem("user");
     navigate("/");
