@@ -122,7 +122,7 @@ const MetalinkTeamsMember = () => {
                             <img
                               src={data.linkedin_img}
                               className="img-fluid"
-                              alt="teamMamberImg"
+                              aria-label="hyyteamMamberImg"
                             />
                           </a>
                         </li>
@@ -135,7 +135,7 @@ const MetalinkTeamsMember = () => {
                             <img
                               src={data.twitter_img}
                               className="me-0 img-fluid"
-                              alt="teamMamberImg"
+                              aria-label="hyyteamMamberImg"
                             />
                           </a>
                         </li>
