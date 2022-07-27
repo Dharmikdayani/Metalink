@@ -92,6 +92,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
   /*============= Toast Fire Notifaction==========*/
 
   const Toast = Swal.mixin({
+    // style:{{"z-Index:"}},
     toast: true,
     position: "top-end",
     showConfirmButton: false,
@@ -159,19 +160,36 @@ function Mine({ socket, miningStatus, currentBalance }) {
   };
 
   function currentBalancevalue(currentBalance) {
-    if (currentBalance.currentBalance < 1000.0) {
-      // setMineingData()
-      return currentBalance.currentBalance?.toFixed(3);
-    } else if (currentBalance.currentBalance < 10000.0) {
-      return currentBalance.currentBalance?.toFixed(2);
-    } else if (currentBalance.currentBalance < 100000.0) {
-      return currentBalance.currentBalance?.toFixed(1);
+    if (currentBalance?.currentBalance < 1000.0) {
+      return currentBalance?.currentBalance?.toFixed(3) ;
+    } else if (currentBalance?.currentBalance < 10000.0) {
+      return currentBalance?.currentBalance?.toFixed(3);
+    } else if (currentBalance?.currentBalance < 100000.0) {
+      return currentBalance?.currentBalance?.toFixed(1);
     } else {
-      return currentBalance.currentBalance?.toFixed(0);
+      return currentBalance?.currentBalance?.toFixed(0);
     }
   }
-  // console.log(typeof (currentBalance.currentBalance))
-  // console.log(currentBalance)
+
+  // function odometer(currentBalance) {
+  //   if (currentBalance?.currentBalance?.toString().split(".")[0].length < 1000.0) {
+  //     return "(.ddd),dd"
+  //   } else if (currentBalance?.currentBalance?.toString().split(".")[0].length < 10000.0) {
+  //     return "(dd.dd),dd"
+  //   } else if (currentBalance?.currentBalance?.toString().split(".")[0].length < 100000.0) {
+  //     return "(ddddd.d),dd"
+  //   }
+  //   // else {
+  //   //   return currentBalance?.currentBalance?.toFixed(0);
+  //   // }
+  // }
+
+  // console.log("currentBalance", currentBalancevalue(currentBalance));
+  // console.log(
+  //   "odometer",
+  //   currentBalance?.currentBalance?.toString().split(".")[0].length
+  // );
+
   return (
     <div className="mining-bg">
       {/* <!-- ------------------- MINING START ----------------- --> */}
@@ -209,17 +227,32 @@ function Mine({ socket, miningStatus, currentBalance }) {
                       // from 1000.000 to 9999.9999999
                       // format="(ddddd.d),dd"
                       // from 10,000.000 to 99,999.00000
-                      format={
-                        (currentBalance.currentBalance) < 1000.0
-                          ? "(.ddd),dd" : null
-                          // : (currentBalance.currentBalance) < 10000.0
-                          // ? "(dd.dd),dd"
-                          // : (currentBalance.currentBalance) < 100000.0
-                          // ? "(ddddd.d),dd"
-                          // : ""
-                        
-                      }
-                      // format={}
+                      // format={
+                      //   a < 1000.0
+                      //     ? "(.ddd),dd"
+                      //     : b < 10000.0
+                      //     ? "(dd.dd),dd"
+                      //     : 100000 < 100000.0
+                      //     ? "(ddddd.d),dd"
+                      //     : ""
+                      // }
+
+                      // format={
+                      //   currentBalance?.currentBalance
+                      // ?.toString()
+                      // .split(".")[0].length <= 3
+                      //     ? "(.ddd),dd"
+                      //     : currentBalance?.currentBalance
+                      //         ?.toString()
+                      //         .split(".")[1].length === 4
+                      //     ? "(dd.dd),dd"
+                      //     : currentBalance?.currentBalance
+                      //         ?.toString()
+                      //         .split(".")[0].length === 5
+                      //     ? "(ddddd.d),dd"
+                      //     : null
+                      // }
+                      // format={odometer(currentBalance)}
                       theme="default"
                       duration={1000}
                       value={currentBalancevalue(currentBalance)}

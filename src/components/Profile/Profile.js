@@ -166,7 +166,7 @@ const Profile = ({ socket }) => {
   const PhoneNumber = useRef(null);
   useOutsidclickPhoneNumber(PhoneNumber);
 
-  /*=============== useEffect for getUserProfile calling======= */
+  // /*=============== useEffect for getUserProfile calling======= */
   useEffect(() => {
     if (!effectCalled.current) {
       getUserProfile();
@@ -181,7 +181,6 @@ const Profile = ({ socket }) => {
   const handleogout = (e) => {
     e.preventDefault();
     socket.disconnect(getItem?._id);
-    console.log("first,",getItem?._id)
     dispatch(logout());
     localStorage.removeItem("user");
     navigate("/");
@@ -214,7 +213,6 @@ const Profile = ({ socket }) => {
             ? setIsValid(false)
             : setIsValid(true);
         }
-
         setOldMobile(results.data.countryCode + results.data.phoneNumber);
         localStorage.setItem(
           "user",
@@ -557,7 +555,10 @@ const Profile = ({ socket }) => {
                                 type="button"
                                 title="Share this article"
                               >
-                                <img src="../../img/profile/share-link.png"  alt="editing-img"/>
+                                <img
+                                  src="../../img/profile/share-link.png"
+                                  alt="editing-img"
+                                />
                               </button>
                             </div>
                             <div className="p-1">
@@ -646,7 +647,10 @@ const Profile = ({ socket }) => {
                                   className="editing-btn passwordclick"
                                   onClick={() => setshowImg(true)}
                                 >
-                                  <img src="../../img/profile/editing.png"  alt="editing-img"/>
+                                  <img
+                                    src="../../img/profile/editing.png"
+                                    alt="editing-img"
+                                  />
                                   <input
                                     type={`${showPass ? "text" : "password"}`}
                                     name="pwd"

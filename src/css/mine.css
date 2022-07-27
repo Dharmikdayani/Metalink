@@ -133,7 +133,7 @@
 }
 
 .mining-calculation .mining-amount {
-  font-size: 57px;
+  font-size: 53px;
   font-weight: 600;
   line-height: 66px;
   margin-bottom: 7px;
@@ -564,12 +564,12 @@ height: 318px; */
   }
 
   .loader-ball {
-    /* top: px; */
-    left: 179px;
+    left: 11%;
+    top: 11%;
   }
 
   .mining-calculation .mining-amount {
-    font-size: 42px;
+    font-size: 40px;
     line-height: 45px;
 
   }
@@ -1631,8 +1631,6 @@ height: 318px; */
   display: none !important;
 }
 
-
-
 audio,
 canvas,
 progress,
@@ -1642,11 +1640,9 @@ video {
   width: 217px;
 }
 
-
 .metaimg {
   margin-left: 10px
 }
-
 
 .odometer.odometer-auto-theme,
 .odometer.odometer-theme-default {
@@ -1770,7 +1766,6 @@ video {
 
 
 .playbtn {
-
   width: 50px;
   height: 50px;
   left: 200px;
@@ -2014,9 +2009,42 @@ video {
 }
 
 
+.swal2-container {
+  z-index: 9999999;
+}
 
 /* .react-tel-input * {
   color: gray ;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 } */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -393,8 +393,8 @@ function SignUp() {
                             onClick={onshowConfirmPass}
                             src={`${
                               showConfirmPass
-                                ? "../../img/profile/openeye.png"
-                                : "../../img/profile/hiddenEye.png"
+                                ? "../../img/profile/openeye.svg"
+                                : "../../img/profile/hiddenEye.svg"
                             }`}
                             className="Eye-icon"
                           />

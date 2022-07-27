@@ -58,7 +58,7 @@ function Home() {
       //console.log("err" + err);
     }
   };
-  console.log("data", data);
+  // console.log("data", data);
 
   return (
     <>
