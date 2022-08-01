@@ -5,7 +5,7 @@
   font-family: 'Conv_Sofia Pro Black Az' !important;
 }
 
-.index-bg .container {
+.container {
   max-width: 1490px;
   padding: 0 20px;
   display: table;
@@ -38,7 +38,7 @@
 .index-bg .hero {
   background-image: url("../../public/img/index-page/hero-bg.png");
   background-repeat: no-repeat;
-  margin-top: -10px;
+  /* margin-top: -10px; */
 }
 
 .index-bg .hero .heading {
@@ -46,6 +46,25 @@
   font-weight: 700;
   line-height: 48px;
   padding: 178px 0 43px 0;
+}
+
+@media screen and (max-width: 450px) {
+  .index-bg .hero .heading {
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 35px;
+    padding: 75px 0 0 0;
+  }
+
+  .hero .content {
+    font-size: 20px !important;
+  }
+
+  .metalink-network .main-heading {
+    font-size: 48px;
+    line-height: 48px;
+
+  }
 }
 
 .hero .content {
@@ -207,7 +226,7 @@
   border-radius: 50%;
   position: relative;
   display: inline-block;
-
+  transition: 0.7s ease-in-out;
 
 }
 
@@ -349,12 +368,13 @@
 }
 
 .secound-layer {
-  padding: 40px 0px
+  padding: 65px 0px
 }
 
 .thierd-layer {
-  margin-top: 10px;
+  margin-top: 15px;
 }
+
 
 .mining-higher-rate {
   margin: 73px 0 87px 0;
@@ -374,6 +394,11 @@
   .thierd-layer {
     margin-top: -5px;
   }
+
+  .secound-layer {
+    padding: 38px 0px
+  }
+
 }
 
 @media screen and (max-width: 1336px) {
@@ -464,6 +489,8 @@
 
   .metalink-network .main-heading {
     margin: 132px 0 0px 0;
+    font-size: 38px;
+    line-height: 45px;
   }
 }
 
@@ -515,6 +542,7 @@
 
 .network-main-box:hover .network-bg {
   background: #0f2354;
+  border-color: white;
 }
 
 .white-image {
@@ -661,6 +689,7 @@
 #cast:hover {
   position: absolute;
   opacity: 1;
+  /* left: 0; */
   transition: 0.7s ease-in-out;
 }
 
@@ -670,6 +699,15 @@
   transition: 0.7s ease-in-out;
 }
 
+@media screen and (max-width: 450px) {
+
+  #cast:hover {
+    left: 0;
+  }
+  #cast {
+    left: 0;
+  }
+}
 
 
 

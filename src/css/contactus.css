@@ -112,3 +112,16 @@
     resize: none;
     margin-bottom: 90px;
 }
+
+@media screen and (max-width: 450px) {
+    .contact-us {
+        padding: 75px 0 200px;
+    }
+
+    .profile-add .form-group input,
+    .profile-add .form-group textarea {
+        font-size: 16px;
+        padding: 16px 35px;
+    }
+
+}

@@ -118,7 +118,6 @@ function Mine({ socket, miningStatus, currentBalance }) {
       document.getElementById("user_captcha_input").value = "";
       document.querySelector(".layer-two ").classList.add("active");
       document.querySelector("#captcha-modals").style.display = "none";
-
       try {
         const result = await instance.get("/activeUser");
         const results = decryptData(result.data.data);
@@ -161,9 +160,9 @@ function Mine({ socket, miningStatus, currentBalance }) {
 
   function currentBalancevalue(currentBalance) {
     if (currentBalance?.currentBalance < 1000.0) {
-      return currentBalance?.currentBalance?.toFixed(3) ;
-    } else if (currentBalance?.currentBalance < 10000.0) {
       return currentBalance?.currentBalance?.toFixed(3);
+    } else if (currentBalance?.currentBalance < 10000.0) {
+      return currentBalance?.currentBalance?.toFixed(2);
     } else if (currentBalance?.currentBalance < 100000.0) {
       return currentBalance?.currentBalance?.toFixed(1);
     } else {
@@ -194,7 +193,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
     <div className="mining-bg">
       {/* <!-- ------------------- MINING START ----------------- --> */}
       <ManinHeader />
-      <section className="header">
+      <section className="">
         <div className="container">
           <div className="user-stage text-center ">
             <h3 className="heading">{currentBalance?.userRole}</h3>
@@ -238,23 +237,17 @@ function Mine({ socket, miningStatus, currentBalance }) {
                       // }
 
                       // format={
-                      //   currentBalance?.currentBalance
-                      // ?.toString()
-                      // .split(".")[0].length <= 3
+                      //  1000 < 1000.0
                       //     ? "(.ddd),dd"
-                      //     : currentBalance?.currentBalance
-                      //         ?.toString()
-                      //         .split(".")[1].length === 4
+                      //     : 10000 < 10000.0
                       //     ? "(dd.dd),dd"
-                      //     : currentBalance?.currentBalance
-                      //         ?.toString()
-                      //         .split(".")[0].length === 5
+                      //     : currentBalance?.currentBalance < 100000.0
                       //     ? "(ddddd.d),dd"
                       //     : null
                       // }
                       // format={odometer(currentBalance)}
                       theme="default"
-                      duration={1000}
+                      // duration={1000}
                       value={currentBalancevalue(currentBalance)}
                     />
                     {/* {currentBalance.currentBalance} */}
@@ -577,7 +570,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                         <div className="Invite-social  d-sm-flex d-none">
                           <div className="social-bg">
                             <a
-                              href="https://dsc.gg/metalink"
+                              href={`https://discord.com/channels/@me?url=Join my team on metalink https://metalinknetwork.com/signup/?ref=${getItem.refCode}`}
                               className="social-icon"
                               target="_blank"
                               rel="noreferrer"
@@ -596,7 +589,7 @@ function Mine({ socket, miningStatus, currentBalance }) {
                           </div>
                           <div className="social-bg">
                             <a
-                              href="https://twitter.com/MetalinkNetwork"
+                              href={`https://twitter.com/compose/tweet?url=Join my team on metalink https://metalinknetwork.com/signup/?ref=${getItem.refCode}`}
                               className="social-icon"
                               target="_blank"
                               rel="noreferrer"
@@ -615,7 +608,8 @@ function Mine({ socket, miningStatus, currentBalance }) {
                           </div>
                           <div className="social-bg">
                             <a
-                              href="https://www.linkedin.com/company/metalink-network"
+                              // href={`https://www.linkedin.com/sharing/share-offsite/?url=https://metalinknetwork.com/signup/?ref=${getItem.refCode}`}
+                              href={`https://www.linkedin.com/sharing/share-offsite/?url=https://metalinknetwork.com/signup/?ref=${getItem.refCode}`}
                               className="social-icon"
                               target="_blank"
                               rel="noreferrer"
@@ -653,18 +647,20 @@ function Mine({ socket, miningStatus, currentBalance }) {
                           </div>
                         </div>
                         <div className="d-flex input-Invite-shre mb-0">
-                          <input
-                            placeholder="metalink.network/share-link"
-                            id="user_captcha_input"
-                            name="user_captcha_input"
-                            type="text"
-                            className="form-control"
-                            readOnly
-                          />
+                          <div>{`https://metalinknetwork.com/${getItem.refCode}`}</div>
                           <img
-                            src="../../img/icon/copy.png"
+                            src="../../img/profile/copy-icon.png"
                             alt=""
                             className="copy-invite-share"
+                            onClick={() => {
+                              navigator.clipboard.writeText(
+                                `https://metalinknetwork.com/signup/?ref=${getItem.refCode}`
+                              );
+                              Toast.fire({
+                                icon: "success",
+                                title: "copied successfully",
+                              });
+                            }}
                           />
                         </div>
                       </div>

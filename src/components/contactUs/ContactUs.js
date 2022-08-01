@@ -81,7 +81,7 @@ const Contactus = () => {
                   autoCorrect="off"
                   onSubmit={(e) => onSignInSubmit(e)}
                 >
-                  <div className="profile-add w-100 d-inline-block">
+                  <div className="profile-add  w-100 d-inline-block">
                     <div className="row">
                       <div className="col-md-6">
                         <div

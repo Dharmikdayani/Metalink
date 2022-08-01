@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
-// import "react-phone-input-2/lib/style.css";
+import "react-phone-input-2/lib/style.css";
 import Swal from "sweetalert2";
 import instance from "../baseUrl/baseUrl";
 import { useDispatch } from "react-redux";
@@ -33,37 +33,31 @@ function SigninPno() {
   });
 
   /*================ERROR MESSAGE============= */
-
-  let errorsObj = {
+  const [error, setError] = useState({
     emailOrMobile: "",
     password: "",
-  };
-
-  const [errors, setErrors] = useState(errorsObj);
-  function onLogin(e) {
+  });
+  function onLoginSubmit(e) {
     e.preventDefault();
-    let error = false;
-    errorsObj = { ...errorsObj };
-
     if (emailOrMobile === "") {
-      errorsObj.emailOrMobile = "*PhoneNumber is required!";
-      error = true;
-    }else if (!IsValid) {
-      errorsObj.emailOrMobile = "*PhoneNumber is wrong!";
-      error = true;
+      setError({
+        ...error,
+        emailOrMobile: "*PhoneNumber is required!",
+      });
+    } else if (phone.length !== selCountryExpectedLength) {
+      setError({
+        ...error,
+        emailOrMobile: "*PhoneNumber is wrong!",
+      });
+    } else if (password === "") {
+      setError({
+        ...error,
+        password: "*Password is required!",
+      });
+    } else {
+      SigninPno();
     }
-
-    if (password === "") {
-      errorsObj.password = "*Password is required!";
-      error = true;
-    }
-
-    setErrors(errorsObj);
-
-    if (error) return;
-    SigninPno();
   }
-
   /*================SigninPno API===============*/
 
   const navigate = useNavigate();
@@ -130,7 +124,7 @@ function SigninPno() {
     setShowPass(!showPass);
   };
 
-    //* Prevent User For Entering Spaces
+  //* Prevent User For Entering Spaces
   const preventSpace = (e) => {
     if (e.which === 32) {
       e.preventDefault();
@@ -156,7 +150,7 @@ function SigninPno() {
             <div className="col-lg-6 col-md-8 col-sm-10">
               <div className="login-form-bg">
                 <h2 className="heading text-center"> Sign In </h2>
-                <form autoComplete="off" onSubmit={onLogin}>
+                <form autoComplete="off" onSubmit={onLoginSubmit}>
                   <div className="d-grid justify-content-center">
                     <PhoneInput
                       className="daa"
@@ -181,15 +175,25 @@ function SigninPno() {
                         setcountryCode(`+${countryData.dialCode}`);
                         setemailOrMobile(inputPhone);
                         setphone(data);
-                        setSelCountryExpectedLength(
-                          countryData.format.length
-                        );
+                        console.log(phone)
+                        // console.log(first)
+                        setSelCountryExpectedLength(countryData.format.length);
+                        setError({
+                          ...error,
+                          emailOrMobile:
+                            emailOrMobile === ""
+                              ? "*PhoneNumber is required!" 
+                              :(emailOrMobile.length <= 7) || (emailOrMobile.length >= 17)
+                              ? "*PhoneNumber is wrong!"
+                              : "",
+                        });
                       }}
                       inputStyle={{
                         background: "#E2F1FE",
                         padding: "26px 1px 20px 50px",
                         marginTop: "22px",
-                        border: errors.emailOrMobile ? "red 1px solid" : "none",
+                        border: error.emailOrMobile ? "red 1px solid" : "none",
+                        boxShadow: error.emailOrMobile ? "none" : "",
                       }}
                       inputProps={{
                         required: true,
@@ -206,22 +210,28 @@ function SigninPno() {
                           : IsValid
                       }
                     />
-                    {errors.emailOrMobile && (
-                      <div className="errorMsg">{errors.emailOrMobile}</div>
-                    )}
+
+                    <div className="errorMsg">{error.emailOrMobile}</div>
                     <div className="position-relative">
                       <input
                         type={`${showPass ? "text" : "password"}`}
                         name="password"
                         value={password}
                         onKeyPress={preventSpace}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                          setError({
+                            ...error,
+                            password:
+                              e.target.value === ""
+                                ? "*Password is required!"
+                                : null,
+                          });
+                        }}
                         placeholder="Password"
-                        className={
-                          errors.password
-                            ? "form-control-error pwd "
-                            : "form-control pwd"
-                        }
+                        className={`form-control pwd ${
+                          error.password ? "form-control-error pwd" : ""
+                        }`}
                       />
                       <img
                         role="button"
@@ -235,9 +245,8 @@ function SigninPno() {
                         className="Eye-icon"
                       />
                     </div>
-                    {errors.password && (
-                      <div className="errorMsg">{errors.password}</div>
-                    )}
+
+                    <div className="errorMsg">{error.password}</div>
 
                     <Link
                       to="/forgotPassword"

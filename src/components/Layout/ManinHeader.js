@@ -2,12 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "../../css/header.css";
 
-const ManinHeader = ({ socket }) => {
+const ManinHeader = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const getItem = JSON.parse(localStorage.getItem("user"));
   const [openNotifaction, setOpenNotifaction] = useState(false);
+  const [openTogglemenu, setopenTogglemenu] = useState(false);
   let location = useLocation();
   /*========outside click event withdraw =========== */
 
@@ -21,7 +22,7 @@ const ManinHeader = ({ socket }) => {
         setOpenNotifaction(false);
 
         document.querySelector("#popup1").style.display = "none";
-        console.log("first");
+        // console.log("first");
       }
     };
     document.addEventListener("mousedown", checkIfClickedOutside);
@@ -30,8 +31,25 @@ const ManinHeader = ({ socket }) => {
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
   }, [openNotifaction]);
+  /*========outside click event openTogglemenu =========== */
 
-  function Markasread (){
+  const menu = useRef();
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+
+      if (menu.current && !menu.current.contains(e.target)) {
+        setopenTogglemenu(false);
+      }
+    };
+    document.addEventListener("mousedown", checkIfClickedOutside);
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [openTogglemenu]);
+  function Markasread() {
     // document.getElementById("popup1").style.background="red"
   }
   return (
@@ -49,13 +67,18 @@ const ManinHeader = ({ socket }) => {
               </NavLink>
             </div>
             {/* =======================Mobile-view Section============= */}
-            <nav>
-              <div id="menuToggle" className="d-sm-none">
-                <input type="checkbox" />
-                <span></span>
-                <span></span>
-                <span></span>
-                <ul id="menu">
+         
+        
+            <div className="d-sm-none">
+              <input
+                className="menu-icon"
+                type="checkbox"
+                id="menu-icon"
+                name="menu-icon"
+              />
+              <label htmlFor="menu-icon"></label>
+              <nav className="nav">
+                <ul className="pt-5">
                   <li className="nav-item">
                     <Link to="/" className="nav-link">
                       Home
@@ -76,9 +99,8 @@ const ManinHeader = ({ socket }) => {
                       Contact Us
                     </Link>
                   </li>
-
                   <li className="nav-item">
-                    <Link to="/#" className="nav-link">
+                    <Link to="/" className="nav-link">
                       Terms of Use
                     </Link>
                   </li>
@@ -176,9 +198,8 @@ const ManinHeader = ({ socket }) => {
                     </div>
                   </div>
                 </ul>
-              </div>
-            </nav>
-
+              </nav>
+            </div>
             {/*================= desktop Section======= */}
             <div className="d-flex align-items-center header-page-name">
               <ul>
@@ -248,7 +269,9 @@ const ManinHeader = ({ socket }) => {
                               <h2 className="notification-font">
                                 Notification
                               </h2>
-                              <p className="mark-read" onClick={Markasread}>Mark as read</p>
+                              <p className="mark-read" onClick={Markasread}>
+                                Mark as read
+                              </p>
                             </div>
 
                             <div className="user-notification mt-2 d-flex border-bottom">

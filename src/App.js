@@ -35,7 +35,7 @@ const App = () => {
     setSocket("");
     // console.log("getItem", getItem);
     if (getItem) {
-      const socket = io("http://localhost:3008");
+      const socket = io(process.env.REACT_APP_BASE_URL);
       socket.on("connect", () => {
         setSocket(socket);
         // console.log("id", getItem._id);

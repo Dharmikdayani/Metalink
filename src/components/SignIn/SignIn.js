@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import instance from "../baseUrl/baseUrl";
 import { signin } from "../feature/user";
 import useEncryption from "../EncryptData/EncryptData";
+import ManinHeader from "../Layout/ManinHeader";
 
 function SignIn() {
   const [email, setemail] = useState("");
@@ -27,36 +28,31 @@ function SignIn() {
   });
 
   /*================ERROR MESSAGE============= */
-
-  let errorsObj = {
+  const [error, setError] = useState({
     email: "",
     password: "",
-  };
-
-  const [errors, setErrors] = useState(errorsObj);
-
-  function onLogin(e) {
+  });
+  function onLoginSubmit(e) {
     e.preventDefault();
-    let error = false;
-    errorsObj = { ...errorsObj };
-
     if (email === "") {
-      errorsObj.email = "*Email address is required!";
-      error = true;
+      // console.log("first")
+      setError({
+        ...error,
+        email: "*Email address is required!",
+      });
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      errorsObj.email = "*Email address is invalid!";
-      error = true;
+      setError({
+        ...error,
+        email: "*Email address is invalid!",
+      });
+    } else if (password === "") {
+      setError({
+        ...error,
+        password: "*Password is required!",
+      });
+    } else {
+      SignIn();
     }
-
-    if (password === "") {
-      errorsObj.password = "*Password is required!";
-      error = true;
-    }
-
-    setErrors(errorsObj);
-
-    if (error) return;
-    SignIn();
   }
 
   /*================SignIn API===============*/
@@ -122,7 +118,7 @@ function SignIn() {
   const onShowPassword = () => {
     setShowPass(!showPass);
   };
-  
+
   //* Prevent User For Entering Spaces
   const preventSpace = (e) => {
     if (e.which === 32) {
@@ -131,100 +127,100 @@ function SignIn() {
   };
 
   return (
-    <div className="logIn signin-bg">
-      <section className="login-form signup-form">
-        <div className="container">
-          <div className="d-flex justify-content-between align-items-center header-md">
-            <div>
-              <Link to="/">
-                {" "}
-                <img
-                  src="../../img/logo/logo.png"
-                  alt=""
-                  className="header-logo img-fluid"
-                />
-              </Link>
-            </div>
-          </div>
-          <div className="row justify-content-center">
-            <div className="col-lg-6 col-md-8 col-sm-10">
-              <div className="login-form-bg">
-                <h2 className="heading text-center"> Sign In </h2>
-                <form autoComplete="off" onSubmit={onLogin}>
-                  <div className="d-grid justify-content-center">
-                    <input
-                      type="email"
-                      name="email"
-                      value={email}
-                      onChange={(e) => setemail(e.target.value)}
-                      placeholder="Email Address"
-                      className={
-                        errors.email
-                          ? "form-control-error email-id"
-                          : "form-control email-id mt-0"
-                      }
-                      // required
-                    />
-                    {errors.email && (
-                      <div className="errorMsg">{errors.email}</div>
-                    )}
-                    <div className="position-relative">
+    <>
+      <ManinHeader />
+      <div className="logIn signin-bg">
+        <section className="login-form signup-form">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-lg-6 col-md-8 col-sm-10">
+                <div className="login-form-bg">
+                  <h2 className="heading text-center"> Sign In </h2>
+                  <form autoComplete="off" onSubmit={onLoginSubmit}>
+                    <div className="d-grid justify-content-center">
                       <input
-                        type={`${showPass ? "text" : "password"}`}
-                        name="password"
-                        value={password}
-                        onKeyPress={preventSpace}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Password"
-                        className={
-                          errors.password
-                            ? "form-control-error pwd "
-                            : "form-control pwd"
-                        }
-                      />
-                      <img
-                        role="button"
-                        alt="Eye-icon-img"
-                        onClick={onShowPassword}
-                        src={`${
-                          showPass
-                            ? "../../img/profile/openeye.png"
-                            : "../../img/profile/hiddenEye.png"
+                        type="text"
+                        name="email"
+                        value={email}
+                        onChange={(e) => {
+                          setemail(e.target.value);
+                          setError({
+                            ...error,
+                            email:
+                              e.target.value === ""
+                                ? "*Email address is required!"
+                                : !/\S+@\S+\.\S+/.test(e.target.value)
+                                ? "*Email address is invalid!"
+                                : "",
+                          });
+                        }}
+                        placeholder="Email Address"
+                        className={`form-control email-id mt-0 ${
+                          error.email ? "form-control-error email-id mt-0 " : ""
                         }`}
-                        className="Eye-icon"
                       />
+                      <div className="errorMsg">{error.email}</div>
+                      <div className="position-relative">
+                        <input
+                          type={`${showPass ? "text" : "password"}`}
+                          name="password"
+                          value={password}
+                          onKeyPress={preventSpace}
+                          onChange={(e) => {
+                            setPassword(e.target.value);
+                            setError({
+                              ...error,
+                              password:
+                                e.target.value === ""
+                                  ? "*Password is required!"
+                                  : null,
+                            });
+                          }}
+                          placeholder="Password"
+                          className={`form-control pwd ${
+                            error.password ? "form-control-error pwd" : ""
+                          }`}
+                        />
+                        <img
+                          role="button"
+                          alt="Eye-icon-img"
+                          onClick={onShowPassword}
+                          src={`${
+                            showPass
+                              ? "../../img/profile/openeye.png"
+                              : "../../img/profile/hiddenEye.png"
+                          }`}
+                          className="Eye-icon"
+                        />
+                      </div>
+                      <div className="errorMsg">{error.password}</div>
+                      <Link
+                        to="/forgotPassword"
+                        className="text-end w-100 d-inline-block forgot-password"
+                      >
+                        Forgot Password?
+                      </Link>
                     </div>
 
-                    {errors.password && (
-                      <div className="errorMsg">{errors.password}</div>
-                    )}
+                    <button type="submit" className="sign-in">
+                      Sign In
+                    </button>
+                    <p className="text-center">
+                      <Link to="/SigninPno">Sign In with Phone Number </Link>
+                    </p>
 
-                    <Link
-                      to="/forgotPassword"
-                      className="text-end w-100 d-inline-block forgot-password"
-                    >
-                      Forgot Password?
-                    </Link>
-                  </div>
-
-                  <button type="submit" className="sign-in">
-                    Sign In
-                  </button>
-                  <p className="text-center">
-                    <Link to="/SigninPno">Sign In with Phone Number </Link>
-                  </p>
-
-                  <p className="text-center ">
-                    Don't have an account?
-                    <Link to="/signup"> Sign Up </Link>
-                  </p>
-                </form>
+                    <p className="text-center ">
+                      Don't have an account?
+                      <Link to="/signup"> Sign Up </Link>
+                    </p>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 }
 

@@ -170,6 +170,17 @@
   }
 }
 
+@media screen and (max-width: 450px) {
+  .team-management .common-heading {
+    margin-top: 0;
+  }
+
+  .team-management {
+    padding: 100px 0px 0;
+  }
+
+}
+
 @media screen and (max-width: 991px) {
 
   .team-padding,
@@ -192,7 +203,7 @@
   }
 }
 
-.teamMamberImg{
+.teamMamberImg {
   width: 124px;
   height: 124px;
   left: 302px;
@@ -200,10 +211,12 @@
   border-radius: 50%;
 }
 
-.teamImg{
+.teamImg {
   width: 154px;
   height: 154px;
   left: 1429px;
   top: 608px;
   border-radius: 50%;
 }
+
+

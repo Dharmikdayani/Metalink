@@ -8,6 +8,7 @@ import OtpVerification1 from "../OtpVerification/OtpVerification1";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../../Firebase-config";
 import useEncryption from "../EncryptData/EncryptData";
+import ManinHeader from "../Layout/ManinHeader";
 
 function Forgotpassword() {
   const [emailOrMobile, setemailOrMobile] = useState("");
@@ -39,35 +40,34 @@ function Forgotpassword() {
           // console.log(response);
           // reCAPTCHA solved, allow signInWithPhoneNumber.
           onLogin(response);
-          console.log("response",response)
+          console.log("response", response);
         },
       },
       auth
     );
   };
   /*================ERROR MESSAGE============= */
-  let errorsObj = {
+  const [error, setError] = useState({
     emailOrMobile: "",
-  };
-
-  const [errors, setErrors] = useState(errorsObj);
+    password: "",
+  });
 
   function onLogin(e) {
     e.preventDefault();
-    let error = false;
-    errorsObj = { ...errorsObj };
 
     if (emailOrMobile === "") {
-      errorsObj.emailOrMobile = "*PhoneNumber is required!";
-      error = true;
-    } else if (!IsValid) {
-      errorsObj.emailOrMobile = "*PhoneNumber is wrong!";
-      error = true;
+      setError({
+        ...error,
+        emailOrMobile: "*PhoneNumber is required!",
+      });
+    } else if (phone.length !== selCountryExpectedLength) {
+      setError({
+        ...error,
+        emailOrMobile: "*PhoneNumber is wrong!",
+      });
+    } else {
+      forgotPassword();
     }
-
-    setErrors(errorsObj);
-    if (error) return;
-    forgotPassword();
   }
 
   /*=============== forgotPassword API===========*/
@@ -133,10 +133,12 @@ function Forgotpassword() {
       {showOtpBox ? (
         <OtpVerification1 countryCode={countryCode} phone={a} />
       ) : (
-        <div className="logIn forgot-password-bg forgot-password">
-          <section className="login-form ">
-            <div className="container">
-              <div className="d-flex justify-content-between align-items-center header-md">
+        <>
+          <ManinHeader />
+          <div className="logIn forgot-password-bg forgot-password">
+            <section className="login-form ">
+              <div className="container">
+                {/* <div className="d-flex justify-content-between align-items-center header-md">
                 <div>
                   <Link to="/">
                     <img
@@ -146,81 +148,94 @@ function Forgotpassword() {
                     />
                   </Link>
                 </div>
-              </div>
-              <div className="row justify-content-center">
-                <div className="col-lg-6 col-md-8 col-sm-10">
-                  <div className="login-form-bg">
-                    <h2 className="heading text-center"> Forgot Password</h2>
-                    <form autoComplete="off" onSubmit={onLogin}>
-                      <div className="d-grid justify-content-center">
-                        <PhoneInput
-                          className="daa"
-                          name="phoneNumber"
-                          type="phone"
-                          placeholder=" Phone Number "
-                          specialLabel={""}
-                          searchPlaceholder="Search"
-                          country={"in"}
-                          value={emailOrMobile}
-                          countryCodeEditable={false}
-                          enableSearch
-                          onChange={(
-                            inputPhone,
-                            countryData,
-                            value,
-                            data,
-                            dialcode,
-                            inputNumber,
-                            e
-                          ) => {
-                            setcountryCode(`+${countryData.dialCode}`);
-                            setemailOrMobile(inputPhone);
-                            setphone(data);
-                            setSelCountryExpectedLength(
-                              countryData.format.length
-                            );
-                          }}
-                          inputStyle={{
-                            background: "#E2F1FE",
-                            padding: "26px 1px 20px 50px",
-                            marginTop: "22px",
-                            border: errors.emailOrMobile
-                              ? "red 1px solid"
-                              : "none",
-                          }}
-                          inputProps={{
-                            required: true,
-                            autoFocus: true,
-                          }}
-                          onBlur={() => {
-                            phone.length !== selCountryExpectedLength
-                              ? setIsValid(false)
-                              : setIsValid(true);
-                          }}
-                          isValid={() =>
-                            !IsValid
-                              ? phone.length === selCountryExpectedLength
-                              : IsValid
-                          }
-                        />
-                        {errors.emailOrMobile && (
-                          <div className="errorMsg">{errors.emailOrMobile}</div>
-                        )}
-                      </div>
-                      <div id="sign-in-button" className="recaptcha" />
-                      <button type="submit" className="sign-in">
-                        Send OTP
-                      </button>
-                      <p className="text-center">
-                        <Link to="/fpwdemail">Forgot password via Email </Link>
-                      </p>
-                    </form>
+              </div> */}
+                <div className="row justify-content-center">
+                  <div className="col-lg-6 col-md-8 col-sm-10">
+                    <div className="login-form-bg">
+                      <h2 className="heading text-center"> Forgot Password</h2>
+                      <form autoComplete="off" onSubmit={onLogin}>
+                        <div className="d-grid justify-content-center">
+                          <PhoneInput
+                            className="daa"
+                            name="phoneNumber"
+                            type="phone"
+                            placeholder=" Phone Number "
+                            specialLabel={""}
+                            searchPlaceholder="Search"
+                            country={"in"}
+                            value={emailOrMobile}
+                            countryCodeEditable={false}
+                            enableSearch
+                            onChange={(
+                              inputPhone,
+                              countryData,
+                              value,
+                              data,
+                              dialcode,
+                              inputNumber,
+                              e
+                            ) => {
+                              setcountryCode(`+${countryData.dialCode}`);
+                              setemailOrMobile(inputPhone);
+                              setphone(data);
+                              setSelCountryExpectedLength(
+                                countryData.format.length
+                              );
+                              setError({
+                                ...error,
+                                emailOrMobile:
+                                  emailOrMobile === ""
+                                    ? "*PhoneNumber is required!"
+                                    : emailOrMobile.length <= 7 ||
+                                      emailOrMobile.length >= 17
+                                    ? "*PhoneNumber is is wrong!"
+                                    : "",
+                              });
+                            }}
+                            inputStyle={{
+                              background: "#E2F1FE",
+                              padding: "26px 1px 20px 50px",
+                              marginTop: "22px",
+                              border: error.emailOrMobile
+                                ? "red 1px solid"
+                                : "none",
+                              boxShadow: error.emailOrMobile ? "none" : "",
+                            }}
+                            inputProps={{
+                              required: true,
+                              autoFocus: true,
+                            }}
+                            onBlur={() => {
+                              phone.length !== selCountryExpectedLength
+                                ? setIsValid(false)
+                                : setIsValid(true);
+                            }}
+                            isValid={() =>
+                              !IsValid
+                                ? phone.length === selCountryExpectedLength
+                                : IsValid
+                            }
+                          />
+
+                          <div className="errorMsg">{error.emailOrMobile}</div>
+                        </div>
+                        <div id="sign-in-button" className="recaptcha" />
+                        <button type="submit" className="sign-in">
+                          Send OTP
+                        </button>
+                        <p className="text-center">
+                          <Link to="/fpwdemail">
+                            Forgot password via Email{" "}
+                          </Link>
+                        </p>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
-        </div>
+            </section>
+          </div>
+        </>
       )}
     </>
   );

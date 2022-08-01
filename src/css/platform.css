@@ -13,7 +13,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
+  /* background-position: bottom; */
 }
 
 .common-heading {
@@ -38,6 +38,39 @@ img {
   font-weight: 350;
   margin-bottom: 35px;
   text-align: justify;
+}
+
+@media screen and (max-width: 450px) {
+  .platform-subtitle {
+    color: #272d3d;
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 350;
+    margin-bottom: 35px;
+    text-align: justify;
+  }
+
+  .common-heading {
+    font-size: 30px !important;
+    padding-bottom: 0 !important;
+    text-align: center;
+  }
+
+  .platform-aboutinfo {
+    padding: 75px 0 0 0 !important;
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+  .platform-subtitle {
+    font-size: 19px;
+  }
+
+  .common-heading {
+    font-size: 32px !important;
+    padding-bottom: 0 !important
+  }
 }
 
 .platform-aboutinfo {
@@ -189,7 +222,8 @@ Mainnet_Table
   line-height: 20px;
   color: #272d3d;
 }
-.questions{
+
+.questions {
   background: #DEEFFD;
   box-shadow: inset 4px 4px 8px rgba(0, 16, 57, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.8);
   border-radius: 28px;

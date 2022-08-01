@@ -340,7 +340,7 @@ const Profile = ({ socket }) => {
         });
 
         const results = decryptData(result.data.data);
-
+        console.log(results);
         if (results.success) {
           Toast.fire({
             icon: "success",
@@ -547,7 +547,7 @@ const Profile = ({ socket }) => {
                                 Referral link to share
                               </label>
                               <div className="referral-link position-absolute">
-                                minepl.com/johnwick54
+                                {`https://metalinknetwork.com/${inviteCode}`}
                               </div>
                               <button
                                 onClick={() => setIsOpen(true)}
@@ -820,45 +820,129 @@ const Profile = ({ socket }) => {
                 </div>
               </div>
               {/* <!-- Referral_link_to_share_Popup --> */}
-              <div className={isOpen ? "share-dialog is-open" : "share-dialog"}>
-                <div className="modal-headertop d-flex justify-content-between align-items-center">
-                  <a
-                    href="#close"
-                    className="justify-content-end d-flex close-btn"
-                  >
-                    <img
-                      src="../../img/profile/close.png"
-                      alt="close-img"
-                      onClick={() => setIsOpen(false)}
-                    />
-                  </a>
-                  <h3 className="dialog-title mb-0">Share this pen</h3>
+              {isOpen ? (
+                <div id="Invite-Modal">
+                  <section className="Invite">
+                    <div className="container">
+                      <div className="row justify-content-center">
+                        <div className="col-lg-5">
+                          <div className="Invite-modal" >
+                            <a
+                              href="#close"
+                              className="justify-content-end d-flex close-btn"
+                            >
+                              <img
+                                src="../../img/profile/close.png"
+                                alt="close-img"
+                                onClick={() => setIsOpen(false)}
+                              />
+                            </a>
+                            <h2 className="Invite-content  align-items-center">
+                              Invite
+                            </h2>
+                            <div className="Invite-social  d-sm-flex d-none">
+                              <div className="social-bg">
+                                <a
+                                  href={`https://discord.com/channels/@me?url=Join my team on metalink https://metalinknetwork.com/signup/?ref=${getItem.refCode}`}
+                                  className="social-icon"
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  <img
+                                    src="../../img/icon/discord.svg"
+                                    alt=""
+                                    className="simple-social-icon"
+                                  />
+                                  <img
+                                    src="../../img/icon/discord-hover.png"
+                                    alt=""
+                                    className="fill-social-icon"
+                                  />
+                                </a>
+                              </div>
+                              <div className="social-bg">
+                                <a
+                                  href={`https://twitter.com/compose/tweet?url=Join my team on metalink https://metalinknetwork.com/signup/?ref=${getItem.refCode}`}
+                                  className="social-icon"
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  <img
+                                    src="../../img/icon/twitter.svg"
+                                    alt=""
+                                    className="simple-social-icon"
+                                  />
+                                  <img
+                                    src="../../img/icon/twitter-hover.png"
+                                    alt=""
+                                    className="fill-social-icon"
+                                  />
+                                </a>
+                              </div>
+                              <div className="social-bg">
+                                <a
+                                  // href={`https://www.linkedin.com/sharing/share-offsite/?url=https://metalinknetwork.com/signup/?ref=${getItem.refCode}`}
+                                  href={`https://www.linkedin.com/sharing/share-offsite/?url=https://metalinknetwork.com/signup/?ref=${getItem.refCode}`}
+                                  className="social-icon"
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  <img
+                                    src="../../img/icon/linkedinhover.png"
+                                    alt=""
+                                    className="simple-social-icon"
+                                  />
+                                  <img
+                                    src="../../img/icon/linkedin.png"
+                                    alt=""
+                                    className="fill-social-icon"
+                                  />
+                                </a>
+                              </div>
+                              <div className="social-bg">
+                                <a
+                                  href="https://www.instagram.com/metalinknetwork/"
+                                  className="social-icon"
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  <img
+                                    src="../../img/icon/instagram.svg"
+                                    alt=""
+                                    className="simple-social-icon"
+                                  />
+                                  <img
+                                    src="../../img/icon/instagram-hover.png"
+                                    alt=""
+                                    className="fill-social-icon"
+                                  />
+                                </a>
+                              </div>
+                            </div>
+                            <div className="d-flex input-Invite-shre mb-0">
+                              <div>{`https://metalinknetwork.com/${getItem.refCode}`}</div>
+                              <img
+                                src="../../img/profile/copy-icon.png"
+                                alt=""
+                                className="copy-invite-share"
+                                onClick={() => {
+                                  navigator.clipboard.writeText(
+                                    `https://metalinknetwork.com/signup/?ref=${getItem.refCode}`
+                                  );
+                                  Toast.fire({
+                                    icon: "success",
+                                    title: "copied successfully",
+                                  });
+                                }}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
                 </div>
-                <div className="targets">
-                  <div className="footer-social d-flex">
-                    <div className="social-bg position-relative mt-0">
-                      <a href="/#" className="social-icon">
-                        <img src="../../img/icon/facebook.png" alt="" />
-                      </a>
-                    </div>
-                    <div className="social-bg position-relative mt-0">
-                      <a href="/#" className="social-icon">
-                        <img src="../../img/icon/twitter.png" alt="" />
-                      </a>
-                    </div>
-                    <div className="social-bg position-relative mt-0">
-                      <a href="/#" className="social-icon">
-                        <img src="../../img/icon/instagram.png" alt="" />
-                      </a>
-                    </div>
-                    <div className="social-bg position-relative mt-0">
-                      <a href="/#" className="social-icon">
-                        <img src="../../img/icon/discord.png" alt="" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              ) : null}
             </section>
           </div>
 

@@ -22,7 +22,7 @@ const Footer = () => {
                     className="img-fluid"
                   />
                 </Link>
-                <div className="footer-social d-flex ">
+                <div className="footer-social d-flex curso">
                   <div className="social-bg">
                     <a
                       href="https://dsc.gg/metalink"

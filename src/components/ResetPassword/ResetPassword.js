@@ -27,38 +27,36 @@ function Resetpassword() {
 
   /*================ERROR MESSAGE============= */
 
-  let errorsObj = {
+  const [error, setError] = useState({
     password: "",
     cpwd: "",
-  };
-  const [errors, setErrors] = useState(errorsObj);
+  });
   function onSignUp(e) {
     e.preventDefault();
-    let error = false;
-    errorsObj = { ...errorsObj };
 
     if (password === "") {
-      errorsObj.password = "*New Password is required";
-      error = true;
+      setError({
+        ...error,
+        password: "*New Password is required",
+      });
     } else if (password.length < 8) {
-      errorsObj.password = "New Password must be 8 or more characters";
-      error = true;
+      setError({
+        ...error,
+        password: (password = "*New Password must be 8 or more characters"),
+      });
+    } else if (cpwd === "") {
+      setError({
+        ...error,
+        cpwd: "*New Confirm Password is required",
+      });
+    } else if (password !== cpwd) {
+      setError({
+        ...error,
+        cpwd: "*New Confirm Password is not matched With Password",
+      });
+    } else {
+      setNewPassword();
     }
-
-    if (cpwd === "") {
-      errorsObj.cpwd = "*New Confirm Password is required";
-      error = true;
-    }
-
-    if (password !== cpwd) {
-      errorsObj.cpwd = "*New Confirm Password is not matched With Password";
-      error = true;
-    }
-
-    setErrors(errorsObj);
-
-    if (error) return;
-    setNewPassword();
   }
 
   /*================setNewPassword API===============*/
@@ -142,13 +140,22 @@ function Resetpassword() {
                         name="password"
                         value={password}
                         onKeyPress={preventSpace}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                          setError({
+                            ...error,
+                            password:
+                              e.target.value === ""
+                                ? "*New Password is required!"
+                                : e.target.value.length < 8
+                                ? "*New Password must be 8 or more characters!"
+                                : null,
+                          });
+                        }}
                         placeholder="New Password"
-                        className={
-                          errors.password
-                            ? "form-control-error pwd "
-                            : "form-control pwd"
-                        }
+                        className={`form-control pwd ${
+                          error.password ? "form-control-error pwd" : ""
+                        }`}
                       />
                       <img
                         role="button"
@@ -162,22 +169,31 @@ function Resetpassword() {
                         className="Eye-icon"
                       />
                     </div>
-                    {errors.password && (
-                      <div className="errorMsg">{errors.password}</div>
-                    )}
+
+                    <div className="errorMsg">{error.password}</div>
+
                     <div className="position-relative">
                       <input
                         type={`${showConfirmPass ? "text" : "password"}`}
                         name="cpwd"
                         value={cpwd}
                         onKeyPress={preventSpace}
-                        onChange={(e) => setCpwd(e.target.value)}
+                        onChange={(e) => {
+                          setCpwd(e.target.value);
+                          setError({
+                            ...error,
+                            cpwd:
+                              e.target.value === ""
+                                ? "*New Confirm Password is required!"
+                                : e.target.value !== password
+                                ? "*New Confirm password is not matched!"
+                                : null,
+                          });
+                        }}
                         placeholder="New Confirm Password"
-                        className={
-                          errors.cpwd
-                            ? "form-control-error conf-pwd "
-                            : "form-control conf-pwd"
-                        }
+                        className={`form-control conf-pwd ${
+                          error.cpwd ? "form-control-error conf-pwd" : ""
+                        }`}
                       />
                       <img
                         role="button"
@@ -191,9 +207,8 @@ function Resetpassword() {
                         className="Eye-icon"
                       />
                     </div>
-                    {errors.cpwd && (
-                      <div className="errorMsg">{errors.cpwd}</div>
-                    )}
+
+                    <div className="errorMsg">{error.cpwd}</div>
                   </div>
 
                   <button className="sign-in" type="submit">

@@ -1,6 +1,4 @@
-// import e from "cors";
 import React, { useEffect, useRef, useState } from "react";
-// import Swal from "sweetalert2";
 import instance from "../../baseUrl/baseUrl";
 import useEncryption from "../../EncryptData/EncryptData";
 
@@ -11,19 +9,6 @@ const Mining = () => {
   const effectCalled = useRef(false);
   const [day, setDay] = useState("day");
   const { decryptData } = useEncryption();
-
-  // /*============= Toast Fire Notifaction==========*/
-  // const Toast = Swal.mixin({
-  //   toast: true,
-  //   position: "top-end",
-  //   showConfirmButton: false,
-  //   timer: 3000,
-  //   timerProgressBar: true,
-  //   didOpen: (toast) => {
-  //     toast.addEventListener("mouseenter", Swal.stopTimer);
-  //     toast.addEventListener("mouseleave", Swal.resumeTimer);
-  //   },
-  // });
 
   const mineHistory = async () => {
     try {

@@ -80,7 +80,7 @@ function Home() {
                 </p>
                 <div className="app-store d-flex justify-content-lg-start justify-content-center ">
                   <a
-                    href={`https://metalink-technomads.herokuapp.com/${data}` }
+                    href={`${process.env.REACT_APP_BASE_URL}/${data}` }
                     className="card1 "
                   >
                     <img
@@ -89,8 +89,8 @@ function Home() {
                       alt="ios"
                     />
                   </a>
-                  <a
-                    href={`https://metalink-technomads.herokuapp.com/${data}`}
+                  {/* <a
+                    href={`${process.env.REACT_APP_BASE_URL}/${data}`}
                     className="card2"
                   >
                     <img
@@ -98,7 +98,7 @@ function Home() {
                       src="../../img/index-page/light-ios.svg"
                       alt="robert shaw"
                     />
-                  </a>
+                  </a> */}
                 </div>
               </div>
               <div className="col-lg-6 text-lg-end text-center digital-currency d-md-block d-sm-none">
@@ -146,7 +146,7 @@ function Home() {
                 <div className="row mx-0 justify-content-between first-layer">
                   <div className="col-xl-3 col-2 track-box ">
                     <img
-                      src="../../img/index-page/track-one.png"
+                      src="../../img/index-page/pickaxe.svg"
                       alt=""
                       className="img-fluid "
                     />
@@ -156,7 +156,7 @@ function Home() {
                   <div className="col-xl-6 col-8"></div>
                   <div className="col-xl-3 col-2 track-box">
                     <img
-                      src="../../img/index-page/track-one.png"
+                      src="../../img/index-page/value.svg"
                       alt=""
                       className="img-fluid"
                     />
@@ -167,7 +167,7 @@ function Home() {
                 <div className="row mx-0 justify-content-between secound-layer">
                   <div className="col-xl-3 col-2 track-box  mining-higher-rate">
                     <img
-                      src="../../img/index-page/track-one.png"
+                      src="../../img/index-page/earning.svg"
                       alt=""
                       className="img-fluid"
                     />
@@ -176,7 +176,7 @@ function Home() {
                   <div className="col-xl-6 col-8"></div>
                   <div className="col-xl-3 col-2  track-box  mining-higher-rate">
                     <img
-                      src="../../img/index-page/track-one.png"
+                      src="../../img/index-page/coin-stack.svg"
                       alt=""
                       className="img-fluid"
                     />
@@ -187,7 +187,7 @@ function Home() {
                 <div className="row mx-0  justify-content-between thierd-layer">
                   <div className="col-xl-3 col-2  track-box ">
                     <img
-                      src="../../img/index-page/track-one.png"
+                      src="../../img/index-page/hand.svg"
                       alt=""
                       className="img-fluid"
                     />
@@ -196,7 +196,7 @@ function Home() {
                   <div className="col-xl-6 col-8"></div>
                   <div className="col-xl-3 col-2  track-box ">
                     <img
-                      src="../../img/index-page/track-one.png"
+                      src="../../img/index-page/coin-stack.svg"
                       alt=""
                       className="img-fluid"
                     />
@@ -228,8 +228,8 @@ function Home() {
                 </p>
                 <div className="light-play-store  d-flex justify-content-lg-start justify-content-center">
                   {/* <div className="light-google-play"> */}
-                  <Link
-                    to={`http://192.168.29.107:3008/${data}`}
+                  <a
+                    href={`${process.env.REACT_APP_BASE_URL}/${data}`}
                     className="card3"
                   >
                     <img
@@ -237,9 +237,9 @@ function Home() {
                       src="../../img/index-page/andriod-dark.svg"
                       alt="ios"
                     />
-                  </Link>
-                  <Link
-                    to={`http://192.168.29.107:3008/${data}`}
+                  </a>
+                  {/* <a
+                    href={`${process.env.REACT_APP_BASE_URL}/${data}`}
                     className="card4"
                   >
                     <img
@@ -247,7 +247,7 @@ function Home() {
                       src="../../img/index-page/ios-dark.svg"
                       alt="Lorraine Gary"
                     />
-                  </Link>
+                  </a> */}
                   {/* </div> */}
                 </div>
               </div>
